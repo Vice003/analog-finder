@@ -176,6 +176,7 @@ dialog#bmap-dlg::backdrop { background: rgba(0,0,0,.6); }
 .imp select { font:inherit; font-size:13px; border:1px solid var(--line); background:var(--raise); color:var(--fg); border-radius:7px; padding:3px 6px; margin-left:4px; }
 .note.custom { padding:6px 14px; margin:0 14px 8px; border-left:3px solid var(--rel-b); background:var(--raise); border-radius:0 6px 6px 0; }
 .satbtn { font-size: 12.5px; }
+img.tview { width: 100%; height: auto; border-radius: 7px; border: 1px solid var(--line); display: block; margin-top: 4px; }
 ul.hl { margin: 4px 0 6px; padding-left: 18px; font-size: 13.5px; } ul.hl li { margin-bottom: 3px; } ul.hl li.why { list-style: none; margin-left: -18px; color: var(--muted); font-style: italic; margin-top: 4px; }
 .fsline { margin: 8px 0 0; padding: 7px 9px; background: var(--raise); border-radius: 6px; }
 .rbtag { color: var(--rel-a); cursor: help; } .rbtag.low { color: var(--rel-b); }
@@ -759,6 +760,11 @@ function renderTarget(t) {
   [["Type", t.cat], ["Site centre", `${fmt(t.lat, 2)}°, ${fmt(t.lon, 2)}° E`], ["Coordinates", t.cq === "verified" ? "verified" : (t.cq === "unverified" ? "unverified, approximate" : "approximate")]]
     .forEach(([k, v]) => { const dt = el("dt", null, k + " "); if (k === "Coordinates") dt.appendChild(qm("koordinaten")); kv.appendChild(dt); kv.appendChild(el("dd", null, v)); });
   bd.appendChild(kv);
+  if (t.tview) {
+    const h3v = el("h3", null, "Target area "); h3v.appendChild(qm("zielquadrat")); bd.appendChild(h3v);
+    const im = el("img", "tview"); im.src = t.tview; im.alt = `Elevation map of the area around ${t.name} with the target box and named craters`; bd.appendChild(im);
+    bd.appendChild(el("p", "small muted", `Dashed square: the ${t.body === "Moon" ? "15" : "10"} km target box. Blue circles: named craters (IAU). ${t.body === "Moon" ? "LOLA" : "MOLA"} elevation, 60 km across.`));
+  }
   const h3k = el("h3", null, "What we know about the site "); h3k.appendChild(qm("merkmale")); bd.appendChild(h3k);
   const f = el("div", "feat");
   t.feats.filter((x) => !x.ph).forEach((x) => {

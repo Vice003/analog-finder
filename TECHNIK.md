@@ -319,7 +319,9 @@ Messwerten (Gelände im Vergleich zum Ziel, Trockenheit, Höhe/Druck, Kälte, Ta
 Staubstürme, tiefe Sonne, Eigenschaften) und ein Satz zur Bedeutung der Umgebungsklasse; in der App (für Pool-Orte
 im Browser nachgebaut), in den Steckbriefe und auf der Ergebnisseite (Top 3 je Ziel).
 
-**Geplant:** Zielausschnitte mit Zielquadrat und benannten Kratern (IAU-Namensverzeichnis liegt bereit).
+**Zielausschnitte** (`web/make_target_views.py`): je Ziel eine Höhenschummerung von 60 × 60 km (MOLA 463 m bzw.
+LOLA 80 m) mit Zielquadrat und den benannten Kratern, Bergen und Tälern der Umgebung aus dem IAU-Namensverzeichnis
+(Krater mit Randkreis); in der Zielkarte der App unter „Target area“.
 
 ---
 
@@ -385,7 +387,7 @@ python planetary/compute_targets.py            # Rohdaten in data/planetary/raw 
 python scoring/target_scoring.py planetary/targets.json earth_features_005deg.parquet
 python scoring/pool_flags.py && python scoring/robustness.py
 python web/make_site_profiles.py && python web/fine_search.py && python web/make_site_profiles.py
-python web/make_profiles_page.py && python web/make_glossary_page.py
+python web/make_target_views.py && python web/make_profiles_page.py && python web/make_glossary_page.py
 python web/build_web.py
 python web/make_results_page.py results/top_sites.json web/ergebnisse.html
 ```
@@ -408,4 +410,4 @@ Feinsuche die Steckbrief-Liste braucht. Danach `web/index.html`, `web/profiles.h
 * Feinsuche nur für Gelände und bis 8 km; bei 43 Paaren liegt das beste Quadrat am Rand.
 * Literaturprüfung englischsprachig, ohne Fachdatenbanken; Lop Nur und Dunhuang/Kumtag nachprüfen.
 * „Extreme cold“ kommt im Ranking nicht vor (alle so kalten Zellen sind Eisschilde).
-* Kraterausschnitte der Zielorte noch nicht gebaut (Abschnitt 10).
+* Zielausschnitte nutzen nur Höhendaten (keine Orbiter-Bilder); manche Ziele haben im 60-km-Ausschnitt keine benannten Objekte.

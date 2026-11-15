@@ -172,6 +172,12 @@ def fine(f):
     return [b["lat"], b["lon"], b["offset_km"], b["bearing"], b["match"], c.get("match"), f["box_km"]]
 
 
+def tview(tid):
+    """Hillshade of the target area with target box and IAU names (web/make_target_views.py), as data URL."""
+    p = HERE / "targets" / f"{tid}.jpg"
+    return "data:image/jpeg;base64," + base64.b64encode(p.read_bytes()).decode() if p.exists() else None
+
+
 def b64(a):
     return base64.b64encode(np.ascontiguousarray(a).tobytes()).decode()
 
@@ -318,7 +324,7 @@ def main():
         targets.append(dict(id=tid, name=t.get("name"), body=t.get("body"), cat=t.get("category"),
                             cq=t.get("coord_quality"), lat=t.get("center_lat"), lon=t.get("center_lon"),
                             note=t.get("region_notes"), prof=profile_for(t), feats=feats, sites=sites, lists=lists,
-                            fm=fm, heat=heat, pool=pack_pool(Z, tid, names, PFZ, RBZ) if Z is not None and f"{tid}/lat" in Z.files else None,
+                            fm=fm, heat=heat, tview=tview(tid), pool=pack_pool(Z, tid, names, PFZ, RBZ) if Z is not None and f"{tid}/lat" in Z.files else None,
                             w={DIM_EN[d]: PROFILES[profile_for(t)]["weights"].get(d, 0) for d in POOL_DIMS}, mxy=map_xy(t.get("body"), t.get("center_lat"), t.get("center_lon"))))
         print(f"  {tid:26s} {len(heat) // 1024} KB", flush=True)
 
