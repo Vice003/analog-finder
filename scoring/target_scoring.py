@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from categories import TARGETS as PROFILES, _weighted_pct, classify, mark_known, top_sites, ENV_CLASSES  # noqa: E402
+from categories import TARGETS as PROFILES, _weighted_pct, classify, mark_known, top_sites, ENV_CLASSES, KNOWN_ANALOGS  # noqa: E402
 
 def profile_for(target):
     """Gewichtsprofil aus categories.py nach Koerper und Kategorie (freie Ziel-IDs, Aenderung 14.11. 18:30)."""
@@ -260,6 +260,53 @@ def country_raster(df, field="ISO_A3"):
     return pd.Series(np.array(isos, dtype=object)[grid[iy, ix]], index=df.index)
 
 
+# Kandidatenpool fuer die Neu-Gewichtung in der Web-App: die besten Zellen nach Gesamtwert, je Dimension, je
+# Kontinent, je Umgebungsklasse und ausserhalb Chinas, mit allen Teilnoten. Die App rechnet daraus im Browser neu.
+POOL_DIMS = ["gelaende", "oberflaeche", "thermik", "trockenheit", "atmosphaere", "staub_wind", "eis_wasser", "leben",
+             "beleuchtung"]
+
+
+def export_pool(df, s, fmeta, t, iso_cell, cont_cell, continents, china, n_top=600, n_dim=80, n_cont=25, n_cls=30,
+                n_excl=200):
+    from categories import ENV_CLASSES, KNOWN_ANALOGS
+    tot = s["total"]
+    ok = tot.notna()
+    pick = set(tot[ok].nlargest(n_top).index)
+    for d in POOL_DIMS:
+        c = f"dim_{d}"
+        if c in s:
+            key = pd.DataFrame({"d": s.loc[ok, c], "t": tot[ok]}).dropna()
+            pick |= set(key.sort_values(["d", "t"], ascending=False).index[:n_dim])
+    for c in continents:
+        pick |= set(tot[ok & (cont_cell == c)].nlargest(n_cont).index)
+    for c in ENV_CLASSES:
+        pick |= set(tot[ok & (df["env_class"] == c["id"])].nlargest(n_cls).index)
+    pick |= set(tot[ok & ~iso_cell.isin(china)].nlargest(n_excl).index)
+    idx = tot.loc[list(pick)].sort_values(ascending=False).index
+    sub = s.loc[idx]
+    q8 = lambda x: np.where(np.isfinite(x), np.clip(np.round(x * 254), 0, 254), 255).astype(np.uint8)
+    dims = np.stack([q8(sub[f"dim_{d}"].to_numpy(dtype=float)) if f"dim_{d}" in sub else np.full(len(sub), 255, np.uint8)
+                     for d in POOL_DIMS], axis=1)
+    conf = np.stack([q8(sub[f"conf_{d}"].to_numpy(dtype=float)) if f"conf_{d}" in sub else np.full(len(sub), 255, np.uint8)
+                     for d in POOL_DIMS], axis=1)
+    fkeys = [m["key"] for m in fmeta]
+    fs = np.stack([q8(sub[f"feat_{k}"].to_numpy(dtype=float)) for k in fkeys], axis=1) if fkeys else np.zeros((len(sub), 0), np.uint8)
+    fv = np.stack([_earth_values(df.loc[idx], k, t["features"][k])[0].to_numpy(dtype=float) for k in fkeys], axis=1).astype(np.float16) \
+        if fkeys else np.zeros((len(sub), 0), np.float16)
+    cls_ids = [c["id"] for c in ENV_CLASSES]
+    known = mark_known(df.loc[idx, ["lat", "lon"]])
+    kn_names = [k[0] for k in KNOWN_ANALOGS]
+    rank = tot.rank(ascending=False, method="min")
+    return dict(lat=df.loc[idx, "lat"].to_numpy(np.float32), lon=df.loc[idx, "lon"].to_numpy(np.float32),
+                total=tot.loc[idx].to_numpy(np.float32), rank=rank.loc[idx].to_numpy(np.int32),
+                cov=q8(sub["coverage_target"].to_numpy(dtype=float)), dims=dims, conf=conf, fs=fs, fv=fv,
+                fkeys=np.array(fkeys), cls=np.array([cls_ids.index(str(c)) for c in df.loc[idx, "env_class"]], np.uint8),
+                iso=np.array([str(x) for x in iso_cell.loc[idx]]),
+                cont=np.array([continents.index(c) if c in continents else 255 for c in cont_cell.loc[idx]], np.uint8),
+                known=np.array([kn_names.index(k) if isinstance(k, str) and k in kn_names else -1 for k in known], np.int16),
+                nranked=np.array(int(ok.sum())))
+
+
 if __name__ == "__main__":
     here = Path(__file__).resolve().parent.parent
     # Standard: ausgefuellte Datei im Repo (planetary/targets.json), sonst die Vorlage
@@ -286,7 +333,7 @@ if __name__ == "__main__":
     cont_cell = country_raster(df, "CONTINENT")
     CONTINENTS = ["Africa", "Asia", "Europe", "North America", "South America", "Oceania", "Antarctica"]
     w_area = pd.Series(np.cos(np.radians(df["lat"].to_numpy(dtype=np.float64))), index=df.index)
-    results, rows = {}, []
+    results, rows, pools = {}, [], {}
     for tid, t in T.items():
         s = score_target(df, t)
         if s["total"].notna().sum() == 0:
@@ -362,6 +409,7 @@ if __name__ == "__main__":
             rows.append(dict(target=tid, body=t.get("body"), target_name=t.get("name"),
                              **{k: v for k, v in x.items() if k not in ("dims", "flags", "features", "env_reason")},
                              flags=";".join(x["flags"])))
+        pools[tid] = export_pool(df, s, fmeta, t, iso_cell, cont_cell, CONTINENTS, EXCLUDE["china"])
         results[tid] = dict(name=t.get("name"), body=t.get("body"), category=t.get("category"),
                             coord_quality=t.get("coord_quality"), center_lat=t.get("center_lat"),
                             center_lon=t.get("center_lon"), mean_coverage=round(float(s["coverage"].mean()), 3),
@@ -373,6 +421,12 @@ if __name__ == "__main__":
     meta = dict(earth_table=table.name, earth_cells=int(len(df)), targets_file=str(tpath.name), n_top=N_TOP,
                 min_separation_km=200, note="Gesamtwert nur zum Sortieren; gezeigt wird das Profil (dims). "
                                             "known_analog = innerhalb des Radius eines bekannten Analogs, sonst neu.")
+    flat = {"_dims": np.array(POOL_DIMS), "_classes": np.array([c["id"] for c in ENV_CLASSES]),
+            "_continents": np.array(CONTINENTS), "_known": np.array([k[0] for k in KNOWN_ANALOGS])}
+    for tid, pdat in pools.items():
+        flat.update({f"{tid}/{k}": v for k, v in pdat.items()})
+    np.savez_compressed(out_dir / "pool.npz", **flat)
+    print(f"Pool: {out_dir / 'pool.npz'} ({sum(len(p['lat']) for p in pools.values()):,} Zellen)")
     json.dump(dict(meta=meta, targets=results), open(out_dir / "top_sites.json", "w", encoding="utf-8"),
               indent=1, ensure_ascii=False)
     pd.DataFrame(rows).to_csv(out_dir / "top_sites.csv", index=False)

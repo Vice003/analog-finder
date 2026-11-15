@@ -31,7 +31,7 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(ROOT / "scoring"))
-from target_scoring import load_targets, score_target, _weighted_pct, profile_for, country_raster  # noqa: E402
+from target_scoring import load_targets, score_target, _weighted_pct, profile_for, country_raster, POOL_DIMS  # noqa: E402
 from categories import classify, ENV_CLASSES, TARGETS as PROFILES  # noqa: E402
 from countries import CountryLookup  # noqa: E402
 
@@ -162,6 +162,36 @@ def map_xy(body, lat, lon_e):
     return round((((lon_e + 180) % 360)) / 360, 4), round((90 - lat) / 180, 4)
 
 
+def b64(a):
+    return base64.b64encode(np.ascontiguousarray(a).tobytes()).decode()
+
+
+def iso_names():
+    """ISO-A3 -> short English country name (Natural Earth 1:50m), for pool cells without a precomputed label."""
+    import shapefile
+    r = shapefile.Reader(str(ROOT / "data" / "ref" / "ne_50m_admin_0_countries"), encoding="utf-8")
+    f = [x[0] for x in r.fields[1:]]
+    out = {}
+    for rec in r.records():
+        d = dict(zip(f, rec))
+        iso = d.get("ISO_A3") if d.get("ISO_A3") not in (None, "", "-99") else d.get("ADM0_A3")
+        out.setdefault(iso, d.get("NAME") or d.get("ADMIN"))
+    return out
+
+
+def pack_pool(z, tid, names):
+    """Candidate pool of one target, compact for the browser (little-endian typed arrays as base64)."""
+    g = lambda k: z[f"{tid}/{k}"]
+    iso = g("iso")
+    iso_list = sorted(set(iso.tolist()))
+    return dict(n=int(len(g("lat"))), nr=int(g("nranked")), fkeys=g("fkeys").tolist(),
+                lat=b64(g("lat").astype("<f4")), lon=b64(g("lon").astype("<f4")), total=b64(g("total").astype("<f4")),
+                rank=b64(g("rank").astype("<i4")), cov=b64(g("cov")), dims=b64(g("dims")), conf=b64(g("conf")),
+                fs=b64(g("fs")), fv=b64(g("fv").astype("<f2")), cls=b64(g("cls")), cont=b64(g("cont")),
+                known=b64(g("known").astype("<i2")), isoi=b64(np.array([iso_list.index(x) for x in iso], "<u2")),
+                isos=iso_list, isonames=[names.get(x) or x for x in iso_list])
+
+
 def countries_geojson(path):
     import shapefile
     r = shapefile.Reader(str(path), encoding="utf-8")
@@ -193,6 +223,9 @@ def main():
     df = pd.read_parquet(args.table)
     cl = CountryLookup(lang="en")
 
+    pool_path = Path(args.results).with_name("pool.npz")
+    Z = np.load(pool_path) if pool_path.exists() else None
+    names = iso_names() if Z is not None else {}
     targets = []
     for tid, t in T.items():
         if tid not in R["targets"]:
@@ -240,7 +273,8 @@ def main():
         targets.append(dict(id=tid, name=t.get("name"), body=t.get("body"), cat=t.get("category"),
                             cq=t.get("coord_quality"), lat=t.get("center_lat"), lon=t.get("center_lon"),
                             note=t.get("region_notes"), prof=profile_for(t), feats=feats, sites=sites, lists=lists,
-                            fm=fm, heat=heat, mxy=map_xy(t.get("body"), t.get("center_lat"), t.get("center_lon"))))
+                            fm=fm, heat=heat, pool=pack_pool(Z, tid, names) if Z is not None and f"{tid}/lat" in Z.files else None,
+                            w={DIM_EN[d]: PROFILES[profile_for(t)]["weights"].get(d, 0) for d in POOL_DIMS}, mxy=map_xy(t.get("body"), t.get("center_lat"), t.get("center_lon"))))
         print(f"  {tid:26s} {len(heat) // 1024} KB", flush=True)
 
     masks = {name: mask_png(df, isos) for name, isos in EXCLUDE.items()}
@@ -251,7 +285,12 @@ def main():
     gl = gl_entries("en", base="https://vice003.github.io/analog-finder/glossary.html")
     glossary = dict(groups=GL_GROUPS["en"], items={e["id"]: [e["title"], e["html"], e["group"]] for e in gl},
                     order=[e["id"] for e in gl], page="https://vice003.github.io/analog-finder/glossary.html")
-    data = dict(targets=targets, masks=masks, bodymaps=bodymaps, glossary=glossary, countries=countries_geojson(ROOT / "data" / "ref" / "ne_110m_admin_0_countries"),
+    pool_meta = None
+    if Z is not None:
+        pool_meta = dict(dims=[DIM_EN[d] for d in Z["_dims"].tolist()], classIds=Z["_classes"].tolist(),
+                         classes=[ENV_EN.get(c, c) for c in Z["_classes"].tolist()], continents=Z["_continents"].tolist(),
+                         known=Z["_known"].tolist())
+    data = dict(targets=targets, masks=masks, bodymaps=bodymaps, glossary=glossary, poolMeta=pool_meta, countries=countries_geojson(ROOT / "data" / "ref" / "ne_110m_admin_0_countries"),
                 meta=dict(earth_cells=R["meta"]["earth_cells"], table=R["meta"]["earth_table"]))
     css = urllib.request.urlopen(f"https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/{MAPLIBRE}/maplibre-gl.css",
                                  timeout=30).read().decode()

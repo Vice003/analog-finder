@@ -160,6 +160,21 @@ dialog#bmap-dlg { width: min(94vw, 1000px); max-height: 94vh; overflow: auto; ba
 dialog#bmap-dlg::backdrop { background: rgba(0,0,0,.6); }
 .dlghd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-family: var(--f-display); font-size: 17px; }
 #bmap-dlg[data-body="Moon"] { width: min(94vw, 760px); }
+/* ranking options (class filter, weights) */
+.rankbar { display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; padding:2px 14px 10px; }
+.rankbar .dd { position:relative; }
+.rankbar summary { cursor:pointer; list-style:none; font-size:13px; border:1px solid var(--line); background:var(--raise); border-radius:7px; padding:4px 10px; }
+.rankbar summary::-webkit-details-marker { display:none; }
+.rankbar details[open] summary { border-color:var(--accent, var(--mars)); }
+.ddbody { position:absolute; z-index:20; top:calc(100% + 4px); left:0; min-width:270px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:10px 12px; box-shadow:0 8px 24px rgba(0,0,0,.35); display:grid; gap:6px; }
+.ddbody label { display:flex; gap:7px; align-items:center; font-size:13px; }
+.ddbody .cnt { margin-left:auto; font:11.5px var(--f-mono); color:var(--muted); }
+.ddbody .row2 { display:flex; gap:6px; margin-top:4px; }
+.wrow { display:grid; grid-template-columns:118px 1fr 34px; gap:8px; align-items:center; font-size:13px; }
+.wrow input[type=range] { width:100%; accent-color:var(--accent, var(--mars)); }
+.wrow .num { font:12px var(--f-mono); text-align:right; color:var(--muted); }
+.imp select { font:inherit; font-size:13px; border:1px solid var(--line); background:var(--raise); color:var(--fg); border-radius:7px; padding:3px 6px; margin-left:4px; }
+.note.custom { padding:6px 14px; margin:0 14px 8px; border-left:3px solid var(--rel-b); background:var(--raise); border-radius:0 6px 6px 0; }
 /* glossary */
 .qm { display:inline-grid; place-items:center; width:16px; height:16px; padding:0; margin-left:3px; border-radius:50%; border:1px solid var(--line);
   background:var(--raise); color:var(--muted); font:600 10.5px var(--f-mono); line-height:1; cursor:help; vertical-align:middle; text-transform:none; letter-spacing:0; }
@@ -248,6 +263,7 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
       </div>
       <div class="legend">
         <div class="label">Match, rank among Earth's land <button class="qm" type="button" data-g="heatmap">?</button></div>
+        <div class="small" id="legend-note" hidden style="color:var(--rel-b);margin-top:2px">Shows the default weighting</div>
         <div class="ramp" id="ramp"></div>
         <div class="ends"><span>top 35 %</span><span>top 5 %</span><span>best</span></div>
       </div>
@@ -257,6 +273,13 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
       <div class="hd"><h2 id="list-title">Best Earth analogs</h2>
         <div class="seg" role="group" aria-label="List view"><button type="button" id="view-top" aria-pressed="true">Top 20</button><button type="button" id="view-cont" aria-pressed="false">Best per continent</button></div><span class="seghelp"><button class="qm" type="button" data-g="top20">?</button><button class="qm" type="button" data-g="kontinent">?</button></span></div>
       <p class="note" style="padding: 0 14px; margin-top: 0" id="view-note"></p>
+      <div class="rankbar" id="rankbar" hidden>
+        <details class="dd" id="dd-cls"><summary>Environment: <b id="cls-sum">all</b></summary><div class="ddbody" id="cls-list"></div></details>
+        <label class="small imp">Most important <select id="imp"></select></label>
+        <details class="dd" id="dd-w"><summary>Adjust weights</summary><div class="ddbody" id="w-list"></div></details>
+        <button class="xbtn" id="rank-reset" type="button" hidden>Reset</button><button class="qm" type="button" data-g="eigene_gewichtung">?</button><button class="qm" type="button" data-g="klasse">?</button>
+      </div>
+      <p class="note custom" id="custom-note" hidden></p>
       <p class="note" id="list-note" style="padding: 0 14px" hidden></p>
       <div class="tw"><table>
         <thead><tr><th><span class="sr-only">Compare</span></th><th class="n">#</th><th>Country</th><th>Environment <button class="qm" type="button" data-g="klasse">?</button></th><th class="n" title="Place among all ranked Earth land cells (about 5 km each); 1 = best match on Earth">Rank on Earth <button class="qm" type="button" data-g="platz">?</button></th><th>Strongest <button class="qm" type="button" data-g="passt_bricht">?</button></th><th>Weakest</th><th><button class="qm" type="button" data-g="bekannt">?</button></th></tr></thead>
@@ -406,7 +429,7 @@ document.addEventListener("click", (e) => {
   e.preventDefault(); e.stopPropagation(); openGl(t.dataset.g);
 }, true);
 const cellsTxt = (n) => n >= 1e6 ? `${fmt(n / 1e6, 1)} million` : fmt(n);
-const rankTxt = (s) => s.rk ? `#${fmt(s.rk)}` : `${fmt(s.p, 1)} %`;
+const rankTxt = (s) => scoreMode() && s.cs != null ? fmt(s.cs, 3) : s.rk ? `#${fmt(s.rk)}` : `${fmt(s.p, 1)} %`;
 
 /* ---------- colour ramp for the heat map (percentile 0..1 -> RGBA) */
 function rampColor(p, body) {
@@ -493,8 +516,133 @@ function drawPins(t, fit) {
   }
 }
 
+/* ---------- candidate pool: re-rank in the browser (class filter, custom weights) */
+const PM = D.poolMeta;
+const b64u8 = (str) => Uint8Array.from(atob(str), (c) => c.charCodeAt(0));
+function f16(h) { const sg = (h & 0x8000) ? -1 : 1, e = (h >> 10) & 0x1f, f = h & 0x3ff;
+  if (e === 0) return sg * Math.pow(2, -14) * (f / 1024); if (e === 31) return f ? NaN : sg * Infinity; return sg * Math.pow(2, e - 15) * (1 + f / 1024); }
+const CN_ISO = new Set(["CHN", "HKG", "MAC"]);
+state.w = {}; state.exCls = new Set();
+const keyOf = (la, lo) => `${Number(la).toFixed(3)},${Number(lo).toFixed(3)}`;
+function poolOf(t) {
+  if (!t.pool || !PM) return null; if (t._P) return t._P;
+  const p = t.pool;
+  const P = { n: p.n, nr: p.nr, fkeys: p.fkeys, F: p.fkeys.length, isos: p.isos, names: p.isonames,
+    lat: new Float32Array(b64u8(p.lat).buffer), lon: new Float32Array(b64u8(p.lon).buffer), total: new Float32Array(b64u8(p.total).buffer),
+    rank: new Int32Array(b64u8(p.rank).buffer), cov: b64u8(p.cov), dims: b64u8(p.dims), conf: b64u8(p.conf), fs: b64u8(p.fs),
+    fv: new Uint16Array(b64u8(p.fv).buffer), cls: b64u8(p.cls), cont: b64u8(p.cont), known: new Int16Array(b64u8(p.known).buffer),
+    isoi: new Uint16Array(b64u8(p.isoi).buffer) };
+  P.map = new Map(t.sites.map((x, i) => [keyOf(x.lat, x.lon), i]));
+  P.site = new Int32Array(P.n).fill(-1);
+  t._P = P; return P;
+}
+function poolSite(t, P, j) {
+  if (P.site[j] >= 0) return P.site[j];
+  const k = keyOf(P.lat[j], P.lon[j]); let i = P.map.get(k);
+  if (i == null) {
+    const d = {}; PM.dims.forEach((name, q) => { const v = P.dims[j * 9 + q]; if (v !== 255) d[name] = v / 254; });
+    const fv = t.fm.map((m) => { const q = P.fkeys.indexOf(m.k); if (q < 0) return [null, null, null];
+      const sc = P.fs[j * P.F + q], ev = f16(P.fv[j * P.F + q]); return [Number.isFinite(ev) ? ev : null, sc === 255 ? null : sc / 254, null]; });
+    const kn = P.known[j];
+    t.sites.push({ lat: +P.lat[j].toFixed(3), lon: +P.lon[j].toFixed(3), c: P.names[P.isoi[j]], iso: P.isos[P.isoi[j]],
+      ct: P.cont[j] < 255 ? PM.continents[P.cont[j]] : null, ec: PM.classIds[P.cls[j]], fk: [], s: P.total[j], p: null,
+      rk: P.rank[j], nr: P.nr, cov: P.cov[j] / 254, env: PM.classes[P.cls[j]], fl: [], b: null, w: null,
+      k: kn >= 0 ? PM.known[kn] : null, d, fv, er: { rules: [], no: [] }, pooled: true });
+    i = t.sites.length - 1; P.map.set(k, i);
+  }
+  P.site[j] = i; return i;
+}
+const weightsOf = (t) => state.w[t.id] || t.w;
+const isCustomW = (t) => !!state.w[t.id] && PM && PM.dims.some((d) => (state.w[t.id][d] || 0) !== (t.w[d] || 0));
+const customMode = (t) => !!t.pool && !!PM && (isCustomW(t) || state.exCls.size > 0);
+function cellScore(P, j, W) {
+  let num = 0, den = 0;
+  PM.dims.forEach((d, q) => { const wd = W[d] || 0; if (!wd) return; const v = P.dims[j * 9 + q], c = P.conf[j * 9 + q];
+    if (v === 255 || c === 255) return; const wc = wd * (c / 254); num += wc * v / 254; den += wc; });
+  return den > 0 ? num / den : null;
+}
+function hav(a, b, c, d) { const r = Math.PI / 180, x = Math.sin((c - a) * r / 2) ** 2 + Math.cos(a * r) * Math.cos(c * r) * Math.sin((d - b) * r / 2) ** 2; return 12742 * Math.asin(Math.sqrt(x)); }
+function setBW(s, W) {
+  if (s.b0 === undefined) { s.b0 = s.b; s.w0 = s.w; }
+  let b = null, w = null, bv = -1, wv = 2;
+  for (const [d, v] of Object.entries(s.d)) { if (!(W[d] > 0) || v == null) continue; if (v > bv) { bv = v; b = d; } if (v < wv) { wv = v; w = d; } }
+  s.b = b || s.b0; s.w = w || s.w0;
+}
+let clCache = { key: null, list: null };
+function customList(t) {
+  const P = poolOf(t), W = weightsOf(t);
+  const key = [t.id, JSON.stringify(W), [...state.exCls].sort().join(","), state.exChina, state.cont].join("|");
+  if (clCache.key === key) return clCache.list;
+  const cand = [];
+  for (let j = 0; j < P.n; j++) {
+    if (state.exCls.has(PM.classIds[P.cls[j]])) continue;
+    if (state.exChina && CN_ISO.has(P.isos[P.isoi[j]])) continue;
+    const sc = cellScore(P, j, W); if (sc != null) cand.push([sc, j]);
+  }
+  cand.sort((a, b) => b[0] - a[0]);
+  const out = [];
+  if (state.cont) { const seen = new Set(); for (const c of cand) { const ct = P.cont[c[1]]; if (ct === 255 || seen.has(ct)) continue; seen.add(ct); out.push(c); } }
+  else for (const c of cand) { if (out.length >= 20) break; if (out.some(([, k]) => hav(P.lat[c[1]], P.lon[c[1]], P.lat[k], P.lon[k]) < 200)) continue; out.push(c); }
+  const custom = isCustomW(t);
+  const list = out.map(([sc, j]) => { const i = poolSite(t, P, j), x = t.sites[i]; x.cs = sc; if (custom) setBW(x, W); else if (x.b0 !== undefined) { x.b = x.b0; x.w = x.w0; } return i; });
+  clCache = { key, list }; return list;
+}
+const scoreMode = () => { const t = byId[state.t]; return customMode(t) && isCustomW(t); };
+function renderRankbar(t) {
+  const bar = $("#rankbar"), P = poolOf(t);
+  bar.hidden = !P; if (!P) return;
+  // class filter
+  const counts = {}; for (let j = 0; j < P.n; j++) { const c = PM.classIds[P.cls[j]]; counts[c] = (counts[c] || 0) + 1; }
+  const L = $("#cls-list"); L.textContent = "";
+  PM.classIds.forEach((c, q) => { if (!counts[c]) return;
+    const lab = el("label"); const cb = el("input"); cb.type = "checkbox"; cb.checked = !state.exCls.has(c);
+    cb.addEventListener("change", () => { if (cb.checked) state.exCls.delete(c); else state.exCls.add(c); rerank(); });
+    lab.appendChild(cb); lab.appendChild(gterm("cls_" + c, PM.classes[q])); lab.appendChild(el("span", "cnt", String(counts[c]))); L.appendChild(lab); });
+  const r2 = el("div", "row2"); const all = el("button", "xbtn", "All"); all.type = "button"; all.addEventListener("click", () => { state.exCls.clear(); rerank(); });
+  const none = el("button", "xbtn", "None"); none.type = "button"; none.addEventListener("click", () => { PM.classIds.forEach((c) => state.exCls.add(c)); rerank(); });
+  r2.appendChild(all); r2.appendChild(none); L.appendChild(r2);
+  L.appendChild(el("div", "small muted", "Number = candidate cells of this class for this target."));
+  const nShown = PM.classIds.filter((c) => counts[c] && !state.exCls.has(c)).length, nAll = PM.classIds.filter((c) => counts[c]).length;
+  $("#cls-sum").textContent = nShown === nAll ? "all" : `${nShown} of ${nAll}`;
+  // weights
+  const present = PM.dims.filter((d, q) => { for (let j = 0; j < P.n; j++) if (P.dims[j * 9 + q] !== 255) return true; return false; });
+  const W = weightsOf(t), maxW = Math.max(...present.map((d) => t.w[d] || 0), 1);
+  const imp = $("#imp"); imp.textContent = "";
+  const o0 = el("option", null, "Balanced (target profile)"); o0.value = ""; imp.appendChild(o0);
+  present.forEach((d) => { const o = el("option", null, d); o.value = d; imp.appendChild(o); });
+  const oc = el("option", null, "Custom weights"); oc.value = "__custom"; oc.disabled = true; imp.appendChild(oc);
+  const dominant = present.find((d) => (W[d] || 0) === 3 * maxW && present.every((e) => e === d || (W[e] || 0) === (t.w[e] || 0)));
+  imp.value = !isCustomW(t) ? "" : (dominant || "__custom");
+  imp.onchange = () => { const v = imp.value; if (!v) delete state.w[t.id]; else { const nw = Object.assign({}, t.w); nw[v] = 3 * maxW; state.w[t.id] = nw; } rerank(); };
+  const WL = $("#w-list"); WL.textContent = "";
+  present.forEach((d) => { const row = el("div", "wrow"); row.appendChild(el("span", null, d));
+    const rg = el("input"); rg.type = "range"; rg.min = "0"; rg.max = String(Math.max(3, 3 * maxW)); rg.step = "0.25"; rg.value = String(W[d] || 0); rg.setAttribute("aria-label", "Weight of " + d);
+    const num = el("span", "num", fmt(W[d] || 0, 2));
+    rg.addEventListener("input", () => { num.textContent = fmt(+rg.value, 2); });
+    rg.addEventListener("change", () => { const nw = Object.assign({}, weightsOf(t)); nw[d] = +rg.value; state.w[t.id] = nw; rerank(true); });
+    row.appendChild(rg); row.appendChild(num); WL.appendChild(row); });
+  WL.appendChild(el("div", "small muted", "0 = ignore. Defaults come from the target's profile."));
+  $("#rank-reset").hidden = !customMode(t);
+  const cn = $("#custom-note");
+  if (customMode(t)) {
+    cn.hidden = false;
+    cn.textContent = (isCustomW(t) ? "Custom weights: " : "Filtered by environment class: ")
+      + `the list is recomputed in your browser from the ${fmt(P.n)} best candidate cells for this target (best overall, per dimension, per continent and per class).`
+      + (isCustomW(t) ? " Ranks on Earth exist only for the default weighting, so the list shows the custom score instead; the map keeps the default weighting." : " Ranks on Earth are unchanged.");
+  } else cn.hidden = true;
+  $("#legend-note").hidden = !isCustomW(t);
+}
+function rerank(keepOpen) {
+  const t = byId[state.t]; clCache.key = null; state.sel = null; state.cmp = [];
+  const openW = $("#dd-w").open, openC = $("#dd-cls").open;
+  render(true);
+  if (keepOpen || openW) $("#dd-w").open = openW; $("#dd-cls").open = openC;
+}
+$("#rank-reset").addEventListener("click", () => { delete state.w[state.t]; state.exCls.clear(); rerank(); });
+document.addEventListener("click", (e) => { ["#dd-cls", "#dd-w"].forEach((id) => { const d = $(id); if (d && d.open && !d.contains(e.target)) d.open = false; }); });
+
 /* ---------- ranked list: rank = position in the active list (with or without China) */
-const activeList = (t) => state.cont ? ((state.exChina ? t.lists.cont_china : t.lists.cont) || []) : (state.exChina ? t.lists.china : t.lists.all);
+const activeList = (t) => customMode(t) ? customList(t) : state.cont ? ((state.exChina ? t.lists.cont_china : t.lists.cont) || []) : (state.exChina ? t.lists.china : t.lists.all);
 const rankedSites = (t) => activeList(t).map((i, n) => Object.assign({}, t.sites[i], { i, r: n + 1 }));
 const visibleSites = (t) => rankedSites(t).filter((s) => !state.onlyNew || !s.k);
 const siteByI = (t, i) => rankedSites(t).find((s) => s.i === i) || Object.assign({}, t.sites[i], { i, r: null });
@@ -514,7 +662,7 @@ function renderTargets() {
 }
 function renderRows(t) {
   const tb = $("#rows"); tb.textContent = "";
-  $("#list-title").textContent = state.cont ? `Best site per continent for ${t.name}` : `Best Earth analogs for ${t.name}`;
+  $("#list-title").textContent = (state.cont ? `Best site per continent for ${t.name}` : `Best Earth analogs for ${t.name}`) + (customMode(t) ? (isCustomW(t) ? " · custom weights" : " · filtered") : "");
   $("#view-top").setAttribute("aria-pressed", String(!state.cont)); $("#view-cont").setAttribute("aria-pressed", String(state.cont));
   $("#view-note").textContent = state.cont
     ? "The best-matching site on each continent, sorted by rank on Earth (place among all ranked land cells, 5 km each). Shows how far the best match outside the leading region falls behind."
@@ -538,7 +686,7 @@ function renderRows(t) {
     tr.appendChild(el("td", "n mono", s.r));
     const tc = el("td"); tc.appendChild(el("div", null, (state.cont && s.ct ? s.ct + " · " : "") + (s.c || "–"))); tc.appendChild(el("div", "small muted mono", coordTxt(s.lat, s.lon))); tr.appendChild(tc);
     const te = el("td"); te.appendChild(gterm("cls_" + s.ec, s.env)); tr.appendChild(te);
-    const tdr = el("td", "n"); tdr.appendChild(el("div", "mono", rankTxt(s))); if (s.nr) tdr.appendChild(el("div", "small muted", `of ${cellsTxt(s.nr)}`)); tr.appendChild(tdr);
+    const tdr = el("td", "n"); tdr.appendChild(el("div", "mono", rankTxt(s))); tdr.appendChild(el("div", "small muted", scoreMode() ? "custom score" : s.nr ? `of ${cellsTxt(s.nr)}` : "")); tr.appendChild(tdr);
     tr.appendChild(el("td", null, s.b)); tr.appendChild(el("td", null, s.w));
     const tk = el("td"); const ch = el("span", "chip " + (s.k ? "known" : "new"), s.k ? "known analog" : "new"); ch.dataset.g = "bekannt"; tk.appendChild(ch); tr.appendChild(tk);
     const go = () => select(s.i, true);
@@ -625,6 +773,11 @@ function ruleList(rules) {
 function whyClass(s) {
   const box = el("div");
   box.appendChild(el("p", "note", "Classes are tested in a fixed order and the first one whose rules all hold wins. A line starting with ‘or’ is an alternative to the line above."));
+  if (!s.er.rules.length) {
+    const p = el("p", "small", "This site comes from the re-ranked candidate list. Its class is "); p.appendChild(gterm("cls_" + s.ec, s.env));
+    p.appendChild(document.createTextNode(". The rule-by-rule check with this site's values is prepared for the default top sites; click the class for its rules."));
+    box.appendChild(p); return box;
+  }
   const rh = el("div", "small", "Rules for “"); rh.appendChild(gterm("cls_" + s.ec, s.env)); rh.appendChild(document.createTextNode("”, with this site's values:")); box.appendChild(rh);
   box.appendChild(ruleList(s.er.rules));
   if (s.er.no && s.er.no.length) {
@@ -649,7 +802,7 @@ function renderSite(t) {
   if (s.fl.length) { const fld = el("div", "small muted"); s.fl.forEach((f, k) => { if (k) fld.appendChild(document.createTextNode(" · ")); fld.appendChild(gterm("flag_" + (s.fk || [])[k], f)); }); bd.appendChild(fld); }
   if (s.k) bd.appendChild(el("div", "small muted", `Within the radius of a known analog site: ${s.k}`));
   const st = el("div", "stats");
-  const a = el("div"); a.appendChild(el("span", "big", rankTxt(s))); const al = el("span", "small muted", s.nr ? `of ${cellsTxt(s.nr)} ranked Earth cells ` : "rank on Earth "); al.appendChild(qm("platz")); a.appendChild(al); st.appendChild(a);
+  const a = el("div"); a.appendChild(el("span", "big", rankTxt(s))); const al = el("span", "small muted", scoreMode() ? "custom score (your weights) " : s.nr ? `of ${cellsTxt(s.nr)} ranked Earth cells ` : "rank on Earth "); al.appendChild(qm("platz")); a.appendChild(al); st.appendChild(a);
   const b2 = el("div"); b2.appendChild(el("span", "big", `${fmt(s.cov * 100, 0)} %`)); const bl = el("span", "small muted", "of the profile has data "); bl.appendChild(qm("abdeckung")); b2.appendChild(bl); st.appendChild(b2);
   bd.appendChild(st);
   const h3p = el("h3", null, "Profile "); h3p.appendChild(qm("dimension")); bd.appendChild(h3p);
@@ -698,7 +851,8 @@ function renderCompare(t) {
   const argmax = (vals) => { let b = -1, bv = -Infinity; vals.forEach((v, k) => { if (v != null && v > bv) { bv = v; b = k; } }); return S.length > 1 ? b : -1; };
   sec("Overview");
   row(lq("Environment", "klasse"), "", S.map((s) => gterm("cls_" + s.ec, s.env)));
-  row(lq("Rank on Earth", "platz"), "", S.map((s) => `${rankTxt(s)}${s.nr ? " of " + cellsTxt(s.nr) : ""}`), argmax(S.map((s) => s.rk ? -s.rk : null)));
+  if (scoreMode()) row(lq("Custom score", "gesamtwert"), "", S.map((s) => s.cs != null ? fmt(s.cs, 3) : "–"), argmax(S.map((s) => s.cs)));
+  else row(lq("Rank on Earth", "platz"), "", S.map((s) => `${rankTxt(s)}${s.nr ? " of " + cellsTxt(s.nr) : ""}`), argmax(S.map((s) => s.rk ? -s.rk : null)));
   row(lq("Profile with data", "abdeckung"), "", S.map((s) => `${fmt(s.cov * 100, 0)} %`));
   row(lq("Known analog", "bekannt"), "", S.map((s) => s.k || "new"));
   sec("Dimension scores (1 = as close as Earth gets)");
@@ -803,7 +957,7 @@ function render(fit) {
   const vis = visibleSites(t);
   if (!vis.some((s) => s.i === state.sel)) state.sel = (vis[0] || rankedSites(t)[0] || {}).i ?? null;
   state.cmp = state.cmp.filter((i) => activeList(t).includes(i));
-  renderTargets(); renderRows(t); renderTarget(t); renderSite(t); renderCompare(t); drawBodyMap($("#bmap"), false);
+  renderRankbar(t); renderTargets(); renderRows(t); renderTarget(t); renderSite(t); renderCompare(t); drawBodyMap($("#bmap"), false);
   drawHeat(t); drawPins(t, fit);
 }
 function setBody(b) {
