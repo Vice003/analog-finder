@@ -14,6 +14,7 @@ where the analogy holds and where it breaks.
 - **Site profiles:** [profiles.html](https://vice003.github.io/analog-finder/profiles.html) – satellite image, 90 m terrain and slope distribution for the 104 best sites, with robustness
 - **Glossary:** [English](https://vice003.github.io/analog-finder/glossary.html) · [Deutsch](https://vice003.github.io/analog-finder/glossar.html) – every term, class rule, weight and data source; all pages link their terms here
 - **Earth data basis (German):** [`docs/datenbasis.html`](https://vice003.github.io/analog-finder/datenbasis.html)
+- **Technical description (German):** [`TECHNIK.md`](TECHNIK.md) – data, methods, code, outputs, web app, server, reproduction, limits
 - **Processing plan agreed in the team (German):** [`VERARBEITUNGSPLAN.md`](VERARBEITUNGSPLAN.md)
 
 ## How it works
