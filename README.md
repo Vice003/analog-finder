@@ -115,6 +115,12 @@ and ran most of the code for data processing, scoring and the web app, drafted d
 English-language web search for the literature check. All measurements come from the NASA and ESA data listed above;
 results were checked by inspecting values, maps and satellite images, and limits are stated openly.
 
+## License
+
+Code and documentation: [MIT](LICENSE). The input data keep their own terms: NASA data (MODIS, MERRA-2, GPM, GIBS,
+PDS products) are freely available; Copernicus DEM © DLR e.V. 2010–2014 and © Airbus Defence and Space GmbH 2014–2018,
+provided under COPERNICUS by the European Union and ESA; Natural Earth is public domain.
+
 ## Team
 
 Built for NASA Space Apps 2026. Earth data basis, target computation, scoring and web app: Vicente (Vice003). Site list
