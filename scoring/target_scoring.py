@@ -134,8 +134,10 @@ def score_target(df, target, verbose=True):
     """Bewertung aller Zeilen von df fuer ein Ziel aus targets.json."""
     w = pd.Series(np.cos(np.radians(df["lat"].to_numpy())), index=df.index)
     prof = PROFILES[profile_for(target)]
-    rank_ok = ranking_mask(df)
     ref = reference_mask(df)
+    # Ranking nur ueber vegetationsfreies Land (Kahl-Regel aus categories.py): sonst kamen fuer die Mond-Ziele
+    # spaerlich bewachsene Tundrazellen nach oben (Stand 15.11.: 89 von 260 Mond-Treffern)
+    rank_ok = ref
     out = pd.DataFrame(index=df.index)
     used, skipped, meta = [], [], []
     dims = {}
@@ -237,8 +239,9 @@ def score_target(df, target, verbose=True):
     return out
 
 
-def country_raster(df):
-    """ISO-A3 je Zeile von df ueber die gerasterten Natural-Earth-Grenzen (0,05 Grad); leer = kein Land."""
+def country_raster(df, field="ISO_A3"):
+    """ISO-A3 (oder ein anderes Natural-Earth-Feld, z. B. CONTINENT) je Zeile von df ueber die gerasterten
+    Grenzen (0,05 Grad); leer = kein Land."""
     import shapefile
     from rasterio.features import rasterize
     from rasterio.transform import from_origin
@@ -248,8 +251,8 @@ def country_raster(df):
     isos, shapes = [""], []
     for n, sr in enumerate(r.iterShapeRecords(), 1):
         rec = dict(zip(fields, sr.record))
-        iso = rec.get("ISO_A3")
-        isos.append(iso if iso not in (None, "", "-99") else (rec.get("ADM0_A3") or ""))
+        iso = rec.get(field)
+        isos.append(iso if iso not in (None, "", "-99") else (rec.get("ADM0_A3") or "") if field == "ISO_A3" else (iso or ""))
         shapes.append((sr.shape.__geo_interface__, n))
     grid = rasterize(shapes, out_shape=(3600, 7200), transform=from_origin(-180, 90, 0.05, 0.05), fill=0, dtype="int32")
     iy = np.clip(((90 - df["lat"].to_numpy()) / 0.05).astype(int), 0, 3599)
@@ -280,6 +283,8 @@ if __name__ == "__main__":
     EXCLUDE = {"china": {"CHN", "HKG", "MAC"}}  # Option im Frontend: China inkl. verwalteter Gebiete (Aksai Chin)
     from categories import explain_class_full
     iso_cell = country_raster(df)  # ISO-A3 je Zelle (Natural Earth, gerastert)
+    cont_cell = country_raster(df, "CONTINENT")
+    CONTINENTS = ["Africa", "Asia", "Europe", "North America", "South America", "Oceania", "Antarctica"]
     w_area = pd.Series(np.cos(np.radians(df["lat"].to_numpy(dtype=np.float64))), index=df.index)
     results, rows = {}, []
     for tid, t in T.items():
@@ -294,8 +299,8 @@ if __name__ == "__main__":
         cell_rank = tot.rank(ascending=False, method="min")
         n_ranked = int(tot.notna().sum())
 
-        def site_list(total, label):
-            idx = top_sites(df, total, n=N_TOP, min_km=200)
+        def site_list(total, label, n=N_TOP):
+            idx = top_sites(df, total, n=n, min_km=200)
             top = df.loc[idx].join(s.loc[idx, ["total", "coverage", "coverage_target", "best_dim", "worst_dim"] + dimcols],
                                    rsuffix="_s")
             known = mark_known(top[["lat", "lon"]])
@@ -318,7 +323,7 @@ if __name__ == "__main__":
                                       target_pct=m.get("body_percentile"), direction=m.get("direction"),
                                       weight=round(m["weight"], 2), rel_target=m["rel_target"], rel_earth=m["rel_earth"]))
                 site = dict(rank=rank, lat=round(float(r.lat), 3), lon=round(float(r.lon), 3), country=country,
-                            country_iso=iso, score=round(float(r.total), 4),
+                            country_iso=iso, continent=str(cont_cell[i]) or None, score=round(float(r.total), 4),
                             better_than_pct=round(float(pct[i]) * 100, 4), cell_rank=int(cell_rank[i]),
                             n_ranked=n_ranked, coverage=round(float(r.coverage_target), 3),
                             env_class=str(r.env_class), env_class_name=names[r.env_class],
@@ -338,6 +343,21 @@ if __name__ == "__main__":
         lists = {"all": sites}
         for name, isos in EXCLUDE.items():
             lists[f"excl_{name}"] = site_list(tot.where(~iso_cell.isin(isos)), name)
+
+        # bester Ort je Kontinent (gegen die Ballung in einer Region), nach Zellplatz sortiert
+        def by_continent(total):
+            out_c = []
+            for c in CONTINENTS:
+                tc = total.where(cont_cell == c)
+                if tc.notna().any():
+                    out_c += site_list(tc, "cont", n=1)
+            out_c.sort(key=lambda x: x["cell_rank"])
+            for k, x in enumerate(out_c, 1):
+                x["rank"] = k
+            return out_c
+        lists["by_continent"] = by_continent(tot)
+        for name, isos in EXCLUDE.items():
+            lists[f"by_continent_excl_{name}"] = by_continent(tot.where(~iso_cell.isin(isos)))
         for x in sites:
             rows.append(dict(target=tid, body=t.get("body"), target_name=t.get("name"),
                              **{k: v for k, v in x.items() if k not in ("dims", "flags", "features", "env_reason")},

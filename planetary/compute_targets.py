@@ -12,6 +12,8 @@ Mars
                     common/terrain.py mit pixel_m = 463                               reliability A
   thermal_inertia   TES nachts (Putzig & Mellon 2007, PDS MGST_9001, 20 ppd),
                     Median im Polygon + body_percentile ueber den ganzen Mars              reliability A
+  albedo            TES-Lambert-Albedo, USGS-Mosaik 7,4 km (8 ppd), Median im Polygon +
+                    body_percentile ueber den ganzen Mars (Vergleich mit der Erde nur ueber den Rang)  reliability A
   pressure          aus MOLA-Hoehe: 6,1 hPa * exp(-z / 11,1 km), grobe Naeherung          reliability C
   surface_temp_mean, diurnal_range, ground_ice
                     Schaetzwerte der Musterziele (jezero bzw. arcadia, pipeline.py, Quelle offen),
@@ -21,7 +23,9 @@ Mond
   surface_temp_mean Diviner PRP (temp_avg), aus data_scripts/output/moon_south/features.npz
                     (Jimale, 240-m-Raster 85-90 S), Median im Polygon                       reliability B
   ground_ice        Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe (Diviner PRP)   reliability B
-  (Diviner-Werte nur fuer Orte suedlich 85 S, weil das Raster dort endet)
+  (Diviner-Werte nur, wo das Quadrat ganz in Jimales Raster liegt und das PRP Daten hat, praktisch suedlich 85 S)
+  Artemis-Regionen: Quadrat auf den hellsten Ausschnitt (LOLA-Sonnensichtbarkeit) innerhalb 12 km um die Listen-
+  koordinate, bei Kraterregionen innerhalb Kraterradius + 10 km (CRATER_RADIUS_KM), damit es den Rand erreicht
 Beide
   sun_elevation_max, precip, ndvi (und am Mond pressure, wind_mean, humidity): physikalisch/berechnet, A
 
@@ -30,6 +34,7 @@ Aufruf (im Repo-Wurzelordner):
 Rohdaten im Ordner --raw:
   ldem_80s_80m.img                       https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/img/
   tes/mgst_9001/data/global_ti_night_2007.img   https://pds-geosciences.wustl.edu/mgs/mgs-m-tes-5-timap-v1/mgst_9001.zip
+  tes_albedo/Mars_MGS_TES_Albedo_mosaic_global_7410m.tif  https://planetarymaps.usgs.gov/mosaic/Mars_MGS_TES_Albedo_mosaic_global_7410m.tif
   jimale_moon_features.npz               git show origin/Mars_and_Moon:data_scripts/output/moon_south/features.npz
 MOLA wird direkt gelesen: https://planetarymaps.usgs.gov/mosaic/Mars_MGS_MOLA_DEM_mosaic_global_463m.tif
 """
@@ -64,7 +69,7 @@ SITES = [
     ("Shackleton crater (PSR)", "moon", -89.67, 129.78, "PSR / ice target", "Wikipedia/IAU"),
     ("Cabeus (LCROSS impact, PSR)", "moon", -84.9, 324.5, "PSR / confirmed water ice", "LCROSS 2009"),
     ("Jezero crater (Perseverance)", "mars", 18.4, 77.5, "landed 2021", "NASA JPL"),
-    ("Gale crater (Curiosity)", "mars", -5.4, 137.8, "landed 2012", "NASA JPL"),
+    ("Gale crater (Curiosity)", "mars", -4.5895, 137.4417, "landed 2012", "NASA JPL, Bradbury Landing (VERIFIED)"),
     ("Meridiani Planum (Opportunity)", "mars", -1.9, 354.5, "landed 2004", "NASA JPL"),
     ("Gusev / Columbia Hills (Spirit)", "mars", -14.6, 175.5, "landed 2004; M2020 finalist", "NASA JPL"),
     ("Elysium Planitia (InSight)", "mars", 4.5, 135.6, "landed 2018", "NASA JPL"),
@@ -156,6 +161,16 @@ def tes_lookup(ti, lat, lon_e, half_km):
     return v
 
 
+def alb_lookup(alb, lat, lon_e, half_km):
+    """TES-Albedo (8 px/Grad, -180..180 E, Nord oben) im Quadrat um den Ort."""
+    lon = ((lon_e + 180) % 360) - 180
+    r0, c0 = (90 - lat) * 8, (lon + 180) * 8
+    dlat = max(math.degrees(half_km / R_KM["mars"]) * 8, 0.5)
+    dlon = dlat / math.cos(math.radians(lat))
+    v = alb[int(r0 - dlat):int(r0 + dlat) + 1, int(c0 - dlon):int(c0 + dlon) + 1]
+    return v[np.isfinite(v)]
+
+
 # ------------------------------------------------------------------ Mond
 def moon_terrain(dem, lat, lon_e, half_km):
     d = 2 * R_KM["moon"] * math.tan(math.radians(90 + lat) / 2)
@@ -168,8 +183,8 @@ def moon_terrain(dem, lat, lon_e, half_km):
 
 
 def diviner_lookup(f, lat, lon_e, half_km):
-    """Zellen von Jimales 240-m-Raster (85-90 S) im Quadrat um den Ort."""
-    if lat > -85:
+    """Zellen von Jimales 240-m-Raster (Quadrat +-152 km um den Pol, also 85 S und die Ecken bis 82,9 S)."""
+    if lat > -80:
         return None
     R, CELL, N = 1737.4, 0.240, 1264
     HALF = N * CELL / 2
@@ -177,8 +192,16 @@ def diviner_lookup(f, lat, lon_e, half_km):
     x, y = d * math.sin(math.radians(lon_e)), d * math.cos(math.radians(lon_e))
     c0, r0 = (x + HALF) / CELL, (HALF - y) / CELL
     h = half_km / CELL
+    if not (h <= r0 < N - h and h <= c0 < N - h):           # Quadrat muss ganz im Raster liegen
+        return None
     sl = (slice(max(int(r0 - h), 0), int(r0 + h) + 1), slice(max(int(c0 - h), 0), int(c0 + h) + 1))
     return {k: f[k][sl] for k in ("temp_avg", "temp_max", "ice_depth")}
+
+
+# Regionen, fuer die die Ortsliste den Kratermittelpunkt nennt: Suchradius = Kraterradius + 10 km, damit der hellste
+# Ausschnitt den Kraterrand erreicht (Durchmesser laut IAU-Gazetteer; Slater nach Ortsliste unsicher)
+CRATER_RADIUS_KM = {"Haworth": 25.7, "Nobile Rim 1 / 2": 36.5, "de Gerlache Rim 2": 16.2, "Faustini Rim A": 19.5,
+                    "Slater Plain": 12.0}
 
 
 def sunniest_box(f, lat, lon_e, half_km, search_km=12.0):
@@ -227,21 +250,27 @@ def main():
     ti_w = latlon_weights(3600)
     lola = np.memmap(raw / "ldem_80s_80m.img", dtype="<i2", mode="r", shape=(7600, 7600))
     div = dict(np.load(raw / "jimale_moon_features.npz"))
+    import rasterio
+    with rasterio.open(raw / "tes_albedo" / "Mars_MGS_TES_Albedo_mosaic_global_7410m.tif") as src_a:
+        alb = src_a.read(1).astype(float)
+        alb[(alb < 0) | (alb > 1)] = np.nan                  # 8 px/Grad, -180..180, Nord oben
+    alb_w = latlon_weights(alb.shape[0])
 
     targets = {}
     for name, body, lat, lon_e, cat, src in SITES:
         tid = slug(name)
-        cq = "unverified" if "UNVERIFIED" in src.upper() else "approx"
+        cq = "unverified" if "UNVERIFIED" in src.upper() else ("verified" if "(VERIFIED)" in src else "approx")
         half = HALF_KM[body]
         psr = "PSR" in cat
         note = f"Quadrat {2 * half:g} x {2 * half:g} km um die Koordinate der Ortsliste (automatisch)"
         lat0, lon0 = lat, lon_e
         if body == "moon" and "Artemis" in cat:
-            moved = sunniest_box(div, lat, lon_e, half)
+            search = CRATER_RADIUS_KM.get(name, 2.0) + 10.0
+            moved = sunniest_box(div, lat, lon_e, half, search_km=search)
             if moved:
                 lat, lon_e, sun = moved
                 note = (f"Quadrat {2 * half:g} x {2 * half:g} km auf den am besten beleuchteten Ausschnitt innerhalb "
-                        f"12 km um die Listenkoordinate ({lat0}, {lon0}) gelegt; mittlere LOLA-Sonnensichtbarkeit "
+                        f"{search:g} km um die Listenkoordinate ({lat0}, {lon0}) gelegt; mittlere LOLA-Sonnensichtbarkeit "
                         f"{sun:.2f}. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft "
                         f"den Kratermittelpunkt")
         t = dict(body="Moon" if body == "moon" else "Mars", name=name, category=cat, center_lat=round(lat, 4),
@@ -261,7 +290,12 @@ def main():
             bp = body_percentile(ti_f, ti_w, med) if med is not None else None
             F["thermal_inertia"] = feat("thermal_inertia", med, "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)", "A",
                                         p10=p10, p90=p90, bp=bp, notes=f"{v.size} TES-Pixel (3 km) im Polygon")
-            F["albedo"] = feat("albedo", notes="OMEGA ALBEDO_R1080 noch nicht ausgewertet")
+            va = alb_lookup(alb, lat, lon_e, half)
+            amed, ap10, ap90 = pcts(va)
+            abp = body_percentile(alb, alb_w, amed) if amed is not None else None
+            F["albedo"] = feat("albedo", amed, "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+                               "A", p10=ap10, p90=ap90, bp=abp,
+                               notes=f"{va.size} Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)")
             F["dust_opacity"] = feat("dust_opacity", notes="TES-Staubopazitaet noch nicht ausgewertet")
             icy = "ice" in cat.lower()
             ref = "arcadia" if icy else "jezero"

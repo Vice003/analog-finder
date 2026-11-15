@@ -42,7 +42,7 @@ IMG_W, IMG_H = 1440, 1440
 ENV_EN = {"eisschild": "Ice sheet & glacier", "salzpfanne": "Salt flat / evaporite", "duenenfeld": "Dune field / sand sea",
           "dunkel_vulkanisch": "Dark bare rock (basalt, lava)", "kalte_polarwueste": "Ice-free cold polar desert",
           "hochplateau": "Arid high plateau", "hyperarid": "Hyperarid desert", "raues_gebirge": "Barren steep terrain",
-          "aride_wueste": "Arid desert / semi-desert", "kein_analog": "Vegetated or wet (no analog)"}
+          "aride_wueste": "Arid desert / semi-desert", "kein_analog": "Bare, but no class matched (wetter or milder)"}
 DIM_EN = {"gelaende": "Terrain", "oberflaeche": "Surface material", "thermik": "Temperature", "trockenheit": "Dryness",
           "atmosphaere": "Atmosphere", "staub_wind": "Dust & wind", "eis_wasser": "Ice & water", "leben": "Vegetation",
           "beleuchtung": "Sunlight"}
@@ -210,7 +210,7 @@ def main():
             er = x.get("env_reason") or {}
             er = {"rules": er} if isinstance(er, list) else er
             rule = lambda r: dict(t=r["text"], v=r["value"], u=r["unit"], ok=r["ok"])
-            sites.append(dict(lat=x["lat"], lon=x["lon"], c=name, iso=iso, s=x["score"],
+            sites.append(dict(lat=x["lat"], lon=x["lon"], c=name, iso=iso, ct=x.get("continent"), s=x["score"],
                               p=x["better_than_pct"], rk=x.get("cell_rank"), nr=x.get("n_ranked"), cov=x["coverage"], env=ENV_EN.get(x["env_class"], x["env_class"]),
                               fl=[FLAG_EN.get(f, f) for f in x["flags"]], b=DIM_EN.get(x["best_dim"], x["best_dim"]),
                               w=DIM_EN.get(x["worst_dim"], x["worst_dim"]), k=x["known_analog"],
@@ -224,6 +224,9 @@ def main():
         lists = {"all": [add(x) for x in RT["top"]]}
         for name in EXCLUDE:
             lists[name] = [add(x) for x in RT.get(f"excl_{name}", [])]
+        lists["cont"] = [add(x) for x in RT.get("by_continent", [])]
+        for name in EXCLUDE:
+            lists[f"cont_{name}"] = [add(x) for x in RT.get(f"by_continent_excl_{name}", [])]
         fm = [dict(n=FEAT_EN.get(m["key"], m["key"]), dim=DIM_EN.get(m["dim"], m["dim"]), m=m["method"], tv=m["target"],
                    u=m.get("unit"), tp=m.get("body_percentile"), dir=m.get("direction"), w=round(m["weight"], 2),
                    rt=m["rel_target"], re=m["rel_earth"], eu=EARTH_UNIT.get(m["key"], m.get("unit"))) for m in RT.get("features_used", [])]

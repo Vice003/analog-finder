@@ -176,8 +176,8 @@
       "body": "Moon",
       "name": "Haworth",
       "category": "Artemis III region (2024)",
-      "center_lat": -87.2032,
-      "center_lon": 347.8316,
+      "center_lat": -86.9089,
+      "center_lon": 333.4677,
       "coord_quality": "approx",
       "site_source": "NASA 2024-10-28 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
       "region_geojson": {
@@ -185,32 +185,32 @@
         "coordinates": [
           [
             [
-              341.40112,
-              -87.37621
+              327.11716,
+              -87.00128
             ],
             [
-              352.16365,
-              -87.48976
+              335.76664,
+              -87.23828
             ],
             [
-              353.45125,
-              -86.99924
+              339.38214,
+              -86.7811
             ],
             [
-              344.32109,
-              -86.90365
+              331.61406,
+              -86.57565
             ],
             [
-              341.40112,
-              -87.37621
+              327.11716,
+              -87.00128
             ]
           ]
         ]
       },
-      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-87.4, 355.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.01. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 35.7 km um die Listenkoordinate (-87.4, 355.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.31. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
       "features": {
         "slope_p50": {
-          "value": 14.75,
+          "value": 7.8088,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -221,7 +221,7 @@
           "notes": ""
         },
         "slope_p90": {
-          "value": 19.395,
+          "value": 13.403,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -232,7 +232,7 @@
           "notes": ""
         },
         "relief": {
-          "value": 1268.7,
+          "value": 591.6,
           "p10": null,
           "p90": null,
           "unit": "m",
@@ -254,9 +254,9 @@
           "notes": "kein Produkt in den offiziellen Quellen"
         },
         "surface_temp_mean": {
-          "value": 44.191,
-          "p10": 37.969,
-          "p90": 65.545,
+          "value": 121.15,
+          "p10": 92.668,
+          "p90": 135.88,
           "unit": "K",
           "pixel_m": null,
           "body_percentile": null,
@@ -265,7 +265,7 @@
           "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
         },
         "ground_ice": {
-          "value": 1.0,
+          "value": 0.41975,
           "p10": null,
           "p90": null,
           "unit": "1",
@@ -331,7 +331,7 @@
           "notes": ""
         },
         "sun_elevation_max": {
-          "value": 4.3368,
+          "value": 4.6311,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -604,7 +604,7 @@
           "body_percentile": null,
           "source": "",
           "reliability": null,
-          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
         },
         "ground_ice": {
           "value": null,
@@ -615,7 +615,7 @@
           "body_percentile": null,
           "source": "",
           "reliability": null,
-          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
         },
         "pressure": {
           "value": 1e-12,
@@ -860,8 +860,8 @@
       "body": "Moon",
       "name": "Nobile Rim 1 / 2",
       "category": "Artemis III region (2024)",
-      "center_lat": -85.236,
-      "center_lon": 56.3759,
+      "center_lat": -83.9262,
+      "center_lon": 46.3187,
       "coord_quality": "approx",
       "site_source": "NASA 2024-10-28 (Nobile crater centre) (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
       "region_geojson": {
@@ -869,32 +869,32 @@
         "coordinates": [
           [
             [
-              57.26939,
-              -85.57782
+              46.39923,
+              -84.27501
             ],
             [
-              60.43206,
-              -85.155
+              49.60642,
+              -83.90821
             ],
             [
-              55.60231,
-              -84.89325
+              46.24699,
+              -83.57759
             ],
             [
-              52.20101,
-              -85.29239
+              43.02234,
+              -83.92424
             ],
             [
-              57.26939,
-              -85.57782
+              46.39923,
+              -84.27501
             ]
           ]
         ]
       },
-      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-85.3, 53.5) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.28. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 46.5 km um die Listenkoordinate (-85.3, 53.5) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.44. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
       "features": {
         "slope_p50": {
-          "value": 7.1958,
+          "value": 15.19,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -905,7 +905,7 @@
           "notes": ""
         },
         "slope_p90": {
-          "value": 11.668,
+          "value": 20.212,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -916,7 +916,7 @@
           "notes": ""
         },
         "relief": {
-          "value": 496.99,
+          "value": 1162.6,
           "p10": null,
           "p90": null,
           "unit": "m",
@@ -938,25 +938,25 @@
           "notes": "kein Produkt in den offiziellen Quellen"
         },
         "surface_temp_mean": {
-          "value": 125.23,
-          "p10": 93.967,
-          "p90": 136.87,
+          "value": null,
+          "p10": null,
+          "p90": null,
           "unit": "K",
           "pixel_m": null,
           "body_percentile": null,
-          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
-          "reliability": "B",
+          "source": "",
+          "reliability": null,
           "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
         },
         "ground_ice": {
-          "value": 0.32552,
+          "value": null,
           "p10": null,
           "p90": null,
           "unit": "1",
           "pixel_m": null,
           "body_percentile": null,
-          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
-          "reliability": "B",
+          "source": "",
+          "reliability": null,
           "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
         },
         "pressure": {
@@ -1015,7 +1015,7 @@
           "notes": ""
         },
         "sun_elevation_max": {
-          "value": 6.304,
+          "value": 7.6138,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1031,8 +1031,8 @@
       "body": "Moon",
       "name": "de Gerlache Rim 2",
       "category": "Artemis III region (2022+2024)",
-      "center_lat": -88.5984,
-      "center_lon": 287.9234,
+      "center_lat": -88.2084,
+      "center_lon": 293.5642,
       "coord_quality": "approx",
       "site_source": "NASA; ESA (de Gerlache centre) (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
       "region_geojson": {
@@ -1040,32 +1040,32 @@
         "coordinates": [
           [
             [
-              276.6391,
-              -88.40847
+              283.93738,
+              -88.05324
             ],
             [
-              279.61457,
-              -88.89827
+              288.58111,
+              -88.5284
             ],
             [
-              301.996,
-              -88.71918
+              304.63595,
+              -88.3047
             ],
             [
-              293.2332,
-              -88.27965
+              297.0192,
+              -87.8791
             ],
             [
-              276.6391,
-              -88.40847
+              283.93738,
+              -88.05324
             ]
           ]
         ]
       },
-      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-88.5, 272.9) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.27. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 26.2 km um die Listenkoordinate (-88.5, 272.9) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.36. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
       "features": {
         "slope_p50": {
-          "value": 14.451,
+          "value": 12.347,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1076,7 +1076,7 @@
           "notes": ""
         },
         "slope_p90": {
-          "value": 21.449,
+          "value": 18.893,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1087,7 +1087,7 @@
           "notes": ""
         },
         "relief": {
-          "value": 1036.6,
+          "value": 950.46,
           "p10": null,
           "p90": null,
           "unit": "m",
@@ -1109,9 +1109,9 @@
           "notes": "kein Produkt in den offiziellen Quellen"
         },
         "surface_temp_mean": {
-          "value": 128.94,
-          "p10": 75.596,
-          "p90": 158.56,
+          "value": 141.21,
+          "p10": 112.77,
+          "p90": 157.75,
           "unit": "K",
           "pixel_m": null,
           "body_percentile": null,
@@ -1120,7 +1120,7 @@
           "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
         },
         "ground_ice": {
-          "value": 0.355,
+          "value": 0.13807,
           "p10": null,
           "p90": null,
           "unit": "1",
@@ -1186,7 +1186,7 @@
           "notes": ""
         },
         "sun_elevation_max": {
-          "value": 2.9416,
+          "value": 3.3316,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1202,8 +1202,8 @@
       "body": "Moon",
       "name": "Slater Plain",
       "category": "Artemis III region (2024)",
-      "center_lat": -87.6015,
-      "center_lon": 110.1688,
+      "center_lat": -88.6575,
+      "center_lon": 120.2686,
       "coord_quality": "unverified",
       "site_source": "NASA 2024-10-28 - coords UNVERIFIED (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
       "region_geojson": {
@@ -1211,32 +1211,32 @@
         "coordinates": [
           [
             [
-              118.19271,
-              -87.7261
+              135.37044,
+              -88.70163
             ],
             [
-              113.26426,
-              -87.28027
+              123.29776,
+              -88.31696
             ],
             [
-              103.06086,
-              -87.435
+              106.9724,
+              -88.52918
             ],
             [
-              106.13198,
-              -87.91367
+              115.20711,
+              -88.99185
             ],
             [
-              118.19271,
-              -87.7261
+              135.37044,
+              -88.70163
             ]
           ]
         ]
       },
-      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-88.0, 110.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.17. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 22 km um die Listenkoordinate (-88.0, 110.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.34. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
       "features": {
         "slope_p50": {
-          "value": 9.8823,
+          "value": 12.677,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1247,7 +1247,7 @@
           "notes": ""
         },
         "slope_p90": {
-          "value": 18.578,
+          "value": 17.27,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1258,7 +1258,7 @@
           "notes": ""
         },
         "relief": {
-          "value": 663.16,
+          "value": 940.62,
           "p10": null,
           "p90": null,
           "unit": "m",
@@ -1280,9 +1280,9 @@
           "notes": "kein Produkt in den offiziellen Quellen"
         },
         "surface_temp_mean": {
-          "value": 86.747,
-          "p10": 48.548,
-          "p90": 136.57,
+          "value": 137.08,
+          "p10": 101.64,
+          "p90": 157.03,
           "unit": "K",
           "pixel_m": null,
           "body_percentile": null,
@@ -1291,7 +1291,7 @@
           "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
         },
         "ground_ice": {
-          "value": 0.74628,
+          "value": 0.20786,
           "p10": null,
           "p90": null,
           "unit": "1",
@@ -1357,7 +1357,7 @@
           "notes": ""
         },
         "sun_elevation_max": {
-          "value": 3.9385,
+          "value": 2.8825,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1715,8 +1715,8 @@
       "body": "Moon",
       "name": "Faustini Rim A",
       "category": "Artemis III region (2022)",
-      "center_lat": -87.121,
-      "center_lon": 69.8218,
+      "center_lat": -86.336,
+      "center_lon": 79.6122,
       "coord_quality": "approx",
       "site_source": "NASA 2022; ESA (Faustini centre) (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
       "region_geojson": {
@@ -1724,32 +1724,32 @@
         "coordinates": [
           [
             [
-              73.10189,
-              -87.43409
+              82.97889,
+              -86.6178
             ],
             [
-              75.81015,
-              -86.95767
+              83.87307,
+              -86.12687
             ],
             [
-              67.19212,
-              -86.80039
+              76.73488,
+              -86.04349
             ],
             [
-              63.19537,
-              -87.24938
+              74.86494,
+              -86.5226
             ],
             [
-              73.10189,
-              -87.43409
+              82.97889,
+              -86.6178
             ]
           ]
         ]
       },
-      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-87.3, 77.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.17. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 29.5 km um die Listenkoordinate (-87.3, 77.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.27. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
       "features": {
         "slope_p50": {
-          "value": 9.184,
+          "value": 9.4336,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1760,7 +1760,7 @@
           "notes": ""
         },
         "slope_p90": {
-          "value": 15.544,
+          "value": 24.536,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -1771,7 +1771,7 @@
           "notes": ""
         },
         "relief": {
-          "value": 568.7,
+          "value": 624.58,
           "p10": null,
           "p90": null,
           "unit": "m",
@@ -1793,9 +1793,9 @@
           "notes": "kein Produkt in den offiziellen Quellen"
         },
         "surface_temp_mean": {
-          "value": 83.76,
-          "p10": 57.407,
-          "p90": 117.11,
+          "value": 112.88,
+          "p10": 75.216,
+          "p90": 176.44,
           "unit": "K",
           "pixel_m": null,
           "body_percentile": null,
@@ -1804,7 +1804,7 @@
           "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
         },
         "ground_ice": {
-          "value": 0.9035,
+          "value": 0.53918,
           "p10": null,
           "p90": null,
           "unit": "1",
@@ -1870,7 +1870,7 @@
           "notes": ""
         },
         "sun_elevation_max": {
-          "value": 4.419,
+          "value": 5.204,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -2135,26 +2135,26 @@
           "notes": "kein Produkt in den offiziellen Quellen"
         },
         "surface_temp_mean": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 55.549,
+          "p10": 50.046,
+          "p90": 71.888,
           "unit": "K",
           "pixel_m": null,
           "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
         },
         "ground_ice": {
-          "value": null,
+          "value": 1.0,
           "p10": null,
           "p90": null,
           "unit": "1",
           "pixel_m": null,
           "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
         },
         "pressure": {
           "value": 1e-12,
@@ -2306,15 +2306,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.17776,
+          "p10": 0.1693,
+          "p90": 0.18337,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.41434,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -2410,33 +2410,33 @@
       "body": "Mars",
       "name": "Gale crater (Curiosity)",
       "category": "landed 2012",
-      "center_lat": -5.4,
-      "center_lon": 137.8,
-      "coord_quality": "approx",
-      "site_source": "NASA JPL (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "center_lat": -4.5895,
+      "center_lon": 137.4417,
+      "coord_quality": "verified",
+      "site_source": "NASA JPL, Bradbury Landing (VERIFIED) (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
       "region_geojson": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              137.7151,
-              -5.48452
+              137.35691,
+              -4.67402
             ],
             [
-              137.8849,
-              -5.48452
+              137.52649,
+              -4.67402
             ],
             [
-              137.8849,
-              -5.31548
+              137.52649,
+              -4.50498
             ],
             [
-              137.7151,
-              -5.31548
+              137.35691,
+              -4.50498
             ],
             [
-              137.7151,
-              -5.48452
+              137.35691,
+              -4.67402
             ]
           ]
         ]
@@ -2444,7 +2444,7 @@
       "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
       "features": {
         "slope_p50": {
-          "value": 21.469,
+          "value": 0.68046,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -2455,7 +2455,7 @@
           "notes": ""
         },
         "slope_p90": {
-          "value": 30.509,
+          "value": 4.1545,
           "p10": null,
           "p90": null,
           "unit": "deg",
@@ -2466,7 +2466,7 @@
           "notes": ""
         },
         "relief": {
-          "value": 1563.8,
+          "value": 66.493,
           "p10": null,
           "p90": null,
           "unit": "m",
@@ -2477,26 +2477,26 @@
           "notes": ""
         },
         "thermal_inertia": {
-          "value": 238.5,
-          "p10": 197.0,
-          "p90": 361.0,
+          "value": 360.5,
+          "p10": 320.5,
+          "p90": 390.5,
           "unit": "J m-2 K-1 s-1/2",
           "pixel_m": null,
-          "body_percentile": 0.66813,
+          "body_percentile": 0.96023,
           "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
           "reliability": "A",
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.2318,
+          "p10": 0.22874,
+          "p90": 0.23588,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.62865,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "6 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -2543,7 +2543,7 @@
           "notes": "Odyssey GRS noch nicht ausgewertet"
         },
         "pressure": {
-          "value": 6.7467,
+          "value": 9.1289,
           "p10": null,
           "p90": null,
           "unit": "hPa",
@@ -2551,7 +2551,7 @@
           "body_percentile": null,
           "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
           "reliability": "C",
-          "notes": "MOLA-Hoehe -1118 m"
+          "notes": "MOLA-Hoehe -4475 m"
         },
         "precip": {
           "value": 0.0,
@@ -2670,15 +2670,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.13086,
+          "p10": 0.12862,
+          "p90": 0.13525,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.096388,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -2852,15 +2852,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.22925,
+          "p10": 0.22344,
+          "p90": 0.23792,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.61551,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -3034,15 +3034,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.24047,
+          "p10": 0.24047,
+          "p90": 0.24118,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.69092,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -3216,15 +3216,15 @@
           "notes": "40 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.20274,
+          "p10": 0.20111,
+          "p90": 0.20376,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.50599,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "15 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -3398,15 +3398,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.22925,
+          "p10": 0.22925,
+          "p90": 0.22997,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.61245,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -3580,15 +3580,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.16655,
+          "p10": 0.15788,
+          "p90": 0.17369,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.35066,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "6 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -3762,15 +3762,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.18337,
+          "p10": 0.18021,
+          "p90": 0.18511,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.43909,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -3944,15 +3944,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.11506,
+          "p10": 0.11506,
+          "p90": 0.1171,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.021273,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "6 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -4126,15 +4126,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.13086,
+          "p10": 0.12964,
+          "p90": 0.13209,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.096388,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -4308,15 +4308,15 @@
           "notes": "16 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.19306,
+          "p10": 0.19255,
+          "p90": 0.19561,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.47494,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "6 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -4490,15 +4490,15 @@
           "notes": "24 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.24506,
+          "p10": 0.24312,
+          "p90": 0.24628,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.72321,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,
@@ -4672,15 +4672,15 @@
           "notes": "24 TES-Pixel (3 km) im Polygon"
         },
         "albedo": {
-          "value": null,
-          "p10": null,
-          "p90": null,
+          "value": 0.22008,
+          "p10": 0.21141,
+          "p90": 0.2266,
           "unit": "1",
           "pixel_m": null,
-          "body_percentile": null,
-          "source": "",
-          "reliability": null,
-          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+          "body_percentile": 0.56943,
+          "source": "TES-Lambert-Albedo, USGS-Mosaik 7,4 km (Mars_MGS_TES_Albedo_mosaic_global_7410m)",
+          "reliability": "A",
+          "notes": "4 Pixel im Polygon; Vergleich mit der Erde nur ueber den Rang (anderes Instrument)"
         },
         "dust_opacity": {
           "value": null,

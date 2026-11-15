@@ -193,6 +193,10 @@ details.more summary { cursor: pointer; color: var(--muted); }
 .xbtn { border: 1px solid var(--line); background: var(--raise); border-radius: 6px; padding: 3px 9px; font-size: 12.5px; cursor: pointer; }
 .xbtn:hover { border-color: var(--accent, var(--mars)); }
 .maptools label.on { border-color: var(--accent, var(--mars)); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; flex-shrink: 0; }
+.seg button { border: 0; background: var(--raise); padding: 4px 10px; font-size: 12.5px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent, var(--mars)); color: #14100c; font-weight: 600; }
 footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
@@ -231,8 +235,9 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
     </section>
 
     <section class="panel">
-      <div class="hd"><h2 id="list-title">Best Earth analogs</h2><span class="small muted">at least 200 km apart · tick up to 3 to compare</span></div>
-      <p class="note" style="padding: 0 14px; margin-top: 0">Rank on Earth = place among all ranked land cells (5 km each). Ranks jump because cells next to a better site are skipped.</p>
+      <div class="hd"><h2 id="list-title">Best Earth analogs</h2>
+        <div class="seg" role="group" aria-label="List view"><button type="button" id="view-top" aria-pressed="true">Top 20</button><button type="button" id="view-cont" aria-pressed="false">Best per continent</button></div></div>
+      <p class="note" style="padding: 0 14px; margin-top: 0" id="view-note"></p>
       <p class="note" id="list-note" style="padding: 0 14px" hidden></p>
       <div class="tw"><table>
         <thead><tr><th><span class="sr-only">Compare</span></th><th class="n">#</th><th>Country</th><th>Environment</th><th class="n" title="Place among all ranked Earth land cells (about 5 km each); 1 = best match on Earth">Rank on Earth</th><th>Strongest</th><th>Weakest</th><th></th></tr></thead>
@@ -289,7 +294,7 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
         <h3>Data</h3>
         <ul>
           <li><b>Earth</b>, 2003–2024: NASA MODIS (surface temperature, albedo, vegetation, snow, land cover), NASA MERRA-2 (dust, dust storms, wind, pressure, precipitation), ESA Copernicus DEM (terrain, 90 m).</li>
-          <li><b>Mars</b>: MOLA elevation (terrain), TES thermal inertia (NASA PDS).</li>
+          <li><b>Mars</b>: MOLA elevation (terrain), TES thermal inertia (NASA PDS), TES albedo (USGS mosaic of NASA TES data).</li>
           <li><b>Moon</b>: LOLA polar elevation (terrain), Diviner polar resource product (temperature, ice stability) (NASA PDS).</li>
           <li>Country names: Natural Earth (de-facto borders; disputed areas are marked).</li>
           <li>‘Exclude China’ removes every 5 km cell inside China's de-facto borders (with Hong Kong and Macau) and re-ranks the list, for missions where fieldwork there is not possible. The match scores themselves do not change.</li>
@@ -298,7 +303,9 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
         <ul>
           <li>No place on Earth has the Moon's vacuum, Mars's thin CO₂ air, their low gravity or their radiation.</li>
           <li>Target sites are 10 × 10 km (Mars) and 15 × 15 km (Moon) boxes around published coordinates, many of which are approximate.</li>
-          <li>Some Mars values (temperature, ice) are rough estimates for now; albedo, dust and ground ice for Mars are not yet included.</li>
+          <li>Mars temperature, day-night range, pressure and ground ice are rough estimates (grade C, low weight); Mars dust (TES) and ground ice (Odyssey GRS) are not yet included.</li>
+          <li>Only vegetation-free land is ranked (NDVI yearly peak below 0.15 or MODIS ‘barren’ ≥ 50 %).</li>
+          <li>Lunar rim regions are placed on the best-lit 15 km square near the named crater (search radius = crater radius + 10 km); Nobile then lies outside the Diviner grid and has no temperature value.</li>
           <li>Dust, wind and pressure on Earth come from a 55 km reanalysis grid: regional, not local.</li>
         </ul>
       </div>
@@ -334,9 +341,9 @@ const LIMITS = {
   Moon: ["Vacuum instead of an atmosphere", "One sixth of Earth's gravity", "Cosmic and solar radiation without a magnetic field", "Permanent shadow below 110 K, colder than anywhere on Earth"],
   Mars: ["Air about 150 times thinner, mostly CO₂", "38 % of Earth's gravity", "UV and particle radiation at the surface", "No liquid water at the surface; perchlorate in the soil"],
 };
-const state = { body: "Mars", t: null, sel: null, onlyNew: false, heat: true, exChina: false, cmp: [] };
+const state = { body: "Mars", t: null, sel: null, onlyNew: false, heat: true, exChina: false, cont: false, cmp: [] };
 const byId = Object.fromEntries(D.targets.map((t) => [t.id, t]));
-const hashOf = (id) => id.replace(/_/g, "-") + (state.exChina ? "&exclude=china" : "");
+const hashOf = (id) => id.replace(/_/g, "-") + (state.exChina ? "&exclude=china" : "") + (state.cont ? "&view=continents" : "");
 const idOfHash = (h) => h.replace(/^#/, "").split("&")[0].replace(/-/g, "_");
 const DIM_ORDER = ["Terrain", "Surface material", "Temperature", "Dryness", "Atmosphere", "Dust & wind", "Ice & water", "Vegetation", "Sunlight"];
 const UNIT = (u) => (u == null || u === "1" || u === "") ? "" : " " + u.replace("J m-2 K-1 s-1/2", "TIU").replace("deg", "°");
@@ -437,7 +444,8 @@ function drawPins(t, fit) {
 }
 
 /* ---------- ranked list: rank = position in the active list (with or without China) */
-const rankedSites = (t) => (state.exChina ? t.lists.china : t.lists.all).map((i, n) => Object.assign({}, t.sites[i], { i, r: n + 1 }));
+const activeList = (t) => state.cont ? ((state.exChina ? t.lists.cont_china : t.lists.cont) || []) : (state.exChina ? t.lists.china : t.lists.all);
+const rankedSites = (t) => activeList(t).map((i, n) => Object.assign({}, t.sites[i], { i, r: n + 1 }));
 const visibleSites = (t) => rankedSites(t).filter((s) => !state.onlyNew || !s.k);
 const siteByI = (t, i) => rankedSites(t).find((s) => s.i === i) || Object.assign({}, t.sites[i], { i, r: null });
 function renderTargets() {
@@ -456,12 +464,18 @@ function renderTargets() {
 }
 function renderRows(t) {
   const tb = $("#rows"); tb.textContent = "";
-  $("#list-title").textContent = `Best Earth analogs for ${t.name}`;
+  $("#list-title").textContent = state.cont ? `Best site per continent for ${t.name}` : `Best Earth analogs for ${t.name}`;
+  $("#view-top").setAttribute("aria-pressed", String(!state.cont)); $("#view-cont").setAttribute("aria-pressed", String(state.cont));
+  $("#view-note").textContent = state.cont
+    ? "The best-matching site on each continent, sorted by rank on Earth (place among all ranked land cells, 5 km each). Shows how far the best match outside the leading region falls behind."
+    : "At least 200 km apart. Rank on Earth = place among all ranked land cells (5 km each); ranks jump because cells next to a better site are skipped. Tick up to 3 sites to compare.";
   const note = $("#list-note");
   if (state.exChina) {
     const removed = t.lists.all.filter((i) => !t.lists.china.includes(i)).length;
     note.hidden = false;
-    note.textContent = `China excluded (with Hong Kong, Macau and areas China administers). ${removed} of the ${t.lists.all.length} sites in the full list were in China; the list below is re-ranked without them. Taiwan is not excluded.`;
+    note.textContent = state.cont
+      ? "China excluded (with Hong Kong, Macau and areas China administers): Asia shows its best site outside China. Taiwan is not excluded."
+      : `China excluded (with Hong Kong, Macau and areas China administers). ${removed} of the ${t.lists.all.length} sites in the full list were in China; the list below is re-ranked without them. Taiwan is not excluded.`;
   } else note.hidden = true;
   visibleSites(t).forEach((s) => {
     const tr = el("tr", s.k ? "known" : ""); tr.setAttribute("aria-selected", String(s.i === state.sel)); tr.tabIndex = 0;
@@ -472,7 +486,7 @@ function renderRows(t) {
     cb.addEventListener("change", () => { toggleCmp(s.i); });
     lab.appendChild(cb); tdc.appendChild(lab); tr.appendChild(tdc);
     tr.appendChild(el("td", "n mono", s.r));
-    const tc = el("td"); tc.appendChild(el("div", null, s.c || "–")); tc.appendChild(el("div", "small muted mono", coordTxt(s.lat, s.lon))); tr.appendChild(tc);
+    const tc = el("td"); tc.appendChild(el("div", null, (state.cont && s.ct ? s.ct + " · " : "") + (s.c || "–"))); tc.appendChild(el("div", "small muted mono", coordTxt(s.lat, s.lon))); tr.appendChild(tc);
     tr.appendChild(el("td", null, s.env));
     const tdr = el("td", "n"); tdr.appendChild(el("div", "mono", rankTxt(s))); if (s.nr) tdr.appendChild(el("div", "small muted", `of ${cellsTxt(s.nr)}`)); tr.appendChild(tdr);
     tr.appendChild(el("td", null, s.b)); tr.appendChild(el("td", null, s.w));
@@ -720,7 +734,7 @@ function render(fit) {
   $("#opt-china").checked = state.exChina; $("#lbl-china").classList.toggle("on", state.exChina);
   const vis = visibleSites(t);
   if (!vis.some((s) => s.i === state.sel)) state.sel = (vis[0] || rankedSites(t)[0] || {}).i ?? null;
-  if (state.exChina) state.cmp = state.cmp.filter((i) => t.lists.china.includes(i));
+  state.cmp = state.cmp.filter((i) => activeList(t).includes(i));
   renderTargets(); renderRows(t); renderTarget(t); renderSite(t); renderCompare(t); drawBodyMap($("#bmap"), false);
   drawHeat(t); drawPins(t, fit);
 }
@@ -734,6 +748,9 @@ $("#tab-moon").addEventListener("click", () => setBody("Moon"));
 $("#opt-new").addEventListener("change", (e) => { state.onlyNew = e.target.checked; render(false); });
 $("#opt-china").addEventListener("change", (e) => { state.exChina = e.target.checked; history.replaceState(null, "", "#" + hashOf(state.t)); render(true); });
 $("#opt-heat").addEventListener("change", (e) => { state.heat = e.target.checked; if (map && map.getLayer("heat")) map.setLayoutProperty("heat", "visibility", state.heat ? "visible" : "none"); });
+const setView = (c) => { state.cont = c; history.replaceState(null, "", "#" + hashOf(state.t)); render(true); };
+$("#view-top").addEventListener("click", () => setView(false));
+$("#view-cont").addEventListener("click", () => setView(true));
 $("#cmp-clear").addEventListener("click", () => { state.cmp = []; const t = byId[state.t]; renderRows(t); renderCompare(t); });
 function fromHash() {
   const h = location.hash || "";
@@ -741,6 +758,7 @@ function fromHash() {
   const t = byId[id] || byId["jezero_crater"] || D.targets[0];
   state.t = t.id; state.body = t.body; state.sel = null; state.cmp = [];
   state.exChina = /[&?]exclude=china/.test(h);
+  state.cont = /[&?]view=continents/.test(h);
 }
 window.addEventListener("hashchange", () => { const id = idOfHash(location.hash); if (byId[id] && id !== state.t) { fromHash(); render(true); } });
 fromHash();

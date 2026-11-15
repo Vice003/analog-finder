@@ -42,6 +42,22 @@ def stats(body):
 SM, SN = stats("Mars"), stats("Moon")
 N_RANKED = next(iter(T.values()))["top"][0].get("n_ranked", 0)
 lst = lambda cnt, k: ", ".join(f"{esc(n.split(' (')[0])} {v}" for n, v in cnt.most_common(k))
+CONT_DE = {"Africa": "Afrika", "Asia": "Asien", "Europe": "Europa", "North America": "Nordamerika",
+           "South America": "Südamerika", "Oceania": "Ozeanien", "Antarctica": "Antarktika"}
+
+
+def cont_summary(body):
+    """Je Kontinent: Median des Zellplatzes seines besten Orts ueber alle Ziele des Koerpers."""
+    import statistics
+    ranks = collections.defaultdict(list)
+    for t in T.values():
+        if t["body"] == body:
+            for x in t.get("by_continent", []):
+                ranks[x["continent"]].append(x["cell_rank"])
+    rows = sorted(((statistics.median(v), c) for c, v in ranks.items()))
+    return ", ".join(f"{CONT_DE.get(c, c)} Platz {de(int(m))}" for m, c in rows)
+
+
 KNOWN = collections.Counter(x["known_analog"] for t in T.values() for x in t["top"] if x["known_analog"])
 cls = lambda s: CLS.get(s, s)
 
@@ -145,7 +161,7 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
 </style>
 <main>
 <header>
-  <p class="eyebrow">NASA Space Apps 2026 · Analog Finder · Stand 15.11. · volles Scoring 0,05°</p>
+  <p class="eyebrow">NASA Space Apps 2026 · Analog Finder · Stand 15.11., 11 Uhr · volles Scoring 0,05°</p>
   <h1>Ergebnisse: Erd-Analoga für 27 Ziele</h1>
   <p class="lede">Für jeden der 27 Landeplätze und Basis-Kandidaten auf Mond und Mars die 20 ähnlichsten Orte auf der Erde, gesucht in 8,9 Millionen Landzellen von etwa 5 km. Für jeden Ort steht dabei, was passt, wo die Analogie bricht und welchen Platz er unter allen Erdzellen belegt. <a href="https://vice003.github.io/analog-finder/">Zur interaktiven Web-App</a> (Englisch, mit Mars-/Mondkarte, China-Filter und Vergleich).</p>
 </header>
@@ -154,12 +170,13 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
   <h2>Das Wichtigste</h2>
   <div class="facts">
     <div class="fact"><b>27</b><span>Ziele: {SM['n']} auf dem Mars, {SN['n']} am Mond-Südpol</span></div>
-    <div class="fact"><b>{mio(N_RANKED)}</b><span>bewertete Erdzellen je Ziel (von 8,9 Mio.; ohne Wasser, Eisschilde, Wald, Acker, Siedlung, Datenlücken)</span></div>
+    <div class="fact"><b>{mio(N_RANKED)}</b><span>bewertete Erdzellen je Ziel (von 8,9 Mio.; nur vegetationsfreies Land, ohne Wasser, Eisschilde und Datenlücken)</span></div>
     <div class="fact"><b>{min(SM['new'][0], SN['new'][0])}–{max(SM['new'][1], SN['new'][1])} von 20</b><span>Treffer pro Ziel sind neue Orte, keine etablierten Analoga</span></div>
   </div>
   <ul>
     <li><b>Mars → Hochasien.</b> {SM['cn']} der {SM['top']} Mars-Treffer liegen in China (mit Aksai Chin), vor allem im tibetischen Hochland, im Qaidam-Becken und am Rand der Taklamakan. Danach: {lst(collections.Counter({k: v for k, v in SM['c'].items() if 'China' not in k}), 6)}. Die 14 Mars-Ziele führen auf {SM['uniq']} verschiedene Erdorte.</li>
     <li><b>Ohne China</b> (Schalter in der Web-App, zweite Liste je Ziel in <code>top_sites.json</code>): Die Mars-Treffer verteilen sich auf {lst(SM['cx'], 6)}. Der beste Ort außerhalb Chinas liegt je Mars-Ziel auf Zellplatz {SM['cost'][0]} bis {de(SM['cost'][-1])}. Bei den Mond-Zielen ändert der Filter praktisch nichts.</li>
+    <li><b>Bester Ort je Kontinent</b> (Ansicht „Best per continent“ in der Web-App; mittlerer Zellplatz über alle Ziele): Mars: {cont_summary("Mars")}. Mond: {cont_summary("Moon")}.</li>
     <li><b>Mond → arktische Polarwüsten.</b> Für die 13 Südpol-Ziele führen die Treffer in die kanadische Arktis und nach Nordgrönland: {lst(SN['c'], 4)} von {SN['top']} Treffern.</li>
     <li><b>Die Region bestimmen die Umweltbedingungen, den Ort das Gelände.</b> Niedriger Druck, Kälte und Trockenheit, die die Erde nie ganz erreicht, zeigen auf die extremsten Gegenden der Erde. Gelände und Untergrund entscheiden dann, welcher Ort darin am besten passt.</li>
     <li><b>Positivkontrolle:</b> Etablierte Analoga tauchen in den Listen auf, ohne dass das Verfahren sie kennt: {lst(KNOWN, 5)} (Anzahl Treffer im jeweiligen Radius).</li>
@@ -185,9 +202,10 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
   <h2>So wurde gerechnet</h2>
   <ul>
     <li><b>Ziele:</b> alle 27 Orte aus der Ortsliste des Mond/Mars-Teams. Mars 10 × 10 km, Mond 15 × 15 km. Artemis-Regionen liegen auf dem am besten beleuchteten Ausschnitt innerhalb von 12 km, weil die Liste oft Kratermittelpunkte nennt.</li>
-    <li><b>Zielwerte:</b> Gelände aus MOLA (Mars, 463 m) und LOLA (Mond, 100 m), auf Erde und Zielkörper mit demselben Code. Thermische Trägheit Mars aus TES. Mondtemperatur und Eis aus Diviner. Druck, Temperatur und Eis auf dem Mars sind vorerst grobe Schätzwerte.</li>
+    <li><b>Zielwerte:</b> Gelände aus MOLA (Mars, 463 m) und LOLA (Mond, 100 m), auf Erde und Zielkörper mit demselben Code. Thermische Trägheit und Albedo Mars aus TES (Albedo über den Rang verglichen). Mondtemperatur und Eis aus Diviner. Druck, Temperatur und Eis auf dem Mars sind vorerst grobe Schätzwerte.</li>
     <li><b>Länder:</b> Natural Earth 1:50m (gemeinfrei), nur zur Beschriftung. Natural Earth zeichnet De-facto-Grenzen. Umstrittene Gebiete sind als solche gekennzeichnet, etwa Aksai Chin. Der China-Filter nimmt China mit Hongkong, Macau und den von China verwalteten Gebieten heraus, Taiwan nicht.</li>
     <li><b>Erde:</b> MODIS (Temperatur, Albedo, NDVI, Schnee), MERRA-2 (Staub, Stürme, Wind, Druck, Niederschlag) und Copernicus-Höhenmodell.</li>
+    <li><b>Nur vegetationsfreies Land:</b> Ins Ranking kommen nur Zellen mit NDVI-Jahresmaximum unter 0,15 oder MODIS-Klasse „barren“ ab 50 %. Vorher landete spärlich bewachsene Tundra unter den Mond-Treffern (89 von 260).</li>
     <li><b>Mindestabdeckung:</b> Eine Erdzelle kommt nur ins Ranking, wenn sie mindestens 80 % des Gewichts der Dimensionen belegt, für die das Ziel Werte hat.</li>
     <li><b>Vergleich:</b> Gleiche Größen werden Wert gegen Wert verglichen, verschiedene Instrumente über den Rang. Werte, die die Erde nie erreicht, zählen als „Richtung“. Jedes Merkmal ist nach Verlässlichkeit (A/B/C) gewichtet. Wasser, Eisschilde, Wald, Acker und Siedlung sind ausgeblendet.</li>
   </ul>
@@ -195,10 +213,11 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
 
 <section>
   <h2>Was noch nicht stimmt</h2>
-  <div class="note"><b>Tundra unter den Mond-Treffern.</b> {SN['cls'].get('kein_analog', 0)} der {SN['top']} Mond-Treffer haben die Umgebungsklasse „Kein Analog“: arktische Tundra mit etwas Bewuchs (NDVI-Jahresmaximum über 0,15). Das Ranking schließt bisher nur Wald, Acker, Siedlung, Wasser und Eisschilde aus, nicht spärlich bewachsene Tundra. Vorschlag: für Mond-Ziele nur vegetationsfreie Zellen zulassen.</div>
-  <div class="note"><b>Ballung in Hochasien.</b> Die Mars-Listen zeigen eine Region statt vieler. Vorschläge: bester Ort je Kontinent oder ein zweistufiges Ranking (erst Umweltfilter, dann ortsspezifisch).</div>
-  <div class="note"><b>Ungenaue Zielkoordinaten.</b> Gale liegt auf dem Zentralberg statt an der Landestelle, Haworth bleibt im Schatten. Die Koordinaten der Ortsliste sind Näherungen.</div>
-  <div class="note"><b>Noch nicht ausgewertet:</b> Mars-Albedo (OMEGA), Staub (TES), Bodeneis (Odyssey GRS), Diviner-Werte für Mondziele nördlich von 85° S, Permafrost und UV auf der Erde.</div>
+  <div class="note"><b>Mars-Werte teils geschätzt.</b> Temperatur, Tagesgang, Druck und Bodeneis auf dem Mars sind grobe Schätzwerte (Note C, geringes Gewicht). Staub (TES) und Bodeneis (Odyssey GRS) sind noch nicht ausgewertet. Die Mars-Albedo kommt seit dem 15.11. aus TES.</div>
+  <div class="note"><b>Ballung in Hochasien.</b> Die Top-20-Listen der Mars-Ziele zeigen vor allem eine Region. Die Liste „bester Ort je Kontinent“ zeigt die Alternativen und wie weit sie zurückliegen.</div>
+  <div class="note"><b>Zielkoordinaten.</b> Gale liegt jetzt auf der Landestelle von Curiosity (Bradbury Landing). Artemis-Regionen, für die die Ortsliste einen Kratermittelpunkt nennt (Haworth, Nobile, de Gerlache, Faustini, Slater), liegen auf dem hellsten 15-km-Ausschnitt innerhalb Kraterradius + 10 km; Haworth hat damit 121 K statt 44 K. Nobile liegt dadurch außerhalb des Diviner-Rasters und hat keinen Temperaturwert. Die übrigen Koordinaten der Ortsliste sind Näherungen.</div>
+
+  <div class="note"><b>Noch nicht ausgewertet:</b> Staub (TES) und Bodeneis (Odyssey GRS) auf dem Mars, Diviner-Werte für Mondziele nördlich von 85° S (Peak near Cabeus B, Mons Mouton, Nobile), Permafrost und UV auf der Erde.</div>
 </section>
 
 <footer>Daten: NASA MODIS, MERRA-2, GPM IMERG, MOLA, LOLA, Diviner, TES (PDS) und ESA Copernicus DEM. Code und Daten: <a href="https://github.com/Vice003/analog-finder">github.com/Vice003/analog-finder</a>, im Team-Repo Vice003/NASA-Challenge unter vicente/, planetary/ und common/.</footer>

@@ -19,10 +19,10 @@ where the analogy holds and where it breaks.
 | Step | What | Where |
 |---|---|---|
 | 1. Earth features | MODIS (surface temperature at 4 overpass times, albedo incl. snow-free, NDVI, snow, land cover), MERRA-2 (dust optical depth, dust emission, dust-storm and gale days, wind, pressure, humidity, precipitation), Copernicus DEM GLO-90 (slope and relief at 100 m and 463 m) on a 0.05° grid | `earth/` |
-| 2. Target signatures | 27 sites from the team's site list. Terrain from MOLA (Mars, 463 m) and LOLA (Moon, 100 m) with the **same** code as on Earth (`common/terrain.py`), Mars thermal inertia from TES, Moon temperature and ice stability from Diviner | `planetary/compute_targets.py` → `planetary/targets.json` |
+| 2. Target signatures | 27 sites from the team's site list. Terrain from MOLA (Mars, 463 m) and LOLA (Moon, 100 m) with the **same** code as on Earth (`common/terrain.py`), Mars thermal inertia and albedo from TES, Moon temperature and ice stability from Diviner | `planetary/compute_targets.py` → `planetary/targets.json` |
 | 3. Environment classes | 10 Earth environment classes (salt flat, dune field, dark volcanic, cold polar desert, high plateau, hyperarid …) and 10 flags (dust source, frequent dust storms, freeze-thaw, landing-friendly …) | `scoring/categories.py` |
-| 4. Scoring | per feature: same quantity → value against value; different instruments → rank against rank (`common/body_percentile.py`); values Earth never reaches (vacuum, 6 hPa) → the closer the better. Weighted by reliability grade (A/B/C) of target and Earth value. Water, ice sheets, forest, cropland and settlements are masked; a cell must cover 80 % of the target's profile | `scoring/target_scoring.py` |
-| 5. Output | top 20 sites per target, at least 200 km apart, with country, rank among all ranked Earth cells (about 4.3 million), known/new analog, per-feature breakdown and class reasons; a second list without China | `results/top_sites.json`, `.csv` |
+| 4. Scoring | per feature: same quantity → value against value; different instruments → rank against rank (`common/body_percentile.py`); values Earth never reaches (vacuum, 6 hPa) → the closer the better. Weighted by reliability grade (A/B/C) of target and Earth value. Only vegetation-free land is ranked (no water, ice sheets, forest, cropland or settlements); a cell must cover 80 % of the target's profile | `scoring/target_scoring.py` |
+| 5. Output | top 20 sites per target, at least 200 km apart, with country, rank among all ranked Earth cells (about 0.84 million vegetation-free cells), known/new analog, per-feature breakdown and class reasons; a second list without China; the best site per continent | `results/top_sites.json`, `.csv` |
 | 6. Web app | one self-contained HTML file (MapLibre GL), no server | `web/build_web.py`, `web/template.html` → `docs/index.html` |
 
 `derived/` holds the Earth features on the team's 10′ grid (1080 × 2160, `.npz`, key `a`).
@@ -54,10 +54,10 @@ NASA: MODIS (LP DAAC, NSIDC), MERRA-2 (GES DISC), GPM IMERG (supplementary), MOL
 
 - No place on Earth has the Moon's vacuum, Mars's thin CO₂ air, their low gravity or their radiation.
 - Target sites are 10 × 10 km (Mars) and 15 × 15 km (Moon) boxes around published coordinates, many of them approximate
-  (Gale lies on the central mound, Haworth stays in shadow).
-- Some Mars values (temperature, pressure, ice) are rough estimates; Mars albedo (OMEGA), dust (TES) and ground ice
-  (Odyssey GRS) are not yet included.
-- Mars matches cluster in High Asia; Moon matches include some sparsely vegetated Arctic tundra.
+  (Gale uses the Curiosity landing site; lunar crater regions sit on the best-lit square at the crater rim).
+- Some Mars values (temperature, day-night range, pressure, ice) are rough estimates (grade C, low weight); Mars dust
+  (TES) and ground ice (Odyssey GRS) are not yet included.
+- Mars matches cluster in High Asia; the best-per-continent list shows the alternatives and how far behind they are.
 
 ## Team
 
