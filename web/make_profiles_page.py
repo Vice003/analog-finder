@@ -22,6 +22,21 @@ def g(gid, label):
     return f'<a class="gl" href="{GL}#{gid}">{label}</a>'
 
 
+def site_highlights(R, s):
+    """Highlights for the site's best-ranked target (same rules as the web app, web/highlights.py)."""
+    from highlights import highlights
+    best = min(s["matches"], key=lambda m: m.get("cell_rank") or 10 ** 9)
+    t = R[best["target"]]
+    x = next((x for k in ("top", "excl_china", "by_continent") for x in t.get(k, [])
+              if abs(x["lat"] - s["lat"]) < 1e-6 and abs(x["lon"] - s["lon"]) < 1e-6), None)
+    if x is None:
+        return [], t["name"]
+    fm = [dict(k=m["key"], m=m["method"], tv=m["target"], tp=m.get("body_percentile"), dir=m.get("direction")) for m in t["features_used"]]
+    fe = {f["key"]: f for f in x["features"]}
+    fv = [[fe.get(m["k"], {}).get("earth"), fe.get(m["k"], {}).get("score"), fe.get(m["k"], {}).get("earth_pct")] for m in fm]
+    return highlights(fm, fv, x["env_class"], x["flags"], "en"), t["name"]
+
+
 def fine_cell(f):
     """Terrain match of the box centred on the cell vs the best box nearby, with its position."""
     if not f:
@@ -33,6 +48,13 @@ def fine_cell(f):
     osm = f"https://www.openstreetmap.org/?mlat={b['lat']}&mlon={b['lon']}#map=11/{b['lat']}/{b['lon']}"
     return (f"<td>{cm} at the cell → <b>{b['match']:.2f}</b> {b['offset_km']:g} km {b['bearing']} "
             f"(<a href='{osm}' target='_blank' rel='noopener'>{b['lat']:.3f}, {b['lon']:.3f}</a>)</td>")
+
+
+def hl_html(items, tname):
+    if not items:
+        return ""
+    lis = "".join(f"<li{' class=why' if i == len(items) - 1 else ''}>{esc(x)}</li>" for i, x in enumerate(items))
+    return f"<div class='hl'><b>What makes this terrain special</b> <span class='muted small'>(compared for {esc(tname)})</span><ul>{lis}</ul></div>"
 
 
 def verdict(m):
@@ -54,6 +76,7 @@ def main():
     fsp = ROOT / "results" / "fine_search.json"
     FS = json.load(open(fsp, encoding="utf-8"))["sites"] if fsp.exists() else {}
     cl = CountryLookup(lang="en")
+    R = json.load(open(ROOT / "results" / "top_sites.json", encoding="utf-8"))["targets"]
     key = lambda a, b: f"{a:.3f},{b:.3f}"
     for s in P:
         s["country_en"] = cl.label(s["lat"], s["lon"])[0]
@@ -76,6 +99,7 @@ def main():
   <div class="cls">{g('cls_' + s['env'], esc(ENV_EN.get(s['env'], s['env'])))}</div></div>
   <img src="profiles/{s['image']}" alt="Satellite image, terrain and slope distribution around {coords}" loading="lazy" width="1080" height="368">
   <p class="verdict"><b>{esc(verdict(m))}</b></p>
+  {hl_html(*site_highlights(R, s))}
   <p class="small">The 5 km cell (yellow box): median slope {m['slope_p50']:.1f}° (surroundings {m['sur_slope_p50'] if m['sur_slope_p50'] is None else round(m['sur_slope_p50'], 1)}°),
   {m['flat_share']:.0%} of the area below 5°, {m['steep_share']:.0%} steeper than 15°, elevation {m['elev_min']:.0f}–{m['elev_max']:.0f} m. Image: {esc(s['image_source'])}.</p>
   <div class="tw"><table><thead><tr><th>Matches target</th><th>List</th><th class="n">Place in list</th><th class="n">{g('platz', 'Rank on Earth')}</th><th class="n">{g('robustheit', 'Robustness')}</th><th>{g('feinsuche', 'Fine search: terrain match')}</th></tr></thead><tbody>{rows}</tbody></table></div>
@@ -116,6 +140,8 @@ table {{ border-collapse:collapse; width:100%; font-size:13.5px; font-variant-nu
 th, td {{ text-align:left; padding:5px 8px; border-bottom:1px solid var(--line); }} th {{ font:500 11px var(--f-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }}
 td.n, th.n {{ text-align:right; white-space:nowrap; }}
 .links {{ margin:8px 0 0; }}
+.hl {{ margin:8px 0 4px; font-size:14px; }} .hl ul {{ margin:4px 0 0; padding-left:20px; }} .hl li {{ margin-bottom:2px; }}
+.hl li.why {{ list-style:none; margin-left:-20px; color:var(--muted); font-style:italic; }}
 </style>
 </head>
 <body>

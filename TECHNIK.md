@@ -287,7 +287,10 @@ eingefärbt), Pool (base64), Mars- und Mondkarte (MOLA/LOLA-Schummerung als JPEG
 **Funktionen:**
 * **Zielwahl:** Mars/Mond-Reiter, Zielliste, anklickbare Karten von Mars (global) und Mond-Südpol (bis 82,4° S); nah
   beieinanderliegende Ziele werden mit Hilfslinie auseinandergezogen; große Ansicht mit allen Namen.
-* **Weltkarte:** Heatmap der Ähnlichkeit (ab 65. Perzentil), nummerierte Pins (neu golden, bekannt grau).
+* **Weltkarte:** Heatmap der Ähnlichkeit (ab 65. Perzentil), nummerierte Pins (neu golden, bekannt grau);
+  umschaltbarer Satelliten-Hintergrund (NASA GIBS, Landsat-WELD-Jahresmosaik, Kacheln bis Zoom 12); beim gewählten
+  Ort sind die 5-km-Zelle (gelb) und das beste Quadrat der Feinsuche (cyan) eingezeichnet; „Show on satellite map“
+  zoomt dorthin.
 * **Listen:** Top 20 oder bester Ort je Kontinent; Spalten Land, Klasse, Zellplatz, Robustheit, stärkste/schwächste
   Dimension, bekannt/neu; Schalter „Exclude China“ und „Only new sites“; Zustand im Link (`#gale-crater&exclude=china&view=continents`).
 * **Eigene Auswertung:** Filter nach Umgebungsklasse, nach Zusatzeigenschaften (alle angekreuzten müssen zutreffen),
@@ -311,9 +314,12 @@ eingefärbt), Pool (base64), Mars- und Mondkarte (MOLA/LOLA-Schummerung als JPEG
 * `glossary.py` + `make_glossary_page.py` → `glossar.html`, `glossary.html` (je 89 Einträge); Klassenregeln,
   Profilgewichte und bekannte Analoga werden aus dem Code erzeugt.
 
-**In Arbeit (lokal, nicht veröffentlicht):** Satellitenkarte in der App (NASA-GIBS-Kacheln Landsat WELD bis Zoom 12,
-Zelle und bestes Quadrat eingezeichnet). Der aktuelle Stand verhindert das Laden der Karte und wird noch korrigiert.
-Geplant: Zielausschnitte mit Zielquadrat und benannten Kratern (IAU).
+**Kernaussagen** („What makes this terrain special“, `web/highlights.py`): 2–4 Aussagen je Ort aus den
+Messwerten (Gelände im Vergleich zum Ziel, Trockenheit, Höhe/Druck, Kälte, Tagesgang, Albedo- und Trägheitsrang,
+Staubstürme, tiefe Sonne, Eigenschaften) und ein Satz zur Bedeutung der Umgebungsklasse; in der App (für Pool-Orte
+im Browser nachgebaut), in den Steckbriefe und auf der Ergebnisseite (Top 3 je Ziel).
+
+**Geplant:** Zielausschnitte mit Zielquadrat und benannten Kratern (IAU-Namensverzeichnis liegt bereit).
 
 ---
 
@@ -402,4 +408,4 @@ Feinsuche die Steckbrief-Liste braucht. Danach `web/index.html`, `web/profiles.h
 * Feinsuche nur für Gelände und bis 8 km; bei 43 Paaren liegt das beste Quadrat am Rand.
 * Literaturprüfung englischsprachig, ohne Fachdatenbanken; Lop Nur und Dunhuang/Kumtag nachprüfen.
 * „Extreme cold“ kommt im Ranking nicht vor (alle so kalten Zellen sind Eisschilde).
-* Satellitenkarte und Kraterausschnitte noch nicht fertig (Abschnitt 10).
+* Kraterausschnitte der Zielorte noch nicht gebaut (Abschnitt 10).

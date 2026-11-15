@@ -131,6 +131,15 @@ def robust(tid, x):
     return "–" if v is None else f"{v * 100:.0f} %"
 
 
+def hl_de(t, x):
+    from highlights import highlights
+    fm = [dict(k=m["key"], m=m["method"], tv=m["target"], tp=m.get("body_percentile"), dir=m.get("direction")) for m in t["features_used"]]
+    fe = {f["key"]: f for f in x["features"]}
+    fv = [[fe.get(m["k"], {}).get("earth"), fe.get(m["k"], {}).get("score"), fe.get(m["k"], {}).get("earth_pct")] for m in fm]
+    items = highlights(fm, fv, x["env_class"], x["flags"], "de", max_items=3)[:3]
+    return "<ul class='hl'>" + "".join(f"<li>{esc(i)}</li>" for i in items) + "</ul>" if items else ""
+
+
 def prof_link(x):
     i = _sid(x["lat"], x["lon"])
     return f' · <a href="{PROFILES_URL}#{i}" target="_blank" rel="noopener">Steckbrief</a>' if i in PF else ""
@@ -178,7 +187,7 @@ for k in order:
     for s in t["top"][:10]:
         rows.append(
             f"<tr><td class='n'>{s['rank']}</td><td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])}{prof_link(s)}</div></td><td>{cls_link(s)}"
-            f"<div class='muted small'>{flags_link(s)}</div></td><td class='n'>{rank(s)}</td>"
+            f"<div class='muted small'>{flags_link(s)}</div>{hl_de(t, s) if s['rank'] <= 3 else ''}</td><td class='n'>{rank(s)}</td>"
             f"<td class='n'>{robust(k, s)}</td><td class='n'>{s['coverage'] * 100:.0f} %</td><td>{DIM.get(s['best_dim'], s['best_dim'])}</td>"
             f"<td>{DIM.get(s['worst_dim'], s['worst_dim'])}</td><td>{chip(s['known_analog'])}</td></tr>")
     body = "Mars" if t["body"] == "Mars" else "Mond"
@@ -239,6 +248,7 @@ summary {{ cursor:pointer; padding:11px 14px; font-weight:500; }}
 details .table-wrap {{ border:0; border-top:1px solid var(--line); border-radius:0 0 8px 8px; margin:0; }}
 a.gl {{ color:inherit; text-decoration:underline dotted; text-decoration-color:var(--muted); text-underline-offset:3px; }}
 a.gl:hover {{ color:var(--accent); text-decoration-color:var(--accent); }}
+ul.hl {{ margin:4px 0 0; padding-left:16px; font-size:12.5px; color:var(--fg); }} ul.hl li {{ margin-bottom:1px; }}
 .note {{ border-left:3px solid var(--accent); background:var(--surface); padding:12px 16px; border-radius:0 6px 6px 0; margin:0 0 10px; }}
 footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); }}
 </style>

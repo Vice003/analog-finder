@@ -175,6 +175,8 @@ dialog#bmap-dlg::backdrop { background: rgba(0,0,0,.6); }
 .wrow .num { font:12px var(--f-mono); text-align:right; color:var(--muted); }
 .imp select { font:inherit; font-size:13px; border:1px solid var(--line); background:var(--raise); color:var(--fg); border-radius:7px; padding:3px 6px; margin-left:4px; }
 .note.custom { padding:6px 14px; margin:0 14px 8px; border-left:3px solid var(--rel-b); background:var(--raise); border-radius:0 6px 6px 0; }
+.satbtn { font-size: 12.5px; }
+ul.hl { margin: 4px 0 6px; padding-left: 18px; font-size: 13.5px; } ul.hl li { margin-bottom: 3px; } ul.hl li.why { list-style: none; margin-left: -18px; color: var(--muted); font-style: italic; margin-top: 4px; }
 .fsline { margin: 8px 0 0; padding: 7px 9px; background: var(--raise); border-radius: 6px; }
 .rbtag { color: var(--rel-a); cursor: help; } .rbtag.low { color: var(--rel-b); }
 /* glossary */
@@ -259,6 +261,7 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
     <section class="panel mapwrap" aria-label="Map of Earth analogs">
       <div id="map" role="region" aria-label="World map. The ranked list below holds the same sites as text."></div>
       <div class="maptools">
+        <label><input type="checkbox" id="opt-sat"> Satellite</label>
         <label><input type="checkbox" id="opt-heat" checked> Similarity map</label><button class="qm" type="button" data-g="heatmap">?</button>
         <label><input type="checkbox" id="opt-new"> Only new sites</label><button class="qm" type="button" data-g="bekannt">?</button>
         <label id="lbl-china" title="Removes China, Hong Kong and Macau, including areas China administers (e.g. Aksai Chin), from the list and the map"><input type="checkbox" id="opt-china"> Exclude China</label><button class="qm" type="button" data-g="ohne_china">?</button>
@@ -474,25 +477,33 @@ async function heatUrl(t) {
 
 /* ---------- map */
 const MERC = 85.0511287798;
-let map = null, markers = [];
+let map = null, markers = [], mapReady = false;
 function initMap() {
   if (!window.maplibregl) { $("#map").textContent = "The map library could not be loaded. The ranked list below holds all results."; return; }
   map = new maplibregl.Map({
-    container: "map", renderWorldCopies: false, center: [70, 32], zoom: 1.15, minZoom: 0.6, maxZoom: 9,
+    container: "map", renderWorldCopies: false, center: [70, 32], zoom: 1.15, minZoom: 0.6, maxZoom: 13,
     attributionControl: false, dragRotate: false, pitchWithRotate: false,
-    style: { version: 8, sources: { countries: { type: "geojson", data: D.countries } },
+    style: { version: 8, sources: {
+        countries: { type: "geojson", data: D.countries },
+        // NASA GIBS: Landsat WELD annual true-colour mosaic (30 m), Web Mercator tiles up to zoom 12
+        sat: { type: "raster", tileSize: 256, maxzoom: 12, attribution: "Landsat WELD · NASA GIBS",
+               tiles: ["https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/Landsat_WELD_CorrectedReflectance_TrueColor_Global_Annual/default/default/GoogleMapsCompatible_Level12/{z}/{y}/{x}.jpg"] },
+        sel: { type: "geojson", data: { type: "FeatureCollection", features: [] } } },
       layers: [
         { id: "sea", type: "background", paint: { "background-color": css("--sea") } },
         { id: "land", type: "fill", source: "countries", paint: { "fill-color": css("--land") } },
+        { id: "sat", type: "raster", source: "sat", layout: { visibility: "none" } },
         { id: "borders", type: "line", source: "countries", paint: { "line-color": css("--border-land"), "line-width": 0.6 } },
+        { id: "sel-box", type: "line", source: "sel", filter: ["==", ["get", "kind"], "box"], paint: { "line-color": "#5fd0e0", "line-width": 2, "line-dasharray": [2, 1.5] } },
+        { id: "sel-cell", type: "line", source: "sel", filter: ["==", ["get", "kind"], "cell"], paint: { "line-color": "#e7b04f", "line-width": 2 } },
       ] },
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
   map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: "Natural Earth · NASA · ESA" }));
-  map.on("load", () => render(true));
+  map.on("load", () => { mapReady = true; render(true); });
 }
 async function drawHeat(t) {
-  if (!map || !map.isStyleLoaded()) return;
+  if (!map || !mapReady) return;  // isStyleLoaded() stays false while the GeoJSON overlay sources load
   const url = await heatUrl(t);
   if (t.id !== state.t) return;
   const coords = [[-180, MERC], [180, MERC], [180, -MERC], [-180, -MERC]];
@@ -836,6 +847,7 @@ function renderSite(t) {
   const c = $("#site-card"); c.textContent = "";
   if (state.sel == null) return;
   const s = siteByI(t, state.sel);
+  drawSel(s);
   const hd = el("div", "hd"); const h = el("div");
   h.appendChild(el("div", "label", s.r ? `Earth analog #${s.r}` : "Earth analog (not in the active list)"));
   h.appendChild(el("div", "country", s.c || "Unknown country"));
@@ -846,6 +858,11 @@ function renderSite(t) {
   const envd = el("div"); envd.appendChild(gterm("cls_" + s.ec, s.env)); bd.appendChild(envd);
   if (s.fl.length) { const fld = el("div", "small muted"); s.fl.forEach((f, k) => { if (k) fld.appendChild(document.createTextNode(" · ")); fld.appendChild(gterm("flag_" + (s.fk || [])[k], f)); }); bd.appendChild(fld); }
   if (s.k) bd.appendChild(el("div", "small muted", `Within the radius of a known analog site: ${s.k}`));
+  const hlItems = s.hl && !s.pooled ? s.hl : highlightsJS(t, s);
+  if (hlItems.length) {
+    const hh = el("h3", null, "What makes this terrain special"); bd.appendChild(hh);
+    const ul = el("ul", "hl"); hlItems.forEach((h, k) => { const li = el("li", k === hlItems.length - 1 && D.classWhy && D.classWhy[s.ec] === h ? "why" : null, h); ul.appendChild(li); }); bd.appendChild(ul);
+  }
   const st = el("div", "stats");
   const a = el("div"); a.appendChild(el("span", "big", rankTxt(s))); const al = el("span", "small muted", scoreMode() ? "custom score (your weights) " : s.nr ? `of ${cellsTxt(s.nr)} ranked Earth cells ` : "rank on Earth "); al.appendChild(qm("platz")); a.appendChild(al); st.appendChild(a);
   const b2 = el("div"); b2.appendChild(el("span", "big", `${fmt(s.cov * 100, 0)} %`)); const bl = el("span", "small muted", "of the profile has data "); bl.appendChild(qm("abdeckung")); b2.appendChild(bl); st.appendChild(b2);
@@ -868,6 +885,8 @@ function renderSite(t) {
   const ln = el("div", "links");
   const osm = el("a", null, "OpenStreetMap"); osm.href = `https://www.openstreetmap.org/?mlat=${s.lat}&mlon=${s.lon}#map=9/${s.lat}/${s.lon}`; osm.target = "_blank"; osm.rel = "noopener";
   const wv = el("a", null, "NASA Worldview"); wv.href = `https://worldview.earthdata.nasa.gov/?v=${s.lon - 1},${s.lat - 0.7},${s.lon + 1},${s.lat + 0.7}`; wv.target = "_blank"; wv.rel = "noopener";
+  const satb = el("button", "xbtn satbtn", "Show on satellite map"); satb.type = "button"; satb.addEventListener("click", () => showOnSatellite(s));
+  ln.appendChild(satb);
   ln.appendChild(osm); ln.appendChild(wv);
   if (s.fsr) {
     const [fl, fo, off, brg, mb, mc, bk] = s.fsr;
@@ -884,6 +903,69 @@ function renderSite(t) {
   if (s.pf && D.profiles) { const pfl = el("a", null, "Site profile: satellite image, 90 m terrain"); pfl.href = `${D.profiles}#${s.pf}`; pfl.target = "_blank"; pfl.rel = "noopener"; ln.insertBefore(pfl, osm); }
   bd.appendChild(ln);
   c.appendChild(bd);
+}
+
+
+/* ---------- "what makes this terrain special": mirrors web/highlights.py (used for candidate-pool sites) */
+function highlightsJS(t, s) {
+  const by = {}; (t.fm || []).forEach((m, q) => { const v = (s.fv || [])[q]; if (v && v[0] != null) by[m.k] = { m, v: v[0], sc: v[1], ep: v[2] }; });
+  const out = [], pc = (x) => Math.min(Math.floor(x * 100), 99);
+  if (by.slope_p50) {
+    const { m, v, sc } = by.slope_p50, p90 = by.slope_p90 ? by.slope_p90.v : v, rel = by.relief ? by.relief.v : 0;
+    let txt = v < 2 ? `Very flat: median slope ${fmt(v, 1)}°, 90 % of slopes under ${fmt(p90, 1)}°`
+      : (v > 10 || rel > 400) ? `Rugged terrain: median slope ${fmt(v, 1)}°, relief ${fmt(rel, 0)} m within 5 km`
+      : `Moderate terrain: median slope ${fmt(v, 1)}°, relief ${fmt(rel, 0)} m within 5 km`;
+    if (m.tv != null) txt += sc != null && sc >= 0.9 ? ` (target ${fmt(m.tv, 1)}°, almost the same)` : ` (target ${fmt(m.tv, 1)}°)`;
+    out.push([2, txt]);
+  }
+  // for "beyond Earth's range" features the match score is the share of Earth's land that is further from the target
+  const sh = (k, dir) => { const b = by[k]; return b && b.m.m === "direction" && b.m.dir === dir && b.sc != null ? b.sc : null; };
+  let x;
+  if ((x = sh("precip", "lower")) != null && x >= 0.8) out.push([x, `${by.precip.v < 50 ? "Hyperarid" : "Very dry"}: ${fmt(by.precip.v, 0)} mm of precipitation a year, drier than ${pc(x)} % of Earth's land`]);
+  if ((x = sh("pressure", "lower")) != null && x >= 0.8) out.push([x, `High altitude: air pressure ${fmt(by.pressure.v, 0)} hPa, lower than ${pc(x)} % of Earth's land`]);
+  if ((x = sh("surface_temp_mean", "lower")) != null && x >= 0.8) out.push([x, `Cold: mean ground temperature ${fmt(by.surface_temp_mean.v - 273.15, 0)} °C, colder than ${pc(x)} % of Earth's land`]);
+  if ((x = sh("diurnal_range", "higher")) != null && x >= 0.8) out.push([x - 0.02, `Large day-night swings: ${fmt(by.diurnal_range.v, 0)} K, more than ${pc(x)} % of Earth's land`]);
+  if ((x = sh("wind_mean", "lower")) != null && x >= 0.85) out.push([x - 0.05, `Calm air: mean wind ${fmt(by.wind_mean.v, 1)} m/s, calmer than ${pc(x)} % of Earth's land`]);
+  for (const k of ["albedo", "thermal_inertia"]) {
+    const b = by[k]; if (!b || b.ep == null) continue;
+    const match = b.m.tp != null && Math.abs(b.ep - b.m.tp) <= 0.1 ? " (the target ranks similarly on its own body)" : "";
+    if (k === "albedo" && (b.ep >= 0.8 || b.ep <= 0.2)) out.push([Math.max(b.ep, 1 - b.ep) - 0.05, (b.ep >= 0.8 ? `Bright surface: brighter than ${pc(b.ep)} % of Earth's bare land` : `Dark surface: darker than ${pc(1 - b.ep)} % of Earth's bare land`) + match]);
+    if (k === "thermal_inertia" && (b.ep >= 0.75 || b.ep <= 0.25)) out.push([Math.max(b.ep, 1 - b.ep) - 0.05, (b.ep >= 0.75 ? `Rocky or crusted ground: higher thermal inertia than ${pc(b.ep)} % of Earth's bare land` : `Loose, fine material: lower thermal inertia than ${pc(1 - b.ep)} % of Earth's bare land (dust, sand)`) + match]);
+  }
+  if (by.dust_storm_days && by.dust_storm_days.v >= 10) out.push([0.85, `Frequent dust storms: ${fmt(by.dust_storm_days.v, 0)} days a year with dust optical depth above 1`]);
+  if (by.sun_elevation_max && by.sun_elevation_max.v < 35) out.push([0.8, `Low sun: it never rises higher than ${fmt(by.sun_elevation_max.v, 0)}° above the horizon`]);
+  const fk = new Set(s.fk || []);
+  if (fk.has("landefreundlich") && !out.some((o) => /flat/i.test(o[1]))) out.push([0.75, "Landing-friendly: at least 80 % of the area is flatter than 5°"]);
+  if (fk.has("frost_tau")) out.push([0.7, "Freeze-thaw cycles in at least 3 months a year"]);
+  if (fk.has("staubquelle")) out.push([0.72, "Active dust source: dust emission among the top 5 % of Earth's land"]);
+  out.sort((a, b) => b[0] - a[0]);
+  const items = out.slice(0, 4).map((o) => o[1]);
+  if (D.classWhy && D.classWhy[s.ec]) items.push(D.classWhy[s.ec]);
+  return items;
+}
+
+
+/* ---------- satellite view of the selected site: 5 km cell (yellow) and fine-search box (cyan) */
+function boxPoly(lon0, lat0, lon1, lat1, kind) { return { type: "Feature", properties: { kind }, geometry: { type: "Polygon", coordinates: [[[lon0, lat0], [lon1, lat0], [lon1, lat1], [lon0, lat1], [lon0, lat0]]] } }; }
+function selFeatures(s) {
+  const f = [];
+  if (!s) return f;
+  const la0 = Math.floor(s.lat / 0.05) * 0.05, lo0 = Math.floor(s.lon / 0.05) * 0.05;
+  f.push(boxPoly(lo0, la0, lo0 + 0.05, la0 + 0.05, "cell"));
+  if (s.fsr) { const [bl, bo, , , , , bk] = s.fsr, dla = bk / 2 / 111, dlo = bk / 2 / (111 * Math.max(Math.cos(bl * Math.PI / 180), 0.05)); f.push(boxPoly(bo - dlo, bl - dla, bo + dlo, bl + dla, "box")); }
+  return f;
+}
+function drawSel(s) { if (map && map.getSource("sel")) map.getSource("sel").setData({ type: "FeatureCollection", features: selFeatures(s) }); }
+function setSat(on) {
+  state.sat = on; $("#opt-sat").checked = on;
+  if (map && map.getLayer("sat")) map.setLayoutProperty("sat", "visibility", on ? "visible" : "none");
+}
+function showOnSatellite(s) {
+  setSat(true);
+  if (!map) return;
+  const c = s.fsr ? [s.fsr[1], s.fsr[0]] : [s.lon, s.lat];
+  map.flyTo({ center: c, zoom: s.fsr && s.fsr[6] >= 15 ? 9.6 : 10.2, duration: 900 });
+  $("#map").scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 /* ---------- side-by-side comparison of up to 3 Earth sites */
@@ -1030,6 +1112,7 @@ $("#tab-mars").addEventListener("click", () => setBody("Mars"));
 $("#tab-moon").addEventListener("click", () => setBody("Moon"));
 $("#opt-new").addEventListener("change", (e) => { state.onlyNew = e.target.checked; render(false); });
 $("#opt-china").addEventListener("change", (e) => { state.exChina = e.target.checked; history.replaceState(null, "", "#" + hashOf(state.t)); render(true); });
+$("#opt-sat").addEventListener("change", (e) => setSat(e.target.checked));
 $("#opt-heat").addEventListener("change", (e) => { state.heat = e.target.checked; if (map && map.getLayer("heat")) map.setLayoutProperty("heat", "visibility", state.heat ? "visible" : "none"); });
 const setView = (c) => { state.cont = c; history.replaceState(null, "", "#" + hashOf(state.t)); render(true); };
 $("#view-top").addEventListener("click", () => setView(false));

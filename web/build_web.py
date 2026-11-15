@@ -34,6 +34,8 @@ sys.path.insert(0, str(ROOT / "scoring"))
 from target_scoring import load_targets, score_target, _weighted_pct, profile_for, country_raster, POOL_DIMS  # noqa: E402
 from categories import classify, ENV_CLASSES, TARGETS as PROFILES  # noqa: E402
 from countries import CountryLookup  # noqa: E402
+sys.path.insert(0, str(HERE))
+from highlights import highlights, CLASS_WHY  # noqa: E402
 
 MAPLIBRE = "4.7.1"
 MERC_LAT = 85.0511287798
@@ -262,6 +264,8 @@ def main():
         heat = heat_png(df, s["total"], s.get("in_ranking", pd.Series(True, index=df.index)))
         RT = R["targets"][tid]
         sites, key2i = [], {}
+        fm_hl = [dict(k=m["key"], m=m["method"], tv=m["target"], tp=m.get("body_percentile"), dir=m.get("direction"))
+                 for m in RT.get("features_used", [])]
         # flags of the list sites from the pool bitmask (computed on the full table), so the default lists and the
         # in-browser ranking agree; top_sites.json flags are only the fallback
         pool_fk = {}
@@ -286,6 +290,9 @@ def main():
                               fv=[[f["earth"], f["score"], f["earth_pct"]] for f in x.get("features", [])],
                               rb=RB.get(tid, {}).get(f"{x['lat']:.3f},{x['lon']:.3f}"),
                               fsr=fine(FSR.get(site_id(x["lat"], x["lon"]), {}).get(tid)),
+                              hl=highlights(fm_hl, [[f["earth"], f["score"], f["earth_pct"]] for f in
+                                                    ({f["key"]: f for f in x.get("features", [])}.get(m["k"], {"earth": None, "score": None, "earth_pct": None})
+                                                     for m in fm_hl)], x["env_class"], x["flags"], "en"),
                               pf=site_id(x["lat"], x["lon"]) if site_id(x["lat"], x["lon"]) in PF else None,
                               er=dict(rules=[rule(r) for r in er.get("rules", [])],
                                       no=[dict(c=ENV_EN.get(n["cls"], n["cls"]), f=[rule(r) for r in n["failed"]])
@@ -328,7 +335,7 @@ def main():
         pool_meta = dict(dims=[DIM_EN[d] for d in Z["_dims"].tolist()], classIds=Z["_classes"].tolist(),
                          classes=[ENV_EN.get(c, c) for c in Z["_classes"].tolist()], continents=Z["_continents"].tolist(),
                          known=Z["_known"].tolist(), flags=FLAG_IDS, flagLabels=[FLAG_EN.get(f, f) for f in FLAG_IDS])
-    data = dict(targets=targets, masks=masks, bodymaps=bodymaps, glossary=glossary, poolMeta=pool_meta,
+    data = dict(targets=targets, masks=masks, bodymaps=bodymaps, glossary=glossary, poolMeta=pool_meta, classWhy=CLASS_WHY["en"],
                 profiles="https://vice003.github.io/analog-finder/profiles.html", countries=countries_geojson(ROOT / "data" / "ref" / "ne_110m_admin_0_countries"),
                 meta=dict(earth_cells=R["meta"]["earth_cells"], table=R["meta"]["earth_table"]))
     css = urllib.request.urlopen(f"https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/{MAPLIBRE}/maplibre-gl.css",
