@@ -1,0 +1,4776 @@
+{
+  "schema_version": 2,
+  "targets": {
+    "peak_near_cabeus_b": {
+      "body": "Moon",
+      "name": "Peak near Cabeus B",
+      "category": "Artemis III region (2024)",
+      "center_lat": -82.5,
+      "center_lon": 307.0,
+      "coord_quality": "approx",
+      "site_source": "NASA 2024-10-28 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              304.37649,
+              -82.44363
+            ],
+            [
+              306.61069,
+              -82.8448
+            ],
+            [
+              309.65769,
+              -82.54047
+            ],
+            [
+              307.35498,
+              -82.15502
+            ],
+            [
+              304.37649,
+              -82.44363
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 5.199,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 16.174,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 442.6,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+        },
+        "ground_ice": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 9.04,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "haworth": {
+      "body": "Moon",
+      "name": "Haworth",
+      "category": "Artemis III region (2024)",
+      "center_lat": -87.2032,
+      "center_lon": 347.8316,
+      "coord_quality": "approx",
+      "site_source": "NASA 2024-10-28 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              341.40112,
+              -87.37621
+            ],
+            [
+              352.16365,
+              -87.48976
+            ],
+            [
+              353.45125,
+              -86.99924
+            ],
+            [
+              344.32109,
+              -86.90365
+            ],
+            [
+              341.40112,
+              -87.37621
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-87.4, 355.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.01. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "features": {
+        "slope_p50": {
+          "value": 14.75,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 19.395,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 1268.7,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 44.191,
+          "p10": 37.969,
+          "p90": 65.545,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 1.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 4.3368,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "malapert_massif": {
+      "body": "Moon",
+      "name": "Malapert Massif",
+      "category": "Artemis III region (2024)",
+      "center_lat": -85.7626,
+      "center_lon": 358.7697,
+      "coord_quality": "approx",
+      "site_source": "NASA 2024-10-28 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              355.15409,
+              -85.99633
+            ],
+            [
+              2.24296,
+              -86.00757
+            ],
+            [
+              1.99583,
+              -85.51392
+            ],
+            [
+              355.68634,
+              -85.50391
+            ],
+            [
+              355.15409,
+              -85.99633
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-86.0, 3.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.41. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "features": {
+        "slope_p50": {
+          "value": 19.856,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 26.817,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 1375.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 170.95,
+          "p10": 144.32,
+          "p90": 188.42,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 0.024187,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 5.7774,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "mons_mouton_plateau": {
+      "body": "Moon",
+      "name": "Mons Mouton Plateau",
+      "category": "Artemis III region (2024)",
+      "center_lat": -84.5,
+      "center_lon": 32.0,
+      "coord_quality": "approx",
+      "site_source": "NASA 2024-10-28 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.12695,
+              -84.83948
+            ],
+            [
+              35.59445,
+              -84.56784
+            ],
+            [
+              32.77125,
+              -84.15949
+            ],
+            [
+              28.50662,
+              -84.41113
+            ],
+            [
+              31.12695,
+              -84.83948
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 6.504,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 13.522,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 367.87,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+        },
+        "ground_ice": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 7.04,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "mons_mouton": {
+      "body": "Moon",
+      "name": "Mons Mouton",
+      "category": "Artemis III region (2024)",
+      "center_lat": -84.0,
+      "center_lon": 31.0,
+      "coord_quality": "approx",
+      "site_source": "NASA 2024-10-28 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              30.14438,
+              -84.33788
+            ],
+            [
+              34.28069,
+              -84.0747
+            ],
+            [
+              31.7641,
+              -83.66103
+            ],
+            [
+              27.81029,
+              -83.90619
+            ],
+            [
+              30.14438,
+              -84.33788
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 12.557,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 21.983,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 816.79,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+        },
+        "ground_ice": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 7.54,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "nobile_rim_1": {
+      "body": "Moon",
+      "name": "Nobile Rim 1 / 2",
+      "category": "Artemis III region (2024)",
+      "center_lat": -85.236,
+      "center_lon": 56.3759,
+      "coord_quality": "approx",
+      "site_source": "NASA 2024-10-28 (Nobile crater centre) (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              57.26939,
+              -85.57782
+            ],
+            [
+              60.43206,
+              -85.155
+            ],
+            [
+              55.60231,
+              -84.89325
+            ],
+            [
+              52.20101,
+              -85.29239
+            ],
+            [
+              57.26939,
+              -85.57782
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-85.3, 53.5) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.28. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "features": {
+        "slope_p50": {
+          "value": 7.1958,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 11.668,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 496.99,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 125.23,
+          "p10": 93.967,
+          "p90": 136.87,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 0.32552,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 6.304,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "de_gerlache_rim_2": {
+      "body": "Moon",
+      "name": "de Gerlache Rim 2",
+      "category": "Artemis III region (2022+2024)",
+      "center_lat": -88.5984,
+      "center_lon": 287.9234,
+      "coord_quality": "approx",
+      "site_source": "NASA; ESA (de Gerlache centre) (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              276.6391,
+              -88.40847
+            ],
+            [
+              279.61457,
+              -88.89827
+            ],
+            [
+              301.996,
+              -88.71918
+            ],
+            [
+              293.2332,
+              -88.27965
+            ],
+            [
+              276.6391,
+              -88.40847
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-88.5, 272.9) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.27. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "features": {
+        "slope_p50": {
+          "value": 14.451,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 21.449,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 1036.6,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 128.94,
+          "p10": 75.596,
+          "p90": 158.56,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 0.355,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 2.9416,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "slater_plain": {
+      "body": "Moon",
+      "name": "Slater Plain",
+      "category": "Artemis III region (2024)",
+      "center_lat": -87.6015,
+      "center_lon": 110.1688,
+      "coord_quality": "unverified",
+      "site_source": "NASA 2024-10-28 - coords UNVERIFIED (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.19271,
+              -87.7261
+            ],
+            [
+              113.26426,
+              -87.28027
+            ],
+            [
+              103.06086,
+              -87.435
+            ],
+            [
+              106.13198,
+              -87.91367
+            ],
+            [
+              118.19271,
+              -87.7261
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-88.0, 110.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.17. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "features": {
+        "slope_p50": {
+          "value": 9.8823,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 18.578,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 663.16,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 86.747,
+          "p10": 48.548,
+          "p90": 136.57,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 0.74628,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 3.9385,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "peak_near_shackleton": {
+      "body": "Moon",
+      "name": "Peak near Shackleton",
+      "category": "Artemis III region (2022)",
+      "center_lat": -89.2394,
+      "center_lon": 213.1113,
+      "coord_quality": "approx",
+      "site_source": "NASA 2022-08-19 - coords approx (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              216.84938,
+              -88.89475
+            ],
+            [
+              190.76663,
+              -89.0997
+            ],
+            [
+              203.33885,
+              -89.57547
+            ],
+            [
+              239.54193,
+              -89.23104
+            ],
+            [
+              216.84938,
+              -88.89475
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-89.0, 200.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.32. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "features": {
+        "slope_p50": {
+          "value": 12.769,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 18.776,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 931.18,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 135.92,
+          "p10": 117.61,
+          "p90": 157.02,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 0.089695,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 2.3006,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "connecting_ridge": {
+      "body": "Moon",
+      "name": "Connecting Ridge (Shackleton-de Gerlache)",
+      "category": "Artemis III region (2022)",
+      "center_lat": -89.2948,
+      "center_lon": 225.4547,
+      "coord_quality": "approx",
+      "site_source": "NASA 2022-08-19 - coords approx (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              225.30395,
+              -88.94507
+            ],
+            [
+              198.98322,
+              -89.21533
+            ],
+            [
+              225.90222,
+              -89.64458
+            ],
+            [
+              251.74665,
+              -89.21036
+            ],
+            [
+              225.30395,
+              -88.94507
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-89.4, 260.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.30. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "features": {
+        "slope_p50": {
+          "value": 13.088,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 19.941,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 1021.3,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 136.36,
+          "p10": 102.65,
+          "p90": 160.3,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 0.19148,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 2.2452,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "faustini_rim_a": {
+      "body": "Moon",
+      "name": "Faustini Rim A",
+      "category": "Artemis III region (2022)",
+      "center_lat": -87.121,
+      "center_lon": 69.8218,
+      "coord_quality": "approx",
+      "site_source": "NASA 2022; ESA (Faustini centre) (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.10189,
+              -87.43409
+            ],
+            [
+              75.81015,
+              -86.95767
+            ],
+            [
+              67.19212,
+              -86.80039
+            ],
+            [
+              63.19537,
+              -87.24938
+            ],
+            [
+              73.10189,
+              -87.43409
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km auf den am besten beleuchteten Ausschnitt innerhalb 12 km um die Listenkoordinate (-87.3, 77.0) gelegt; mittlere LOLA-Sonnensichtbarkeit 0.17. Grund: Artemis-Regionen sind beleuchtete Landeflaechen, die Liste nennt oft den Kratermittelpunkt",
+      "features": {
+        "slope_p50": {
+          "value": 9.184,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 15.544,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 568.7,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 83.76,
+          "p10": 57.407,
+          "p90": 117.11,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 0.9035,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 4.419,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 1,54 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "shackleton_crater": {
+      "body": "Moon",
+      "name": "Shackleton crater (PSR)",
+      "category": "PSR / ice target",
+      "center_lat": -89.67,
+      "center_lon": 129.78,
+      "coord_quality": "approx",
+      "site_source": "Wikipedia/IAU (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              179.21602,
+              -89.54148
+            ],
+            [
+              132.46601,
+              -89.32093
+            ],
+            [
+              85.86838,
+              -89.49776
+            ],
+            [
+              9.83605,
+              -89.96327
+            ],
+            [
+              179.21602,
+              -89.54148
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 30.215,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 32.569,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 2557.6,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": 56.192,
+          "p10": 50.292,
+          "p90": 64.42,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Diviner-Dreiecke (km) mischen Sonne und Schatten"
+        },
+        "ground_ice": {
+          "value": 0.97024,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Diviner PRP via data_scripts/output/moon_south/features.npz (Jimale, 240 m)",
+          "reliability": "B",
+          "notes": "Anteil der Polygonzellen mit Eis stabil in <= 1 m Tiefe"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "dauerhaft beschattet",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "cabeus": {
+      "body": "Moon",
+      "name": "Cabeus (LCROSS impact, PSR)",
+      "category": "PSR / confirmed water ice",
+      "center_lat": -84.9,
+      "center_lon": 324.5,
+      "coord_quality": "approx",
+      "site_source": "LCROSS 2009 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              320.58859,
+              -84.94586
+            ],
+            [
+              325.1951,
+              -85.244
+            ],
+            [
+              328.32416,
+              -84.83089
+            ],
+            [
+              323.89292,
+              -84.55544
+            ],
+            [
+              320.58859,
+              -84.94586
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 15 x 15 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 7.5835,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 14.518,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 556.61,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 100,
+          "body_percentile": null,
+          "source": "LOLA LDEM_80S_80M (PDS), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "kein Produkt in den offiziellen Quellen"
+        },
+        "surface_temp_mean": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+        },
+        "ground_ice": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "noerdlich 85 S, ausserhalb des Diviner-Rasters"
+        },
+        "pressure": {
+          "value": 1e-12,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": "Vakuum"
+        },
+        "wind_mean": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "m/s",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "humidity": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "g/kg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "dauerhaft beschattet",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "jezero_crater": {
+      "body": "Mars",
+      "name": "Jezero crater (Perseverance)",
+      "category": "landed 2021",
+      "center_lat": 18.4,
+      "center_lon": 77.5,
+      "coord_quality": "approx",
+      "site_source": "NASA JPL (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41093,
+              18.31548
+            ],
+            [
+              77.58907,
+              18.31548
+            ],
+            [
+              77.58907,
+              18.48452
+            ],
+            [
+              77.41093,
+              18.48452
+            ],
+            [
+              77.41093,
+              18.31548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.93877,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 2.1361,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 78.092,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 303.5,
+          "p10": 277.5,
+          "p90": 335.0,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.89334,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 7.718,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -2612 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "gale_crater": {
+      "body": "Mars",
+      "name": "Gale crater (Curiosity)",
+      "category": "landed 2012",
+      "center_lat": -5.4,
+      "center_lon": 137.8,
+      "coord_quality": "approx",
+      "site_source": "NASA JPL (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              137.7151,
+              -5.48452
+            ],
+            [
+              137.8849,
+              -5.48452
+            ],
+            [
+              137.8849,
+              -5.31548
+            ],
+            [
+              137.7151,
+              -5.31548
+            ],
+            [
+              137.7151,
+              -5.48452
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 21.469,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 30.509,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 1563.8,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 238.5,
+          "p10": 197.0,
+          "p90": 361.0,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.66813,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 6.7467,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -1118 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "meridiani_planum": {
+      "body": "Mars",
+      "name": "Meridiani Planum (Opportunity)",
+      "category": "landed 2004",
+      "center_lat": -1.9,
+      "center_lon": 354.5,
+      "coord_quality": "approx",
+      "site_source": "NASA JPL (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              354.41543,
+              -1.98452
+            ],
+            [
+              354.58457,
+              -1.98452
+            ],
+            [
+              354.58457,
+              -1.81548
+            ],
+            [
+              354.41543,
+              -1.81548
+            ],
+            [
+              354.41543,
+              -1.98452
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.16368,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 0.31702,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 12.739,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 190.5,
+          "p10": 185.5,
+          "p90": 202.5,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.42709,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 6.9116,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -1386 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "gusev": {
+      "body": "Mars",
+      "name": "Gusev / Columbia Hills (Spirit)",
+      "category": "landed 2004; M2020 finalist",
+      "center_lat": -14.6,
+      "center_lon": 175.5,
+      "coord_quality": "approx",
+      "site_source": "NASA JPL (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.41266,
+              -14.68452
+            ],
+            [
+              175.58734,
+              -14.68452
+            ],
+            [
+              175.58734,
+              -14.51548
+            ],
+            [
+              175.41266,
+              -14.51548
+            ],
+            [
+              175.41266,
+              -14.68452
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.23927,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 0.98138,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 27.002,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 238.0,
+          "p10": 208.0,
+          "p90": 333.0,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.66565,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 7.2597,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -1932 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "elysium_planitia": {
+      "body": "Mars",
+      "name": "Elysium Planitia (InSight)",
+      "category": "landed 2018",
+      "center_lat": 4.5,
+      "center_lon": 135.6,
+      "coord_quality": "approx",
+      "site_source": "NASA JPL (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              135.51522,
+              4.41548
+            ],
+            [
+              135.68478,
+              4.41548
+            ],
+            [
+              135.68478,
+              4.58452
+            ],
+            [
+              135.51522,
+              4.58452
+            ],
+            [
+              135.51522,
+              4.41548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.33938,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 0.52412,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 26.761,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 222.0,
+          "p10": 205.5,
+          "p90": 232.0,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.58292,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 7.7125,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -2604 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "phoenix_site": {
+      "body": "Mars",
+      "name": "Phoenix site (Vastitas Borealis)",
+      "category": "landed 2008, ground ice",
+      "center_lat": 68.2,
+      "center_lon": 234.3,
+      "coord_quality": "approx",
+      "site_source": "NASA JPL (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              234.07241,
+              68.11548
+            ],
+            [
+              234.52759,
+              68.11548
+            ],
+            [
+              234.52759,
+              68.28452
+            ],
+            [
+              234.07241,
+              68.28452
+            ],
+            [
+              234.07241,
+              68.11548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.55715,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 1.0754,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 36.879,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 101.0,
+          "p10": 74.0,
+          "p90": 172.2,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.20982,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "40 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 203.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 60.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 1.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 8.8411,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -4120 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 46.99,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "utopia_planitia": {
+      "body": "Mars",
+      "name": "Utopia Planitia (Zhurong, CNSA)",
+      "category": "landed 2021 (non-NASA)",
+      "center_lat": 25.1,
+      "center_lon": 109.9,
+      "coord_quality": "approx",
+      "site_source": "CNSA (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              109.80667,
+              25.01548
+            ],
+            [
+              109.99333,
+              25.01548
+            ],
+            [
+              109.99333,
+              25.18452
+            ],
+            [
+              109.80667,
+              25.18452
+            ],
+            [
+              109.80667,
+              25.01548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.37491,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 0.68972,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 25.931,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 276.0,
+          "p10": 256.5,
+          "p90": 331.0,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.82279,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 8.836,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -4113 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "ne_syrtis": {
+      "body": "Mars",
+      "name": "NE Syrtis",
+      "category": "M2020 finalist",
+      "center_lat": 17.8,
+      "center_lon": 77.1,
+      "coord_quality": "approx",
+      "site_source": "Mars 2020 site selection (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.01123,
+              17.71548
+            ],
+            [
+              77.18877,
+              17.71548
+            ],
+            [
+              77.18877,
+              17.88452
+            ],
+            [
+              77.01123,
+              17.88452
+            ],
+            [
+              77.01123,
+              17.71548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.75044,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 2.1448,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 57.512,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 289.5,
+          "p10": 276.0,
+          "p90": 307.5,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.86168,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 7.3235,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -2029 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "mawrth_vallis": {
+      "body": "Mars",
+      "name": "Mawrth Vallis",
+      "category": "MSL + M2020 candidate",
+      "center_lat": 24.0,
+      "center_lon": 341.0,
+      "coord_quality": "approx",
+      "site_source": "MSL site selection (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              340.90748,
+              23.91548
+            ],
+            [
+              341.09252,
+              23.91548
+            ],
+            [
+              341.09252,
+              24.08452
+            ],
+            [
+              340.90748,
+              24.08452
+            ],
+            [
+              340.90748,
+              23.91548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 1.0094,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 1.6753,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 86.131,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 369.5,
+          "p10": 348.5,
+          "p90": 388.0,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.96533,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 7.4687,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -2247 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "eberswalde_crater": {
+      "body": "Mars",
+      "name": "Eberswalde crater (delta)",
+      "category": "MSL finalist",
+      "center_lat": -23.9,
+      "center_lon": 326.7,
+      "coord_quality": "approx",
+      "site_source": "MSL site selection (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              326.60755,
+              -23.98452
+            ],
+            [
+              326.79245,
+              -23.98452
+            ],
+            [
+              326.79245,
+              -23.81548
+            ],
+            [
+              326.60755,
+              -23.81548
+            ],
+            [
+              326.60755,
+              -23.98452
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.83238,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 2.7522,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 76.267,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 441.0,
+          "p10": 378.0,
+          "p90": 527.0,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.98611,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 6.9425,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -1436 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "holden_crater": {
+      "body": "Mars",
+      "name": "Holden crater",
+      "category": "MSL finalist",
+      "center_lat": -26.4,
+      "center_lon": 325.1,
+      "coord_quality": "approx",
+      "site_source": "MSL site selection (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              325.00564,
+              -26.48452
+            ],
+            [
+              325.19436,
+              -26.48452
+            ],
+            [
+              325.19436,
+              -26.31548
+            ],
+            [
+              325.00564,
+              -26.31548
+            ],
+            [
+              325.00564,
+              -26.48452
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 2.2086,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 2.678,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 178.49,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 405.0,
+          "p10": 382.5,
+          "p90": 432.5,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.97875,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 7.2813,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -1965 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 88.79,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "oxia_planum": {
+      "body": "Mars",
+      "name": "Oxia Planum (Rosalind Franklin, ESA)",
+      "category": "ESA ExoMars target",
+      "center_lat": 18.3,
+      "center_lon": 335.4,
+      "coord_quality": "approx",
+      "site_source": "ESA (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              335.31098,
+              18.21548
+            ],
+            [
+              335.48902,
+              18.21548
+            ],
+            [
+              335.48902,
+              18.38452
+            ],
+            [
+              335.31098,
+              18.38452
+            ],
+            [
+              335.31098,
+              18.21548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.34412,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 0.72149,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 28.05,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 429.0,
+          "p10": 391.0,
+          "p90": 454.5,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.98414,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "16 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 218.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 75.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels jezero (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 8.0638,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -3098 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 90.0,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "arcadia_planitia": {
+      "body": "Mars",
+      "name": "Arcadia Planitia",
+      "category": "SWIM ice target / human EZ",
+      "center_lat": 40.0,
+      "center_lon": 200.0,
+      "coord_quality": "approx",
+      "site_source": "SWIM, Morgan et al. 2021 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              199.88967,
+              39.91548
+            ],
+            [
+              200.11033,
+              39.91548
+            ],
+            [
+              200.11033,
+              40.08452
+            ],
+            [
+              199.88967,
+              40.08452
+            ],
+            [
+              199.88967,
+              39.91548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.3007,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 0.60547,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 16.97,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 172.0,
+          "p10": 157.5,
+          "p90": 189.7,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.35477,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "24 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 203.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 60.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 1.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 8.6821,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -3918 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 75.19,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    },
+    "deuteronilus_mensae": {
+      "body": "Mars",
+      "name": "Deuteronilus Mensae",
+      "category": "SWIM ice target / human EZ",
+      "center_lat": 44.0,
+      "center_lon": 22.0,
+      "coord_quality": "approx",
+      "site_source": "SWIM, Morgan et al. 2021 (Ortsliste data_scripts/landing_sites.py, Branch Mars_and_Moon)",
+      "region_geojson": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.8825,
+              43.91548
+            ],
+            [
+              22.1175,
+              43.91548
+            ],
+            [
+              22.1175,
+              44.08452
+            ],
+            [
+              21.8825,
+              44.08452
+            ],
+            [
+              21.8825,
+              43.91548
+            ]
+          ]
+        ]
+      },
+      "region_notes": "Quadrat 10 x 10 km um die Koordinate der Ortsliste (automatisch)",
+      "features": {
+        "slope_p50": {
+          "value": 0.47566,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "slope_p90": {
+          "value": 2.947,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "relief": {
+          "value": 39.545,
+          "p10": null,
+          "p90": null,
+          "unit": "m",
+          "pixel_m": 463,
+          "body_percentile": null,
+          "source": "MOLA-Mosaik 463 m (USGS Astrogeology), common/terrain.py",
+          "reliability": "A",
+          "notes": ""
+        },
+        "thermal_inertia": {
+          "value": 226.5,
+          "p10": 202.6,
+          "p90": 256.7,
+          "unit": "J m-2 K-1 s-1/2",
+          "pixel_m": null,
+          "body_percentile": 0.60667,
+          "source": "TES nachts, Putzig & Mellon 2007 (PDS MGST_9001)",
+          "reliability": "A",
+          "notes": "24 TES-Pixel (3 km) im Polygon"
+        },
+        "albedo": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "OMEGA ALBEDO_R1080 noch nicht ausgewertet"
+        },
+        "dust_opacity": {
+          "value": null,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "",
+          "reliability": null,
+          "notes": "TES-Staubopazitaet noch nicht ausgewertet"
+        },
+        "surface_temp_mean": {
+          "value": 203.15,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "diurnal_range": {
+          "value": 60.0,
+          "p10": null,
+          "p90": null,
+          "unit": "K",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": ""
+        },
+        "ground_ice": {
+          "value": 1.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "Schaetzwert der Musterziels arcadia (pipeline.py, gerundet - Quelle offen), uebertragen",
+          "reliability": "C",
+          "notes": "Odyssey GRS noch nicht ausgewertet"
+        },
+        "pressure": {
+          "value": 8.5224,
+          "p10": null,
+          "p90": null,
+          "unit": "hPa",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "aus MOLA-Hoehe (Median im Polygon): 6,1 hPa * exp(-z / 11,1 km), Naeherung - Quelle offen",
+          "reliability": "C",
+          "notes": "MOLA-Hoehe -3712 m"
+        },
+        "precip": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "mm/yr",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "ndvi": {
+          "value": 0.0,
+          "p10": null,
+          "p90": null,
+          "unit": "1",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "physikalisch: keine Atmosphaere bzw. kein Wasserkreislauf",
+          "reliability": "A",
+          "notes": ""
+        },
+        "sun_elevation_max": {
+          "value": 71.19,
+          "p10": null,
+          "p90": null,
+          "unit": "deg",
+          "pixel_m": null,
+          "body_percentile": null,
+          "source": "berechnet: 90 - |Breite| + Achsneigung 25,19 Grad",
+          "reliability": "A",
+          "notes": ""
+        }
+      }
+    }
+  }
+}

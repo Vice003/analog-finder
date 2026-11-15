@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Analog Finder Datenbasis</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: eine Lesespalte mit breiteren Tabellen; links eine schmale Sprungnavigation ab Desktopbreite */
+:root {
+  --bg: #f4f5f6;          /* heller Regolith, leicht kuehl */
+  --surface: #ffffff;
+  --fg: #1b2129;          /* Basalt */
+  --muted: #5b6573;
+  --line: #d9dde2;
+  --accent: #a3561b;      /* Staubsturm-Ocker */
+  --accent-soft: #f3e6da;
+  --ok: #2f7a4f;  --ok-soft: #e1f0e6;
+  --run: #8a6a12; --run-soft: #f5edd3;
+  --warn: #a33a2b; --warn-soft: #f6e1dd;
+  --code-bg: #eceef1;
+  --f-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14181d; --surface: #1b2027; --fg: #e3e6ea; --muted: #9aa3ae; --line: #2c333c;
+    --accent: #e09a5f; --accent-soft: #3a2a1d;
+    --ok: #7cc89a; --ok-soft: #1d3326; --run: #e2c26a; --run-soft: #3a3219; --warn: #ef9486; --warn-soft: #3d2420;
+    --code-bg: #232a32; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14181d; --surface: #1b2027; --fg: #e3e6ea; --muted: #9aa3ae; --line: #2c333c;
+  --accent: #e09a5f; --accent-soft: #3a2a1d;
+  --ok: #7cc89a; --ok-soft: #1d3326; --run: #e2c26a; --run-soft: #3a3219; --warn: #ef9486; --warn-soft: #3d2420;
+  --code-bg: #232a32; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 64px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 48px; }
+@media (max-width: 900px) { .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; } nav.toc { display: none; } }
+
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; padding-top: 56px; font-size: 13.5px; }
+nav.toc p { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+nav.toc a { color: var(--muted); text-decoration: none; }
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); }
+
+main { min-width: 0; }
+header.top { padding-block: 56px 28px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 0 0 16px; text-wrap: balance; letter-spacing: -0.01em; }
+.lede { font-size: 18px; color: var(--muted); max-width: 64ch; margin: 0; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 20px; font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); }
+
+section { padding-block: 36px 8px; }
+h2 { font-family: var(--f-display); font-weight: 600; font-size: 25px; line-height: 1.2; margin: 0 0 14px; text-wrap: balance; }
+h3 { font-family: var(--f-display); font-weight: 600; font-size: 18px; margin: 28px 0 8px; }
+p, li { max-width: 68ch; }
+p { margin: 0 0 14px; }
+ul { margin: 0 0 14px; padding-left: 20px; }
+li { margin-bottom: 6px; }
+a { color: var(--accent); }
+code, .mono { font-family: var(--f-mono); font-size: .88em; }
+code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+strong { font-weight: 600; }
+
+.table-wrap { overflow-x: auto; margin: 6px 0 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 500; background: var(--bg); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.n { text-align: right; white-space: nowrap; }
+
+.chip { display: inline-block; font-family: var(--f-mono); font-size: 11.5px; padding: 2px 8px; border-radius: 999px; white-space: nowrap; font-weight: 500; }
+.chip.ok { background: var(--ok-soft); color: var(--ok); }
+.chip.run { background: var(--run-soft); color: var(--run); }
+.chip.warn { background: var(--warn-soft); color: var(--warn); }
+
+.diagram { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin: 8px 0 18px; }
+.diagram pre.mermaid { margin: 0; background: transparent; }
+
+.finding { border-left: 3px solid var(--accent); background: var(--surface); padding: 12px 16px; margin: 0 0 12px; border-radius: 0 6px 6px 0; }
+.finding h4 { margin: 0 0 4px; font-family: var(--f-display); font-size: 15.5px; font-weight: 600; }
+.finding p { margin: 0; font-size: 15px; }
+
+.cmd { display: flex; align-items: stretch; gap: 0; margin: 0 0 10px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--code-bg); }
+.cmd code { flex: 1; min-width: 0; overflow-x: auto; white-space: pre; padding: 9px 12px; background: transparent; border-radius: 0; font-size: 13px; }
+.cmd button { font-family: var(--f-mono); font-size: 12px; border: 0; border-left: 1px solid var(--line); background: var(--surface); color: var(--fg); padding: 0 12px; cursor: pointer; }
+.cmd button:hover { color: var(--accent); }
+.cmd button:focus-visible, nav.toc a:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cmd-label { font-size: 14px; color: var(--muted); margin: 14px 0 4px; }
+
+.tree { font-family: var(--f-mono); font-size: 13px; line-height: 1.7; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; overflow-x: auto; white-space: pre; margin: 6px 0 18px; }
+.tree .c { color: var(--muted); }
+
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 8px 0 18px; }
+.col { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-width: 0; }
+.col h4 { margin: 0 0 6px; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.col ul { margin: 0; padding: 0; list-style: none; font-size: 13.5px; }
+.col li { margin: 0 0 3px; }
+.col code { background: transparent; padding: 0; color: var(--fg); }
+.col span { color: var(--muted); }
+
+footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+</style>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Inhalt">
+    <p>Inhalt</p>
+    <ol>
+      <li><a href="#ueberblick">Überblick</a></li>
+      <li><a href="#stand">Stand der Läufe</a></li>
+      <li><a href="#quellen">Datenquellen</a></li>
+      <li><a href="#auswertung">Auswertung</a></li>
+      <li><a href="#tabelle">Merkmalstabelle</a></li>
+      <li><a href="#kategorien">Kategorien &amp; Scoring</a></li>
+      <li><a href="#entscheidungen">Entscheidungen</a></li>
+      <li><a href="#schwaechen">Schwächen</a></li>
+      <li><a href="#reproduzieren">Reproduzieren</a></li>
+      <li><a href="#ablage">Dateiablage</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="top">
+      <p class="eyebrow">NASA Space Apps 2026 · Moon &amp; Mars Analogs</p>
+      <h1>Analog Finder: Erd-Datenbasis</h1>
+      <p class="lede">Welche Erddaten wir haben, wie sie vorliegen und wie daraus Merkmale, Umgebungsklassen und Analog-Bewertungen für den Mond-Südpol und den Mars werden.</p>
+      <div class="meta"><span>Stand: 14.11.2026</span><span>Gitter: 0,05° (ca. 5,5 km)</span><span>Klimazeitraum: 2003–2024</span><span>Code: analog-finder/earth, analog-finder/scoring</span></div>
+    </header>
+
+    <section id="ueberblick">
+      <h2>Überblick</h2>
+      <p>Wir suchen <strong>global</strong> nach Orten auf der Erde, die Mond- oder Marsbedingungen nachbilden. Jede Landzelle eines 0,05°-Gitters (rund 8,9 Mio. Zellen) bekommt Merkmale aus offenen NASA- und ESA-Daten. Daraus entstehen eine Umgebungsklasse und je Ziel ein Analog-Wert mit Begründung: was passt und wo die Analogie bricht.</p>
+      <div class="diagram">
+<pre class="mermaid">
+flowchart LR
+  A["Rohdaten<br/>MODIS · MERRA-2 · IMERG · Copernicus DEM"] -->|"laden, verrechnen, löschen"| B["Klimadateien<br/>data/earth/clim/*.npz"]
+  B -->|"build_features.py"| C["Merkmalstabelle<br/>earth_features_005deg.parquet"]
+  C -->|"scoring/categories.py"| D["Umgebungsklasse<br/>+ Flags"]
+  C -->|"scoring/categories.py"| E["Analog-Werte<br/>Mond · Mars"]
+  D --> F["Karte und Bericht"]
+  E --> F
+</pre>
+      </div>
+      <p>Rohdateien werden <strong>im Durchlauf</strong> verarbeitet: laden, aufaddieren, löschen. Dauerhaft liegen nur die verdichteten Klimadateien und die Tabelle auf der Platte. Abgebrochene Läufe setzen beim letzten Zwischenstand wieder an.</p>
+    </section>
+
+    <section id="stand">
+      <h2>Stand der Läufe</h2>
+      <p>Momentaufnahme vom 14.11.2026, Mittag. Laufende Bausteine werden automatisch in die Tabelle übernommen, sobald ihre Datei existiert.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Baustein</th><th>Status</th><th>Ergebnisdatei</th><th class="n">Größe</th></tr></thead>
+        <tbody>
+          <tr><td>Albedo 2024 und Landbedeckung 2022</td><td><span class="chip ok">fertig</span></td><td><code>surface_static.npz</code></td><td class="n">140 MB</td></tr>
+          <tr><td>Schneebedeckung 2003–2024</td><td><span class="chip ok">fertig</span></td><td><code>snow_2003_2024.npz</code></td><td class="n">26 MB</td></tr>
+          <tr><td>MERRA-2 Monatswerte (Staub, Wind, Druck, Feuchte)</td><td><span class="chip ok">fertig</span></td><td><code>merra2_monthly_2003_2024.npz</code></td><td class="n">6 MB</td></tr>
+          <tr><td>MERRA-2 Niederschlag</td><td><span class="chip ok">fertig</span></td><td><code>merra2_precip_2003_2024.npz</code></td><td class="n">3 MB</td></tr>
+          <tr><td>IMERG Niederschlag (Zusatz)</td><td><span class="chip ok">fertig</span></td><td><code>imerg_2003_2024.npz</code></td><td class="n">74 MB</td></tr>
+          <tr><td>Höhenmodell GLO-90</td><td><span class="chip run">läuft · 19.500 / 26.475 Kacheln</span></td><td><code>dem_glo90.npz</code></td><td class="n">–</td></tr>
+          <tr><td>Temperatur Terra + Aqua</td><td><span class="chip run">läuft · bei 2007</span></td><td><code>lst_2003_2024.npz</code></td><td class="n">–</td></tr>
+          <tr><td>NDVI</td><td><span class="chip run">läuft · bei 2011</span></td><td><code>ndvi_2003_2024.npz</code></td><td class="n">–</td></tr>
+          <tr><td>MERRA-2 Ereignistage (Staubstürme, Stürme)</td><td><span class="chip run">läuft · 500 / 8.036 Tage</span></td><td><code>merra2_daily_2003_2024.npz</code></td><td class="n">–</td></tr>
+          <tr><td>Permafrost (ESA CCI)</td><td><span class="chip warn">offen · Stufe 2</span></td><td>–</td><td class="n">–</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="quellen">
+      <h2>Datenquellen</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Quelle</th><th>Produkt</th><th>Auflösung</th><th>Zeitraum</th><th>Zugriff</th><th>Skript</th></tr></thead>
+        <tbody>
+          <tr><td>MODIS Oberflächentemperatur</td><td><code>MOD11C3</code>, <code>MYD11C3</code> v061</td><td>0,05°, monatlich</td><td>2003–2024</td><td>ganze Dateien, LP DAAC</td><td><code>clim_modis.py lst</code></td></tr>
+          <tr><td>MODIS Vegetation</td><td><code>MOD13C2</code> v061</td><td>0,05°, monatlich</td><td>2003–2024</td><td>ganze Dateien, LP DAAC</td><td><code>clim_modis.py ndvi</code></td></tr>
+          <tr><td>MODIS Schnee</td><td><code>MOD10CM</code> v61</td><td>0,05°, monatlich</td><td>2003–2024</td><td>ganze Dateien, NSIDC</td><td><code>clim_modis.py snow</code></td></tr>
+          <tr><td>MODIS Albedo</td><td><code>MCD43C3</code> v061</td><td>0,05°, 12 Termine</td><td>2024 (jeweils der 15.)</td><td>lokal</td><td><code>surface_static.py</code></td></tr>
+          <tr><td>MODIS Landbedeckung</td><td><code>MCD12C1</code> v061</td><td>0,05°</td><td>2022</td><td>lokal</td><td><code>surface_static.py</code></td></tr>
+          <tr><td>Copernicus DEM</td><td>GLO-90</td><td>90 m, Kacheln 1°×1°</td><td>Aufnahme 2011–2015</td><td>AWS Open Data</td><td><code>dem_features.py</code></td></tr>
+          <tr><td>MERRA-2 Reanalyse</td><td><code>M2TMNXAER</code>, <code>ADG</code>, <code>FLX</code>, <code>SLV</code></td><td>0,5° × 0,625°</td><td>2003–2024</td><td>OPeNDAP-Ausschnitt, GES DISC</td><td><code>clim_merra.py monthly | precip</code></td></tr>
+          <tr><td>MERRA-2 stündlich</td><td><code>M2T1NXAER</code>, <code>M2T1NXFLX</code></td><td>0,5° × 0,625°, 3-stündlich</td><td>2003–2024</td><td>OPeNDAP-Ausschnitt, GES DISC</td><td><code>clim_merra.py daily</code></td></tr>
+          <tr><td>GPM IMERG</td><td><code>GPM_3IMERGM</code> V07</td><td>0,1°, monatlich</td><td>2003–2024</td><td>OPeNDAP-Ausschnitt, GES DISC</td><td><code>clim_imerg.py</code></td></tr>
+        </tbody>
+      </table></div>
+      <p>Zugang: kostenloses Earthdata-Login; für MERRA-2 und IMERG muss im Profil zusätzlich die App „NASA GESDISC DATA ARCHIVE“ freigegeben sein. Das Copernicus DEM ist ohne Login frei. Lizenzhinweis DEM: © DLR e.V. 2010–2014 und © Airbus Defence and Space GmbH 2014–2018, bereitgestellt unter COPERNICUS von EU und ESA. Armenien und Aserbaidschan fehlen im öffentlichen DEM.</p>
+    </section>
+
+    <section id="auswertung">
+      <h2>Auswertung je Baustein</h2>
+
+      <h3>Temperatur</h3>
+      <p>Terra misst um 10:30 und 22:30 Uhr, Aqua um 13:30 und 01:30 Uhr Ortszeit. Pro Monat ergeben sich vier Messzeiten.</p>
+      <ul>
+        <li><strong>Tagesgang</strong>: höchster minus niedrigster der vier Werte, nur wenn alle vier gültig sind.</li>
+        <li><strong>Jahresgang</strong>: wärmster minus kältester Monat eines Jahres, über die Jahre gemittelt.</li>
+        <li><strong>Extreme</strong>: wärmster Monat am Tag, kältester Monat in der Nacht, jeweils als Mittel über die Jahre und als absoluter Wert.</li>
+        <li><strong>Schwankung von Jahr zu Jahr</strong>: Standardabweichung der Jahresmittel.</li>
+        <li><strong>Frost-Tau-Monate</strong>: tagsüber über, nachts unter 273,15 K.</li>
+        <li>Ein Jahr zählt nur mit mindestens 10 gültigen Monaten.</li>
+      </ul>
+
+      <h3>Vegetation, Schnee, Albedo</h3>
+      <ul>
+        <li><strong>NDVI</strong>: Mittel, mittleres Jahresmaximum, Anteil der Monate mit NDVI unter 0,1.</li>
+        <li><strong>Schnee</strong>: mittlere Bedeckung, Anteil der Monate mit mindestens 50 % bzw. 90 % Schnee.</li>
+        <li><strong>Albedo</strong> (White-Sky, kurzwellig): Jahresmittel und <strong>schneefreie Albedo</strong> aus Terminen mit weniger als 10 % Schnee.</li>
+      </ul>
+
+      <h3>Gelände</h3>
+      <p>Aus allen 90-m-Pixeln einer 0,05°-Zelle: mittlere Höhe, Standardabweichung, Relief (max − min), mittlere Hangneigung, 90-%-Perzentil der Neigung, Anteil unter 5° (landefreundlich) und über 30° (Steilhänge). Die Neigung wird metrisch gerechnet; der Ost-West-Pixelabstand schrumpft mit dem Kosinus der Breite.</p>
+
+      <h3>Staub, Wind, Atmosphäre</h3>
+      <ul>
+        <li><strong>Monatsmittel</strong>: Staub-AOD 550 nm, Staub am Boden, Staubemission (Summe der fünf Größenklassen), Windgeschwindigkeit, Luftdruck, spezifische Feuchte, Wasserdampf der Luftsäule.</li>
+        <li><strong>Ereignistage</strong>: Pro Tag acht Stundenwerte (alle drei Stunden), davon das Tagesmaximum. Gezählt werden Tage pro Jahr mit Staub-AOD über 0,5 (Staubereignis) und über 1,0 (Staubsturm), mit Wind über 10 m/s und über 17 m/s (Sturm, Beaufort 8).</li>
+      </ul>
+
+      <h3>Niederschlag</h3>
+      <p>Jahressumme, trockenstes Jahr, Variationskoeffizient, Anteil der Monate unter 1 mm, nassester Monat. Hauptquelle ist MERRA-2 <code>PRECTOTCORR</code> (mit Messstationen korrigiert), IMERG läuft als Zusatz mit (siehe <a href="#entscheidungen">Entscheidungen</a>).</p>
+    </section>
+
+    <section id="tabelle">
+      <h2>Merkmalstabelle</h2>
+      <p><code>earth/build_features.py</code> legt alle Klimadateien auf das 0,05°-Gitter. Grobe Quellen (MERRA-2, IMERG) übernehmen den Wert der nächstgelegenen Zelle. Jede Zeile ist eine Landzelle, beschrieben durch die Koordinaten der Zellmitte (<code>lat</code>, <code>lon</code>); Ortsnamen gibt es bewusst nicht. Eine zweite Tabelle mit 0,25° (rund 370.000 Zellen) ist für die Web-Karte gedacht.</p>
+      <div class="cols">
+        <div class="col"><h4>Temperatur · K</h4><ul>
+          <li><code>lst_mean</code> <span>Mittel</span></li>
+          <li><code>lst_day_mean</code>, <code>lst_night_mean</code></li>
+          <li><code>lst_diurnal_mean</code> <span>Tagesgang</span></li>
+          <li><code>lst_seasonal_amp</code> <span>Jahresgang</span></li>
+          <li><code>lst_warm_mean</code>, <code>lst_cold_mean</code></li>
+          <li><code>lst_abs_max</code>, <code>lst_abs_min</code></li>
+          <li><code>lst_interannual_std</code></li>
+          <li><code>freeze_thaw_months</code> <span>pro Jahr</span></li>
+        </ul></div>
+        <div class="col"><h4>Oberfläche</h4><ul>
+          <li><code>albedo_snowfree</code>, <code>albedo_sw_mean</code></li>
+          <li><code>albedo_vis_mean</code>, <code>albedo_sw_std</code></li>
+          <li><code>landcover</code> <span>IGBP-Klasse</span></li>
+          <li><code>barren_pct</code>, <code>snow_ice_pct</code>, <code>water_pct</code></li>
+          <li><code>ndvi_mean</code>, <code>ndvi_peak_mean</code>, <code>ndvi_barren_frac</code></li>
+          <li><code>snow_mean_pct</code>, <code>snow_months_frac</code>, <code>snow_perm_frac</code></li>
+        </ul></div>
+        <div class="col"><h4>Gelände · m, Grad</h4><ul>
+          <li><code>elev_mean</code>, <code>elev_std</code>, <code>relief</code></li>
+          <li><code>slope_mean</code>, <code>slope_p90</code></li>
+          <li><code>flat_frac</code> <span>&lt; 5°</span></li>
+          <li><code>steep_frac</code> <span>&gt; 30°</span></li>
+        </ul></div>
+        <div class="col"><h4>Staub &amp; Wind</h4><ul>
+          <li><code>DUEXTTAU_mean</code>, <code>DUEXTTAU_maxmonth</code> <span>AOD</span></li>
+          <li><code>DUSMASS_mean</code> <span>µg/m³</span></li>
+          <li><code>DUEM_mean</code> <span>µg/m²/s</span></li>
+          <li><code>dust_event_days</code>, <code>dust_storm_days</code></li>
+          <li><code>SPEED_mean</code>, <code>SPEEDMAX_mean</code> <span>m/s</span></li>
+          <li><code>wind_strong_days</code>, <code>wind_storm_days</code></li>
+        </ul></div>
+        <div class="col"><h4>Atmosphäre &amp; Wasser</h4><ul>
+          <li><code>PS_hpa</code>, <code>T2M_mean</code></li>
+          <li><code>QV2M_gkg</code>, <code>TQV_mm</code></li>
+          <li><code>precip_mm_yr</code>, <code>precip_min_year_mm</code></li>
+          <li><code>precip_cv</code>, <code>dry_month_frac</code>, <code>precip_max_month_mm</code></li>
+          <li><code>imerg_*</code> <span>Zusatz</span></li>
+        </ul></div>
+        <div class="col"><h4>Abgeleitet</h4><ul>
+          <li><code>ati</code> <span>(1 − Albedo) / Tagesgang, 1/K</span></li>
+          <li><code>pressure_est_hpa</code> <span>aus der Höhe</span></li>
+        </ul></div>
+      </div>
+      <p>Die scheinbare thermische Trägheit <code>ati</code> ist mit den Karten der thermischen Trägheit von Mars (THEMIS, TES) und Mond (Diviner) vergleichbar: niedrige Werte bedeuten lockeren Staub oder Sand, hohe Werte Fels oder verfestigten Boden. Die Einheiten unterscheiden sich, verglichen wird relativ.</p>
+    </section>
+
+    <section id="kategorien">
+      <h2>Kategorien &amp; Scoring</h2>
+      <p>Definiert in <code>scoring/categories.py</code>. Eine Definition für Auswertung, Scoring und Karte.</p>
+
+      <h3>Umgebungsklassen</h3>
+      <p>Jede Zelle bekommt genau eine Klasse. Die Regeln werden in dieser Reihenfolge geprüft; die erste zutreffende gewinnt.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Klasse</th><th>Regel, vereinfacht</th><th>Analog für</th></tr></thead>
+        <tbody>
+          <tr><td>Eisschild &amp; Gletscher</td><td>Dauerschnee oder Eis, wärmster Monat unter 280 K</td><td>Mars-Polkappen, Eis in lunaren Kältefallen</td></tr>
+          <tr><td>Salzpfanne / Evaporit</td><td>Albedo &gt; 0,35, sehr flach, Relief &lt; 60 m, vegetationslos</td><td>Chlorid- und Sulfatablagerungen auf dem Mars</td></tr>
+          <tr><td>Dünenfeld / Sandmeer</td><td>kahl, Albedo 0,25–0,45, niedrige thermische Trägheit, &lt; 150 mm</td><td>Marsdünen, äolische Prozesse</td></tr>
+          <tr><td>Dunkles, vegetationsloses Gestein</td><td>schneefreie Albedo &lt; 0,15, kahl</td><td>Basalt auf dem Mars, Mond-Maria, Lavaröhren</td></tr>
+          <tr><td>Eisfreie kalte Polarwüste</td><td>&lt; 263 K, kahl, im Sommer schneefrei, &lt; 300 mm</td><td>Mars-Mittelbreiten, polarer Mond-Regolith</td></tr>
+          <tr><td>Arides Hochplateau</td><td>&gt; 3000 m, kahl, &lt; 400 mm</td><td>dünne Atmosphäre, starker Tagesgang, UV</td></tr>
+          <tr><td>Hyperaride Wüste</td><td>&lt; 50 mm im Jahr, kahl</td><td>Trockenheit des Mars, Grenze des Lebens</td></tr>
+          <tr><td>Vegetationsarmes Steilrelief</td><td>mittlere Neigung &gt; 15°, kahl</td><td>Kraterränder, Canyonwände</td></tr>
+          <tr><td>Aride Wüste / Halbwüste</td><td>&lt; 250 mm, kahl</td><td>Gerätetests, Mobilität</td></tr>
+          <tr><td>Kein Analog</td><td>bewachsen, feucht, Wasser</td><td>–</td></tr>
+        </tbody>
+      </table></div>
+      <p>„Kahl“ heißt NDVI-Mittel unter 0,12. Die Schwellen sind erste Festlegungen und werden an 16 Testorten geprüft, sobald alle Daten vorliegen.</p>
+
+      <h3>Flags</h3>
+      <p>Zusatzeigenschaften, mehrere pro Zelle möglich: Staubquelle (oberste 5 % der Staubemission), staubsturmreich (≥ 10 Tage/Jahr), windsturmreich (≥ 5 Tage/Jahr), windstill, Frost-Tau-Wechsel (≥ 3 Monate), extrem kalt (&lt; 220 K), niedriger Druck (&lt; 700 hPa), dunkle Oberfläche, landefreundlich (≥ 80 % unter 5°), polar.</p>
+
+      <h3>Ziele und Dimensionen</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Dimension</th><th class="n">Mond-Südpol</th><th class="n">Mars äquatorial</th><th class="n">Mars Eis-Mittelbreiten</th></tr></thead>
+        <tbody>
+          <tr><td>Temperatur &amp; Extreme</td><td class="n">1,5</td><td class="n">1,0</td><td class="n">1,5</td></tr>
+          <tr><td>Trockenheit</td><td class="n">1,0</td><td class="n">1,5</td><td class="n">1,0</td></tr>
+          <tr><td>Staub, Wind &amp; Stürme</td><td class="n">1,0 <span class="mono" style="color:var(--muted)">(windstill)</span></td><td class="n">1,5 <span class="mono" style="color:var(--muted)">(staubig)</span></td><td class="n">0,5</td></tr>
+          <tr><td>Gelände &amp; Landung</td><td class="n">1,0</td><td class="n">1,0</td><td class="n">1,5</td></tr>
+          <tr><td>Oberflächenmaterial</td><td class="n">1,0</td><td class="n">1,5</td><td class="n">0,75</td></tr>
+          <tr><td>Eis &amp; Wasser</td><td class="n">1,5</td><td class="n">0,25</td><td class="n">2,0</td></tr>
+          <tr><td>Biologie</td><td class="n">0,5</td><td class="n">1,0</td><td class="n">1,0</td></tr>
+          <tr><td>Atmosphäre</td><td class="n">0,5</td><td class="n">1,0</td><td class="n">0,5</td></tr>
+          <tr><td>Beleuchtung</td><td class="n">1,5</td><td class="n">–</td><td class="n">–</td></tr>
+        </tbody>
+      </table></div>
+      <p>Die Zahlen sind die Gewichte der Dimensionen im Gesamtwert. Beim Mond zählt bei Staub und Wind die <strong>Abwesenheit</strong> von Wetter, beim Mars die <strong>Häufigkeit</strong> von Staubereignissen.</p>
+
+      <h3>So wird bewertet</h3>
+      <ul>
+        <li>Jedes Merkmal wird als <strong>Perzentil unter allen Landzellen</strong> bewertet: Wie weit geht dieser Ort im Vergleich zur ganzen Erde in Richtung des Ziels? Die Erde erreicht Marswerte wie 6 hPa nie, deshalb zählt die Richtung.</li>
+        <li>Wo die Erde echte Zielwerte erreicht, etwa bei der Albedo, wird gegen den Zielwert gemessen (Glockenkurve um z. B. 0,20).</li>
+        <li>Merkmale ergeben neun Dimensionswerte zwischen 0 und 1, gewichtet zu einem Gesamtwert. Dazu kommen die <strong>stärkste Dimension</strong> (was passt) und die <strong>schwächste</strong> (wo die Analogie bricht).</li>
+        <li>Fehlt ein Merkmal, zählen die übrigen der Dimension; <code>coverage</code> zeigt, wie viel des Gewichts mit Daten belegt ist.</li>
+        <li><strong>Bestenliste</strong>: mindestens 200 km Abstand zwischen den Einträgen, damit nicht eine Region alle Plätze belegt.</li>
+        <li>Jeder Treffer wird als <strong>„bekannt“</strong> markiert, wenn er im Radius eines von 27 etablierten Analog-Orten liegt (z. B. Atacama, Dry Valleys, Haughton-Krater), sonst als <strong>„NEU“</strong>. Die Markierung ändert die Bewertung nicht.</li>
+      </ul>
+
+      <h3>Grenzen, die die Erde nicht nachbildet</h3>
+      <p>Schwerkraft (Mond 1/6, Mars gut 1/3), Vakuum bzw. 150-fach niedrigerer Luftdruck, Strahlung ohne schützendes Magnetfeld, Temperaturen unter 110 K in lunaren Kältefallen, perchlorathaltiger Marsboden. Jedes Zielprofil listet diese Grenzen für den Bericht.</p>
+    </section>
+
+    <section id="entscheidungen">
+      <h2>Entscheidungen und Befunde</h2>
+      <div class="finding"><h4>Niederschlag aus MERRA-2 statt IMERG</h4><p>IMERG zeigt im Kern der Atacama über 200 mm im Jahr, tatsächlich fallen dort nur wenige Millimeter. Der stationskorrigierte MERRA-2-Niederschlag liefert 3–8 mm. Sahara, Berlin und Amazonas stimmen bei beiden überein. IMERG bleibt als Zusatz für feinere Strukturen in feuchten Regionen.</p></div>
+      <div class="finding"><h4>Schneefreie Albedo</h4><p>Das isländische Hochland hat über das Jahr eine Albedo von 0,36, schneefrei aber 0,096: dunkler Basalt im Bereich dunkler Marsregionen. Ohne den Schneefilter wäre das verdeckt.</p></div>
+      <div class="finding"><h4>MODIS verwechselt Salz mit Eis</h4><p>Die Landbedeckung stuft den Salar de Uyuni als Schnee/Eis ein. Die Eisschild-Regel verlangt deshalb zusätzlich, dass der wärmste Monat unter 280 K bleibt.</p></div>
+      <div class="finding"><h4>Vier statt zwei Messzeiten</h4><p>Mit Terra und Aqua zusammen gibt es vier Überflugzeiten pro Tag. Der Tagesgang wird dadurch weniger unterschätzt als mit Aqua allein.</p></div>
+      <div class="finding"><h4>22 Jahre statt eines Jahres</h4><p>2024 war das bisher wärmste Jahr mit El Niño, und Staubstürme treten schubweise auf. Klimakennwerte stammen daher aus 2003–2024.</p></div>
+      <div class="finding"><h4>Staubsturm-Häufigkeit aus MERRA-2</h4><p>Tägliche MAIAC-Daten in 0,05° wären über 500 GB. MERRA-2-Stundenwerte als Variablen-Ausschnitt sind gröber (ca. 55 km), aber in Stunden statt Tagen ladbar.</p></div>
+    </section>
+
+    <section id="schwaechen">
+      <h2>Bekannte Schwächen</h2>
+      <ul>
+        <li><strong>MERRA-2 ist grob</strong> (0,5° × 0,625°, ca. 55 km). Staub, Wind und Niederschlag sind regionale Werte; kleine Senken oder Täler bildet das nicht ab.</li>
+        <li><strong>Windwerte sind keine Böen.</strong> <code>SPEEDMAX</code> ist das stündliche Maximum des Modells und liegt nahe am Mittelwind.</li>
+        <li><strong>Albedo und Landbedeckung</strong> stammen aus je einem Jahr.</li>
+        <li><strong>Temperatur nur bei klarem Himmel.</strong> MODIS misst nicht durch Wolken; in wolkenreichen Regionen ist das Mittel verzerrt.</li>
+        <li><strong>Klassenschwellen ungeprüft</strong>, bis alle Daten vorliegen.</li>
+        <li><strong>Noch nicht enthalten</strong>: Permafrost, Mineralogie (ASTER, EMIT), UV-Strahlung, Vulkan- und Kraterdatenbanken, Erreichbarkeit.</li>
+      </ul>
+    </section>
+
+    <section id="reproduzieren">
+      <h2>Reproduzieren</h2>
+      <p>Alle Befehle im Projektordner <code>analog-finder</code>, mit dem Anaconda-Python. Benötigte Pakete: <code>earthaccess</code>, <code>pyhdf</code>, <code>netCDF4</code>, <code>rasterio</code>, <code>affine==2.4.0</code>, <code>pandas</code>, <code>pyarrow</code>, <code>matplotlib</code>.</p>
+      <p class="cmd-label">Albedo und Landbedeckung (aus den lokalen MODIS-Dateien)</p>
+      <div class="cmd"><code>python earth/surface_static.py</code><button type="button" data-copy>Kopieren</button></div>
+      <p class="cmd-label">MODIS-Klimatologien 2003–2024</p>
+      <div class="cmd"><code>python earth/clim_modis.py lst</code><button type="button" data-copy>Kopieren</button></div>
+      <div class="cmd"><code>python earth/clim_modis.py ndvi</code><button type="button" data-copy>Kopieren</button></div>
+      <div class="cmd"><code>python earth/clim_modis.py snow</code><button type="button" data-copy>Kopieren</button></div>
+      <p class="cmd-label">Gelände aus Copernicus DEM</p>
+      <div class="cmd"><code>python earth/dem_features.py</code><button type="button" data-copy>Kopieren</button></div>
+      <p class="cmd-label">MERRA-2 und IMERG</p>
+      <div class="cmd"><code>python earth/clim_merra.py monthly</code><button type="button" data-copy>Kopieren</button></div>
+      <div class="cmd"><code>python earth/clim_merra.py precip</code><button type="button" data-copy>Kopieren</button></div>
+      <div class="cmd"><code>python earth/clim_merra.py daily</code><button type="button" data-copy>Kopieren</button></div>
+      <div class="cmd"><code>python earth/clim_imerg.py</code><button type="button" data-copy>Kopieren</button></div>
+      <p class="cmd-label">Zusammenführen, dann Selbsttest der Kategorien</p>
+      <div class="cmd"><code>python earth/build_features.py</code><button type="button" data-copy>Kopieren</button></div>
+      <div class="cmd"><code>python scoring/categories.py</code><button type="button" data-copy>Kopieren</button></div>
+      <p>Die Klimaläufe brauchen zusammen mehrere Stunden und rund 200 GB Download, aber nur wenige GB Plattenplatz. Jeder Lauf speichert Zwischenstände und setzt nach einem Abbruch dort wieder an.</p>
+    </section>
+
+    <section id="ablage">
+      <h2>Dateiablage</h2>
+<div class="tree">analog-finder/
+├── earth/                        <span class="c">Erd-Seite: Laden und Verdichten</span>
+│   ├── download_modis.py         <span class="c">erste MODIS-Dateien (Albedo, Landbedeckung)</span>
+│   ├── surface_static.py         <span class="c">Albedo inkl. schneefrei, Landbedeckung</span>
+│   ├── clim_modis.py             <span class="c">Temperatur, NDVI, Schnee 2003–2024</span>
+│   ├── dem_features.py           <span class="c">Gelände aus Copernicus GLO-90</span>
+│   ├── clim_merra.py             <span class="c">Staub, Wind, Stürme, Druck, Niederschlag</span>
+│   ├── clim_imerg.py             <span class="c">IMERG-Niederschlag (Zusatz)</span>
+│   └── build_features.py         <span class="c">alles zur Merkmalstabelle</span>
+├── scoring/
+│   └── categories.py             <span class="c">Klassen, Flags, Ziele, Bewertung, Testorte</span>
+├── planetary/                    <span class="c">Mond- und Mars-Daten (noch leer)</span>
+├── web/                          <span class="c">Karte (noch leer)</span>
+└── data/earth/
+    ├── modis/                    <span class="c">25 Roh-HDF-Dateien (Albedo 2024, Landbedeckung 2022)</span>
+    ├── clim/                     <span class="c">Klimadateien *.npz, Logs, Zwischenstände</span>
+    ├── earth_features_005deg.parquet
+    ├── earth_features_025deg.parquet
+    └── earth_features_quicklook.png</div>
+    </section>
+
+    <footer>Datenquellen: NASA LP DAAC, NSIDC, GES DISC (MODIS, MERRA-2, GPM IMERG) sowie Copernicus DEM (ESA/EU). Diese Seite beschreibt den Stand vom 14.11.2026; laufende Bausteine ergänzen die Tabelle automatisch.</footer>
+  </main>
+</div>
+
+<script>
+document.querySelectorAll("[data-copy]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var code = btn.parentElement.querySelector("code");
+    var text = code.textContent;
+    var done = function () { btn.textContent = "Kopiert"; setTimeout(function () { btn.textContent = "Kopieren"; }, 1500); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(code);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Markiert";
+      setTimeout(function () { btn.textContent = "Kopieren"; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+});
+</script>
+
+</body>
+</html>

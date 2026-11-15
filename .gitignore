@@ -1,0 +1,8 @@
+data/
+__pycache__/
+*.pyc
+.DS_Store
+web/index.html
+web/artifact.html
+web/ergebnisse.html
+*.parquet

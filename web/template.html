@@ -1,0 +1,749 @@
+<title>Analog Finder</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Where on Earth is most like a landing site on the Moon or Mars? 27 target sites, 8.9 million Earth cells.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>/*MAPLIBRE_CSS*/</style>
+<style>
+/* Layout: mission-console grid. Left rail = target picker, centre = map + ranked list, right rail = target card + site profile.
+   Dark-first; light theme mirrors the tokens. Mars = iron-oxide accent, Moon = regolith silver. */
+:root {
+  --bg: #0e1319; --surface: #151c24; --raise: #1c2530; --fg: #e5e9ee; --muted: #8f9aa8; --line: #26303c;
+  --mars: #de7a4c; --mars-soft: #3a2218; --moon: #b8c6da; --moon-soft: #222b38;
+  --new: #e7b04f; --new-soft: #3a2f17; --known: #8f9aa8; --known-soft: #252c35;
+  --sea: #0b1016; --land: #1a222c; --border-land: #2b3644;
+  --rel-a: #7cc89a; --rel-b: #e2c26a; --rel-c: #ef9486;
+  --f-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) {
+  --bg: #eef1f4; --surface: #ffffff; --raise: #f5f7f9; --fg: #18202a; --muted: #5a6573; --line: #d7dde3;
+  --mars: #b3532a; --mars-soft: #f6e3da; --moon: #4f6079; --moon-soft: #e3e8f0;
+  --new: #a86d0c; --new-soft: #f7ead2; --known: #66717f; --known-soft: #e7ebef;
+  --sea: #dfe6ed; --land: #f7f8fa; --border-land: #c4ccd5;
+  --rel-a: #2f7a4f; --rel-b: #8a6a12; --rel-c: #a33a2b; color-scheme: light; } }
+:root[data-theme="light"] {
+  --bg: #eef1f4; --surface: #ffffff; --raise: #f5f7f9; --fg: #18202a; --muted: #5a6573; --line: #d7dde3;
+  --mars: #b3532a; --mars-soft: #f6e3da; --moon: #4f6079; --moon-soft: #e3e8f0;
+  --new: #a86d0c; --new-soft: #f7ead2; --known: #66717f; --known-soft: #e7ebef;
+  --sea: #dfe6ed; --land: #f7f8fa; --border-land: #c4ccd5;
+  --rel-a: #2f7a4f; --rel-b: #8a6a12; --rel-c: #a33a2b; color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 40px; }
+a { color: inherit; text-decoration-color: var(--muted); text-underline-offset: 2px; }
+a:hover { color: var(--accent, var(--mars)); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--new); outline-offset: 2px; }
+.mono { font-family: var(--f-mono); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; padding-block: 20px 14px; max-width: 1500px; margin: 0 auto; }
+header.top h1 { font-family: var(--f-display); font-weight: 700; font-size: 26px; letter-spacing: -.01em; margin: 0; }
+header.top p { margin: 0; color: var(--muted); max-width: 70ch; }
+
+.app { max-width: 1500px; margin: 0 auto; display: grid; gap: 14px; grid-template-columns: 270px minmax(0, 1fr) 360px; align-items: start; }
+@media (max-width: 1180px) { .app { grid-template-columns: 250px minmax(0, 1fr); } .right { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; } }
+@media (max-width: 760px) { .app { grid-template-columns: minmax(0, 1fr); } .right { grid-template-columns: minmax(0, 1fr); } }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.panel > .hd { padding: 12px 14px 8px; display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.panel > .bd { padding: 0 14px 14px; }
+
+/* target picker */
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 12px 12px 8px; }
+.tab { border: 1px solid var(--line); background: var(--raise); border-radius: 7px; padding: 8px 10px; cursor: pointer; text-align: left; }
+.tab b { display: block; font-family: var(--f-display); font-size: 16px; }
+.tab span { font-size: 12px; color: var(--muted); }
+.tab[aria-pressed="true"].mars { border-color: var(--mars); background: var(--mars-soft); }
+.tab[aria-pressed="true"].moon { border-color: var(--moon); background: var(--moon-soft); }
+.tlist { list-style: none; margin: 0; padding: 4px 6px 10px; max-height: 64vh; overflow-y: auto; }
+@media (max-width: 760px) { .tlist { max-height: 260px; } }
+.tlist button { width: 100%; text-align: left; background: none; border: 0; border-radius: 7px; padding: 8px 9px; cursor: pointer; display: grid; gap: 2px; }
+.tlist button:hover { background: var(--raise); }
+.tlist button[aria-current="true"] { background: var(--raise); box-shadow: inset 3px 0 0 var(--accent, var(--mars)); }
+.tlist .nm { font-weight: 500; }
+.tlist .meta { font-size: 12px; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+
+/* chips */
+.chip { display: inline-block; font-family: var(--f-mono); font-size: 10.5px; padding: 1px 7px; border-radius: 999px; white-space: nowrap; }
+.chip.new { background: var(--new-soft); color: var(--new); }
+.chip.known { background: var(--known-soft); color: var(--known); }
+.chip.warn { background: var(--known-soft); color: var(--rel-b); }
+.rel { display: inline-block; width: 18px; text-align: center; font-family: var(--f-mono); font-size: 11px; font-weight: 600; border-radius: 4px; }
+.rel.A { color: var(--rel-a); border: 1px solid var(--rel-a); } .rel.B { color: var(--rel-b); border: 1px solid var(--rel-b); } .rel.C { color: var(--rel-c); border: 1px solid var(--rel-c); }
+
+/* map */
+.centre { display: grid; gap: 14px; min-width: 0; }
+.mapwrap { position: relative; overflow: hidden; }
+#map { height: min(62vh, 620px); min-height: 340px; border-radius: 10px; background: var(--sea); }
+.maptools { position: absolute; left: 10px; top: 10px; display: flex; gap: 6px; flex-wrap: wrap; z-index: 2; }
+.maptools label { background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid var(--line); border-radius: 7px; padding: 5px 9px; font-size: 13px; display: flex; gap: 6px; align-items: center; cursor: pointer; }
+.legend { position: absolute; right: 10px; bottom: 26px; z-index: 2; background: color-mix(in srgb, var(--surface) 90%, transparent); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; width: 200px; font-size: 12px; }
+.legend .ramp { height: 8px; border-radius: 4px; margin: 6px 0 3px; }
+.legend .ends { display: flex; justify-content: space-between; color: var(--muted); font-family: var(--f-mono); font-size: 10.5px; }
+.pin { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font: 600 11px var(--f-mono); cursor: pointer;
+  background: var(--new); color: #1b1408; border: 2px solid var(--bg); box-shadow: 0 1px 4px rgba(0,0,0,.45); }
+.pin.known { background: var(--known); color: var(--bg); }
+.pin.sel { transform: scale(1.35); box-shadow: 0 0 0 3px var(--fg); }
+.maplibregl-ctrl-attrib { font-size: 10px; }
+
+/* ranked list */
+.tw { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 500; white-space: nowrap; }
+td.n, th.n { text-align: right; white-space: nowrap; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: var(--raise); }
+tbody tr[aria-selected="true"] { background: var(--raise); box-shadow: inset 3px 0 0 var(--new); }
+tbody tr.known[aria-selected="true"] { box-shadow: inset 3px 0 0 var(--known); }
+
+/* right rail */
+.right { display: grid; gap: 14px; min-width: 0; }
+h2 { font-family: var(--f-display); font-size: 19px; font-weight: 600; margin: 0; text-wrap: balance; }
+h3 { font-family: var(--f-display); font-size: 15px; font-weight: 600; margin: 14px 0 6px; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13.5px; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.feat { display: grid; grid-template-columns: 1fr auto auto; gap: 3px 10px; font-size: 13px; align-items: baseline; }
+.feat .v { font-family: var(--f-mono); text-align: right; }
+.bars { display: grid; gap: 6px; margin-top: 6px; }
+.bar { display: grid; grid-template-columns: 112px 1fr 36px; gap: 8px; align-items: center; font-size: 13px; }
+.bar .track { height: 8px; background: var(--raise); border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+.bar .fill { height: 100%; background: var(--accent, var(--mars)); }
+.bar .num { font-family: var(--f-mono); font-size: 12px; text-align: right; color: var(--muted); }
+.bar.best .fill { background: var(--rel-a); } .bar.worst .fill { background: var(--rel-c); }
+.country { font-family: var(--f-display); font-size: 22px; font-weight: 600; line-height: 1.2; margin: 2px 0 2px; }
+.big { font-family: var(--f-display); font-size: 30px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats { display: flex; gap: 20px; flex-wrap: wrap; margin: 10px 0 4px; }
+.stats div span { display: block; }
+.links { display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; margin-top: 8px; }
+.limits { font-size: 13px; color: var(--muted); margin: 8px 0 0; padding-left: 18px; }
+.limits li { margin-bottom: 3px; }
+
+/* about */
+.about { max-width: 1500px; margin: 18px auto 0; }
+.about details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.about summary { cursor: pointer; padding: 12px 14px; font-family: var(--f-display); font-weight: 600; font-size: 16px; }
+.about .bd { padding: 0 16px 16px; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.about .bd > div { min-width: 0; }
+.about p, .about li { font-size: 14px; max-width: 70ch; }
+.about ul { padding-left: 18px; margin: 6px 0; }
+.cov td:first-child { white-space: nowrap; }
+/* body map (target picker) */
+.bmwrap { padding: 0 12px 6px; }
+.bmap { position: relative; width: 100%; border-radius: 7px; overflow: hidden; background: #111; border: 1px solid var(--line); }
+.bmap img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bmap svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.bmap svg line { stroke: rgba(255,255,255,.75); stroke-width: 1; }
+.bmap svg circle { fill: #fff; }
+.bpins { position: absolute; inset: 0; }
+.bpin { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; padding: 0; cursor: pointer;
+  background: var(--accent, var(--mars)); border: 2px solid #0b0f14; box-shadow: 0 0 0 1px rgba(255,255,255,.55); }
+.bmap.big .bpin { width: 16px; height: 16px; margin: -8px 0 0 -8px; }
+.bpin:hover, .bpin:focus-visible { transform: scale(1.3); z-index: 3; }
+.bpin.sel { background: #fff; box-shadow: 0 0 0 3px var(--accent, var(--mars)); z-index: 2; }
+.blabel { position: absolute; transform: translate(10px, -50%); font: 500 11px var(--f-body); color: #fff; background: rgba(8,11,15,.78);
+  padding: 1px 6px; border-radius: 4px; white-space: nowrap; pointer-events: none; }
+.bmap.big .blabel { font-size: 12px; transform: translate(12px, -50%); }
+.blabel.left, .bmap.big .blabel.left { transform: translate(calc(-100% - 12px), -50%); }
+.blabel.up { transform: translate(-50%, calc(-100% - 10px)); } .blabel.down { transform: translate(-50%, 10px); }
+.bmap.big .blabel.up { transform: translate(-50%, calc(-100% - 11px)); } .bmap.big .blabel.down { transform: translate(-50%, 11px); }
+.bmcap { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 5px; }
+dialog#bmap-dlg { width: min(94vw, 1000px); max-height: 94vh; overflow: auto; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px 14px; }
+dialog#bmap-dlg::backdrop { background: rgba(0,0,0,.6); }
+.dlghd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-family: var(--f-display); font-size: 17px; }
+#bmap-dlg[data-body="Moon"] { width: min(94vw, 760px); }
+/* explanation tables (site card, compare) */
+.xt { font-size: 12.5px; }
+.xt th, .xt td { padding: 5px 6px; }
+.xt td.v { font-family: var(--f-mono); font-size: 12px; text-align: right; white-space: nowrap; }
+.xt td.v small, .xt td small { display: block; font-family: var(--f-body); color: var(--muted); font-size: 11px; white-space: normal; }
+.xt tr.dimrow td { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding-top: 10px; border-bottom: 0; }
+.xt tbody tr { cursor: default; }
+.xt tbody tr:hover { background: none; }
+.mbar { display: inline-grid; grid-template-columns: 38px auto; gap: 5px; align-items: center; }
+.mbar .track { height: 6px; background: var(--raise); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+.mbar .fill { height: 100%; background: var(--accent, var(--mars)); }
+.mbar b { font: 500 11.5px var(--f-mono); }
+.xt td.top b { color: var(--rel-a); }
+.rules { list-style: none; padding: 0; margin: 4px 0 0; font-size: 13px; display: grid; gap: 3px; }
+.rules li { display: grid; grid-template-columns: 18px 1fr auto; gap: 6px; align-items: baseline; }
+.rules .ok { color: var(--rel-a); font-weight: 600; } .rules .no { color: var(--rel-c); font-weight: 600; } .rules .na { color: var(--muted); }
+.rules .val { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+details.more { margin-top: 8px; font-size: 13px; }
+details.more summary { cursor: pointer; color: var(--muted); }
+.note { font-size: 12.5px; color: var(--muted); margin: 6px 0 0; }
+.cmpbox { display: inline-flex; align-items: center; justify-content: center; }
+.cmpbox input { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent, var(--mars)); }
+#compare[hidden] { display: none; }
+.whygrid { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+.xt td:first-child { min-width: 180px; }
+@media (max-width: 600px) { .xt td:first-child { min-width: 128px; } .xt td.v small { display: none; } }
+.xt td.mc, .xt td.top, #compare .xt td.v { white-space: nowrap; }
+.xt td.mc { width: 92px; }
+.rules { max-width: 640px; }
+#compare .xt th.site { min-width: 120px; text-align: right; }
+.xbtn { border: 1px solid var(--line); background: var(--raise); border-radius: 6px; padding: 3px 9px; font-size: 12.5px; cursor: pointer; }
+.xbtn:hover { border-color: var(--accent, var(--mars)); }
+.maptools label.on { border-color: var(--accent, var(--mars)); }
+footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<header class="top">
+  <h1>Analog Finder</h1>
+  <p>Where on Earth is most like a landing site on the Moon or Mars? Pick a target. The map ranks every patch of Earth's land, about 5 km across, by how closely it matches.</p>
+</header>
+
+<div class="app">
+  <nav class="panel left" aria-label="Target sites">
+    <div class="tabs" role="group" aria-label="Body">
+      <button class="tab mars" id="tab-mars" aria-pressed="true" type="button"><b>Mars</b><span id="cnt-mars"></span></button>
+      <button class="tab moon" id="tab-moon" aria-pressed="false" type="button"><b>Moon</b><span id="cnt-moon"></span></button>
+    </div>
+    <div class="bmwrap">
+      <div class="bmap" id="bmap"><img alt="" decoding="async"><svg aria-hidden="true"></svg><div class="bpins" role="group" aria-label="Target sites on the map"></div></div>
+      <div class="bmcap"><span class="small muted" id="bmap-cap"></span><button class="xbtn" type="button" id="bmap-open">Enlarge</button></div>
+    </div>
+    <ul class="tlist" id="tlist"></ul>
+  </nav>
+
+  <main class="centre">
+    <section class="panel mapwrap" aria-label="Map of Earth analogs">
+      <div id="map" role="region" aria-label="World map. The ranked list below holds the same sites as text."></div>
+      <div class="maptools">
+        <label><input type="checkbox" id="opt-heat" checked> Similarity map</label>
+        <label><input type="checkbox" id="opt-new"> Only new sites</label>
+        <label id="lbl-china" title="Removes China, Hong Kong and Macau, including areas China administers (e.g. Aksai Chin), from the list and the map"><input type="checkbox" id="opt-china"> Exclude China</label>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <div class="label">Match, rank among Earth's land</div>
+        <div class="ramp" id="ramp"></div>
+        <div class="ends"><span>top 35 %</span><span>top 5 %</span><span>best</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="hd"><h2 id="list-title">Best Earth analogs</h2><span class="small muted">at least 200 km apart · tick up to 3 to compare</span></div>
+      <p class="note" style="padding: 0 14px; margin-top: 0">Rank on Earth = place among all ranked land cells (5 km each). Ranks jump because cells next to a better site are skipped.</p>
+      <p class="note" id="list-note" style="padding: 0 14px" hidden></p>
+      <div class="tw"><table>
+        <thead><tr><th><span class="sr-only">Compare</span></th><th class="n">#</th><th>Country</th><th>Environment</th><th class="n" title="Place among all ranked Earth land cells (about 5 km each); 1 = best match on Earth">Rank on Earth</th><th>Strongest</th><th>Weakest</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table></div>
+    </section>
+
+    <section class="panel" id="why" aria-live="polite">
+      <div class="hd"><h2 id="why-title">Why this match</h2></div>
+      <div class="bd whygrid">
+        <div><h3 style="margin-top:0">Feature by feature</h3><div class="tw" id="why-feat"></div>
+          <p class="note">Each dimension score is the weighted mean of its features; hover a match bar for its weight and reliability grades.</p></div>
+        <div><h3 style="margin-top:0">Why this environment class</h3><div id="why-class"></div></div>
+      </div>
+    </section>
+
+    <section class="panel" id="compare" hidden aria-live="polite">
+      <div class="hd"><h2>Side-by-side comparison</h2><button class="xbtn" type="button" id="cmp-clear">Clear</button></div>
+      <div class="bd">
+        <p class="note" style="margin-top:0">Each cell: the site's measured value, and in the bar how well it matches the target (1 = as close as Earth gets). Green marks the best match in each row.</p>
+        <div class="tw"><table class="xt" id="cmp-table"></table></div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="right">
+    <section class="panel" id="target-card" aria-live="polite"></section>
+    <section class="panel" id="site-card" aria-live="polite"></section>
+  </aside>
+</div>
+
+<dialog id="bmap-dlg" aria-label="Target map">
+  <div class="dlghd"><b id="bmap-dlg-title"></b><button class="xbtn" type="button" id="bmap-close">Close</button></div>
+  <div class="bmap big" id="bmap-big"><img alt="" decoding="async"><svg aria-hidden="true"></svg><div class="bpins" role="group" aria-label="Target sites on the map"></div></div>
+  <p class="small muted" style="margin:8px 0 0">Click a site to select it. Sites that lie close together are pulled apart; the thin line points to the true position.</p>
+</dialog>
+
+<div class="about">
+  <details>
+    <summary>How it works</summary>
+    <div class="bd">
+      <div>
+        <h3>The idea</h3>
+        <p>Every target site on the Moon or Mars gets a fingerprint: terrain, surface material, temperature, dryness, atmosphere, dust, ice and sunlight. Every patch of Earth's land gets the same fingerprint from NASA and ESA data. The finder ranks Earth by how closely each patch matches, and shows for each match where the analogy holds and where it breaks.</p>
+        <h3>Comparing different worlds</h3>
+        <ul>
+          <li><b>Same quantity, same method</b> (terrain): value against value. Slope and relief are computed with the same code on all three bodies, at the target's resolution (100 m Moon, 463 m Mars).</li>
+          <li><b>Different instruments</b> (thermal inertia, albedo): rank against rank. A site that is rockier than 41 % of Mars is matched with Earth land that is rockier than 41 % of Earth's bare ground.</li>
+          <li><b>Out of Earth's reach</b> (vacuum, 6 hPa, −170 °C): the closer Earth gets, the better. No place on Earth reaches these values.</li>
+          <li>Every value carries a reliability grade (A direct measurement, B coarse or proxy, C rough estimate) that sets its weight.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Data</h3>
+        <ul>
+          <li><b>Earth</b>, 2003–2024: NASA MODIS (surface temperature, albedo, vegetation, snow, land cover), NASA MERRA-2 (dust, dust storms, wind, pressure, precipitation), ESA Copernicus DEM (terrain, 90 m).</li>
+          <li><b>Mars</b>: MOLA elevation (terrain), TES thermal inertia (NASA PDS).</li>
+          <li><b>Moon</b>: LOLA polar elevation (terrain), Diviner polar resource product (temperature, ice stability) (NASA PDS).</li>
+          <li>Country names: Natural Earth (de-facto borders; disputed areas are marked).</li>
+          <li>‘Exclude China’ removes every 5 km cell inside China's de-facto borders (with Hong Kong and Macau) and re-ranks the list, for missions where fieldwork there is not possible. The match scores themselves do not change.</li>
+        </ul>
+        <h3>Limits</h3>
+        <ul>
+          <li>No place on Earth has the Moon's vacuum, Mars's thin CO₂ air, their low gravity or their radiation.</li>
+          <li>Target sites are 10 × 10 km (Mars) and 15 × 15 km (Moon) boxes around published coordinates, many of which are approximate.</li>
+          <li>Some Mars values (temperature, ice) are rough estimates for now; albedo, dust and ground ice for Mars are not yet included.</li>
+          <li>Dust, wind and pressure on Earth come from a 55 km reanalysis grid: regional, not local.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Coverage of the challenge's dimensions</h3>
+        <div class="tw"><table class="cov">
+          <tbody>
+            <tr><td>Terrain, slope, relief</td><td>covered (craters as a separate feature: not yet)</td></tr>
+            <tr><td>Temperature, sunlight, extremes</td><td>covered</td></tr>
+            <tr><td>Dust, wind, storms</td><td>covered on Earth; Mars dust not yet</td></tr>
+            <tr><td>Surface material</td><td>partly: albedo, thermal inertia, environment class</td></tr>
+            <tr><td>Water, ice, permafrost</td><td>partly: snow, cold, ice stability (Moon)</td></tr>
+            <tr><td>Landing, mobility</td><td>partly: flat area, slope, substrate</td></tr>
+            <tr><td>Biology, habitability</td><td>weak: vegetation-free, hyperarid</td></tr>
+            <tr><td>Caves, lava tubes</td><td>not covered (no global data)</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </details>
+</div>
+<footer>NASA Space Apps Challenge 2026 · Analog Finder · Data: NASA (MODIS, MERRA-2, MOLA, TES, LOLA, Diviner), ESA (Copernicus DEM), Natural Earth.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/{{MAPLIBRE}}/maplibre-gl.js"></script>
+<script>
+const D = /*APP_DATA*/;
+const $ = (s) => document.querySelector(s);
+const el = (t, cls, txt) => { const e = document.createElement(t); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = (x, d = 0) => Number(x).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+const coordTxt = (la, lo) => `${fmt(Math.abs(la), 2)}° ${la >= 0 ? "N" : "S"}, ${fmt(Math.abs(lo), 2)}° ${lo >= 0 ? "E" : "W"}`;
+const LIMITS = {
+  Moon: ["Vacuum instead of an atmosphere", "One sixth of Earth's gravity", "Cosmic and solar radiation without a magnetic field", "Permanent shadow below 110 K, colder than anywhere on Earth"],
+  Mars: ["Air about 150 times thinner, mostly CO₂", "38 % of Earth's gravity", "UV and particle radiation at the surface", "No liquid water at the surface; perchlorate in the soil"],
+};
+const state = { body: "Mars", t: null, sel: null, onlyNew: false, heat: true, exChina: false, cmp: [] };
+const byId = Object.fromEntries(D.targets.map((t) => [t.id, t]));
+const hashOf = (id) => id.replace(/_/g, "-") + (state.exChina ? "&exclude=china" : "");
+const idOfHash = (h) => h.replace(/^#/, "").split("&")[0].replace(/-/g, "_");
+const DIM_ORDER = ["Terrain", "Surface material", "Temperature", "Dryness", "Atmosphere", "Dust & wind", "Ice & water", "Vegetation", "Sunlight"];
+const UNIT = (u) => (u == null || u === "1" || u === "") ? "" : " " + u.replace("J m-2 K-1 s-1/2", "TIU").replace("deg", "°");
+function fmtVal(v, u) {
+  if (v == null || Number.isNaN(v)) return "–";
+  const a = Math.abs(v);
+  if (a !== 0 && a < 1e-6) return "≈ 0" + UNIT(u);
+  const d = a >= 100 ? 0 : a >= 10 ? 1 : a >= 1 ? 2 : 3;
+  return fmt(v, d) + UNIT(u);
+}
+const pctTxt = (p) => `${fmt(p * 100, 0)} %`;
+const cellsTxt = (n) => n >= 1e6 ? `${fmt(n / 1e6, 1)} million` : fmt(n);
+const rankTxt = (s) => s.rk ? `#${fmt(s.rk)}` : `${fmt(s.p, 1)} %`;
+
+/* ---------- colour ramp for the heat map (percentile 0..1 -> RGBA) */
+function rampColor(p, body) {
+  if (p < 0.65) return [0, 0, 0, 0];
+  const warm = [[0.65, [120, 56, 40, 0]], [0.8, [190, 82, 48, 120]], [0.95, [235, 160, 70, 200]], [1.0, [255, 236, 190, 235]]];
+  const cool = [[0.65, [70, 90, 120, 0]], [0.8, [110, 140, 180, 120]], [0.95, [170, 205, 235, 200]], [1.0, [240, 248, 255, 235]]];
+  const st = body === "Moon" ? cool : warm;
+  for (let i = 1; i < st.length; i++) {
+    if (p <= st[i][0]) {
+      const [p0, c0] = st[i - 1], [p1, c1] = st[i], f = (p - p0) / (p1 - p0);
+      return c0.map((v, k) => Math.round(v + (c1[k] - v) * f));
+    }
+  }
+  return st[st.length - 1][1];
+}
+function rampCss(body) {
+  const stops = [0.65, 0.8, 0.95, 1].map((p) => { const c = rampColor(Math.max(p, 0.651), body); return `rgba(${c[0]},${c[1]},${c[2]},${Math.max(c[3], 60) / 255})`; });
+  return `linear-gradient(90deg, ${stops.join(",")})`;
+}
+const loadImg = (src) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.src = src; });
+const pixels = async (src) => { const img = await loadImg(src); const c = document.createElement("canvas"); c.width = img.width; c.height = img.height; const g = c.getContext("2d"); g.drawImage(img, 0, 0); return { c, g, px: g.getImageData(0, 0, c.width, c.height) }; };
+let chinaMask = null;
+const heatCache = {};
+async function heatUrl(t) {
+  const key = t.id + (state.exChina ? "|x" : "");
+  if (heatCache[key]) return heatCache[key];
+  const { c, g, px } = await pixels(t.heat);
+  if (state.exChina && !chinaMask && D.masks && D.masks.china) chinaMask = (await pixels(D.masks.china)).px.data;
+  const a = px.data, lut = [];
+  for (let v = 0; v < 256; v++) lut.push(v === 0 ? [0, 0, 0, 0] : rampColor((v - 1) / 254, t.body));
+  for (let i = 0; i < a.length; i += 4) {
+    const col = (state.exChina && chinaMask && chinaMask[i] > 127) ? lut[0] : lut[a[i]];
+    a[i] = col[0]; a[i + 1] = col[1]; a[i + 2] = col[2]; a[i + 3] = col[3];
+  }
+  g.putImageData(px, 0, 0);
+  return (heatCache[key] = c.toDataURL("image/png"));
+}
+
+/* ---------- map */
+const MERC = 85.0511287798;
+let map = null, markers = [];
+function initMap() {
+  if (!window.maplibregl) { $("#map").textContent = "The map library could not be loaded. The ranked list below holds all results."; return; }
+  map = new maplibregl.Map({
+    container: "map", renderWorldCopies: false, center: [70, 32], zoom: 1.15, minZoom: 0.6, maxZoom: 9,
+    attributionControl: false, dragRotate: false, pitchWithRotate: false,
+    style: { version: 8, sources: { countries: { type: "geojson", data: D.countries } },
+      layers: [
+        { id: "sea", type: "background", paint: { "background-color": css("--sea") } },
+        { id: "land", type: "fill", source: "countries", paint: { "fill-color": css("--land") } },
+        { id: "borders", type: "line", source: "countries", paint: { "line-color": css("--border-land"), "line-width": 0.6 } },
+      ] },
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+  map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: "Natural Earth · NASA · ESA" }));
+  map.on("load", () => render(true));
+}
+async function drawHeat(t) {
+  if (!map || !map.isStyleLoaded()) return;
+  const url = await heatUrl(t);
+  if (t.id !== state.t) return;
+  const coords = [[-180, MERC], [180, MERC], [180, -MERC], [-180, -MERC]];
+  if (map.getSource("heat")) map.getSource("heat").updateImage({ url, coordinates: coords });
+  else {
+    map.addSource("heat", { type: "image", url, coordinates: coords });
+    map.addLayer({ id: "heat", type: "raster", source: "heat", paint: { "raster-opacity": 0.9, "raster-resampling": "linear" } }, "borders");
+  }
+  map.setLayoutProperty("heat", "visibility", state.heat ? "visible" : "none");
+}
+function drawPins(t, fit) {
+  markers.forEach((m) => m.remove()); markers = [];
+  if (!map) return;
+  const shown = visibleSites(t);
+  shown.forEach((s) => {
+    const e = el("button", "pin" + (s.k ? " known" : "") + (s.i === state.sel ? " sel" : ""), String(s.r));
+    e.type = "button"; e.dataset.i = s.i; e.title = `#${s.r} ${s.c || ""}`; e.setAttribute("aria-label", `Site ${s.r}, ${s.c || "unknown country"}`);
+    e.addEventListener("click", (ev) => { ev.stopPropagation(); select(s.i, false); });
+    markers.push(new maplibregl.Marker({ element: e }).setLngLat([s.lon, s.lat]).addTo(map));
+  });
+  if (fit && shown.length) {
+    const b = new maplibregl.LngLatBounds();
+    shown.forEach((s) => b.extend([s.lon, s.lat]));
+    map.fitBounds(b, { padding: 70, maxZoom: 4.5, duration: 600 });
+  }
+}
+
+/* ---------- ranked list: rank = position in the active list (with or without China) */
+const rankedSites = (t) => (state.exChina ? t.lists.china : t.lists.all).map((i, n) => Object.assign({}, t.sites[i], { i, r: n + 1 }));
+const visibleSites = (t) => rankedSites(t).filter((s) => !state.onlyNew || !s.k);
+const siteByI = (t, i) => rankedSites(t).find((s) => s.i === i) || Object.assign({}, t.sites[i], { i, r: null });
+function renderTargets() {
+  const L = $("#tlist"); L.textContent = "";
+  for (const b of ["Mars", "Moon"]) $("#cnt-" + b.toLowerCase()).textContent = `${D.targets.filter((t) => t.body === b).length} sites`;
+  D.targets.filter((t) => t.body === state.body).forEach((t) => {
+    const li = el("li"), btn = el("button"); btn.type = "button";
+    btn.setAttribute("aria-current", String(t.id === state.t));
+    btn.appendChild(el("span", "nm", t.name));
+    const m = el("span", "meta"); m.appendChild(el("span", null, t.cat || ""));
+    if (t.cq && t.cq !== "verified") m.appendChild(el("span", "chip warn", t.cq === "unverified" ? "coords unverified" : "coords approx."));
+    btn.appendChild(m);
+    btn.addEventListener("click", () => pickTarget(t.id));
+    li.appendChild(btn); L.appendChild(li);
+  });
+}
+function renderRows(t) {
+  const tb = $("#rows"); tb.textContent = "";
+  $("#list-title").textContent = `Best Earth analogs for ${t.name}`;
+  const note = $("#list-note");
+  if (state.exChina) {
+    const removed = t.lists.all.filter((i) => !t.lists.china.includes(i)).length;
+    note.hidden = false;
+    note.textContent = `China excluded (with Hong Kong, Macau and areas China administers). ${removed} of the ${t.lists.all.length} sites in the full list were in China; the list below is re-ranked without them. Taiwan is not excluded.`;
+  } else note.hidden = true;
+  visibleSites(t).forEach((s) => {
+    const tr = el("tr", s.k ? "known" : ""); tr.setAttribute("aria-selected", String(s.i === state.sel)); tr.tabIndex = 0;
+    const tdc = el("td"); const lab = el("label", "cmpbox"); const cb = el("input"); cb.type = "checkbox";
+    cb.checked = state.cmp.includes(s.i); cb.disabled = !cb.checked && state.cmp.length >= 3;
+    cb.setAttribute("aria-label", `Compare site ${s.r}`);
+    cb.addEventListener("click", (e) => e.stopPropagation());
+    cb.addEventListener("change", () => { toggleCmp(s.i); });
+    lab.appendChild(cb); tdc.appendChild(lab); tr.appendChild(tdc);
+    tr.appendChild(el("td", "n mono", s.r));
+    const tc = el("td"); tc.appendChild(el("div", null, s.c || "–")); tc.appendChild(el("div", "small muted mono", coordTxt(s.lat, s.lon))); tr.appendChild(tc);
+    tr.appendChild(el("td", null, s.env));
+    const tdr = el("td", "n"); tdr.appendChild(el("div", "mono", rankTxt(s))); if (s.nr) tdr.appendChild(el("div", "small muted", `of ${cellsTxt(s.nr)}`)); tr.appendChild(tdr);
+    tr.appendChild(el("td", null, s.b)); tr.appendChild(el("td", null, s.w));
+    const tk = el("td"); tk.appendChild(el("span", "chip " + (s.k ? "known" : "new"), s.k ? "known analog" : "new")); tr.appendChild(tk);
+    const go = () => select(s.i, true);
+    tr.addEventListener("click", go); tr.addEventListener("keydown", (e) => { if (e.target === tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); go(); } });
+    tb.appendChild(tr);
+  });
+  if (!tb.children.length) { const tr = el("tr"); const td = el("td", "muted", "All of the best matches for this target are known analog sites. Clear ‘Only new sites’ to see them."); td.colSpan = 8; tr.appendChild(td); tb.appendChild(tr); }
+}
+function renderTarget(t) {
+  const c = $("#target-card"); c.textContent = "";
+  const hd = el("div", "hd"); const h = el("div"); h.appendChild(el("div", "label", `${t.body} target`)); h.appendChild(el("h2", null, t.name)); hd.appendChild(h); c.appendChild(hd);
+  const bd = el("div", "bd");
+  const kv = el("dl", "kv");
+  [["Type", t.cat], ["Site centre", `${fmt(t.lat, 2)}°, ${fmt(t.lon, 2)}° E`], ["Coordinates", t.cq === "verified" ? "verified" : (t.cq === "unverified" ? "unverified, approximate" : "approximate")]]
+    .forEach(([k, v]) => { kv.appendChild(el("dt", null, k)); kv.appendChild(el("dd", null, v)); });
+  bd.appendChild(kv);
+  bd.appendChild(el("h3", null, "What we know about the site"));
+  const f = el("div", "feat");
+  t.feats.forEach((x) => {
+    f.appendChild(el("span", null, x.n));
+    f.appendChild(el("span", "v", fmtVal(x.v, x.u)));
+    const r = el("span", "rel " + (x.rel || "")); r.textContent = x.rel || "–"; r.title = x.src || ""; f.appendChild(r);
+  });
+  bd.appendChild(f);
+  bd.appendChild(el("p", "small muted", "Grade: A direct measurement, B coarse or proxy, C rough estimate. Hover a grade for its source."));
+  bd.appendChild(el("h3", null, "Where Earth can never match"));
+  const ul = el("ul", "limits"); LIMITS[t.body].forEach((x) => ul.appendChild(el("li", null, x))); bd.appendChild(ul);
+  c.appendChild(bd);
+}
+
+/* ---------- explanations */
+function methodNote(m, fv) {
+  const [ev, sc, ep] = fv || [];
+  if (m.m === "direct") return "same quantity, value against value";
+  if (m.m === "quantile") return ep == null ? "rank against rank" : `rank on Earth ${pctTxt(ep)} · target rank on its body ${pctTxt(m.tp)}`;
+  if (ep == null) return "Earth cannot reach the target: closer is better";
+  return m.dir === "lower" ? `lower than ${pctTxt(1 - ep)} of Earth's land (target is beyond Earth's range)` : `higher than ${pctTxt(ep)} of Earth's land (target is beyond Earth's range)`;
+}
+function mbar(v) {
+  const w = el("span", "mbar");
+  const tr = el("span", "track"); const f = el("span", "fill"); f.style.width = v == null ? "0" : `${Math.round(v * 100)}%`; tr.appendChild(f);
+  w.appendChild(tr); w.appendChild(el("b", null, v == null ? "–" : fmt(v, 2)));
+  return w;
+}
+function featOrder(t) { return t.fm.map((m, k) => k).sort((a, b) => DIM_ORDER.indexOf(t.fm[a].dim) - DIM_ORDER.indexOf(t.fm[b].dim)); }
+function whyMatch(t, s) {
+  const tbl = el("table", "xt");
+  const th = el("thead"); const hr = el("tr");
+  [["Feature", ""], ["Target", "n"], ["This site", "n"], ["Match", ""]].forEach(([x, c]) => hr.appendChild(el("th", c, x)));
+  th.appendChild(hr); tbl.appendChild(th);
+  const tb = el("tbody"); let dim = null;
+  featOrder(t).forEach((k) => {
+    const m = t.fm[k], fv = s.fv[k] || [];
+    if (m.dim !== dim) { dim = m.dim; const r = el("tr", "dimrow"); const td = el("td", null, `${dim}${s.d[dim] != null ? " · " + fmt(s.d[dim], 2) : ""}`); td.colSpan = 4; r.appendChild(td); tb.appendChild(r); }
+    const tr = el("tr");
+    const n = el("td", null, m.n); n.appendChild(el("small", null, methodNote(m, fv))); tr.appendChild(n);
+    tr.appendChild(el("td", "v", fmtVal(m.tv, m.u)));
+    tr.appendChild(el("td", "v", fmtVal(fv[0], m.eu)));
+    const mc = el("td", "mc"); mc.appendChild(mbar(fv[1])); mc.title = `Weight ${fmt(m.w, 2)} (target grade ${m.rt}, Earth grade ${m.re})`; tr.appendChild(mc);
+    tb.appendChild(tr);
+  });
+  tbl.appendChild(tb);
+  return tbl;
+}
+function ruleList(rules) {
+  const ul = el("ul", "rules");
+  rules.forEach((r) => {
+    const li = el("li");
+    li.appendChild(el("span", r.ok === true ? "ok" : r.ok === false ? "no" : "na", r.ok === true ? "✓" : r.ok === false ? "✗" : "·"));
+    li.appendChild(el("span", null, r.t));
+    li.appendChild(el("span", "val", r.v == null ? "" : fmtVal(r.v, r.u)));
+    ul.appendChild(li);
+  });
+  return ul;
+}
+function whyClass(s) {
+  const box = el("div");
+  box.appendChild(el("p", "note", "Classes are tested in a fixed order and the first one whose rules all hold wins. A line starting with ‘or’ is an alternative to the line above."));
+  box.appendChild(el("div", "small", `Rules for “${s.env}”, with this site's values:`));
+  box.appendChild(ruleList(s.er.rules));
+  if (s.er.no && s.er.no.length) {
+    const d = el("details", "more"); d.appendChild(el("summary", null, `Why not one of the ${s.er.no.length} classes tested before`));
+    s.er.no.forEach((n) => { d.appendChild(el("div", "small", n.c)); d.appendChild(ruleList(n.f)); });
+    box.appendChild(d);
+  }
+  return box;
+}
+function renderSite(t) {
+  const c = $("#site-card"); c.textContent = "";
+  if (state.sel == null) return;
+  const s = siteByI(t, state.sel);
+  const hd = el("div", "hd"); const h = el("div");
+  h.appendChild(el("div", "label", s.r ? `Earth analog #${s.r}` : "Earth analog (not in the active list)"));
+  h.appendChild(el("div", "country", s.c || "Unknown country"));
+  h.appendChild(el("div", "small muted mono", coordTxt(s.lat, s.lon)));
+  hd.appendChild(h); hd.appendChild(el("span", "chip " + (s.k ? "known" : "new"), s.k ? "known analog" : "new"));
+  c.appendChild(hd);
+  const bd = el("div", "bd");
+  bd.appendChild(el("div", null, s.env));
+  if (s.fl.length) bd.appendChild(el("div", "small muted", s.fl.join(" · ")));
+  if (s.k) bd.appendChild(el("div", "small muted", `Within the radius of a known analog site: ${s.k}`));
+  const st = el("div", "stats");
+  const a = el("div"); a.appendChild(el("span", "big", rankTxt(s))); a.appendChild(el("span", "small muted", s.nr ? `of ${cellsTxt(s.nr)} ranked Earth cells` : "rank on Earth")); st.appendChild(a);
+  const b2 = el("div"); b2.appendChild(el("span", "big", `${fmt(s.cov * 100, 0)} %`)); b2.appendChild(el("span", "small muted", "of the profile has data")); st.appendChild(b2);
+  bd.appendChild(st);
+  bd.appendChild(el("h3", null, "Profile"));
+  const bars = el("div", "bars");
+  Object.entries(s.d).filter(([, v]) => v != null).sort((x, y) => y[1] - x[1]).forEach(([k, v]) => {
+    const row = el("div", "bar" + (k === s.b ? " best" : k === s.w ? " worst" : ""));
+    row.appendChild(el("span", null, k));
+    const tr = el("div", "track"); const fill = el("div", "fill"); fill.style.width = `${Math.round(v * 100)}%`; tr.appendChild(fill); row.appendChild(tr);
+    row.appendChild(el("span", "num", fmt(v, 2))); bars.appendChild(row);
+  });
+  bd.appendChild(bars);
+  bd.appendChild(el("p", "small muted", `Strongest match: ${s.b}. Where the analogy breaks: ${s.w}. 1 = as close as Earth gets.`));
+  bd.appendChild(el("p", "note", "The feature-by-feature reasons and the class rules are below the list."));
+  $("#why-title").textContent = `Why ${s.r ? "#" + s.r + " " : ""}${s.c || "this site"} matches ${t.name}`;
+  const wf = $("#why-feat"); wf.textContent = ""; wf.appendChild(whyMatch(t, s));
+  const wc = $("#why-class"); wc.textContent = ""; wc.appendChild(whyClass(s));
+  const ln = el("div", "links");
+  const osm = el("a", null, "OpenStreetMap"); osm.href = `https://www.openstreetmap.org/?mlat=${s.lat}&mlon=${s.lon}#map=9/${s.lat}/${s.lon}`; osm.target = "_blank"; osm.rel = "noopener";
+  const wv = el("a", null, "NASA Worldview"); wv.href = `https://worldview.earthdata.nasa.gov/?v=${s.lon - 1},${s.lat - 0.7},${s.lon + 1},${s.lat + 0.7}`; wv.target = "_blank"; wv.rel = "noopener";
+  ln.appendChild(osm); ln.appendChild(wv); bd.appendChild(ln);
+  c.appendChild(bd);
+}
+
+/* ---------- side-by-side comparison of up to 3 Earth sites */
+function toggleCmp(i) {
+  const k = state.cmp.indexOf(i);
+  if (k >= 0) state.cmp.splice(k, 1); else if (state.cmp.length < 3) state.cmp.push(i);
+  const t = byId[state.t]; renderRows(t); renderCompare(t);
+}
+function renderCompare(t) {
+  const box = $("#compare"), tbl = $("#cmp-table"); tbl.textContent = "";
+  if (!state.cmp.length) { box.hidden = true; return; }
+  box.hidden = false;
+  const S = state.cmp.map((i) => siteByI(t, i));
+  const head = el("thead"), hr = el("tr");
+  hr.appendChild(el("th", null, "")); hr.appendChild(el("th", "n", "Target"));
+  S.forEach((s) => { const h = el("th", "site"); h.appendChild(el("div", null, `${s.r ? "#" + s.r + " " : ""}${s.c || "–"}`)); h.appendChild(el("small", "muted mono", coordTxt(s.lat, s.lon))); hr.appendChild(h); });
+  head.appendChild(hr); tbl.appendChild(head);
+  const tb = el("tbody");
+  const sec = (txt) => { const r = el("tr", "dimrow"); const td = el("td", null, txt); td.colSpan = 2 + S.length; r.appendChild(td); tb.appendChild(r); };
+  const row = (label, target, cells, best) => {
+    const tr = el("tr"); tr.appendChild(el("td", null, label)); tr.appendChild(el("td", "v", target));
+    cells.forEach((c, k) => { const td = el("td", "v" + (best === k ? " top" : "")); if (c instanceof Node) td.appendChild(c); else td.textContent = c; tr.appendChild(td); });
+    tb.appendChild(tr);
+  };
+  const argmax = (vals) => { let b = -1, bv = -Infinity; vals.forEach((v, k) => { if (v != null && v > bv) { bv = v; b = k; } }); return S.length > 1 ? b : -1; };
+  sec("Overview");
+  row("Environment", "", S.map((s) => s.env));
+  row("Rank on Earth", "", S.map((s) => `${rankTxt(s)}${s.nr ? " of " + cellsTxt(s.nr) : ""}`), argmax(S.map((s) => s.rk ? -s.rk : null)));
+  row("Profile with data", "", S.map((s) => `${fmt(s.cov * 100, 0)} %`));
+  row("Known analog", "", S.map((s) => s.k || "new"));
+  sec("Dimension scores (1 = as close as Earth gets)");
+  const dims = DIM_ORDER.filter((d) => S.some((s) => s.d[d] != null));
+  dims.forEach((d) => row(d, "", S.map((s) => mbar(s.d[d])), argmax(S.map((s) => s.d[d]))));
+  let dim = null;
+  featOrder(t).forEach((k) => {
+    const m = t.fm[k];
+    if (m.dim !== dim) { dim = m.dim; sec(`${dim}: measured values`); }
+    const cells = S.map((s) => { const fv = s.fv[k] || []; const w = el("div"); w.appendChild(el("div", null, fmtVal(fv[0], m.eu))); w.appendChild(mbar(fv[1])); return w; });
+    const lab = el("div", null, m.n); lab.appendChild(el("small", null, m.m === "direct" ? "value vs value" : m.m === "quantile" ? "rank vs rank" : "beyond Earth: closer is better"));
+    const tr = el("tr"); const td0 = el("td"); td0.appendChild(lab); tr.appendChild(td0); tr.appendChild(el("td", "v", fmtVal(m.tv, m.u)));
+    const best = argmax(S.map((s) => (s.fv[k] || [])[1]));
+    cells.forEach((c, j) => { const td = el("td", "v" + (best === j ? " top" : "")); td.appendChild(c); tr.appendChild(td); });
+    tb.appendChild(tr);
+  });
+  tbl.appendChild(tb);
+}
+
+/* ---------- body map: Mars / Moon with the target sites as clickable pins */
+function drawBodyMap(root, big) {
+  const bm = D.bodymaps && D.bodymaps[state.body]; if (!bm) { root.parentElement.hidden = true; return; }
+  const img = root.querySelector("img"), svg = root.querySelector("svg"), pins = root.querySelector(".bpins");
+  if (img.dataset.body !== state.body) { img.src = bm.img; img.dataset.body = state.body; }
+  root.style.aspectRatio = `${bm.w} / ${bm.h}`;
+  const W = root.clientWidth || 240, H = W * bm.h / bm.w, R = big ? 8 : 6, gap = 2 * R + 3;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.textContent = ""; pins.textContent = "";
+  const T = D.targets.filter((t) => t.body === state.body && t.mxy);
+  const placed = [];
+  const free = (x, y) => x > R && x < W - R && y > R && y < H - R && placed.every((p) => Math.hypot(p.x - x, p.y - y) >= gap);
+  const order = T.slice().sort((a, b) => (b.id === state.t) - (a.id === state.t));
+  order.forEach((t) => {
+    const tx = t.mxy[0] * W, ty = t.mxy[1] * H; let x = tx, y = ty;
+    if (!free(x, y)) {
+      search: for (let k = 1; k <= 6; k++) for (let a = 0; a < 16; a++) {
+        const ang = (a / 16) * 2 * Math.PI - Math.PI / 4, cx = tx + Math.cos(ang) * gap * k, cy = ty + Math.sin(ang) * gap * k;
+        if (free(cx, cy)) { x = cx; y = cy; break search; }
+      }
+    }
+    placed.push({ t, x, y, tx, ty });
+  });
+  const NS = "http://www.w3.org/2000/svg";
+  placed.forEach((p) => {
+    if (Math.hypot(p.x - p.tx, p.y - p.ty) > 1) {
+      const l = document.createElementNS(NS, "line"); l.setAttribute("x1", p.tx); l.setAttribute("y1", p.ty); l.setAttribute("x2", p.x); l.setAttribute("y2", p.y); svg.appendChild(l);
+      const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", p.tx); c.setAttribute("cy", p.ty); c.setAttribute("r", 1.6); svg.appendChild(c);
+    }
+    const b = el("button", "bpin" + (p.t.id === state.t ? " sel" : "")); b.type = "button";
+    b.style.left = `${p.x}px`; b.style.top = `${p.y}px`; b.title = p.t.name; b.setAttribute("aria-label", p.t.name);
+    b.setAttribute("aria-pressed", String(p.t.id === state.t));
+    b.addEventListener("click", () => { pickTarget(p.t.id); if (big) $("#bmap-dlg").close(); });
+    pins.appendChild(b);
+  });
+  // labels: try right, left, above, below; skip if all collide (the pin keeps its tooltip)
+  const boxes = placed.map((p) => [p.x - R, p.y - R, p.x + R, p.y + R]);
+  const hit = (b) => b[0] < 0 || b[2] > W || b[1] < 0 || b[3] > H || boxes.some((o) => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1]);
+  placed.filter((p) => big || p.t.id === state.t).forEach((p) => {
+    const txt = p.t.name.replace(/ \(.*\)$/, ""), lw = txt.length * (big ? 6.6 : 6.1) + 12, lh = big ? 18 : 16, o = R + 4;
+    const opts = [["", [p.x + o, p.y - lh / 2, p.x + o + lw, p.y + lh / 2]], ["left", [p.x - o - lw, p.y - lh / 2, p.x - o, p.y + lh / 2]],
+                  ["up", [p.x - lw / 2, p.y - o - lh, p.x + lw / 2, p.y - o]], ["down", [p.x - lw / 2, p.y + o, p.x + lw / 2, p.y + o + lh]]];
+    const pick = opts.find(([, b]) => !hit(b)) || (p.t.id === state.t ? opts[p.x > W * 0.6 ? 1 : 0] : null);
+    if (!pick) return;
+    boxes.push(pick[1]);
+    const lb = el("span", "blabel" + (pick[0] ? " " + pick[0] : ""), txt);
+    lb.style.left = `${p.x}px`; lb.style.top = `${p.y}px`; pins.appendChild(lb);
+  });
+  $("#bmap-cap").textContent = bm.cap;
+}
+function pickTarget(id) { state.t = id; state.sel = null; state.cmp = []; location.hash = hashOf(id); render(true); }
+$("#bmap-open").addEventListener("click", () => {
+  const d = $("#bmap-dlg"); d.dataset.body = state.body; $("#bmap-dlg-title").textContent = state.body === "Moon" ? "Moon: south polar target sites" : "Mars: target sites";
+  d.showModal(); drawBodyMap($("#bmap-big"), true);
+});
+$("#bmap-close").addEventListener("click", () => $("#bmap-dlg").close());
+$("#bmap-dlg").addEventListener("click", (e) => { if (e.target.id === "bmap-dlg") e.target.close(); });
+if (window.ResizeObserver) new ResizeObserver(() => drawBodyMap($("#bmap"), false)).observe($("#bmap"));
+
+function select(i, fly) {
+  state.sel = i;
+  const t = byId[state.t];
+  renderRows(t); renderSite(t);
+  markers.forEach((m) => m.getElement().classList.toggle("sel", m.getElement().dataset.i === String(i)));
+  if (fly && map) { const s = t.sites[i]; map.flyTo({ center: [s.lon, s.lat], zoom: Math.max(map.getZoom(), 4), duration: 700 }); }
+}
+function render(fit) {
+  const t = byId[state.t];
+  document.documentElement.style.setProperty("--accent", css(state.body === "Moon" ? "--moon" : "--mars"));
+  $("#tab-mars").setAttribute("aria-pressed", String(state.body === "Mars"));
+  $("#tab-moon").setAttribute("aria-pressed", String(state.body === "Moon"));
+  $("#ramp").style.background = rampCss(state.body);
+  $("#opt-china").checked = state.exChina; $("#lbl-china").classList.toggle("on", state.exChina);
+  const vis = visibleSites(t);
+  if (!vis.some((s) => s.i === state.sel)) state.sel = (vis[0] || rankedSites(t)[0] || {}).i ?? null;
+  if (state.exChina) state.cmp = state.cmp.filter((i) => t.lists.china.includes(i));
+  renderTargets(); renderRows(t); renderTarget(t); renderSite(t); renderCompare(t); drawBodyMap($("#bmap"), false);
+  drawHeat(t); drawPins(t, fit);
+}
+function setBody(b) {
+  state.body = b;
+  const first = D.targets.find((t) => t.body === b);
+  state.t = first.id; state.sel = null; state.cmp = []; location.hash = hashOf(first.id); render(true);
+}
+$("#tab-mars").addEventListener("click", () => setBody("Mars"));
+$("#tab-moon").addEventListener("click", () => setBody("Moon"));
+$("#opt-new").addEventListener("change", (e) => { state.onlyNew = e.target.checked; render(false); });
+$("#opt-china").addEventListener("change", (e) => { state.exChina = e.target.checked; history.replaceState(null, "", "#" + hashOf(state.t)); render(true); });
+$("#opt-heat").addEventListener("change", (e) => { state.heat = e.target.checked; if (map && map.getLayer("heat")) map.setLayoutProperty("heat", "visibility", state.heat ? "visible" : "none"); });
+$("#cmp-clear").addEventListener("click", () => { state.cmp = []; const t = byId[state.t]; renderRows(t); renderCompare(t); });
+function fromHash() {
+  const h = location.hash || "";
+  const id = idOfHash(h);
+  const t = byId[id] || byId["jezero_crater"] || D.targets[0];
+  state.t = t.id; state.body = t.body; state.sel = null; state.cmp = [];
+  state.exChina = /[&?]exclude=china/.test(h);
+}
+window.addEventListener("hashchange", () => { const id = idOfHash(location.hash); if (byId[id] && id !== state.t) { fromHash(); render(true); } });
+fromHash();
+initMap();
+render(false);
+</script>
