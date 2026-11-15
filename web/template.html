@@ -175,6 +175,7 @@ dialog#bmap-dlg::backdrop { background: rgba(0,0,0,.6); }
 .wrow .num { font:12px var(--f-mono); text-align:right; color:var(--muted); }
 .imp select { font:inherit; font-size:13px; border:1px solid var(--line); background:var(--raise); color:var(--fg); border-radius:7px; padding:3px 6px; margin-left:4px; }
 .note.custom { padding:6px 14px; margin:0 14px 8px; border-left:3px solid var(--rel-b); background:var(--raise); border-radius:0 6px 6px 0; }
+.rbtag { color: var(--rel-a); cursor: help; } .rbtag.low { color: var(--rel-b); }
 /* glossary */
 .qm { display:inline-grid; place-items:center; width:16px; height:16px; padding:0; margin-left:3px; border-radius:50%; border:1px solid var(--line);
   background:var(--raise); color:var(--muted); font:600 10.5px var(--f-mono); line-height:1; cursor:help; vertical-align:middle; text-transform:none; letter-spacing:0; }
@@ -686,7 +687,9 @@ function renderRows(t) {
     tr.appendChild(el("td", "n mono", s.r));
     const tc = el("td"); tc.appendChild(el("div", null, (state.cont && s.ct ? s.ct + " · " : "") + (s.c || "–"))); tc.appendChild(el("div", "small muted mono", coordTxt(s.lat, s.lon))); tr.appendChild(tc);
     const te = el("td"); te.appendChild(gterm("cls_" + s.ec, s.env)); tr.appendChild(te);
-    const tdr = el("td", "n"); tdr.appendChild(el("div", "mono", rankTxt(s))); tdr.appendChild(el("div", "small muted", scoreMode() ? "custom score" : s.nr ? `of ${cellsTxt(s.nr)}` : "")); tr.appendChild(tdr);
+    const tdr = el("td", "n"); tdr.appendChild(el("div", "mono", rankTxt(s))); tdr.appendChild(el("div", "small muted", scoreMode() ? "custom score" : s.nr ? `of ${cellsTxt(s.nr)}` : ""));
+    if (s.rb != null && !scoreMode()) { const rbd = el("div", "small rbtag" + (s.rb < 0.5 ? " low" : ""), `robust ${fmt(s.rb * 100, 0)} %`); rbd.dataset.g = "robustheit"; tdr.appendChild(rbd); }
+    tr.appendChild(tdr);
     tr.appendChild(el("td", null, s.b)); tr.appendChild(el("td", null, s.w));
     const tk = el("td"); const ch = el("span", "chip " + (s.k ? "known" : "new"), s.k ? "known analog" : "new"); ch.dataset.g = "bekannt"; tk.appendChild(ch); tr.appendChild(tk);
     const go = () => select(s.i, true);
@@ -804,6 +807,7 @@ function renderSite(t) {
   const st = el("div", "stats");
   const a = el("div"); a.appendChild(el("span", "big", rankTxt(s))); const al = el("span", "small muted", scoreMode() ? "custom score (your weights) " : s.nr ? `of ${cellsTxt(s.nr)} ranked Earth cells ` : "rank on Earth "); al.appendChild(qm("platz")); a.appendChild(al); st.appendChild(a);
   const b2 = el("div"); b2.appendChild(el("span", "big", `${fmt(s.cov * 100, 0)} %`)); const bl = el("span", "small muted", "of the profile has data "); bl.appendChild(qm("abdeckung")); b2.appendChild(bl); st.appendChild(b2);
+  if (s.rb != null) { const b3 = el("div"); b3.appendChild(el("span", "big", `${fmt(s.rb * 100, 0)} %`)); const rl = el("span", "small muted", "robust: stays in the top 20 when weights change "); rl.appendChild(qm("robustheit")); b3.appendChild(rl); st.appendChild(b3); }
   bd.appendChild(st);
   const h3p = el("h3", null, "Profile "); h3p.appendChild(qm("dimension")); bd.appendChild(h3p);
   const bars = el("div", "bars");
@@ -822,7 +826,9 @@ function renderSite(t) {
   const ln = el("div", "links");
   const osm = el("a", null, "OpenStreetMap"); osm.href = `https://www.openstreetmap.org/?mlat=${s.lat}&mlon=${s.lon}#map=9/${s.lat}/${s.lon}`; osm.target = "_blank"; osm.rel = "noopener";
   const wv = el("a", null, "NASA Worldview"); wv.href = `https://worldview.earthdata.nasa.gov/?v=${s.lon - 1},${s.lat - 0.7},${s.lon + 1},${s.lat + 0.7}`; wv.target = "_blank"; wv.rel = "noopener";
-  ln.appendChild(osm); ln.appendChild(wv); bd.appendChild(ln);
+  ln.appendChild(osm); ln.appendChild(wv);
+  if (s.pf && D.profiles) { const pfl = el("a", null, "Site profile: satellite image, 90 m terrain"); pfl.href = `${D.profiles}#${s.pf}`; pfl.target = "_blank"; pfl.rel = "noopener"; ln.insertBefore(pfl, osm); }
+  bd.appendChild(ln);
   c.appendChild(bd);
 }
 
@@ -853,6 +859,7 @@ function renderCompare(t) {
   row(lq("Environment", "klasse"), "", S.map((s) => gterm("cls_" + s.ec, s.env)));
   if (scoreMode()) row(lq("Custom score", "gesamtwert"), "", S.map((s) => s.cs != null ? fmt(s.cs, 3) : "–"), argmax(S.map((s) => s.cs)));
   else row(lq("Rank on Earth", "platz"), "", S.map((s) => `${rankTxt(s)}${s.nr ? " of " + cellsTxt(s.nr) : ""}`), argmax(S.map((s) => s.rk ? -s.rk : null)));
+  row(lq("Robustness", "robustheit"), "", S.map((s) => s.rb != null ? `${fmt(s.rb * 100, 0)} %` : "–"), argmax(S.map((s) => s.rb)));
   row(lq("Profile with data", "abdeckung"), "", S.map((s) => `${fmt(s.cov * 100, 0)} %`));
   row(lq("Known analog", "bekannt"), "", S.map((s) => s.k || "new"));
   sec("Dimension scores (1 = as close as Earth gets)");

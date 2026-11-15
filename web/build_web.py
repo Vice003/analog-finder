@@ -223,6 +223,11 @@ def main():
     df = pd.read_parquet(args.table)
     cl = CountryLookup(lang="en")
 
+    rb_path = Path(args.results).with_name("robustness.json")
+    RB = json.load(open(rb_path, encoding="utf-8"))["targets"] if rb_path.exists() else {}
+    pf_path = HERE / "profiles" / "profiles.json"
+    PF = {s["id"] for s in json.load(open(pf_path, encoding="utf-8"))["sites"]} if pf_path.exists() else set()
+    from make_site_profiles import site_id
     pool_path = Path(args.results).with_name("pool.npz")
     Z = np.load(pool_path) if pool_path.exists() else None
     names = iso_names() if Z is not None else {}
@@ -249,6 +254,8 @@ def main():
                               w=DIM_EN.get(x["worst_dim"], x["worst_dim"]), k=x["known_analog"],
                               d={DIM_EN.get(k, k): v for k, v in x["dims"].items()},
                               fv=[[f["earth"], f["score"], f["earth_pct"]] for f in x.get("features", [])],
+                              rb=RB.get(tid, {}).get(f"{x['lat']:.3f},{x['lon']:.3f}"),
+                              pf=site_id(x["lat"], x["lon"]) if site_id(x["lat"], x["lon"]) in PF else None,
                               er=dict(rules=[rule(r) for r in er.get("rules", [])],
                                       no=[dict(c=ENV_EN.get(n["cls"], n["cls"]), f=[rule(r) for r in n["failed"]])
                                           for n in er.get("not_", [])])))
@@ -290,7 +297,8 @@ def main():
         pool_meta = dict(dims=[DIM_EN[d] for d in Z["_dims"].tolist()], classIds=Z["_classes"].tolist(),
                          classes=[ENV_EN.get(c, c) for c in Z["_classes"].tolist()], continents=Z["_continents"].tolist(),
                          known=Z["_known"].tolist())
-    data = dict(targets=targets, masks=masks, bodymaps=bodymaps, glossary=glossary, poolMeta=pool_meta, countries=countries_geojson(ROOT / "data" / "ref" / "ne_110m_admin_0_countries"),
+    data = dict(targets=targets, masks=masks, bodymaps=bodymaps, glossary=glossary, poolMeta=pool_meta,
+                profiles="https://vice003.github.io/analog-finder/profiles.html", countries=countries_geojson(ROOT / "data" / "ref" / "ne_110m_admin_0_countries"),
                 meta=dict(earth_cells=R["meta"]["earth_cells"], table=R["meta"]["earth_table"]))
     css = urllib.request.urlopen(f"https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/{MAPLIBRE}/maplibre-gl.css",
                                  timeout=30).read().decode()

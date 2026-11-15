@@ -59,6 +59,14 @@ def cont_summary(body):
     return ", ".join(parts[:-1]) + " und " + parts[-1]
 
 
+def rb_summary(body):
+    vals = [RB.get(k, {}).get(f"{t['top'][0]['lat']:.3f},{t['top'][0]['lon']:.3f}") for k, t in T.items() if t["body"] == body]
+    vals = [v for v in vals if v is not None]
+    if not vals:
+        return ""
+    return f"{sum(v >= 0.8 for v in vals)} von {len(vals)} (Median {sorted(vals)[len(vals) // 2] * 100:.0f} %)"
+
+
 KNOWN = collections.Counter(x["known_analog"] for t in T.values() for x in t["top"] if x["known_analog"])
 CLS["Kein Analog (Vegetation, Wasser)"] = "Kahl, keine Klasse passt"
 cls = lambda s: CLS.get(s, s)
@@ -68,6 +76,28 @@ GLOSSAR = "https://vice003.github.io/analog-finder/glossar.html"  # absolut: die
 def g(gid, label):
     """Begriff mit Link auf seine Erklaerung im Glossar."""
     return f'<a class="gl" href="{GLOSSAR}#{gid}" target="_blank" rel="noopener">{label}</a>'
+
+
+from pathlib import Path as _P
+_rbp = _P(src).with_name("robustness.json")
+RB = json.load(open(_rbp, encoding="utf-8"))["targets"] if _rbp.exists() else {}
+_pfp = _P(__file__).resolve().parent / "profiles" / "profiles.json"
+PF = {x["id"] for x in json.load(open(_pfp, encoding="utf-8"))["sites"]} if _pfp.exists() else set()
+PROFILES_URL = "https://vice003.github.io/analog-finder/profiles.html"
+
+
+def _sid(lat, lon):
+    return f"{'n' if lat >= 0 else 's'}{abs(lat):.3f}_{'e' if lon >= 0 else 'w'}{abs(lon):.3f}".replace(".", "p")
+
+
+def robust(tid, x):
+    v = RB.get(tid, {}).get(f"{x['lat']:.3f},{x['lon']:.3f}")
+    return "–" if v is None else f"{v * 100:.0f} %"
+
+
+def prof_link(x):
+    i = _sid(x["lat"], x["lon"])
+    return f' · <a href="{PROFILES_URL}#{i}" target="_blank" rel="noopener">Steckbrief</a>' if i in PF else ""
 
 
 def cls_link(x):
@@ -99,8 +129,8 @@ for k in order:
     overview.append(
         f"<tr><td>{'Mars' if t['body'] == 'Mars' else 'Mond'}</td><td><b>{esc(t['name'])}</b>{q}"
         f"<div class='muted small'>{esc(t.get('category') or '')}</div></td>"
-        f"<td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])} · {cls_link(s)}</div></td>"
-        f"<td class='n'>{rank(s)}</td>"
+        f"<td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])} · {cls_link(s)}{prof_link(s)}</div></td>"
+        f"<td class='n'>{rank(s)}<div class='small muted'>robust {robust(k, s)}</div></td>"
         f"<td>{'<span class=muted>gleich</span>' if sx is s or (sx['lat'], sx['lon']) == (s['lat'], s['lon']) else '<b>' + esc(sx.get('country') or '–') + '</b><div class=small>' + coord(sx['lat'], sx['lon']) + ' · ' + rank(sx) + '</div>'}</td>"
         f"<td>{DIM.get(s['best_dim'], s['best_dim'])}</td>"
         f"<td>{DIM.get(s['worst_dim'], s['worst_dim'])}</td><td class='n'>{t['n_new_in_top']} / 20</td></tr>")
@@ -111,9 +141,9 @@ for k in order:
     rows = []
     for s in t["top"][:10]:
         rows.append(
-            f"<tr><td class='n'>{s['rank']}</td><td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])}</div></td><td>{cls_link(s)}"
+            f"<tr><td class='n'>{s['rank']}</td><td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])}{prof_link(s)}</div></td><td>{cls_link(s)}"
             f"<div class='muted small'>{flags_link(s)}</div></td><td class='n'>{rank(s)}</td>"
-            f"<td class='n'>{s['coverage'] * 100:.0f} %</td><td>{DIM.get(s['best_dim'], s['best_dim'])}</td>"
+            f"<td class='n'>{robust(k, s)}</td><td class='n'>{s['coverage'] * 100:.0f} %</td><td>{DIM.get(s['best_dim'], s['best_dim'])}</td>"
             f"<td>{DIM.get(s['worst_dim'], s['worst_dim'])}</td><td>{chip(s['known_analog'])}</td></tr>")
     body = "Mars" if t["body"] == "Mars" else "Mond"
     details.append(
@@ -121,7 +151,7 @@ for k in order:
         f"<span class='muted'> · Ziel {t['center_lat']:.2f}°, {t['center_lon']:.2f}° O · Koordinaten {esc(t.get('coord_quality') or '')}"
         f" · {t['n_new_in_top']} von 20 neu</span></summary>"
         f"<div class='table-wrap'><table><thead><tr><th class='n'>#</th><th>Erdort</th><th>{g('klasse', 'Umgebung')}</th><th class='n'>{g('platz', 'Platz auf der Erde')}</th>"
-        f"<th class='n'>{g('abdeckung', 'Abdeckung')}</th><th>{g('passt_bricht', 'passt')}</th><th>{g('passt_bricht', 'bricht')}</th><th>{g('bekannt', 'bekannt/neu')}</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>"
+        f"<th class='n'>{g('robustheit', 'Robust')}</th><th class='n'>{g('abdeckung', 'Abdeckung')}</th><th>{g('passt_bricht', 'passt')}</th><th>{g('passt_bricht', 'bricht')}</th><th>{g('bekannt', 'bekannt/neu')}</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>"
         f"</details>")
 
 page = f"""<title>Analog Finder Ergebnisse</title>
@@ -196,6 +226,7 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
     <li><b>{g('kontinent', 'Bester Ort je Kontinent')}</b> (Ansicht „Best per continent“ in der Web-App): Für ein typisches Mars-Ziel liegt der beste Ort {cont_summary("Mars")} (von {de(N_RANKED)} {g('bewertet', 'bewerteten Zellen')}; Platz 1 = ähnlichste Zelle der Erde, siehe {g('platz', 'Zellplatz')}). Für ein typisches Mond-Ziel liegt er {cont_summary("Moon")}.</li>
     <li><b>Mond → arktische Polarwüsten.</b> Für die 13 Südpol-Ziele führen die Treffer in die kanadische Arktis und nach Nordgrönland: {lst(SN['c'], 4)} von {SN['top']} Treffern.</li>
     <li><b>Die Region bestimmen die Umweltbedingungen, den Ort das Gelände.</b> Niedriger Druck, Kälte und Trockenheit, die die Erde nie ganz erreicht, zeigen auf die extremsten Gegenden der Erde. Gelände und Untergrund entscheiden dann, welcher Ort darin am besten passt.</li>
+    <li><b>{g('robustheit', 'Robustheit')}:</b> Wie oft bleibt der beste Ort unter den Top 20, wenn man die Gewichte zufällig um ±50 % verändert (1.000 Durchläufe)? Mindestens 80 % der Durchläufe schaffen bei den Mars-Zielen {rb_summary("Mars")}, bei den Mond-Zielen {rb_summary("Moon")}. Die Mond-Treffer hängen also kaum an der Gewichtung, bei einigen Mars-Zielen schon. Für die besten Orte gibt es <a href="{PROFILES_URL}">Steckbriefe</a> mit Satellitenbild und 90-m-Gelände.</li>
     <li><b>{g('positivkontrolle', 'Positivkontrolle')}:</b> Etablierte Analoga tauchen in den Listen auf, ohne dass das Verfahren sie kennt: {lst(KNOWN, 5)} (Anzahl Treffer im jeweiligen Radius).</li>
   </ul>
 </section>

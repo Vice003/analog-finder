@@ -11,6 +11,7 @@ where the analogy holds and where it breaks.
   similarity, top 20 Earth sites per target, "Exclude China" option, side-by-side comparison of up to 3 sites, and an
   explanation for every site: feature by feature and the rules behind its environment class)
 - **Results (German):** [`docs/ergebnisse.html`](https://vice003.github.io/analog-finder/ergebnisse.html)
+- **Site profiles:** [profiles.html](https://vice003.github.io/analog-finder/profiles.html) – satellite image, 90 m terrain and slope distribution for the 104 best sites, with robustness
 - **Glossary:** [English](https://vice003.github.io/analog-finder/glossary.html) · [Deutsch](https://vice003.github.io/analog-finder/glossar.html) – every term, class rule, weight and data source; all pages link their terms here
 - **Earth data basis (German):** [`docs/datenbasis.html`](https://vice003.github.io/analog-finder/datenbasis.html)
 - **Processing plan agreed in the team (German):** [`VERARBEITUNGSPLAN.md`](VERARBEITUNGSPLAN.md)
@@ -40,6 +41,8 @@ python planetary/compute_targets.py       # needs MOLA (read remotely), LOLA, TE
 python scoring/target_scoring.py planetary/targets.json earth_features_005deg.parquet
 python web/build_web.py                   # -> web/index.html; copy to docs/ for GitHub Pages
 python web/make_results_page.py results/top_sites.json web/ergebnisse.html
+python scoring/robustness.py               # -> results/robustness.json (1,000 random weightings)
+python web/make_site_profiles.py && python web/make_profiles_page.py   # -> web/profiles.html
 python web/make_glossary_page.py           # -> web/glossar.html, web/glossary.html (generated from scoring/)
 ```
 

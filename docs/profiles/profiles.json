@@ -1,0 +1,3804 @@
+{
+ "sites": [
+  {
+   "id": "n81p625_w75p025",
+   "lat": 81.625,
+   "lon": -75.025,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "peak_near_cabeus_b",
+     "name": "Peak near Cabeus B",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "peak_near_cabeus_b",
+     "name": "Peak near Cabeus B",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "peak_near_cabeus_b",
+     "name": "Peak near Cabeus B",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 5.44,
+    "slope_p90": 19.057,
+    "flat_share": 0.467,
+    "steep_share": 0.127,
+    "elev_min": 390.184,
+    "elev_max": 878.6,
+    "sur_slope_p50": 7.087,
+    "sur_flat_share": 0.38,
+    "uniform": false
+   },
+   "image": "n81p625_w75p025.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p125_w77p825",
+   "lat": 79.125,
+   "lon": -77.825,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "peak_near_cabeus_b",
+     "name": "Peak near Cabeus B",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 20,
+     "list": "top 20"
+    },
+    {
+     "target": "mons_mouton_plateau",
+     "name": "Mons Mouton Plateau",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 104,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 5.239,
+    "slope_p90": 16.342,
+    "flat_share": 0.483,
+    "steep_share": 0.114,
+    "elev_min": 519.492,
+    "elev_max": 941.484,
+    "sur_slope_p50": 8.748,
+    "sur_flat_share": 0.316,
+    "uniform": false
+   },
+   "image": "n79p125_w77p825.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p175_w89p425",
+   "lat": 79.175,
+   "lon": -89.425,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "peak_near_cabeus_b",
+     "name": "Peak near Cabeus B",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 342,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 7.64,
+    "slope_p90": 17.228,
+    "flat_share": 0.325,
+    "steep_share": 0.14,
+    "elev_min": 393.873,
+    "elev_max": 979.884,
+    "sur_slope_p50": 8.95,
+    "sur_flat_share": 0.266,
+    "uniform": false
+   },
+   "image": "n79p175_w89p425.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p575_e75p625",
+   "lat": 37.575,
+   "lon": 75.625,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "peak_near_cabeus_b",
+     "name": "Peak near Cabeus B",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 6649,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 5.142,
+    "slope_p90": 14.597,
+    "flat_share": 0.489,
+    "steep_share": 0.09,
+    "elev_min": 3311.833,
+    "elev_max": 4072.14,
+    "sur_slope_p50": 13.714,
+    "sur_flat_share": 0.133,
+    "uniform": false
+   },
+   "image": "n37p575_e75p625.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n68p775_e94p575",
+   "lat": 68.775,
+   "lon": 94.575,
+   "country": "Russland",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "peak_near_cabeus_b",
+     "name": "Peak near Cabeus B",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 11743,
+     "list": "best in Europe"
+    },
+    {
+     "target": "haworth",
+     "name": "Haworth",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 14540,
+     "list": "best in Europe"
+    },
+    {
+     "target": "cabeus",
+     "name": "Cabeus (LCROSS impact, PSR)",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 13707,
+     "list": "best in Europe"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 9.185,
+    "slope_p90": 16.081,
+    "flat_share": 0.119,
+    "steep_share": 0.134,
+    "elev_min": 903.822,
+    "elev_max": 1330.519,
+    "sur_slope_p50": 9.274,
+    "sur_flat_share": 0.197,
+    "uniform": false
+   },
+   "image": "n68p775_e94p575.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p675_w76p175",
+   "lat": 81.675,
+   "lon": -76.175,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "haworth",
+     "name": "Haworth",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "haworth",
+     "name": "Haworth",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "haworth",
+     "name": "Haworth",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    },
+    {
+     "target": "cabeus",
+     "name": "Cabeus (LCROSS impact, PSR)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "cabeus",
+     "name": "Cabeus (LCROSS impact, PSR)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "cabeus",
+     "name": "Cabeus (LCROSS impact, PSR)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 9.848,
+    "slope_p90": 14.607,
+    "flat_share": 0.352,
+    "steep_share": 0.094,
+    "elev_min": 400.159,
+    "elev_max": 1028.146,
+    "sur_slope_p50": 7.131,
+    "sur_flat_share": 0.377,
+    "uniform": true
+   },
+   "image": "n81p675_w76p175.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p175_w78p375",
+   "lat": 79.175,
+   "lon": -78.375,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "haworth",
+     "name": "Haworth",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 8,
+     "list": "top 20"
+    },
+    {
+     "target": "cabeus",
+     "name": "Cabeus (LCROSS impact, PSR)",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 21,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 6.392,
+    "slope_p90": 14.196,
+    "flat_share": 0.342,
+    "steep_share": 0.094,
+    "elev_min": 16.286,
+    "elev_max": 642.433,
+    "sur_slope_p50": 9.27,
+    "sur_flat_share": 0.23,
+    "uniform": true
+   },
+   "image": "n79p175_w78p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p175_w89p125",
+   "lat": 79.175,
+   "lon": -89.125,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "haworth",
+     "name": "Haworth",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 189,
+     "list": "top 20"
+    },
+    {
+     "target": "cabeus",
+     "name": "Cabeus (LCROSS impact, PSR)",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 141,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 7.799,
+    "slope_p90": 21.37,
+    "flat_share": 0.244,
+    "steep_share": 0.236,
+    "elev_min": 814.119,
+    "elev_max": 1478.574,
+    "sur_slope_p50": 6.636,
+    "sur_flat_share": 0.375,
+    "uniform": false
+   },
+   "image": "n79p175_w89p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p525_e75p125",
+   "lat": 38.525,
+   "lon": 75.125,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "haworth",
+     "name": "Haworth",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 15066,
+     "list": "best in Asia"
+    },
+    {
+     "target": "cabeus",
+     "name": "Cabeus (LCROSS impact, PSR)",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 15083,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 7.641,
+    "slope_p90": 15.84,
+    "flat_share": 0.2,
+    "steep_share": 0.13,
+    "elev_min": 3863.417,
+    "elev_max": 4589.119,
+    "sur_slope_p50": 9.123,
+    "sur_flat_share": 0.258,
+    "uniform": false
+   },
+   "image": "n38p525_e75p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n82p625_w76p325",
+   "lat": 82.625,
+   "lon": -76.325,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "malapert_massif",
+     "name": "Malapert Massif",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "malapert_massif",
+     "name": "Malapert Massif",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "malapert_massif",
+     "name": "Malapert Massif",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 16.868,
+    "slope_p90": 28.208,
+    "flat_share": 0.102,
+    "steep_share": 0.598,
+    "elev_min": 0.0,
+    "elev_max": 1225.668,
+    "sur_slope_p50": 8.471,
+    "sur_flat_share": 0.388,
+    "uniform": false
+   },
+   "image": "n82p625_w76p325.jpg",
+   "image_source": "MODIS Terra true colour 2023-07-15 (NASA GIBS)"
+  },
+  {
+   "id": "n79p025_w78p175",
+   "lat": 79.025,
+   "lon": -78.175,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "malapert_massif",
+     "name": "Malapert Massif",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 4,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 18.652,
+    "slope_p90": 31.512,
+    "flat_share": 0.008,
+    "steep_share": 0.611,
+    "elev_min": 197.082,
+    "elev_max": 1482.081,
+    "sur_slope_p50": 11.465,
+    "sur_flat_share": 0.236,
+    "uniform": false
+   },
+   "image": "n79p025_w78p175.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p025_w84p375",
+   "lat": 81.025,
+   "lon": -84.375,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "malapert_massif",
+     "name": "Malapert Massif",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 354,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 21.146,
+    "slope_p90": 36.172,
+    "flat_share": 0.16,
+    "steep_share": 0.62,
+    "elev_min": 0.0,
+    "elev_max": 1305.391,
+    "sur_slope_p50": 5.52,
+    "sur_flat_share": 0.476,
+    "uniform": false
+   },
+   "image": "n81p025_w84p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n66p075_e140p425",
+   "lat": 66.075,
+   "lon": 140.425,
+   "country": "Russland",
+   "env": "raues_gebirge",
+   "matches": [
+    {
+     "target": "malapert_massif",
+     "name": "Malapert Massif",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 6896,
+     "list": "best in Europe"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 20.44,
+    "slope_p90": 31.288,
+    "flat_share": 0.09,
+    "steep_share": 0.627,
+    "elev_min": 1334.702,
+    "elev_max": 2343.451,
+    "sur_slope_p50": 17.842,
+    "sur_flat_share": 0.184,
+    "uniform": false
+   },
+   "image": "n66p075_e140p425.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n41p975_e80p025",
+   "lat": 41.975,
+   "lon": 80.025,
+   "country": "Volksrepublik China",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "malapert_massif",
+     "name": "Malapert Massif",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 12110,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 20.197,
+    "slope_p90": 42.732,
+    "flat_share": 0.237,
+    "steep_share": 0.552,
+    "elev_min": 3725.036,
+    "elev_max": 5800.839,
+    "sur_slope_p50": 28.084,
+    "sur_flat_share": 0.098,
+    "uniform": false
+   },
+   "image": "n41p975_e80p025.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p375_w71p625",
+   "lat": 81.375,
+   "lon": -71.625,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "mons_mouton_plateau",
+     "name": "Mons Mouton Plateau",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "mons_mouton_plateau",
+     "name": "Mons Mouton Plateau",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "mons_mouton_plateau",
+     "name": "Mons Mouton Plateau",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 5.621,
+    "slope_p90": 12.35,
+    "flat_share": 0.408,
+    "steep_share": 0.052,
+    "elev_min": 355.427,
+    "elev_max": 797.126,
+    "sur_slope_p50": 6.951,
+    "sur_flat_share": 0.314,
+    "uniform": true
+   },
+   "image": "n81p375_w71p625.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n71p675_w27p675",
+   "lat": 71.675,
+   "lon": -27.675,
+   "country": "Grönland",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "mons_mouton_plateau",
+     "name": "Mons Mouton Plateau",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 586,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 6.704,
+    "slope_p90": 13.909,
+    "flat_share": 0.339,
+    "steep_share": 0.081,
+    "elev_min": 1288.695,
+    "elev_max": 1585.759,
+    "sur_slope_p50": 7.709,
+    "sur_flat_share": 0.404,
+    "uniform": true
+   },
+   "image": "n71p675_w27p675.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n47p375_e92p375",
+   "lat": 47.375,
+   "lon": 92.375,
+   "country": "Mongolei",
+   "env": "aride_wueste",
+   "matches": [
+    {
+     "target": "mons_mouton_plateau",
+     "name": "Mons Mouton Plateau",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 7784,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 4.726,
+    "slope_p90": 15.137,
+    "flat_share": 0.517,
+    "steep_share": 0.104,
+    "elev_min": 1211.257,
+    "elev_max": 1655.065,
+    "sur_slope_p50": 2.396,
+    "sur_flat_share": 0.721,
+    "uniform": false
+   },
+   "image": "n47p375_e92p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n68p875_e94p625",
+   "lat": 68.875,
+   "lon": 94.625,
+   "country": "Russland",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "mons_mouton_plateau",
+     "name": "Mons Mouton Plateau",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 11519,
+     "list": "best in Europe"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 7.291,
+    "slope_p90": 20.008,
+    "flat_share": 0.318,
+    "steep_share": 0.183,
+    "elev_min": 803.008,
+    "elev_max": 1343.275,
+    "sur_slope_p50": 8.545,
+    "sur_flat_share": 0.21,
+    "uniform": false
+   },
+   "image": "n68p875_e94p625.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p375_w70p325",
+   "lat": 81.375,
+   "lon": -70.325,
+   "country": "Kanada",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "mons_mouton",
+     "name": "Mons Mouton",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "mons_mouton",
+     "name": "Mons Mouton",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "mons_mouton",
+     "name": "Mons Mouton",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 12.408,
+    "slope_p90": 21.871,
+    "flat_share": 0.167,
+    "steep_share": 0.408,
+    "elev_min": 76.714,
+    "elev_max": 842.787,
+    "sur_slope_p50": 8.966,
+    "sur_flat_share": 0.246,
+    "uniform": false
+   },
+   "image": "n81p375_w70p325.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p025_w78p375",
+   "lat": 79.025,
+   "lon": -78.375,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "mons_mouton",
+     "name": "Mons Mouton",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 11,
+     "list": "top 20"
+    },
+    {
+     "target": "nobile_rim_1",
+     "name": "Nobile Rim 1 / 2",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 76,
+     "list": "top 20"
+    },
+    {
+     "target": "connecting_ridge",
+     "name": "Connecting Ridge (Shackleton-de Gerlache)",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 35,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 10.723,
+    "slope_p90": 25.159,
+    "flat_share": 0.097,
+    "steep_share": 0.306,
+    "elev_min": 577.866,
+    "elev_max": 1393.153,
+    "sur_slope_p50": 11.621,
+    "sur_flat_share": 0.2,
+    "uniform": false
+   },
+   "image": "n79p025_w78p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p825_w83p225",
+   "lat": 81.825,
+   "lon": -83.225,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "mons_mouton",
+     "name": "Mons Mouton",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 28,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 15.845,
+    "slope_p90": 26.001,
+    "flat_share": 0.067,
+    "steep_share": 0.529,
+    "elev_min": 561.554,
+    "elev_max": 1418.729,
+    "sur_slope_p50": 16.179,
+    "sur_flat_share": 0.15,
+    "uniform": false
+   },
+   "image": "n81p825_w83p225.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n66p025_e140p925",
+   "lat": 66.025,
+   "lon": 140.925,
+   "country": "Russland",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "mons_mouton",
+     "name": "Mons Mouton",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 7441,
+     "list": "best in Europe"
+    },
+    {
+     "target": "nobile_rim_1",
+     "name": "Nobile Rim 1 / 2",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 7594,
+     "list": "best in Europe"
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "name": "de Gerlache Rim 2",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 9226,
+     "list": "best in Europe"
+    },
+    {
+     "target": "slater_plain",
+     "name": "Slater Plain",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 9531,
+     "list": "best in Europe"
+    },
+    {
+     "target": "peak_near_shackleton",
+     "name": "Peak near Shackleton",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 8717,
+     "list": "best in Europe"
+    },
+    {
+     "target": "connecting_ridge",
+     "name": "Connecting Ridge (Shackleton-de Gerlache)",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 8425,
+     "list": "best in Europe"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 15.83,
+    "slope_p90": 29.237,
+    "flat_share": 0.068,
+    "steep_share": 0.526,
+    "elev_min": 1222.593,
+    "elev_max": 2224.11,
+    "sur_slope_p50": 13.674,
+    "sur_flat_share": 0.184,
+    "uniform": false
+   },
+   "image": "n66p025_e140p925.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p775_e75p325",
+   "lat": 37.775,
+   "lon": 75.325,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "mons_mouton",
+     "name": "Mons Mouton",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 7756,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 13.286,
+    "slope_p90": 26.516,
+    "flat_share": 0.174,
+    "steep_share": 0.44,
+    "elev_min": 3100.653,
+    "elev_max": 4094.702,
+    "sur_slope_p50": 11.231,
+    "sur_flat_share": 0.338,
+    "uniform": false
+   },
+   "image": "n37p775_e75p325.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p825_w83p025",
+   "lat": 81.825,
+   "lon": -83.025,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "nobile_rim_1",
+     "name": "Nobile Rim 1 / 2",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "nobile_rim_1",
+     "name": "Nobile Rim 1 / 2",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "nobile_rim_1",
+     "name": "Nobile Rim 1 / 2",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 19.599,
+    "slope_p90": 27.235,
+    "flat_share": 0.029,
+    "steep_share": 0.717,
+    "elev_min": 373.725,
+    "elev_max": 1595.195,
+    "sur_slope_p50": 15.431,
+    "sur_flat_share": 0.147,
+    "uniform": false
+   },
+   "image": "n81p825_w83p025.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p375_w69p825",
+   "lat": 81.375,
+   "lon": -69.825,
+   "country": "Kanada",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "nobile_rim_1",
+     "name": "Nobile Rim 1 / 2",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 6,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 13.717,
+    "slope_p90": 21.009,
+    "flat_share": 0.117,
+    "steep_share": 0.379,
+    "elev_min": 101.599,
+    "elev_max": 838.849,
+    "sur_slope_p50": 9.627,
+    "sur_flat_share": 0.23,
+    "uniform": false
+   },
+   "image": "n81p375_w69p825.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p225_e72p925",
+   "lat": 37.225,
+   "lon": 72.925,
+   "country": "Afghanistan",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "nobile_rim_1",
+     "name": "Nobile Rim 1 / 2",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 8495,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 13.861,
+    "slope_p90": 24.159,
+    "flat_share": 0.009,
+    "steep_share": 0.425,
+    "elev_min": 3531.448,
+    "elev_max": 4848.66,
+    "sur_slope_p50": 19.381,
+    "sur_flat_share": 0.055,
+    "uniform": false
+   },
+   "image": "n37p225_e72p925.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p325_w75p575",
+   "lat": 81.325,
+   "lon": -75.575,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "de_gerlache_rim_2",
+     "name": "de Gerlache Rim 2",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "name": "de Gerlache Rim 2",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "name": "de Gerlache Rim 2",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    },
+    {
+     "target": "peak_near_shackleton",
+     "name": "Peak near Shackleton",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "peak_near_shackleton",
+     "name": "Peak near Shackleton",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "peak_near_shackleton",
+     "name": "Peak near Shackleton",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    },
+    {
+     "target": "connecting_ridge",
+     "name": "Connecting Ridge (Shackleton-de Gerlache)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "connecting_ridge",
+     "name": "Connecting Ridge (Shackleton-de Gerlache)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "connecting_ridge",
+     "name": "Connecting Ridge (Shackleton-de Gerlache)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 12.346,
+    "slope_p90": 19.036,
+    "flat_share": 0.142,
+    "steep_share": 0.228,
+    "elev_min": 319.502,
+    "elev_max": 1211.509,
+    "sur_slope_p50": 8.428,
+    "sur_flat_share": 0.29,
+    "uniform": false
+   },
+   "image": "n81p325_w75p575.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p125_w79p625",
+   "lat": 79.125,
+   "lon": -79.625,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "de_gerlache_rim_2",
+     "name": "de Gerlache Rim 2",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 20,
+     "list": "top 20"
+    },
+    {
+     "target": "slater_plain",
+     "name": "Slater Plain",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 16,
+     "list": "top 20"
+    },
+    {
+     "target": "peak_near_shackleton",
+     "name": "Peak near Shackleton",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 20,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 10.078,
+    "slope_p90": 18.735,
+    "flat_share": 0.14,
+    "steep_share": 0.244,
+    "elev_min": 270.567,
+    "elev_max": 1156.4,
+    "sur_slope_p50": 7.574,
+    "sur_flat_share": 0.361,
+    "uniform": false
+   },
+   "image": "n79p125_w79p625.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p275_w89p375",
+   "lat": 79.275,
+   "lon": -89.375,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "de_gerlache_rim_2",
+     "name": "de Gerlache Rim 2",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 124,
+     "list": "top 20"
+    },
+    {
+     "target": "peak_near_shackleton",
+     "name": "Peak near Shackleton",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 186,
+     "list": "top 20"
+    },
+    {
+     "target": "connecting_ridge",
+     "name": "Connecting Ridge (Shackleton-de Gerlache)",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 159,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 12.554,
+    "slope_p90": 23.873,
+    "flat_share": 0.036,
+    "steep_share": 0.34,
+    "elev_min": 256.909,
+    "elev_max": 1400.472,
+    "sur_slope_p50": 9.159,
+    "sur_flat_share": 0.241,
+    "uniform": false
+   },
+   "image": "n79p275_w89p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p275_e75p025",
+   "lat": 38.275,
+   "lon": 75.025,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "de_gerlache_rim_2",
+     "name": "de Gerlache Rim 2",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 12968,
+     "list": "best in Asia"
+    },
+    {
+     "target": "slater_plain",
+     "name": "Slater Plain",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 14093,
+     "list": "best in Asia"
+    },
+    {
+     "target": "peak_near_shackleton",
+     "name": "Peak near Shackleton",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 13647,
+     "list": "best in Asia"
+    },
+    {
+     "target": "connecting_ridge",
+     "name": "Connecting Ridge (Shackleton-de Gerlache)",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 12524,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 12.308,
+    "slope_p90": 27.652,
+    "flat_share": 0.036,
+    "steep_share": 0.383,
+    "elev_min": 4081.003,
+    "elev_max": 5495.039,
+    "sur_slope_p50": 12.093,
+    "sur_flat_share": 0.178,
+    "uniform": false
+   },
+   "image": "n38p275_e75p025.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p325_w75p525",
+   "lat": 81.325,
+   "lon": -75.525,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "slater_plain",
+     "name": "Slater Plain",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "slater_plain",
+     "name": "Slater Plain",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "slater_plain",
+     "name": "Slater Plain",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 11.107,
+    "slope_p90": 17.768,
+    "flat_share": 0.113,
+    "steep_share": 0.217,
+    "elev_min": 344.574,
+    "elev_max": 1266.898,
+    "sur_slope_p50": 8.194,
+    "sur_flat_share": 0.301,
+    "uniform": false
+   },
+   "image": "n81p325_w75p525.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p275_w89p425",
+   "lat": 79.275,
+   "lon": -89.425,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "slater_plain",
+     "name": "Slater Plain",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 181,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 11.224,
+    "slope_p90": 19.077,
+    "flat_share": 0.033,
+    "steep_share": 0.228,
+    "elev_min": 232.628,
+    "elev_max": 1167.773,
+    "sur_slope_p50": 9.469,
+    "sur_flat_share": 0.236,
+    "uniform": false
+   },
+   "image": "n79p275_w89p425.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p825_w79p025",
+   "lat": 81.825,
+   "lon": -79.025,
+   "country": "Kanada",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "faustini_rim_a",
+     "name": "Faustini Rim A",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "faustini_rim_a",
+     "name": "Faustini Rim A",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "faustini_rim_a",
+     "name": "Faustini Rim A",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 11.091,
+    "slope_p90": 31.911,
+    "flat_share": 0.373,
+    "steep_share": 0.463,
+    "elev_min": 42.5,
+    "elev_max": 887.015,
+    "sur_slope_p50": 11.356,
+    "sur_flat_share": 0.34,
+    "uniform": false
+   },
+   "image": "n81p825_w79p025.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n79p225_w78p275",
+   "lat": 79.225,
+   "lon": -78.275,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "faustini_rim_a",
+     "name": "Faustini Rim A",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 5,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 9.625,
+    "slope_p90": 22.057,
+    "flat_share": 0.156,
+    "steep_share": 0.283,
+    "elev_min": 170.503,
+    "elev_max": 808.061,
+    "sur_slope_p50": 8.868,
+    "sur_flat_share": 0.258,
+    "uniform": false
+   },
+   "image": "n79p225_w78p275.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n71p325_w27p775",
+   "lat": 71.325,
+   "lon": -27.775,
+   "country": "Grönland",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "faustini_rim_a",
+     "name": "Faustini Rim A",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 142,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 9.672,
+    "slope_p90": 25.654,
+    "flat_share": 0.171,
+    "steep_share": 0.28,
+    "elev_min": 717.832,
+    "elev_max": 1707.544,
+    "sur_slope_p50": 9.754,
+    "sur_flat_share": 0.232,
+    "uniform": false
+   },
+   "image": "n71p325_w27p775.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n66p075_e140p475",
+   "lat": 66.075,
+   "lon": 140.475,
+   "country": "Russland",
+   "env": "raues_gebirge",
+   "matches": [
+    {
+     "target": "faustini_rim_a",
+     "name": "Faustini Rim A",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 13887,
+     "list": "best in Europe"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 18.114,
+    "slope_p90": 28.293,
+    "flat_share": 0.046,
+    "steep_share": 0.626,
+    "elev_min": 1348.812,
+    "elev_max": 2100.401,
+    "sur_slope_p50": 15.69,
+    "sur_flat_share": 0.208,
+    "uniform": false
+   },
+   "image": "n66p075_e140p475.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p475_e72p125",
+   "lat": 37.475,
+   "lon": 72.125,
+   "country": "Tadschikistan",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "faustini_rim_a",
+     "name": "Faustini Rim A",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 15779,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 13.445,
+    "slope_p90": 29.229,
+    "flat_share": 0.081,
+    "steep_share": 0.431,
+    "elev_min": 3907.133,
+    "elev_max": 4854.775,
+    "sur_slope_p50": 16.319,
+    "sur_flat_share": 0.069,
+    "uniform": false
+   },
+   "image": "n37p475_e72p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n78p875_w78p225",
+   "lat": 78.875,
+   "lon": -78.225,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "shackleton_crater",
+     "name": "Shackleton crater (PSR)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "shackleton_crater",
+     "name": "Shackleton crater (PSR)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "without China"
+    },
+    {
+     "target": "shackleton_crater",
+     "name": "Shackleton crater (PSR)",
+     "body": "Moon",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in North America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 27.277,
+    "slope_p90": 37.711,
+    "flat_share": 0.074,
+    "steep_share": 0.667,
+    "elev_min": 164.673,
+    "elev_max": 1764.053,
+    "sur_slope_p50": 13.713,
+    "sur_flat_share": 0.279,
+    "uniform": false
+   },
+   "image": "n78p875_w78p225.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n81p975_w79p625",
+   "lat": 81.975,
+   "lon": -79.625,
+   "country": "Kanada",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "shackleton_crater",
+     "name": "Shackleton crater (PSR)",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 2,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 30.12,
+    "slope_p90": 36.968,
+    "flat_share": 0.004,
+    "steep_share": 0.902,
+    "elev_min": 106.737,
+    "elev_max": 1180.649,
+    "sur_slope_p50": 14.57,
+    "sur_flat_share": 0.365,
+    "uniform": false
+   },
+   "image": "n81p975_w79p625.jpg",
+   "image_source": "MODIS Terra true colour 2023-07-15 (NASA GIBS)"
+  },
+  {
+   "id": "n71p425_w27p525",
+   "lat": 71.425,
+   "lon": -27.525,
+   "country": "Grönland",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "shackleton_crater",
+     "name": "Shackleton crater (PSR)",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 250,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 28.956,
+    "slope_p90": 37.735,
+    "flat_share": 0.026,
+    "steep_share": 0.815,
+    "elev_min": 177.046,
+    "elev_max": 1723.041,
+    "sur_slope_p50": 14.628,
+    "sur_flat_share": 0.19,
+    "uniform": false
+   },
+   "image": "n71p425_w27p525.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n64p275_e143p375",
+   "lat": 64.275,
+   "lon": 143.375,
+   "country": "Russland",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "shackleton_crater",
+     "name": "Shackleton crater (PSR)",
+     "body": "Moon",
+     "rank": 2,
+     "cell_rank": 5276,
+     "list": "best in Europe"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 26.815,
+    "slope_p90": 33.602,
+    "flat_share": 0.013,
+    "steep_share": 0.86,
+    "elev_min": 1217.94,
+    "elev_max": 2097.383,
+    "sur_slope_p50": 20.516,
+    "sur_flat_share": 0.073,
+    "uniform": false
+   },
+   "image": "n64p275_e143p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p625_e75p125",
+   "lat": 38.625,
+   "lon": 75.125,
+   "country": "Volksrepublik China",
+   "env": "kalte_polarwueste",
+   "matches": [
+    {
+     "target": "shackleton_crater",
+     "name": "Shackleton crater (PSR)",
+     "body": "Moon",
+     "rank": 3,
+     "cell_rank": 7364,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 31.408,
+    "slope_p90": 40.133,
+    "flat_share": 0.007,
+    "steep_share": 0.864,
+    "elev_min": 4580.211,
+    "elev_max": 7105.092,
+    "sur_slope_p50": 22.326,
+    "sur_flat_share": 0.073,
+    "uniform": false
+   },
+   "image": "n38p625_e75p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p675_e92p975",
+   "lat": 38.675,
+   "lon": 92.975,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "jezero_crater",
+     "name": "Jezero crater (Perseverance)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "jezero_crater",
+     "name": "Jezero crater (Perseverance)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.058,
+    "slope_p90": 0.25,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2729.81,
+    "elev_max": 2738.674,
+    "sur_slope_p50": 0.09,
+    "sur_flat_share": 0.984,
+    "uniform": true
+   },
+   "image": "n38p675_e92p975.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p175_e86p525",
+   "lat": 38.175,
+   "lon": 86.525,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "jezero_crater",
+     "name": "Jezero crater (Perseverance)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 2,
+     "list": "top 20"
+    },
+    {
+     "target": "mawrth_vallis",
+     "name": "Mawrth Vallis",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 7,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.175,
+    "slope_p90": 1.314,
+    "flat_share": 0.998,
+    "steep_share": 0.0,
+    "elev_min": 1384.275,
+    "elev_max": 1518.766,
+    "sur_slope_p50": 1.366,
+    "sur_flat_share": 0.865,
+    "uniform": true
+   },
+   "image": "n38p175_e86p525.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p075_e90p725",
+   "lat": 38.075,
+   "lon": 90.725,
+   "country": "Volksrepublik China",
+   "env": "aride_wueste",
+   "matches": [
+    {
+     "target": "jezero_crater",
+     "name": "Jezero crater (Perseverance)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 8,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.516,
+    "slope_p90": 1.217,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2854.0,
+    "elev_max": 2899.267,
+    "sur_slope_p50": 0.446,
+    "sur_flat_share": 1.0,
+    "uniform": true
+   },
+   "image": "n38p075_e90p725.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p475_e74p825",
+   "lat": 37.475,
+   "lon": 74.825,
+   "country": "Tadschikistan",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "jezero_crater",
+     "name": "Jezero crater (Perseverance)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 265,
+     "list": "without China"
+    },
+    {
+     "target": "ne_syrtis",
+     "name": "NE Syrtis",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 62,
+     "list": "without China"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.914,
+    "slope_p90": 6.766,
+    "flat_share": 0.822,
+    "steep_share": 0.005,
+    "elev_min": 3845.308,
+    "elev_max": 4104.491,
+    "sur_slope_p50": 10.59,
+    "sur_flat_share": 0.322,
+    "uniform": false
+   },
+   "image": "n37p475_e74p825.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n19p275_e18p675",
+   "lat": 19.275,
+   "lon": 18.675,
+   "country": "Tschad",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "jezero_crater",
+     "name": "Jezero crater (Perseverance)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 363,
+     "list": "best in Africa"
+    },
+    {
+     "target": "ne_syrtis",
+     "name": "NE Syrtis",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 1248,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.181,
+    "slope_p90": 3.457,
+    "flat_share": 0.955,
+    "steep_share": 0.0,
+    "elev_min": 446.678,
+    "elev_max": 532.418,
+    "sur_slope_p50": 1.728,
+    "sur_flat_share": 0.749,
+    "uniform": true
+   },
+   "image": "n19p275_e18p675.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s21p625_w67p825",
+   "lat": -21.625,
+   "lon": -67.825,
+   "country": "Bolivien",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "jezero_crater",
+     "name": "Jezero crater (Perseverance)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 488,
+     "list": "best in South America"
+    },
+    {
+     "target": "mawrth_vallis",
+     "name": "Mawrth Vallis",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 153,
+     "list": "without China"
+    },
+    {
+     "target": "mawrth_vallis",
+     "name": "Mawrth Vallis",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 153,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.101,
+    "slope_p90": 0.259,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 4434.5,
+    "elev_max": 4444.982,
+    "sur_slope_p50": 4.471,
+    "sur_flat_share": 0.534,
+    "uniform": false
+   },
+   "image": "s21p625_w67p825.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p425_e93p975",
+   "lat": 37.425,
+   "lon": 93.975,
+   "country": "Volksrepublik China",
+   "env": "aride_wueste",
+   "matches": [
+    {
+     "target": "gale_crater",
+     "name": "Gale crater (Curiosity)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "gale_crater",
+     "name": "Gale crater (Curiosity)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.05,
+    "slope_p90": 0.138,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2683.787,
+    "elev_max": 2686.868,
+    "sur_slope_p50": 0.058,
+    "sur_flat_share": 1.0,
+    "uniform": true
+   },
+   "image": "n37p425_e93p975.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n22p475_e15p475",
+   "lat": 22.475,
+   "lon": 15.475,
+   "country": "Tschad",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "gale_crater",
+     "name": "Gale crater (Curiosity)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 9,
+     "list": "top 20"
+    },
+    {
+     "target": "gale_crater",
+     "name": "Gale crater (Curiosity)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 9,
+     "list": "without China"
+    },
+    {
+     "target": "gale_crater",
+     "name": "Gale crater (Curiosity)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 9,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 3.837,
+    "slope_p90": 7.746,
+    "flat_share": 0.673,
+    "steep_share": 0.007,
+    "elev_min": 917.959,
+    "elev_max": 1065.458,
+    "sur_slope_p50": 1.53,
+    "sur_flat_share": 0.829,
+    "uniform": true
+   },
+   "image": "n22p475_e15p475.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n29p125_e33p525",
+   "lat": 29.125,
+   "lon": 33.525,
+   "country": "Ägypten",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "gale_crater",
+     "name": "Gale crater (Curiosity)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 10,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.352,
+    "slope_p90": 4.606,
+    "flat_share": 0.91,
+    "steep_share": 0.015,
+    "elev_min": 554.158,
+    "elev_max": 897.557,
+    "sur_slope_p50": 2.483,
+    "sur_flat_share": 0.702,
+    "uniform": true
+   },
+   "image": "n29p125_e33p525.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s20p375_w67p875",
+   "lat": -20.375,
+   "lon": -67.875,
+   "country": "Bolivien",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "gale_crater",
+     "name": "Gale crater (Curiosity)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 29,
+     "list": "best in South America"
+    },
+    {
+     "target": "utopia_planitia",
+     "name": "Utopia Planitia (Zhurong, CNSA)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 8,
+     "list": "top 20"
+    },
+    {
+     "target": "utopia_planitia",
+     "name": "Utopia Planitia (Zhurong, CNSA)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 8,
+     "list": "without China"
+    },
+    {
+     "target": "utopia_planitia",
+     "name": "Utopia Planitia (Zhurong, CNSA)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 8,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.0,
+    "slope_p90": 0.219,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 3653.5,
+    "elev_max": 3656.326,
+    "sur_slope_p50": 0.0,
+    "sur_flat_share": 0.892,
+    "uniform": true
+   },
+   "image": "s20p375_w67p875.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n36p475_e85p325",
+   "lat": 36.475,
+   "lon": 85.325,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "meridiani_planum",
+     "name": "Meridiani Planum (Opportunity)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "meridiani_planum",
+     "name": "Meridiani Planum (Opportunity)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.592,
+    "slope_p90": 2.807,
+    "flat_share": 0.974,
+    "steep_share": 0.0,
+    "elev_min": 4643.428,
+    "elev_max": 4738.027,
+    "sur_slope_p50": 2.318,
+    "sur_flat_share": 0.734,
+    "uniform": true
+   },
+   "image": "n36p475_e85p325.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p025_e80p725",
+   "lat": 35.025,
+   "lon": 80.725,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "meridiani_planum",
+     "name": "Meridiani Planum (Opportunity)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 2,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.544,
+    "slope_p90": 0.66,
+    "flat_share": 0.994,
+    "steep_share": 0.0,
+    "elev_min": 5069.129,
+    "elev_max": 5135.991,
+    "sur_slope_p50": 1.38,
+    "sur_flat_share": 0.686,
+    "uniform": false
+   },
+   "image": "n35p025_e80p725.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n40p225_e94p375",
+   "lat": 40.225,
+   "lon": 94.375,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "meridiani_planum",
+     "name": "Meridiani Planum (Opportunity)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 3,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.314,
+    "slope_p90": 0.435,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 1129.458,
+    "elev_max": 1161.032,
+    "sur_slope_p50": 0.361,
+    "sur_flat_share": 1.0,
+    "uniform": true
+   },
+   "image": "n40p225_e94p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p025_e74p375",
+   "lat": 38.025,
+   "lon": 74.375,
+   "country": "Tadschikistan",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "meridiani_planum",
+     "name": "Meridiani Planum (Opportunity)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 101,
+     "list": "without China"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.29,
+    "slope_p90": 1.168,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 3710.447,
+    "elev_max": 3769.447,
+    "sur_slope_p50": 1.613,
+    "sur_flat_share": 0.636,
+    "uniform": false
+   },
+   "image": "n38p025_e74p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n20p925_e18p475",
+   "lat": 20.925,
+   "lon": 18.475,
+   "country": "Tschad",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "meridiani_planum",
+     "name": "Meridiani Planum (Opportunity)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 172,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.634,
+    "slope_p90": 2.487,
+    "flat_share": 0.956,
+    "steep_share": 0.007,
+    "elev_min": 1868.409,
+    "elev_max": 1988.131,
+    "sur_slope_p50": 1.481,
+    "sur_flat_share": 0.797,
+    "uniform": true
+   },
+   "image": "n20p925_e18p475.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s22p275_w68p225",
+   "lat": -22.275,
+   "lon": -68.225,
+   "country": "Chile",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "meridiani_planum",
+     "name": "Meridiani Planum (Opportunity)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 357,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 3.859,
+    "slope_p90": 14.969,
+    "flat_share": 0.552,
+    "steep_share": 0.099,
+    "elev_min": 3072.363,
+    "elev_max": 3311.714,
+    "sur_slope_p50": 3.174,
+    "sur_flat_share": 0.673,
+    "uniform": true
+   },
+   "image": "s22p275_w68p225.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p875_e92p875",
+   "lat": 38.875,
+   "lon": 92.875,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "gusev",
+     "name": "Gusev / Columbia Hills (Spirit)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "gusev",
+     "name": "Gusev / Columbia Hills (Spirit)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.102,
+    "slope_p90": 0.286,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2728.156,
+    "elev_max": 2734.542,
+    "sur_slope_p50": 0.131,
+    "sur_flat_share": 0.982,
+    "uniform": true
+   },
+   "image": "n38p875_e92p875.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s20p475_w68p225",
+   "lat": -20.475,
+   "lon": -68.225,
+   "country": "Bolivien",
+   "env": "salzpfanne",
+   "matches": [
+    {
+     "target": "gusev",
+     "name": "Gusev / Columbia Hills (Spirit)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 28,
+     "list": "top 20"
+    },
+    {
+     "target": "gusev",
+     "name": "Gusev / Columbia Hills (Spirit)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 28,
+     "list": "without China"
+    },
+    {
+     "target": "gusev",
+     "name": "Gusev / Columbia Hills (Spirit)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 28,
+     "list": "best in South America"
+    },
+    {
+     "target": "elysium_planitia",
+     "name": "Elysium Planitia (InSight)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 6,
+     "list": "top 20"
+    },
+    {
+     "target": "elysium_planitia",
+     "name": "Elysium Planitia (InSight)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 6,
+     "list": "without China"
+    },
+    {
+     "target": "elysium_planitia",
+     "name": "Elysium Planitia (InSight)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 6,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.024,
+    "slope_p90": 0.125,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 3653.5,
+    "elev_max": 3655.597,
+    "sur_slope_p50": 0.068,
+    "sur_flat_share": 0.799,
+    "uniform": true
+   },
+   "image": "s20p475_w68p225.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n40p175_e90p475",
+   "lat": 40.175,
+   "lon": 90.475,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "gusev",
+     "name": "Gusev / Columbia Hills (Spirit)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 34,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.01,
+    "slope_p90": 0.019,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 785.39,
+    "elev_max": 785.72,
+    "sur_slope_p50": 0.012,
+    "sur_flat_share": 1.0,
+    "uniform": true
+   },
+   "image": "n40p175_e90p475.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n24p025_e15p725",
+   "lat": 24.025,
+   "lon": 15.725,
+   "country": "Libyen",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "gusev",
+     "name": "Gusev / Columbia Hills (Spirit)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 50,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.516,
+    "slope_p90": 2.108,
+    "flat_share": 0.974,
+    "steep_share": 0.01,
+    "elev_min": 609.184,
+    "elev_max": 746.61,
+    "sur_slope_p50": 0.696,
+    "sur_flat_share": 0.96,
+    "uniform": true
+   },
+   "image": "n24p025_e15p725.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p275_e92p425",
+   "lat": 38.275,
+   "lon": 92.425,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "elysium_planitia",
+     "name": "Elysium Planitia (InSight)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "elysium_planitia",
+     "name": "Elysium Planitia (InSight)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.291,
+    "slope_p90": 1.659,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2704.945,
+    "elev_max": 2767.156,
+    "sur_slope_p50": 0.276,
+    "sur_flat_share": 0.999,
+    "uniform": true
+   },
+   "image": "n38p275_e92p425.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n28p475_e33p525",
+   "lat": 28.475,
+   "lon": 33.525,
+   "country": "Ägypten",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "elysium_planitia",
+     "name": "Elysium Planitia (InSight)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 10,
+     "list": "top 20"
+    },
+    {
+     "target": "elysium_planitia",
+     "name": "Elysium Planitia (InSight)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 10,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.4,
+    "slope_p90": 0.974,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 60.441,
+    "elev_max": 113.538,
+    "sur_slope_p50": 1.17,
+    "sur_flat_share": 0.826,
+    "uniform": true
+   },
+   "image": "n28p475_e33p525.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p475_e83p675",
+   "lat": 35.475,
+   "lon": 83.675,
+   "country": "Volksrepublik China",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "phoenix_site",
+     "name": "Phoenix site (Vastitas Borealis)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "phoenix_site",
+     "name": "Phoenix site (Vastitas Borealis)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.722,
+    "slope_p90": 2.013,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 4797.954,
+    "elev_max": 4861.684,
+    "sur_slope_p50": 1.445,
+    "sur_flat_share": 0.95,
+    "uniform": true
+   },
+   "image": "n35p475_e83p675.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n34p775_e79p175",
+   "lat": 34.775,
+   "lon": 79.175,
+   "country": "Aksai Chin (umstritten; verwaltet: Volksrepublik China)",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "phoenix_site",
+     "name": "Phoenix site (Vastitas Borealis)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 17,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.349,
+    "slope_p90": 0.735,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 5225.422,
+    "elev_max": 5258.878,
+    "sur_slope_p50": 0.398,
+    "sur_flat_share": 0.856,
+    "uniform": true
+   },
+   "image": "n34p775_e79p175.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p325_e86p375",
+   "lat": 35.325,
+   "lon": 86.375,
+   "country": "Volksrepublik China",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "phoenix_site",
+     "name": "Phoenix site (Vastitas Borealis)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 29,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.226,
+    "slope_p90": 3.472,
+    "flat_share": 0.981,
+    "steep_share": 0.0,
+    "elev_min": 4872.943,
+    "elev_max": 4957.789,
+    "sur_slope_p50": 1.337,
+    "sur_flat_share": 0.93,
+    "uniform": true
+   },
+   "image": "n35p325_e86p375.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s22p325_w68p775",
+   "lat": -22.325,
+   "lon": -68.775,
+   "country": "Chile",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "phoenix_site",
+     "name": "Phoenix site (Vastitas Borealis)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 55,
+     "list": "without China"
+    },
+    {
+     "target": "phoenix_site",
+     "name": "Phoenix site (Vastitas Borealis)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 55,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.657,
+    "slope_p90": 1.722,
+    "flat_share": 0.999,
+    "steep_share": 0.0,
+    "elev_min": 2486.093,
+    "elev_max": 2557.321,
+    "sur_slope_p50": 1.157,
+    "sur_flat_share": 0.915,
+    "uniform": true
+   },
+   "image": "s22p325_w68p775.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s27p275_e16p325",
+   "lat": -27.275,
+   "lon": 16.325,
+   "country": "Namibia",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "phoenix_site",
+     "name": "Phoenix site (Vastitas Borealis)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 1231,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.536,
+    "slope_p90": 1.181,
+    "flat_share": 0.965,
+    "steep_share": 0.009,
+    "elev_min": 764.487,
+    "elev_max": 903.44,
+    "sur_slope_p50": 0.819,
+    "sur_flat_share": 0.864,
+    "uniform": true
+   },
+   "image": "s27p275_e16p325.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p275_e92p475",
+   "lat": 38.275,
+   "lon": 92.475,
+   "country": "Volksrepublik China",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "utopia_planitia",
+     "name": "Utopia Planitia (Zhurong, CNSA)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "utopia_planitia",
+     "name": "Utopia Planitia (Zhurong, CNSA)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.104,
+    "slope_p90": 0.224,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2703.804,
+    "elev_max": 2715.017,
+    "sur_slope_p50": 0.203,
+    "sur_flat_share": 0.998,
+    "uniform": true
+   },
+   "image": "n38p275_e92p475.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n22p625_e44p675",
+   "lat": 22.625,
+   "lon": 44.675,
+   "country": "Saudi-Arabien",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "utopia_planitia",
+     "name": "Utopia Planitia (Zhurong, CNSA)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 24,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.48,
+    "slope_p90": 1.619,
+    "flat_share": 0.969,
+    "steep_share": 0.001,
+    "elev_min": 896.758,
+    "elev_max": 1013.453,
+    "sur_slope_p50": 1.004,
+    "sur_flat_share": 0.733,
+    "uniform": true
+   },
+   "image": "n22p625_e44p675.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n18p925_e18p325",
+   "lat": 18.925,
+   "lon": 18.325,
+   "country": "Tschad",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "utopia_planitia",
+     "name": "Utopia Planitia (Zhurong, CNSA)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 52,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.936,
+    "slope_p90": 3.106,
+    "flat_share": 0.97,
+    "steep_share": 0.0,
+    "elev_min": 426.973,
+    "elev_max": 490.541,
+    "sur_slope_p50": 0.896,
+    "sur_flat_share": 0.975,
+    "uniform": true
+   },
+   "image": "n18p925_e18p325.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p125_e86p825",
+   "lat": 37.125,
+   "lon": 86.825,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "ne_syrtis",
+     "name": "NE Syrtis",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "ne_syrtis",
+     "name": "NE Syrtis",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.483,
+    "slope_p90": 0.907,
+    "flat_share": 0.955,
+    "steep_share": 0.001,
+    "elev_min": 4158.306,
+    "elev_max": 4239.017,
+    "sur_slope_p50": 0.81,
+    "sur_flat_share": 0.865,
+    "uniform": true
+   },
+   "image": "n37p125_e86p825.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p475_e89p125",
+   "lat": 37.475,
+   "lon": 89.125,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "ne_syrtis",
+     "name": "NE Syrtis",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 2,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.609,
+    "slope_p90": 0.905,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 3890.194,
+    "elev_max": 3968.042,
+    "sur_slope_p50": 0.719,
+    "sur_flat_share": 0.87,
+    "uniform": true
+   },
+   "image": "n37p475_e89p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p825_e93p225",
+   "lat": 37.825,
+   "lon": 93.225,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "ne_syrtis",
+     "name": "NE Syrtis",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 4,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.733,
+    "slope_p90": 1.834,
+    "flat_share": 0.999,
+    "steep_share": 0.0,
+    "elev_min": 2681.05,
+    "elev_max": 2711.447,
+    "sur_slope_p50": 0.155,
+    "sur_flat_share": 1.0,
+    "uniform": true
+   },
+   "image": "n37p825_e93p225.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s24p425_w69p125",
+   "lat": -24.425,
+   "lon": -69.125,
+   "country": "Chile",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "ne_syrtis",
+     "name": "NE Syrtis",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 1740,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.66,
+    "slope_p90": 2.621,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2920.0,
+    "elev_max": 3024.692,
+    "sur_slope_p50": 5.092,
+    "sur_flat_share": 0.489,
+    "uniform": false
+   },
+   "image": "s24p425_w69p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p975_e93p125",
+   "lat": 37.975,
+   "lon": 93.125,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "mawrth_vallis",
+     "name": "Mawrth Vallis",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "mawrth_vallis",
+     "name": "Mawrth Vallis",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.0,
+    "slope_p90": 0.067,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2682.0,
+    "elev_max": 2686.97,
+    "sur_slope_p50": 0.169,
+    "sur_flat_share": 0.999,
+    "uniform": true
+   },
+   "image": "n37p975_e93p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p275_e87p125",
+   "lat": 35.275,
+   "lon": 87.125,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "mawrth_vallis",
+     "name": "Mawrth Vallis",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 3,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.135,
+    "slope_p90": 2.294,
+    "flat_share": 0.999,
+    "steep_share": 0.0,
+    "elev_min": 4758.307,
+    "elev_max": 4882.617,
+    "sur_slope_p50": 1.448,
+    "sur_flat_share": 0.825,
+    "uniform": true
+   },
+   "image": "n35p275_e87p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n28p425_e33p625",
+   "lat": 28.425,
+   "lon": 33.625,
+   "country": "Ägypten",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "mawrth_vallis",
+     "name": "Mawrth Vallis",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 468,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.877,
+    "slope_p90": 1.108,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 66.293,
+    "elev_max": 160.55,
+    "sur_slope_p50": 1.063,
+    "sur_flat_share": 0.848,
+    "uniform": true
+   },
+   "image": "n28p425_e33p625.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n36p975_e88p425",
+   "lat": 36.975,
+   "lon": 88.425,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "eberswalde_crater",
+     "name": "Eberswalde crater (delta)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "eberswalde_crater",
+     "name": "Eberswalde crater (delta)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.037,
+    "slope_p90": 2.925,
+    "flat_share": 0.96,
+    "steep_share": 0.004,
+    "elev_min": 4258.0,
+    "elev_max": 4411.304,
+    "sur_slope_p50": 1.636,
+    "sur_flat_share": 0.709,
+    "uniform": false
+   },
+   "image": "n36p975_e88p425.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p525_e82p675",
+   "lat": 35.525,
+   "lon": 82.675,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "eberswalde_crater",
+     "name": "Eberswalde crater (delta)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 4,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.591,
+    "slope_p90": 3.384,
+    "flat_share": 0.964,
+    "steep_share": 0.0,
+    "elev_min": 5053.0,
+    "elev_max": 5213.0,
+    "sur_slope_p50": 3.273,
+    "sur_flat_share": 0.603,
+    "uniform": false
+   },
+   "image": "n35p525_e82p675.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n38p875_e93p775",
+   "lat": 38.875,
+   "lon": 93.775,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "eberswalde_crater",
+     "name": "Eberswalde crater (delta)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 5,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.571,
+    "slope_p90": 1.545,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2791.664,
+    "elev_max": 2846.47,
+    "sur_slope_p50": 1.985,
+    "sur_flat_share": 0.819,
+    "uniform": true
+   },
+   "image": "n38p875_e93p775.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n39p125_e73p475",
+   "lat": 39.125,
+   "lon": 73.475,
+   "country": "Tadschikistan",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "eberswalde_crater",
+     "name": "Eberswalde crater (delta)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 19,
+     "list": "without China"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.882,
+    "slope_p90": 3.089,
+    "flat_share": 0.928,
+    "steep_share": 0.003,
+    "elev_min": 3918.5,
+    "elev_max": 4006.97,
+    "sur_slope_p50": 1.082,
+    "sur_flat_share": 0.731,
+    "uniform": true
+   },
+   "image": "n39p125_e73p475.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n25p225_e34p575",
+   "lat": 25.225,
+   "lon": 34.575,
+   "country": "Ägypten",
+   "env": "dunkel_vulkanisch",
+   "matches": [
+    {
+     "target": "eberswalde_crater",
+     "name": "Eberswalde crater (delta)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 2762,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 5.307,
+    "slope_p90": 10.361,
+    "flat_share": 0.454,
+    "steep_share": 0.018,
+    "elev_min": 207.143,
+    "elev_max": 401.67,
+    "sur_slope_p50": 4.685,
+    "sur_flat_share": 0.536,
+    "uniform": true
+   },
+   "image": "n25p225_e34p575.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s23p525_w68p475",
+   "lat": -23.525,
+   "lon": -68.475,
+   "country": "Chile",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "eberswalde_crater",
+     "name": "Eberswalde crater (delta)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 5673,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.017,
+    "slope_p90": 0.036,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2301.256,
+    "elev_max": 2302.439,
+    "sur_slope_p50": 0.033,
+    "sur_flat_share": 0.968,
+    "uniform": true
+   },
+   "image": "s23p525_w68p475.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p175_e81p825",
+   "lat": 35.175,
+   "lon": 81.825,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "holden_crater",
+     "name": "Holden crater",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "holden_crater",
+     "name": "Holden crater",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 2.973,
+    "slope_p90": 8.175,
+    "flat_share": 0.683,
+    "steep_share": 0.008,
+    "elev_min": 5465.744,
+    "elev_max": 5740.479,
+    "sur_slope_p50": 6.097,
+    "sur_flat_share": 0.429,
+    "uniform": false
+   },
+   "image": "n35p175_e81p825.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p175_e88p425",
+   "lat": 37.175,
+   "lon": 88.425,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "holden_crater",
+     "name": "Holden crater",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 2,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 2.089,
+    "slope_p90": 2.779,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 4258.0,
+    "elev_max": 4447.916,
+    "sur_slope_p50": 1.231,
+    "sur_flat_share": 0.817,
+    "uniform": true
+   },
+   "image": "n37p175_e88p425.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n36p225_e86p125",
+   "lat": 36.225,
+   "lon": 86.125,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "holden_crater",
+     "name": "Holden crater",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 4,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 5.175,
+    "slope_p90": 9.984,
+    "flat_share": 0.484,
+    "steep_share": 0.003,
+    "elev_min": 5022.0,
+    "elev_max": 5233.363,
+    "sur_slope_p50": 3.21,
+    "sur_flat_share": 0.692,
+    "uniform": true
+   },
+   "image": "n36p225_e86p125.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n43p425_e96p625",
+   "lat": 43.425,
+   "lon": 96.625,
+   "country": "Mongolei",
+   "env": "aride_wueste",
+   "matches": [
+    {
+     "target": "holden_crater",
+     "name": "Holden crater",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 41,
+     "list": "without China"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 2.174,
+    "slope_p90": 2.789,
+    "flat_share": 0.998,
+    "steep_share": 0.0,
+    "elev_min": 1295.651,
+    "elev_max": 1560.743,
+    "sur_slope_p50": 1.948,
+    "sur_flat_share": 0.825,
+    "uniform": true
+   },
+   "image": "n43p425_e96p625.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n21p525_e19p025",
+   "lat": 21.525,
+   "lon": 19.025,
+   "country": "Tschad",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "holden_crater",
+     "name": "Holden crater",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 656,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 6.555,
+    "slope_p90": 11.812,
+    "flat_share": 0.328,
+    "steep_share": 0.036,
+    "elev_min": 989.554,
+    "elev_max": 1243.085,
+    "sur_slope_p50": 7.19,
+    "sur_flat_share": 0.313,
+    "uniform": true
+   },
+   "image": "n21p525_e19p025.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s22p775_w67p825",
+   "lat": -22.775,
+   "lon": -67.825,
+   "country": "Bolivien",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "holden_crater",
+     "name": "Holden crater",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 2321,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 2.743,
+    "slope_p90": 9.138,
+    "flat_share": 0.745,
+    "steep_share": 0.007,
+    "elev_min": 4320.0,
+    "elev_max": 4836.114,
+    "sur_slope_p50": 11.415,
+    "sur_flat_share": 0.263,
+    "uniform": false
+   },
+   "image": "s22p775_w67p825.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p975_e93p075",
+   "lat": 37.975,
+   "lon": 93.075,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "oxia_planum",
+     "name": "Oxia Planum (Rosalind Franklin, ESA)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "oxia_planum",
+     "name": "Oxia Planum (Rosalind Franklin, ESA)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.0,
+    "slope_p90": 0.222,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 2682.0,
+    "elev_max": 2690.777,
+    "sur_slope_p50": 0.237,
+    "sur_flat_share": 0.999,
+    "uniform": true
+   },
+   "image": "n37p975_e93p075.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n32p575_e82p325",
+   "lat": 32.575,
+   "lon": 82.325,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "oxia_planum",
+     "name": "Oxia Planum (Rosalind Franklin, ESA)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 18,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.0,
+    "slope_p90": 0.859,
+    "flat_share": 0.991,
+    "steep_share": 0.0,
+    "elev_min": 4345.0,
+    "elev_max": 4374.844,
+    "sur_slope_p50": 2.604,
+    "sur_flat_share": 0.695,
+    "uniform": false
+   },
+   "image": "n32p575_e82p325.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n37p925_e86p225",
+   "lat": 37.925,
+   "lon": 86.225,
+   "country": "Volksrepublik China",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "oxia_planum",
+     "name": "Oxia Planum (Rosalind Franklin, ESA)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 31,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.809,
+    "slope_p90": 2.723,
+    "flat_share": 0.996,
+    "steep_share": 0.0,
+    "elev_min": 1649.029,
+    "elev_max": 1856.317,
+    "sur_slope_p50": 2.619,
+    "sur_flat_share": 0.609,
+    "uniform": false
+   },
+   "image": "n37p925_e86p225.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s22p375_w68p775",
+   "lat": -22.375,
+   "lon": -68.775,
+   "country": "Chile",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "oxia_planum",
+     "name": "Oxia Planum (Rosalind Franklin, ESA)",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 57,
+     "list": "without China"
+    },
+    {
+     "target": "oxia_planum",
+     "name": "Oxia Planum (Rosalind Franklin, ESA)",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 57,
+     "list": "best in South America"
+    },
+    {
+     "target": "deuteronilus_mensae",
+     "name": "Deuteronilus Mensae",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 169,
+     "list": "without China"
+    },
+    {
+     "target": "deuteronilus_mensae",
+     "name": "Deuteronilus Mensae",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 169,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.227,
+    "slope_p90": 1.255,
+    "flat_share": 0.998,
+    "steep_share": 0.0,
+    "elev_min": 2461.5,
+    "elev_max": 2508.909,
+    "sur_slope_p50": 0.875,
+    "sur_flat_share": 0.947,
+    "uniform": true
+   },
+   "image": "s22p375_w68p775.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n28p425_e33p575",
+   "lat": 28.425,
+   "lon": 33.575,
+   "country": "Ägypten",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "oxia_planum",
+     "name": "Oxia Planum (Rosalind Franklin, ESA)",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 243,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.307,
+    "slope_p90": 0.543,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 52.424,
+    "elev_max": 90.19,
+    "sur_slope_p50": 1.013,
+    "sur_flat_share": 0.879,
+    "uniform": true
+   },
+   "image": "n28p425_e33p575.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p525_e85p175",
+   "lat": 35.525,
+   "lon": 85.175,
+   "country": "Volksrepublik China",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "arcadia_planitia",
+     "name": "Arcadia Planitia",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "arcadia_planitia",
+     "name": "Arcadia Planitia",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.963,
+    "slope_p90": 2.022,
+    "flat_share": 0.994,
+    "steep_share": 0.0,
+    "elev_min": 4845.874,
+    "elev_max": 4892.187,
+    "sur_slope_p50": 1.169,
+    "sur_flat_share": 0.971,
+    "uniform": true
+   },
+   "image": "n35p525_e85p175.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s18p825_w69p075",
+   "lat": -18.825,
+   "lon": -69.075,
+   "country": "Chile",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "arcadia_planitia",
+     "name": "Arcadia Planitia",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 2,
+     "list": "top 20"
+    },
+    {
+     "target": "arcadia_planitia",
+     "name": "Arcadia Planitia",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 2,
+     "list": "without China"
+    },
+    {
+     "target": "arcadia_planitia",
+     "name": "Arcadia Planitia",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 2,
+     "list": "best in South America"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.062,
+    "slope_p90": 0.194,
+    "flat_share": 0.988,
+    "steep_share": 0.001,
+    "elev_min": 4253.0,
+    "elev_max": 4320.964,
+    "sur_slope_p50": 3.958,
+    "sur_flat_share": 0.542,
+    "uniform": false
+   },
+   "image": "s18p825_w69p075.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "s26p925_w69p075",
+   "lat": -26.925,
+   "lon": -69.075,
+   "country": "Chile",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "arcadia_planitia",
+     "name": "Arcadia Planitia",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 7,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.026,
+    "slope_p90": 0.16,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 3749.0,
+    "elev_max": 3753.205,
+    "sur_slope_p50": 2.271,
+    "sur_flat_share": 0.714,
+    "uniform": false
+   },
+   "image": "s26p925_w69p075.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n24p225_e16p075",
+   "lat": 24.225,
+   "lon": 16.075,
+   "country": "Libyen",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "arcadia_planitia",
+     "name": "Arcadia Planitia",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 448,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.474,
+    "slope_p90": 0.936,
+    "flat_share": 1.0,
+    "steep_share": 0.0,
+    "elev_min": 633.167,
+    "elev_max": 668.797,
+    "sur_slope_p50": 0.477,
+    "sur_flat_share": 1.0,
+    "uniform": true
+   },
+   "image": "n24p225_e16p075.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p325_e84p925",
+   "lat": 35.325,
+   "lon": 84.925,
+   "country": "Volksrepublik China",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "deuteronilus_mensae",
+     "name": "Deuteronilus Mensae",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "top 20"
+    },
+    {
+     "target": "deuteronilus_mensae",
+     "name": "Deuteronilus Mensae",
+     "body": "Mars",
+     "rank": 1,
+     "cell_rank": 1,
+     "list": "best in Asia"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.387,
+    "slope_p90": 2.88,
+    "flat_share": 0.994,
+    "steep_share": 0.0,
+    "elev_min": 4916.396,
+    "elev_max": 4996.152,
+    "sur_slope_p50": 1.863,
+    "sur_flat_share": 0.88,
+    "uniform": true
+   },
+   "image": "n35p325_e84p925.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n34p975_e81p675",
+   "lat": 34.975,
+   "lon": 81.675,
+   "country": "Volksrepublik China",
+   "env": "duenenfeld",
+   "matches": [
+    {
+     "target": "deuteronilus_mensae",
+     "name": "Deuteronilus Mensae",
+     "body": "Mars",
+     "rank": 2,
+     "cell_rank": 10,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.209,
+    "slope_p90": 4.002,
+    "flat_share": 0.937,
+    "steep_share": 0.0,
+    "elev_min": 4913.5,
+    "elev_max": 4996.393,
+    "sur_slope_p50": 1.535,
+    "sur_flat_share": 0.858,
+    "uniform": true
+   },
+   "image": "n34p975_e81p675.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n35p925_e87p475",
+   "lat": 35.925,
+   "lon": 87.475,
+   "country": "Volksrepublik China",
+   "env": "hochplateau",
+   "matches": [
+    {
+     "target": "deuteronilus_mensae",
+     "name": "Deuteronilus Mensae",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 32,
+     "list": "top 20"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 1.938,
+    "slope_p90": 4.596,
+    "flat_share": 0.938,
+    "steep_share": 0.0,
+    "elev_min": 4814.252,
+    "elev_max": 4934.597,
+    "sur_slope_p50": 1.329,
+    "sur_flat_share": 0.92,
+    "uniform": true
+   },
+   "image": "n35p925_e87p475.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  },
+  {
+   "id": "n23p825_e15p825",
+   "lat": 23.825,
+   "lon": 15.825,
+   "country": "Libyen",
+   "env": "hyperarid",
+   "matches": [
+    {
+     "target": "deuteronilus_mensae",
+     "name": "Deuteronilus Mensae",
+     "body": "Mars",
+     "rank": 3,
+     "cell_rank": 2050,
+     "list": "best in Africa"
+    }
+   ],
+   "metrics": {
+    "slope_p50": 0.502,
+    "slope_p90": 3.409,
+    "flat_share": 0.936,
+    "steep_share": 0.02,
+    "elev_min": 600.49,
+    "elev_max": 731.861,
+    "sur_slope_p50": 0.692,
+    "sur_flat_share": 0.957,
+    "uniform": true
+   },
+   "image": "n23p825_e15p825.jpg",
+   "image_source": "Landsat WELD annual mosaic (NASA GIBS)"
+  }
+ ]
+}

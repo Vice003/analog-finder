@@ -430,4 +430,6 @@ if __name__ == "__main__":
     json.dump(dict(meta=meta, targets=results), open(out_dir / "top_sites.json", "w", encoding="utf-8"),
               indent=1, ensure_ascii=False)
     pd.DataFrame(rows).to_csv(out_dir / "top_sites.csv", index=False)
+    import augment_pool
+    augment_pool.main()
     print(f"\nErgebnisse: {out_dir / 'top_sites.json'}, {out_dir / 'top_sites.csv'}")
