@@ -55,11 +55,27 @@ def cont_summary(body):
             for x in t.get("by_continent", []):
                 ranks[x["continent"]].append(x["cell_rank"])
     rows = sorted(((statistics.median(v), c) for c, v in ranks.items()))
-    return ", ".join(f"{CONT_DE.get(c, c)} Platz {de(int(m))}" for m, c in rows)
+    parts = [f"in {CONT_DE.get(c, c)} auf Platz {de(int(m))}" for m, c in rows]
+    return ", ".join(parts[:-1]) + " und " + parts[-1]
 
 
 KNOWN = collections.Counter(x["known_analog"] for t in T.values() for x in t["top"] if x["known_analog"])
+CLS["Kein Analog (Vegetation, Wasser)"] = "Kahl, keine Klasse passt"
 cls = lambda s: CLS.get(s, s)
+GLOSSAR = "https://vice003.github.io/analog-finder/glossar.html"  # absolut: die Seite laeuft auch als Artifact
+
+
+def g(gid, label):
+    """Begriff mit Link auf seine Erklaerung im Glossar."""
+    return f'<a class="gl" href="{GLOSSAR}#{gid}" target="_blank" rel="noopener">{label}</a>'
+
+
+def cls_link(x):
+    return g("cls_" + x["env_class"], esc(cls(x["env_class_name"])))
+
+
+def flags_link(x):
+    return ", ".join(g("flag_" + f, esc(FLAG.get(f, f))) for f in x["flags"])
 
 
 def coord(la, lo):
@@ -83,7 +99,7 @@ for k in order:
     overview.append(
         f"<tr><td>{'Mars' if t['body'] == 'Mars' else 'Mond'}</td><td><b>{esc(t['name'])}</b>{q}"
         f"<div class='muted small'>{esc(t.get('category') or '')}</div></td>"
-        f"<td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])} · {esc(cls(s['env_class_name']))}</div></td>"
+        f"<td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])} · {cls_link(s)}</div></td>"
         f"<td class='n'>{rank(s)}</td>"
         f"<td>{'<span class=muted>gleich</span>' if sx is s or (sx['lat'], sx['lon']) == (s['lat'], s['lon']) else '<b>' + esc(sx.get('country') or '–') + '</b><div class=small>' + coord(sx['lat'], sx['lon']) + ' · ' + rank(sx) + '</div>'}</td>"
         f"<td>{DIM.get(s['best_dim'], s['best_dim'])}</td>"
@@ -94,10 +110,9 @@ for k in order:
     t = T[k]
     rows = []
     for s in t["top"][:10]:
-        fl = ", ".join(FLAG.get(f, f) for f in s["flags"])
         rows.append(
-            f"<tr><td class='n'>{s['rank']}</td><td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])}</div></td><td>{esc(cls(s['env_class_name']))}"
-            f"<div class='muted small'>{esc(fl)}</div></td><td class='n'>{rank(s)}</td>"
+            f"<tr><td class='n'>{s['rank']}</td><td><b>{esc(s.get('country') or '–')}</b><div class='small'>{coord(s['lat'], s['lon'])}</div></td><td>{cls_link(s)}"
+            f"<div class='muted small'>{flags_link(s)}</div></td><td class='n'>{rank(s)}</td>"
             f"<td class='n'>{s['coverage'] * 100:.0f} %</td><td>{DIM.get(s['best_dim'], s['best_dim'])}</td>"
             f"<td>{DIM.get(s['worst_dim'], s['worst_dim'])}</td><td>{chip(s['known_analog'])}</td></tr>")
     body = "Mars" if t["body"] == "Mars" else "Mond"
@@ -105,8 +120,8 @@ for k in order:
         f"<details><summary><span class='tag {t['body'].lower()}'>{body}</span> {esc(t['name'])}"
         f"<span class='muted'> · Ziel {t['center_lat']:.2f}°, {t['center_lon']:.2f}° O · Koordinaten {esc(t.get('coord_quality') or '')}"
         f" · {t['n_new_in_top']} von 20 neu</span></summary>"
-        f"<div class='table-wrap'><table><thead><tr><th class='n'>#</th><th>Erdort</th><th>Umgebung</th><th class='n'>Platz auf der Erde</th>"
-        f"<th class='n'>Abdeckung</th><th>passt</th><th>bricht</th><th></th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>"
+        f"<div class='table-wrap'><table><thead><tr><th class='n'>#</th><th>Erdort</th><th>{g('klasse', 'Umgebung')}</th><th class='n'>{g('platz', 'Platz auf der Erde')}</th>"
+        f"<th class='n'>{g('abdeckung', 'Abdeckung')}</th><th>{g('passt_bricht', 'passt')}</th><th>{g('passt_bricht', 'bricht')}</th><th>{g('bekannt', 'bekannt/neu')}</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>"
         f"</details>")
 
 page = f"""<title>Analog Finder Ergebnisse</title>
@@ -156,6 +171,8 @@ tr:last-child td {{ border-bottom:0; }} td.n, th.n {{ text-align:right; white-sp
 details {{ background:var(--surface); border:1px solid var(--line); border-radius:8px; margin:0 0 8px; }}
 summary {{ cursor:pointer; padding:11px 14px; font-weight:500; }}
 details .table-wrap {{ border:0; border-top:1px solid var(--line); border-radius:0 0 8px 8px; margin:0; }}
+a.gl {{ color:inherit; text-decoration:underline dotted; text-decoration-color:var(--muted); text-underline-offset:3px; }}
+a.gl:hover {{ color:var(--accent); text-decoration-color:var(--accent); }}
 .note {{ border-left:3px solid var(--accent); background:var(--surface); padding:12px 16px; border-radius:0 6px 6px 0; margin:0 0 10px; }}
 footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); font-size:13px; color:var(--muted); }}
 </style>
@@ -163,31 +180,31 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
 <header>
   <p class="eyebrow">NASA Space Apps 2026 · Analog Finder · Stand 15.11., 11 Uhr · volles Scoring 0,05°</p>
   <h1>Ergebnisse: Erd-Analoga für 27 Ziele</h1>
-  <p class="lede">Für jeden der 27 Landeplätze und Basis-Kandidaten auf Mond und Mars die 20 ähnlichsten Orte auf der Erde, gesucht in 8,9 Millionen Landzellen von etwa 5 km. Für jeden Ort steht dabei, was passt, wo die Analogie bricht und welchen Platz er unter allen Erdzellen belegt. <a href="https://vice003.github.io/analog-finder/">Zur interaktiven Web-App</a> (Englisch, mit Mars-/Mondkarte, China-Filter und Vergleich).</p>
+  <p class="lede">Für jeden der 27 Landeplätze und Basis-Kandidaten auf Mond und Mars die 20 ähnlichsten Orte auf der Erde, gesucht in 8,9 Millionen Landzellen von etwa 5 km. Für jeden Ort steht dabei, was passt, wo die Analogie bricht und welchen Platz er unter allen Erdzellen belegt. <a href="https://vice003.github.io/analog-finder/">Zur interaktiven Web-App</a> (Englisch, mit Mars-/Mondkarte, China-Filter und Vergleich). Gepunktet unterstrichene Begriffe führen zu ihrer Erklärung im <a href="https://vice003.github.io/analog-finder/glossar.html">Glossar</a>.</p>
 </header>
 
 <section>
   <h2>Das Wichtigste</h2>
   <div class="facts">
-    <div class="fact"><b>27</b><span>Ziele: {SM['n']} auf dem Mars, {SN['n']} am Mond-Südpol</span></div>
-    <div class="fact"><b>{mio(N_RANKED)}</b><span>bewertete Erdzellen je Ziel (von 8,9 Mio.; nur vegetationsfreies Land, ohne Wasser, Eisschilde und Datenlücken)</span></div>
-    <div class="fact"><b>{min(SM['new'][0], SN['new'][0])}–{max(SM['new'][1], SN['new'][1])} von 20</b><span>Treffer pro Ziel sind neue Orte, keine etablierten Analoga</span></div>
+    <div class="fact"><b>27</b><span>{g('ziel', 'Ziele')}: {SM['n']} auf dem Mars, {SN['n']} am Mond-Südpol</span></div>
+    <div class="fact"><b>{mio(N_RANKED)}</b><span>{g('bewertet', 'bewertete')} {g('zelle', 'Erdzellen')} je Ziel (von 8,9 Mio.; nur {g('vegetationsfrei', 'vegetationsfreies')} Land, ohne {g('masken', 'Wasser, Eisschilde')} und {g('mindestabdeckung', 'Datenlücken')})</span></div>
+    <div class="fact"><b>{min(SM['new'][0], SN['new'][0])}–{max(SM['new'][1], SN['new'][1])} von 20</b><span>Treffer pro Ziel sind {g('bekannt', 'neue Orte')}, keine etablierten Analoga</span></div>
   </div>
   <ul>
     <li><b>Mars → Hochasien.</b> {SM['cn']} der {SM['top']} Mars-Treffer liegen in China (mit Aksai Chin), vor allem im tibetischen Hochland, im Qaidam-Becken und am Rand der Taklamakan. Danach: {lst(collections.Counter({k: v for k, v in SM['c'].items() if 'China' not in k}), 6)}. Die 14 Mars-Ziele führen auf {SM['uniq']} verschiedene Erdorte.</li>
-    <li><b>Ohne China</b> (Schalter in der Web-App, zweite Liste je Ziel in <code>top_sites.json</code>): Die Mars-Treffer verteilen sich auf {lst(SM['cx'], 6)}. Der beste Ort außerhalb Chinas liegt je Mars-Ziel auf Zellplatz {SM['cost'][0]} bis {de(SM['cost'][-1])}. Bei den Mond-Zielen ändert der Filter praktisch nichts.</li>
-    <li><b>Bester Ort je Kontinent</b> (Ansicht „Best per continent“ in der Web-App; mittlerer Zellplatz über alle Ziele): Mars: {cont_summary("Mars")}. Mond: {cont_summary("Moon")}.</li>
+    <li><b>{g('ohne_china', 'Ohne China')}</b> (Schalter in der Web-App, zweite Liste je Ziel in <code>top_sites.json</code>): Die Mars-Treffer verteilen sich auf {lst(SM['cx'], 6)}. Der beste Ort außerhalb Chinas liegt je Mars-Ziel auf Zellplatz {SM['cost'][0]} bis {de(SM['cost'][-1])}. Bei den Mond-Zielen ändert der Filter praktisch nichts.</li>
+    <li><b>{g('kontinent', 'Bester Ort je Kontinent')}</b> (Ansicht „Best per continent“ in der Web-App): Für ein typisches Mars-Ziel liegt der beste Ort {cont_summary("Mars")} (von {de(N_RANKED)} {g('bewertet', 'bewerteten Zellen')}; Platz 1 = ähnlichste Zelle der Erde, siehe {g('platz', 'Zellplatz')}). Für ein typisches Mond-Ziel liegt er {cont_summary("Moon")}.</li>
     <li><b>Mond → arktische Polarwüsten.</b> Für die 13 Südpol-Ziele führen die Treffer in die kanadische Arktis und nach Nordgrönland: {lst(SN['c'], 4)} von {SN['top']} Treffern.</li>
     <li><b>Die Region bestimmen die Umweltbedingungen, den Ort das Gelände.</b> Niedriger Druck, Kälte und Trockenheit, die die Erde nie ganz erreicht, zeigen auf die extremsten Gegenden der Erde. Gelände und Untergrund entscheiden dann, welcher Ort darin am besten passt.</li>
-    <li><b>Positivkontrolle:</b> Etablierte Analoga tauchen in den Listen auf, ohne dass das Verfahren sie kennt: {lst(KNOWN, 5)} (Anzahl Treffer im jeweiligen Radius).</li>
+    <li><b>{g('positivkontrolle', 'Positivkontrolle')}:</b> Etablierte Analoga tauchen in den Listen auf, ohne dass das Verfahren sie kennt: {lst(KNOWN, 5)} (Anzahl Treffer im jeweiligen Radius).</li>
   </ul>
 </section>
 
 <section>
   <h2>Bester Treffer je Ziel</h2>
-  <p class="muted">„Platz“ ist der Rang unter allen bewerteten Erdzellen (1 = bester Treffer der Erde). Die Listen nehmen nur Orte mit mindestens 200 km Abstand, deshalb springen die Plätze. „passt“ und „bricht“ sind die stärkste und die schwächste Dimension des Erdorts. Die Koordinaten führen zu OpenStreetMap.</p>
+  <p class="muted">{g('platz', '„Platz“')} ist der Rang unter allen {g('bewertet', 'bewerteten Erdzellen')} (1 = bester Treffer der Erde). Die Listen nehmen nur Orte mit mindestens 200 km Abstand, deshalb springen die Plätze. „passt“ und „bricht“ sind die stärkste und die schwächste Dimension des Erdorts. Die Koordinaten führen zu OpenStreetMap.</p>
   <div class="table-wrap"><table>
-    <thead><tr><th>Körper</th><th>Ziel</th><th>Bester Erdort</th><th class="n">Platz</th><th>Bester ohne China</th><th>passt</th><th>bricht</th><th class="n">neu in Top 20</th></tr></thead>
+    <thead><tr><th>Körper</th><th>Ziel</th><th>Bester Erdort</th><th class="n">{g('platz', 'Platz')}</th><th>{g('ohne_china', 'Bester ohne China')}</th><th>{g('passt_bricht', 'passt')}</th><th>{g('passt_bricht', 'bricht')}</th><th class="n">neu in Top 20</th></tr></thead>
     <tbody>{''.join(overview)}</tbody>
   </table></div>
 </section>
@@ -205,9 +222,9 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
     <li><b>Zielwerte:</b> Gelände aus MOLA (Mars, 463 m) und LOLA (Mond, 100 m), auf Erde und Zielkörper mit demselben Code. Thermische Trägheit und Albedo Mars aus TES (Albedo über den Rang verglichen). Mondtemperatur und Eis aus Diviner. Druck, Temperatur und Eis auf dem Mars sind vorerst grobe Schätzwerte.</li>
     <li><b>Länder:</b> Natural Earth 1:50m (gemeinfrei), nur zur Beschriftung. Natural Earth zeichnet De-facto-Grenzen. Umstrittene Gebiete sind als solche gekennzeichnet, etwa Aksai Chin. Der China-Filter nimmt China mit Hongkong, Macau und den von China verwalteten Gebieten heraus, Taiwan nicht.</li>
     <li><b>Erde:</b> MODIS (Temperatur, Albedo, NDVI, Schnee), MERRA-2 (Staub, Stürme, Wind, Druck, Niederschlag) und Copernicus-Höhenmodell.</li>
-    <li><b>Nur vegetationsfreies Land:</b> Ins Ranking kommen nur Zellen mit NDVI-Jahresmaximum unter 0,15 oder MODIS-Klasse „barren“ ab 50 %. Vorher landete spärlich bewachsene Tundra unter den Mond-Treffern (89 von 260).</li>
-    <li><b>Mindestabdeckung:</b> Eine Erdzelle kommt nur ins Ranking, wenn sie mindestens 80 % des Gewichts der Dimensionen belegt, für die das Ziel Werte hat.</li>
-    <li><b>Vergleich:</b> Gleiche Größen werden Wert gegen Wert verglichen, verschiedene Instrumente über den Rang. Werte, die die Erde nie erreicht, zählen als „Richtung“. Jedes Merkmal ist nach Verlässlichkeit (A/B/C) gewichtet. Wasser, Eisschilde, Wald, Acker und Siedlung sind ausgeblendet.</li>
+    <li><b>Nur {g('vegetationsfrei', 'vegetationsfreies')} Land:</b> Ins Ranking kommen nur Zellen mit NDVI-Jahresmaximum unter 0,15 oder MODIS-Klasse „barren“ ab 50 %. Vorher landete spärlich bewachsene Tundra unter den Mond-Treffern (89 von 260).</li>
+    <li><b>{g('mindestabdeckung', 'Mindestabdeckung')}:</b> Eine Erdzelle kommt nur ins Ranking, wenn sie mindestens 80 % des Gewichts der Dimensionen belegt, für die das Ziel Werte hat.</li>
+    <li><b>Vergleich:</b> Gleiche Größen werden {g('methode_direkt', 'Wert gegen Wert')} verglichen, verschiedene Instrumente über den {g('methode_rang', 'Rang')}. Werte, die die Erde nie erreicht, zählen als {g('methode_richtung', '„Richtung“')}. Jedes {g('merkmal', 'Merkmal')} ist nach {g('verlaesslichkeit', 'Verlässlichkeit (A/B/C)')} {g('gewicht', 'gewichtet')}, jede {g('dimension', 'Dimension')} nach dem {g('profil', 'Profil')} des Ziels. {g('masken', 'Wasser, Eisschilde, Wald, Acker und Siedlung')} sind ausgeblendet.</li>
   </ul>
 </section>
 

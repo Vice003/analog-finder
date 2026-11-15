@@ -210,7 +210,7 @@ def main():
             er = x.get("env_reason") or {}
             er = {"rules": er} if isinstance(er, list) else er
             rule = lambda r: dict(t=r["text"], v=r["value"], u=r["unit"], ok=r["ok"])
-            sites.append(dict(lat=x["lat"], lon=x["lon"], c=name, iso=iso, ct=x.get("continent"), s=x["score"],
+            sites.append(dict(lat=x["lat"], lon=x["lon"], c=name, iso=iso, ct=x.get("continent"), ec=x["env_class"], fk=x["flags"], s=x["score"],
                               p=x["better_than_pct"], rk=x.get("cell_rank"), nr=x.get("n_ranked"), cov=x["coverage"], env=ENV_EN.get(x["env_class"], x["env_class"]),
                               fl=[FLAG_EN.get(f, f) for f in x["flags"]], b=DIM_EN.get(x["best_dim"], x["best_dim"]),
                               w=DIM_EN.get(x["worst_dim"], x["worst_dim"]), k=x["known_analog"],
@@ -227,14 +227,14 @@ def main():
         lists["cont"] = [add(x) for x in RT.get("by_continent", [])]
         for name in EXCLUDE:
             lists[f"cont_{name}"] = [add(x) for x in RT.get(f"by_continent_excl_{name}", [])]
-        fm = [dict(n=FEAT_EN.get(m["key"], m["key"]), dim=DIM_EN.get(m["dim"], m["dim"]), m=m["method"], tv=m["target"],
+        fm = [dict(k=m["key"], n=FEAT_EN.get(m["key"], m["key"]), dim=DIM_EN.get(m["dim"], m["dim"]), m=m["method"], tv=m["target"],
                    u=m.get("unit"), tp=m.get("body_percentile"), dir=m.get("direction"), w=round(m["weight"], 2),
                    rt=m["rel_target"], re=m["rel_earth"], eu=EARTH_UNIT.get(m["key"], m.get("unit"))) for m in RT.get("features_used", [])]
         feats = []
         for k, f in t["features"].items():
             if f.get("value") is None:
                 continue
-            feats.append(dict(n=FEAT_EN.get(k, k), v=f["value"], u=f.get("unit"), rel=f.get("reliability"),
+            feats.append(dict(k=k, n=FEAT_EN.get(k, k), v=f["value"], u=f.get("unit"), rel=f.get("reliability"),
                               src=f.get("source", ""), bp=f.get("body_percentile")))
         targets.append(dict(id=tid, name=t.get("name"), body=t.get("body"), cat=t.get("category"),
                             cq=t.get("coord_quality"), lat=t.get("center_lat"), lon=t.get("center_lon"),
@@ -246,7 +246,11 @@ def main():
     (mi, mw, mh), (ni, nw, nh) = mars_map(), moon_map()
     bodymaps = dict(Mars=dict(img=mi, w=mw, h=mh, cap="Mars · MOLA elevation, 0° E in the centre"),
                     Moon=dict(img=ni, w=nw, h=nh, cap=f"Moon · south pole to 82.4° S · LOLA elevation"))
-    data = dict(targets=targets, masks=masks, bodymaps=bodymaps, countries=countries_geojson(ROOT / "data" / "ref" / "ne_110m_admin_0_countries"),
+    from glossary import GROUPS as GL_GROUPS, entries as gl_entries
+    gl = gl_entries("en", base="https://vice003.github.io/analog-finder/glossary.html")
+    glossary = dict(groups=GL_GROUPS["en"], items={e["id"]: [e["title"], e["html"], e["group"]] for e in gl},
+                    order=[e["id"] for e in gl], page="https://vice003.github.io/analog-finder/glossary.html")
+    data = dict(targets=targets, masks=masks, bodymaps=bodymaps, glossary=glossary, countries=countries_geojson(ROOT / "data" / "ref" / "ne_110m_admin_0_countries"),
                 meta=dict(earth_cells=R["meta"]["earth_cells"], table=R["meta"]["earth_table"]))
     css = urllib.request.urlopen(f"https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/{MAPLIBRE}/maplibre-gl.css",
                                  timeout=30).read().decode()

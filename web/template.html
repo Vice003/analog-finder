@@ -160,6 +160,23 @@ dialog#bmap-dlg { width: min(94vw, 1000px); max-height: 94vh; overflow: auto; ba
 dialog#bmap-dlg::backdrop { background: rgba(0,0,0,.6); }
 .dlghd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-family: var(--f-display); font-size: 17px; }
 #bmap-dlg[data-body="Moon"] { width: min(94vw, 760px); }
+/* glossary */
+.qm { display:inline-grid; place-items:center; width:16px; height:16px; padding:0; margin-left:3px; border-radius:50%; border:1px solid var(--line);
+  background:var(--raise); color:var(--muted); font:600 10.5px var(--f-mono); line-height:1; cursor:help; vertical-align:middle; text-transform:none; letter-spacing:0; }
+.qm:hover, .qm:focus-visible { color:var(--fg); border-color:var(--accent, var(--mars)); }
+.maptools .qm { align-self:center; margin-left:-3px; background:color-mix(in srgb, var(--surface) 88%, transparent); }
+.seghelp { display:inline-flex; gap:2px; align-items:center; }
+a.gl, .gltxt { color:inherit; text-decoration:underline dotted; text-decoration-color:var(--muted); text-underline-offset:3px; cursor:help; }
+a.gl:hover, .gltxt:hover { color:var(--accent, var(--mars)); }
+.chip[data-g], .rel[data-g] { cursor:help; }
+dialog#gl-dlg { width:min(92vw, 620px); max-height:88vh; overflow:auto; background:var(--surface); color:var(--fg); border:1px solid var(--line); border-radius:10px; padding:14px 16px 16px; }
+dialog#gl-dlg::backdrop { background:rgba(0,0,0,.55); }
+.glbody { font-size:14.5px; line-height:1.6; }
+.glbody ul { padding-left:20px; margin:6px 0; } .gmeta { font-size:13px; color:var(--muted); }
+.gtw { overflow-x:auto; margin-top:8px; } table.gtab { font-size:12.5px; } table.gtab td, table.gtab th { padding:4px 7px; }
+.glall { padding:0 16px 16px; columns: 2 380px; column-gap: 28px; }
+.glall h3 { break-after: avoid; margin-top: 16px; } .glall .ge { break-inside: avoid; margin: 0 0 10px; font-size: 13.5px; }
+.glall .ge b { display:block; }
 /* explanation tables (site card, compare) */
 .xt { font-size: 12.5px; }
 .xt th, .xt td { padding: 5px 6px; }
@@ -214,7 +231,7 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
     </div>
     <div class="bmwrap">
       <div class="bmap" id="bmap"><img alt="" decoding="async"><svg aria-hidden="true"></svg><div class="bpins" role="group" aria-label="Target sites on the map"></div></div>
-      <div class="bmcap"><span class="small muted" id="bmap-cap"></span><button class="xbtn" type="button" id="bmap-open">Enlarge</button></div>
+      <div class="bmcap"><span class="small muted"><span id="bmap-cap"></span> <button class="qm" type="button" id="bmap-q" data-g="mola">?</button></span><button class="xbtn" type="button" id="bmap-open">Enlarge</button></div>
     </div>
     <ul class="tlist" id="tlist"></ul>
   </nav>
@@ -223,12 +240,12 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
     <section class="panel mapwrap" aria-label="Map of Earth analogs">
       <div id="map" role="region" aria-label="World map. The ranked list below holds the same sites as text."></div>
       <div class="maptools">
-        <label><input type="checkbox" id="opt-heat" checked> Similarity map</label>
-        <label><input type="checkbox" id="opt-new"> Only new sites</label>
-        <label id="lbl-china" title="Removes China, Hong Kong and Macau, including areas China administers (e.g. Aksai Chin), from the list and the map"><input type="checkbox" id="opt-china"> Exclude China</label>
+        <label><input type="checkbox" id="opt-heat" checked> Similarity map</label><button class="qm" type="button" data-g="heatmap">?</button>
+        <label><input type="checkbox" id="opt-new"> Only new sites</label><button class="qm" type="button" data-g="bekannt">?</button>
+        <label id="lbl-china" title="Removes China, Hong Kong and Macau, including areas China administers (e.g. Aksai Chin), from the list and the map"><input type="checkbox" id="opt-china"> Exclude China</label><button class="qm" type="button" data-g="ohne_china">?</button>
       </div>
-      <div class="legend" aria-hidden="true">
-        <div class="label">Match, rank among Earth's land</div>
+      <div class="legend">
+        <div class="label">Match, rank among Earth's land <button class="qm" type="button" data-g="heatmap">?</button></div>
         <div class="ramp" id="ramp"></div>
         <div class="ends"><span>top 35 %</span><span>top 5 %</span><span>best</span></div>
       </div>
@@ -236,11 +253,11 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
 
     <section class="panel">
       <div class="hd"><h2 id="list-title">Best Earth analogs</h2>
-        <div class="seg" role="group" aria-label="List view"><button type="button" id="view-top" aria-pressed="true">Top 20</button><button type="button" id="view-cont" aria-pressed="false">Best per continent</button></div></div>
+        <div class="seg" role="group" aria-label="List view"><button type="button" id="view-top" aria-pressed="true">Top 20</button><button type="button" id="view-cont" aria-pressed="false">Best per continent</button></div><span class="seghelp"><button class="qm" type="button" data-g="top20">?</button><button class="qm" type="button" data-g="kontinent">?</button></span></div>
       <p class="note" style="padding: 0 14px; margin-top: 0" id="view-note"></p>
       <p class="note" id="list-note" style="padding: 0 14px" hidden></p>
       <div class="tw"><table>
-        <thead><tr><th><span class="sr-only">Compare</span></th><th class="n">#</th><th>Country</th><th>Environment</th><th class="n" title="Place among all ranked Earth land cells (about 5 km each); 1 = best match on Earth">Rank on Earth</th><th>Strongest</th><th>Weakest</th><th></th></tr></thead>
+        <thead><tr><th><span class="sr-only">Compare</span></th><th class="n">#</th><th>Country</th><th>Environment <button class="qm" type="button" data-g="klasse">?</button></th><th class="n" title="Place among all ranked Earth land cells (about 5 km each); 1 = best match on Earth">Rank on Earth <button class="qm" type="button" data-g="platz">?</button></th><th>Strongest <button class="qm" type="button" data-g="passt_bricht">?</button></th><th>Weakest</th><th><button class="qm" type="button" data-g="bekannt">?</button></th></tr></thead>
         <tbody id="rows"></tbody>
       </table></div>
     </section>
@@ -248,9 +265,9 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
     <section class="panel" id="why" aria-live="polite">
       <div class="hd"><h2 id="why-title">Why this match</h2></div>
       <div class="bd whygrid">
-        <div><h3 style="margin-top:0">Feature by feature</h3><div class="tw" id="why-feat"></div>
+        <div><h3 style="margin-top:0">Feature by feature <button class="qm" type="button" data-g="teilnote">?</button></h3><div class="tw" id="why-feat"></div>
           <p class="note">Each dimension score is the weighted mean of its features; hover a match bar for its weight and reliability grades.</p></div>
-        <div><h3 style="margin-top:0">Why this environment class</h3><div id="why-class"></div></div>
+        <div><h3 style="margin-top:0">Why this environment class <button class="qm" type="button" data-g="klasse">?</button></h3><div id="why-class"></div></div>
       </div>
     </section>
 
@@ -273,6 +290,12 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
   <div class="dlghd"><b id="bmap-dlg-title"></b><button class="xbtn" type="button" id="bmap-close">Close</button></div>
   <div class="bmap big" id="bmap-big"><img alt="" decoding="async"><svg aria-hidden="true"></svg><div class="bpins" role="group" aria-label="Target sites on the map"></div></div>
   <p class="small muted" style="margin:8px 0 0">Click a site to select it. Sites that lie close together are pulled apart; the thin line points to the true position.</p>
+</dialog>
+
+<dialog id="gl-dlg" aria-labelledby="gl-title">
+  <div class="dlghd"><b id="gl-title"></b><button class="xbtn" type="button" id="gl-close">Close</button></div>
+  <div id="gl-body" class="glbody"></div>
+  <p class="small muted" style="margin:12px 0 0"><a id="gl-full" target="_blank" rel="noopener">Open in the full glossary</a> · underlined terms and ? buttons explain themselves</p>
 </dialog>
 
 <div class="about">
@@ -327,6 +350,7 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
     </div>
   </details>
 </div>
+<div class="about"><details id="gl-all"><summary>Glossary: what every term means</summary><div class="glall" id="gl-list"></div></details></div>
 <footer>NASA Space Apps Challenge 2026 · Analog Finder · Data: NASA (MODIS, MERRA-2, MOLA, TES, LOLA, Diviner), ESA (Copernicus DEM), Natural Earth.</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/{{MAPLIBRE}}/maplibre-gl.js"></script>
@@ -355,6 +379,21 @@ function fmtVal(v, u) {
   return fmt(v, d) + UNIT(u);
 }
 const pctTxt = (p) => `${fmt(p * 100, 0)} %`;
+const GL = D.glossary || { items: {}, groups: [], order: [], page: "" };
+const METHOD_G = { direct: "methode_direkt", quantile: "methode_rang", direction: "methode_richtung" };
+function qm(id) { const b = el("button", "qm", "?"); b.type = "button"; b.dataset.g = id; b.setAttribute("aria-label", `What is “${(GL.items[id] || [id])[0]}”?`); return b; }
+function gterm(id, text) { if (!GL.items[id]) return document.createTextNode(text); const a = el("a", "gl", text); a.href = `${GL.page}#${id}`; a.dataset.g = id; return a; }
+function lq(text, id) { const sp = el("span", null, text + " "); sp.appendChild(qm(id)); return sp; }
+function openGl(id) {
+  const it = GL.items[id]; if (!it) return;
+  $("#gl-title").textContent = it[0]; $("#gl-body").innerHTML = it[1];
+  $("#gl-full").href = `${GL.page}#${id}`;
+  const d = $("#gl-dlg"); if (!d.open) d.showModal(); d.scrollTop = 0;
+}
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("[data-g]"); if (!t || !GL.items[t.dataset.g]) return;
+  e.preventDefault(); e.stopPropagation(); openGl(t.dataset.g);
+}, true);
 const cellsTxt = (n) => n >= 1e6 ? `${fmt(n / 1e6, 1)} million` : fmt(n);
 const rankTxt = (s) => s.rk ? `#${fmt(s.rk)}` : `${fmt(s.p, 1)} %`;
 
@@ -487,10 +526,10 @@ function renderRows(t) {
     lab.appendChild(cb); tdc.appendChild(lab); tr.appendChild(tdc);
     tr.appendChild(el("td", "n mono", s.r));
     const tc = el("td"); tc.appendChild(el("div", null, (state.cont && s.ct ? s.ct + " · " : "") + (s.c || "–"))); tc.appendChild(el("div", "small muted mono", coordTxt(s.lat, s.lon))); tr.appendChild(tc);
-    tr.appendChild(el("td", null, s.env));
+    const te = el("td"); te.appendChild(gterm("cls_" + s.ec, s.env)); tr.appendChild(te);
     const tdr = el("td", "n"); tdr.appendChild(el("div", "mono", rankTxt(s))); if (s.nr) tdr.appendChild(el("div", "small muted", `of ${cellsTxt(s.nr)}`)); tr.appendChild(tdr);
     tr.appendChild(el("td", null, s.b)); tr.appendChild(el("td", null, s.w));
-    const tk = el("td"); tk.appendChild(el("span", "chip " + (s.k ? "known" : "new"), s.k ? "known analog" : "new")); tr.appendChild(tk);
+    const tk = el("td"); const ch = el("span", "chip " + (s.k ? "known" : "new"), s.k ? "known analog" : "new"); ch.dataset.g = "bekannt"; tk.appendChild(ch); tr.appendChild(tk);
     const go = () => select(s.i, true);
     tr.addEventListener("click", go); tr.addEventListener("keydown", (e) => { if (e.target === tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); go(); } });
     tb.appendChild(tr);
@@ -499,18 +538,18 @@ function renderRows(t) {
 }
 function renderTarget(t) {
   const c = $("#target-card"); c.textContent = "";
-  const hd = el("div", "hd"); const h = el("div"); h.appendChild(el("div", "label", `${t.body} target`)); h.appendChild(el("h2", null, t.name)); hd.appendChild(h); c.appendChild(hd);
+  const hd = el("div", "hd"); const h = el("div"); const lb = el("div", "label", `${t.body} target `); lb.appendChild(qm("ziel")); h.appendChild(lb); h.appendChild(el("h2", null, t.name)); hd.appendChild(h); c.appendChild(hd);
   const bd = el("div", "bd");
   const kv = el("dl", "kv");
   [["Type", t.cat], ["Site centre", `${fmt(t.lat, 2)}°, ${fmt(t.lon, 2)}° E`], ["Coordinates", t.cq === "verified" ? "verified" : (t.cq === "unverified" ? "unverified, approximate" : "approximate")]]
-    .forEach(([k, v]) => { kv.appendChild(el("dt", null, k)); kv.appendChild(el("dd", null, v)); });
+    .forEach(([k, v]) => { const dt = el("dt", null, k + " "); if (k === "Coordinates") dt.appendChild(qm("koordinaten")); kv.appendChild(dt); kv.appendChild(el("dd", null, v)); });
   bd.appendChild(kv);
-  bd.appendChild(el("h3", null, "What we know about the site"));
+  const h3k = el("h3", null, "What we know about the site "); h3k.appendChild(qm("merkmale")); bd.appendChild(h3k);
   const f = el("div", "feat");
   t.feats.forEach((x) => {
-    f.appendChild(el("span", null, x.n));
+    const fn = el("span"); fn.appendChild(gterm("feat_" + x.k, x.n)); f.appendChild(fn);
     f.appendChild(el("span", "v", fmtVal(x.v, x.u)));
-    const r = el("span", "rel " + (x.rel || "")); r.textContent = x.rel || "–"; r.title = x.src || ""; f.appendChild(r);
+    const r = el("span", "rel " + (x.rel || "")); r.textContent = x.rel || "–"; r.title = (x.src || "") + " · click: what the grade means"; r.dataset.g = "verlaesslichkeit"; f.appendChild(r);
   });
   bd.appendChild(f);
   bd.appendChild(el("p", "small muted", "Grade: A direct measurement, B coarse or proxy, C rough estimate. Hover a grade for its source."));
@@ -537,14 +576,14 @@ function featOrder(t) { return t.fm.map((m, k) => k).sort((a, b) => DIM_ORDER.in
 function whyMatch(t, s) {
   const tbl = el("table", "xt");
   const th = el("thead"); const hr = el("tr");
-  [["Feature", ""], ["Target", "n"], ["This site", "n"], ["Match", ""]].forEach(([x, c]) => hr.appendChild(el("th", c, x)));
+  [["Feature", "", "merkmal"], ["Target", "n", "ziel"], ["This site", "n", null], ["Match", "", "teilnote"]].forEach(([x, c, g]) => { const th = el("th", c, x + " "); if (g) th.appendChild(qm(g)); hr.appendChild(th); });
   th.appendChild(hr); tbl.appendChild(th);
   const tb = el("tbody"); let dim = null;
   featOrder(t).forEach((k) => {
     const m = t.fm[k], fv = s.fv[k] || [];
-    if (m.dim !== dim) { dim = m.dim; const r = el("tr", "dimrow"); const td = el("td", null, `${dim}${s.d[dim] != null ? " · " + fmt(s.d[dim], 2) : ""}`); td.colSpan = 4; r.appendChild(td); tb.appendChild(r); }
+    if (m.dim !== dim) { dim = m.dim; const r = el("tr", "dimrow"); const td = el("td", null, `${dim}${s.d[dim] != null ? " · " + fmt(s.d[dim], 2) : ""} `); td.appendChild(qm("dimension")); td.colSpan = 4; r.appendChild(td); tb.appendChild(r); }
     const tr = el("tr");
-    const n = el("td", null, m.n); n.appendChild(el("small", null, methodNote(m, fv))); tr.appendChild(n);
+    const n = el("td"); n.appendChild(gterm("feat_" + m.k, m.n)); const sm = el("small", "gltxt", methodNote(m, fv)); sm.dataset.g = METHOD_G[m.m]; n.appendChild(sm); tr.appendChild(n);
     tr.appendChild(el("td", "v", fmtVal(m.tv, m.u)));
     tr.appendChild(el("td", "v", fmtVal(fv[0], m.eu)));
     const mc = el("td", "mc"); mc.appendChild(mbar(fv[1])); mc.title = `Weight ${fmt(m.w, 2)} (target grade ${m.rt}, Earth grade ${m.re})`; tr.appendChild(mc);
@@ -567,7 +606,7 @@ function ruleList(rules) {
 function whyClass(s) {
   const box = el("div");
   box.appendChild(el("p", "note", "Classes are tested in a fixed order and the first one whose rules all hold wins. A line starting with ‘or’ is an alternative to the line above."));
-  box.appendChild(el("div", "small", `Rules for “${s.env}”, with this site's values:`));
+  const rh = el("div", "small", "Rules for “"); rh.appendChild(gterm("cls_" + s.ec, s.env)); rh.appendChild(document.createTextNode("”, with this site's values:")); box.appendChild(rh);
   box.appendChild(ruleList(s.er.rules));
   if (s.er.no && s.er.no.length) {
     const d = el("details", "more"); d.appendChild(el("summary", null, `Why not one of the ${s.er.no.length} classes tested before`));
@@ -587,14 +626,14 @@ function renderSite(t) {
   hd.appendChild(h); hd.appendChild(el("span", "chip " + (s.k ? "known" : "new"), s.k ? "known analog" : "new"));
   c.appendChild(hd);
   const bd = el("div", "bd");
-  bd.appendChild(el("div", null, s.env));
-  if (s.fl.length) bd.appendChild(el("div", "small muted", s.fl.join(" · ")));
+  const envd = el("div"); envd.appendChild(gterm("cls_" + s.ec, s.env)); bd.appendChild(envd);
+  if (s.fl.length) { const fld = el("div", "small muted"); s.fl.forEach((f, k) => { if (k) fld.appendChild(document.createTextNode(" · ")); fld.appendChild(gterm("flag_" + (s.fk || [])[k], f)); }); bd.appendChild(fld); }
   if (s.k) bd.appendChild(el("div", "small muted", `Within the radius of a known analog site: ${s.k}`));
   const st = el("div", "stats");
-  const a = el("div"); a.appendChild(el("span", "big", rankTxt(s))); a.appendChild(el("span", "small muted", s.nr ? `of ${cellsTxt(s.nr)} ranked Earth cells` : "rank on Earth")); st.appendChild(a);
-  const b2 = el("div"); b2.appendChild(el("span", "big", `${fmt(s.cov * 100, 0)} %`)); b2.appendChild(el("span", "small muted", "of the profile has data")); st.appendChild(b2);
+  const a = el("div"); a.appendChild(el("span", "big", rankTxt(s))); const al = el("span", "small muted", s.nr ? `of ${cellsTxt(s.nr)} ranked Earth cells ` : "rank on Earth "); al.appendChild(qm("platz")); a.appendChild(al); st.appendChild(a);
+  const b2 = el("div"); b2.appendChild(el("span", "big", `${fmt(s.cov * 100, 0)} %`)); const bl = el("span", "small muted", "of the profile has data "); bl.appendChild(qm("abdeckung")); b2.appendChild(bl); st.appendChild(b2);
   bd.appendChild(st);
-  bd.appendChild(el("h3", null, "Profile"));
+  const h3p = el("h3", null, "Profile "); h3p.appendChild(qm("dimension")); bd.appendChild(h3p);
   const bars = el("div", "bars");
   Object.entries(s.d).filter(([, v]) => v != null).sort((x, y) => y[1] - x[1]).forEach(([k, v]) => {
     const row = el("div", "bar" + (k === s.b ? " best" : k === s.w ? " worst" : ""));
@@ -633,16 +672,16 @@ function renderCompare(t) {
   const tb = el("tbody");
   const sec = (txt) => { const r = el("tr", "dimrow"); const td = el("td", null, txt); td.colSpan = 2 + S.length; r.appendChild(td); tb.appendChild(r); };
   const row = (label, target, cells, best) => {
-    const tr = el("tr"); tr.appendChild(el("td", null, label)); tr.appendChild(el("td", "v", target));
+    const tr = el("tr"); const td0 = el("td"); if (label instanceof Node) td0.appendChild(label); else td0.textContent = label; tr.appendChild(td0); tr.appendChild(el("td", "v", target));
     cells.forEach((c, k) => { const td = el("td", "v" + (best === k ? " top" : "")); if (c instanceof Node) td.appendChild(c); else td.textContent = c; tr.appendChild(td); });
     tb.appendChild(tr);
   };
   const argmax = (vals) => { let b = -1, bv = -Infinity; vals.forEach((v, k) => { if (v != null && v > bv) { bv = v; b = k; } }); return S.length > 1 ? b : -1; };
   sec("Overview");
-  row("Environment", "", S.map((s) => s.env));
-  row("Rank on Earth", "", S.map((s) => `${rankTxt(s)}${s.nr ? " of " + cellsTxt(s.nr) : ""}`), argmax(S.map((s) => s.rk ? -s.rk : null)));
-  row("Profile with data", "", S.map((s) => `${fmt(s.cov * 100, 0)} %`));
-  row("Known analog", "", S.map((s) => s.k || "new"));
+  row(lq("Environment", "klasse"), "", S.map((s) => gterm("cls_" + s.ec, s.env)));
+  row(lq("Rank on Earth", "platz"), "", S.map((s) => `${rankTxt(s)}${s.nr ? " of " + cellsTxt(s.nr) : ""}`), argmax(S.map((s) => s.rk ? -s.rk : null)));
+  row(lq("Profile with data", "abdeckung"), "", S.map((s) => `${fmt(s.cov * 100, 0)} %`));
+  row(lq("Known analog", "bekannt"), "", S.map((s) => s.k || "new"));
   sec("Dimension scores (1 = as close as Earth gets)");
   const dims = DIM_ORDER.filter((d) => S.some((s) => s.d[d] != null));
   dims.forEach((d) => row(d, "", S.map((s) => mbar(s.d[d])), argmax(S.map((s) => s.d[d]))));
@@ -651,7 +690,7 @@ function renderCompare(t) {
     const m = t.fm[k];
     if (m.dim !== dim) { dim = m.dim; sec(`${dim}: measured values`); }
     const cells = S.map((s) => { const fv = s.fv[k] || []; const w = el("div"); w.appendChild(el("div", null, fmtVal(fv[0], m.eu))); w.appendChild(mbar(fv[1])); return w; });
-    const lab = el("div", null, m.n); lab.appendChild(el("small", null, m.m === "direct" ? "value vs value" : m.m === "quantile" ? "rank vs rank" : "beyond Earth: closer is better"));
+    const lab = el("div"); lab.appendChild(gterm("feat_" + m.k, m.n)); lab.appendChild(el("small", null, m.m === "direct" ? "value vs value" : m.m === "quantile" ? "rank vs rank" : "beyond Earth: closer is better"));
     const tr = el("tr"); const td0 = el("td"); td0.appendChild(lab); tr.appendChild(td0); tr.appendChild(el("td", "v", fmtVal(m.tv, m.u)));
     const best = argmax(S.map((s) => (s.fv[k] || [])[1]));
     cells.forEach((c, j) => { const td = el("td", "v" + (best === j ? " top" : "")); td.appendChild(c); tr.appendChild(td); });
@@ -707,7 +746,7 @@ function drawBodyMap(root, big) {
     const lb = el("span", "blabel" + (pick[0] ? " " + pick[0] : ""), txt);
     lb.style.left = `${p.x}px`; lb.style.top = `${p.y}px`; pins.appendChild(lb);
   });
-  $("#bmap-cap").textContent = bm.cap;
+  $("#bmap-cap").textContent = bm.cap; $("#bmap-q").dataset.g = state.body === "Moon" ? "artemis" : "mola";
 }
 function pickTarget(id) { state.t = id; state.sel = null; state.cmp = []; location.hash = hashOf(id); render(true); }
 $("#bmap-open").addEventListener("click", () => {
@@ -716,6 +755,16 @@ $("#bmap-open").addEventListener("click", () => {
 });
 $("#bmap-close").addEventListener("click", () => $("#bmap-dlg").close());
 $("#bmap-dlg").addEventListener("click", (e) => { if (e.target.id === "bmap-dlg") e.target.close(); });
+$("#gl-close").addEventListener("click", () => $("#gl-dlg").close());
+$("#gl-dlg").addEventListener("click", (e) => { if (e.target.id === "gl-dlg") e.target.close(); });
+(function renderGlossary() {
+  const L = $("#gl-list"); if (!L || !GL.groups) return;
+  GL.groups.forEach((g) => {
+    const ids = GL.order.filter((id) => GL.items[id][2] === g); if (!ids.length) return;
+    L.appendChild(el("h3", null, g));
+    ids.forEach((id) => { const d = el("div", "ge"); d.id = "gl-" + id; d.appendChild(el("b", null, GL.items[id][0])); const x = el("div"); x.innerHTML = GL.items[id][1]; d.appendChild(x); L.appendChild(d); });
+  });
+})();
 if (window.ResizeObserver) new ResizeObserver(() => drawBodyMap($("#bmap"), false)).observe($("#bmap"));
 
 function select(i, fly) {
