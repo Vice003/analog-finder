@@ -4886,7 +4886,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau",
       "niedriger_druck"
      ],
@@ -9933,7 +9932,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau"
      ],
      "dims": {
@@ -13287,7 +13285,7 @@
    "center_lat": -86.9089,
    "center_lon": 333.4677,
    "mean_coverage": 0.879,
-   "n_new_in_top": 18,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -16775,7 +16773,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -22459,7 +22457,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -28200,7 +28198,7 @@
    "center_lat": -85.7626,
    "center_lon": 358.7697,
    "mean_coverage": 0.879,
-   "n_new_in_top": 19,
+   "n_new_in_top": 18,
    "top": [
     {
      "rank": 1,
@@ -28872,7 +28870,7 @@
      },
      "best_dim": "leben",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -34551,7 +34549,7 @@
      },
      "best_dim": "leben",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -48092,7 +48090,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau"
      ],
      "dims": {
@@ -52879,7 +52876,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau"
      ],
      "dims": {
@@ -56428,7 +56424,7 @@
    "center_lat": -84.0,
    "center_lon": 31.0,
    "mean_coverage": 0.564,
-   "n_new_in_top": 19,
+   "n_new_in_top": 18,
    "top": [
     {
      "rank": 1,
@@ -57020,7 +57016,7 @@
      },
      "best_dim": "leben",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -61383,7 +61379,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau",
       "niedriger_druck"
      ],
@@ -62125,7 +62120,7 @@
      },
      "best_dim": "leben",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -66488,7 +66483,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau",
       "niedriger_druck"
      ],
@@ -69741,7 +69735,7 @@
    "center_lat": -83.9262,
    "center_lon": 46.3187,
    "mean_coverage": 0.564,
-   "n_new_in_top": 19,
+   "n_new_in_top": 18,
    "top": [
     {
      "rank": 1,
@@ -69845,7 +69839,7 @@
      },
      "best_dim": "leben",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -74165,7 +74159,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau",
       "niedriger_druck"
      ],
@@ -74955,7 +74948,7 @@
      },
      "best_dim": "leben",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -79017,7 +79010,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau",
       "niedriger_druck"
      ],
@@ -80090,7 +80082,7 @@
      },
      "best_dim": "leben",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -81622,7 +81614,7 @@
      },
      "best_dim": "leben",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -83179,7 +83171,7 @@
    "center_lat": -88.2084,
    "center_lon": 293.5642,
    "mean_coverage": 0.879,
-   "n_new_in_top": 19,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -83283,7 +83275,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -87013,7 +87005,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "dunkle_oberflaeche",
       "polar"
@@ -89019,7 +89011,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -92749,7 +92741,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "dunkle_oberflaeche",
       "polar"
@@ -94755,7 +94747,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -96470,7 +96462,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -98236,7 +98228,7 @@
    "center_lat": -88.6575,
    "center_lon": 120.2686,
    "mean_coverage": 0.879,
-   "n_new_in_top": 19,
+   "n_new_in_top": 18,
    "top": [
     {
      "rank": 1,
@@ -102070,7 +102062,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "dunkle_oberflaeche",
       "polar"
@@ -107806,7 +107798,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "dunkle_oberflaeche",
       "polar"
@@ -113343,7 +113335,7 @@
    "center_lat": -89.2394,
    "center_lon": 213.1113,
    "mean_coverage": 0.879,
-   "n_new_in_top": 19,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -113447,7 +113439,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -117177,7 +117169,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "dunkle_oberflaeche",
       "polar"
@@ -119183,7 +119175,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -122913,7 +122905,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "dunkle_oberflaeche",
       "polar"
@@ -124919,7 +124911,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -126659,7 +126651,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -128450,7 +128442,7 @@
    "center_lat": -89.2948,
    "center_lon": 225.4547,
    "mean_coverage": 0.879,
-   "n_new_in_top": 19,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -128554,7 +128546,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -132248,7 +132240,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "dunkle_oberflaeche",
       "polar"
@@ -134254,7 +134246,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -137948,7 +137940,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "dunkle_oberflaeche",
       "polar"
@@ -139954,7 +139946,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -141695,7 +141687,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -163427,7 +163419,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "frost_tau",
       "niedriger_druck"
      ],
@@ -169645,7 +169636,6 @@
      "worst_dim": "beleuchtung",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "windstill",
       "niedriger_druck"
      ],
@@ -173597,7 +173587,7 @@
    "center_lat": -84.9,
    "center_lon": 324.5,
    "mean_coverage": 0.879,
-   "n_new_in_top": 18,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -177078,7 +177068,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -182708,7 +182698,7 @@
      },
      "best_dim": "beleuchtung",
      "worst_dim": "atmosphaere",
-     "known_analog": null,
+     "known_analog": "Borup Fiord Pass (Ellesmere)",
      "flags": [
       "polar"
      ],
@@ -193950,6 +193940,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -195539,6 +195530,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -196159,7 +196151,9 @@
      "best_dim": "gelaende",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.991,
       "oberflaeche": 0.939,
@@ -199623,6 +199617,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -199932,6 +199927,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich"
      ],
      "dims": {
@@ -201480,6 +201476,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -203397,6 +203394,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -205058,7 +205056,7 @@
    "center_lat": -4.5895,
    "center_lon": 137.4417,
    "mean_coverage": 0.792,
-   "n_new_in_top": 17,
+   "n_new_in_top": 16,
    "top": [
     {
      "rank": 1,
@@ -205505,7 +205503,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.947,
       "oberflaeche": 0.88,
@@ -206735,7 +206735,7 @@
      },
      "best_dim": "atmosphaere",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -210738,6 +210738,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -211048,7 +211049,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.974,
       "oberflaeche": 0.856,
@@ -211357,7 +211360,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.947,
       "oberflaeche": 0.88,
@@ -212276,7 +212281,7 @@
      },
      "best_dim": "atmosphaere",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -214456,7 +214461,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.974,
       "oberflaeche": 0.856,
@@ -215075,6 +215082,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -215384,6 +215392,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -216279,6 +216288,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -216589,6 +216599,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -217204,6 +217215,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -217846,7 +217858,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.947,
       "oberflaeche": 0.88,
@@ -218147,7 +218161,7 @@
      },
      "best_dim": "atmosphaere",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -218814,6 +218828,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -219455,7 +219470,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.947,
       "oberflaeche": 0.88,
@@ -220065,7 +220082,7 @@
      },
      "best_dim": "atmosphaere",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -220732,6 +220749,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -223104,6 +223122,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "frost_tau",
       "landefreundlich"
      ],
@@ -224693,6 +224712,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -231864,7 +231884,6 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -237981,7 +238000,7 @@
    "center_lat": -14.6,
    "center_lon": 175.5,
    "mean_coverage": 0.792,
-   "n_new_in_top": 18,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -238374,7 +238393,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -239924,6 +239943,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -240207,6 +240227,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -241447,6 +241468,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -243295,6 +243317,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -243627,6 +243650,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -243938,6 +243962,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -244216,7 +244241,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -245147,6 +245172,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -247311,6 +247337,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -247621,6 +247648,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -247930,6 +247958,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -248831,6 +248860,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -250628,7 +250658,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -250941,6 +250971,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -251598,6 +251629,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -252208,7 +252240,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -252830,6 +252862,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -253487,6 +253520,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -254180,7 +254214,7 @@
    "center_lat": 4.5,
    "center_lon": 135.6,
    "mean_coverage": 0.792,
-   "n_new_in_top": 18,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -254573,7 +254607,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -255478,6 +255512,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -255763,6 +255798,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -256329,6 +256365,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -257206,6 +257243,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -257800,6 +257838,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -260163,7 +260202,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -261068,6 +261107,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -261634,6 +261674,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -262820,6 +262861,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -264596,6 +264638,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -265184,6 +265227,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -265493,6 +265537,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -265772,6 +265817,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -266361,7 +266407,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -267236,6 +267282,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -267846,7 +267893,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -269030,6 +269077,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -269723,7 +269771,7 @@
    "center_lat": 68.2,
    "center_lon": 234.3,
    "mean_coverage": 0.908,
-   "n_new_in_top": 14,
+   "n_new_in_top": 13,
    "top": [
     {
      "rank": 1,
@@ -271805,7 +271853,7 @@
      },
      "best_dim": "atmosphaere",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -273843,6 +273891,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -276120,7 +276169,7 @@
      },
      "best_dim": "atmosphaere",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -278413,6 +278462,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -279262,6 +279312,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -285017,7 +285068,7 @@
    "center_lat": 25.1,
    "center_lon": 109.9,
    "mean_coverage": 0.792,
-   "n_new_in_top": 18,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -285410,7 +285461,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -286648,6 +286699,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -287912,6 +287964,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -288221,7 +288274,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.915,
       "oberflaeche": 0.947,
@@ -288503,6 +288558,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -291342,7 +291398,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -292915,6 +292971,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -293224,7 +293281,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.915,
       "oberflaeche": 0.947,
@@ -296939,6 +296998,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -297836,7 +297896,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -298149,6 +298209,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -299449,7 +299510,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -300071,6 +300132,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -304336,6 +304398,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "frost_tau"
      ],
      "dims": {
@@ -308870,6 +308933,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -309535,6 +309599,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -310465,7 +310530,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.976,
       "oberflaeche": 0.986,
@@ -314542,6 +314609,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -316465,6 +316533,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -319790,6 +319859,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "frost_tau",
       "landefreundlich"
      ],
@@ -326117,6 +326187,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -328301,7 +328372,9 @@
      "best_dim": "trockenheit",
      "worst_dim": "thermik",
      "known_analog": null,
-     "flags": [],
+     "flags": [
+      "staubquelle"
+     ],
      "dims": {
       "gelaende": 0.975,
       "oberflaeche": 0.89,
@@ -329867,6 +329940,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -338066,6 +338140,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "dunkle_oberflaeche"
@@ -339506,6 +339581,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "frost_tau",
       "dunkle_oberflaeche",
       "landefreundlich"
@@ -343582,7 +343658,6 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "dunkle_oberflaeche"
      ],
      "dims": {
@@ -351207,6 +351282,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "frost_tau",
       "landefreundlich"
      ],
@@ -357914,7 +357990,6 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
-      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -369714,6 +369789,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "frost_tau",
       "landefreundlich"
      ],
@@ -371658,6 +371734,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -372634,6 +372711,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -375484,6 +375562,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -376743,6 +376822,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -377045,7 +377125,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -377976,6 +378056,7 @@
      "worst_dim": "thermik",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -383414,7 +383495,7 @@
    "center_lat": 40.0,
    "center_lon": 200.0,
    "mean_coverage": 0.908,
-   "n_new_in_top": 18,
+   "n_new_in_top": 17,
    "top": [
     {
      "rank": 1,
@@ -384660,7 +384741,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -386696,6 +386777,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -387826,6 +387908,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "frost_tau",
       "landefreundlich"
@@ -388111,6 +388194,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -389829,7 +389913,7 @@
      },
      "best_dim": "gelaende",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -390682,6 +390766,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -392664,6 +392749,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -392947,6 +393033,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -393797,6 +393884,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -395519,6 +395607,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -396081,6 +396170,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -397287,6 +397377,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -397849,6 +397940,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -398542,7 +398634,7 @@
    "center_lat": 44.0,
    "center_lon": 22.0,
    "mean_coverage": 0.908,
-   "n_new_in_top": 16,
+   "n_new_in_top": 15,
    "top": [
     {
      "rank": 1,
@@ -401916,7 +402008,7 @@
      },
      "best_dim": "atmosphaere",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -403439,6 +403531,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -406107,7 +406200,7 @@
      },
      "best_dim": "atmosphaere",
      "worst_dim": "eis_wasser",
-     "known_analog": null,
+     "known_analog": "Salar de Uyuni / Sur Lipez",
      "flags": [
       "frost_tau",
       "niedriger_druck",
@@ -406726,6 +406819,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -407627,6 +407721,7 @@
      "worst_dim": "atmosphaere",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "windsturmreich",
       "landefreundlich"
      ],
@@ -408503,6 +408598,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "staubsturmreich",
       "landefreundlich"
      ],
@@ -409996,6 +410092,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -411183,6 +411280,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {
@@ -413030,6 +413128,7 @@
      "worst_dim": "eis_wasser",
      "known_analog": null,
      "flags": [
+      "staubquelle",
       "landefreundlich"
      ],
      "dims": {

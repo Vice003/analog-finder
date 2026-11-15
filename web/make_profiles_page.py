@@ -22,6 +22,19 @@ def g(gid, label):
     return f'<a class="gl" href="{GL}#{gid}">{label}</a>'
 
 
+def fine_cell(f):
+    """Terrain match of the box centred on the cell vs the best box nearby, with its position."""
+    if not f:
+        return "<td class='muted'>–</td>"
+    b, c = f["best"], f.get("centre")
+    cm = f"{c['match']:.2f}" if c else "–"
+    if c and b["match"] - c["match"] < 0.02:
+        return f"<td>{cm} at the cell (already the best {f['box_km']:g} km box)</td>"
+    osm = f"https://www.openstreetmap.org/?mlat={b['lat']}&mlon={b['lon']}#map=11/{b['lat']}/{b['lon']}"
+    return (f"<td>{cm} at the cell → <b>{b['match']:.2f}</b> {b['offset_km']:g} km {b['bearing']} "
+            f"(<a href='{osm}' target='_blank' rel='noopener'>{b['lat']:.3f}, {b['lon']:.3f}</a>)</td>")
+
+
 def verdict(m):
     if m["steep_share"] >= 0.25:
         return "Mixed terrain: a quarter or more of the cell is steeper than 15°, so the 5 km average hides cliffs or valley walls."
@@ -38,6 +51,8 @@ def main():
     from countries import CountryLookup
     P = json.load(open(HERE / "profiles" / "profiles.json", encoding="utf-8"))["sites"]
     RB = json.load(open(ROOT / "results" / "robustness.json", encoding="utf-8"))["targets"]
+    fsp = ROOT / "results" / "fine_search.json"
+    FS = json.load(open(fsp, encoding="utf-8"))["sites"] if fsp.exists() else {}
     cl = CountryLookup(lang="en")
     key = lambda a, b: f"{a:.3f},{b:.3f}"
     for s in P:
@@ -50,7 +65,8 @@ def main():
         rows = "".join(
             f"<tr><td>{esc(x['name'])}</td><td>{esc(x['list'])}</td><td class='n'>#{x['rank']}</td>"
             f"<td class='n'>{('{:,}'.format(x['cell_rank'])) if x.get('cell_rank') else '–'}</td>"
-            f"<td class='n'>{(str(round(RB.get(x['target'], {}).get(key(s['lat'], s['lon']), 0) * 100)) + ' %') if key(s['lat'], s['lon']) in RB.get(x['target'], {}) else '–'}</td></tr>"
+            f"<td class='n'>{(str(round(RB.get(x['target'], {}).get(key(s['lat'], s['lon']), 0) * 100)) + ' %') if key(s['lat'], s['lon']) in RB.get(x['target'], {}) else '–'}</td>"
+            f"{fine_cell(FS.get(s['id'], {}).get(x['target']))}</tr>"
             for x in sorted(s["matches"], key=lambda x: (x["cell_rank"] or 10 ** 9)))
         lat, lon = s["lat"], s["lon"]
         coords = f"{abs(lat):.3f}° {'N' if lat >= 0 else 'S'}, {abs(lon):.3f}° {'E' if lon >= 0 else 'W'}"
@@ -62,7 +78,7 @@ def main():
   <p class="verdict"><b>{esc(verdict(m))}</b></p>
   <p class="small">The 5 km cell (yellow box): median slope {m['slope_p50']:.1f}° (surroundings {m['sur_slope_p50'] if m['sur_slope_p50'] is None else round(m['sur_slope_p50'], 1)}°),
   {m['flat_share']:.0%} of the area below 5°, {m['steep_share']:.0%} steeper than 15°, elevation {m['elev_min']:.0f}–{m['elev_max']:.0f} m. Image: {esc(s['image_source'])}.</p>
-  <div class="tw"><table><thead><tr><th>Matches target</th><th>List</th><th class="n">Place in list</th><th class="n">{g('platz', 'Rank on Earth')}</th><th class="n">{g('robustheit', 'Robustness')}</th></tr></thead><tbody>{rows}</tbody></table></div>
+  <div class="tw"><table><thead><tr><th>Matches target</th><th>List</th><th class="n">Place in list</th><th class="n">{g('platz', 'Rank on Earth')}</th><th class="n">{g('robustheit', 'Robustness')}</th><th>{g('feinsuche', 'Fine search: terrain match')}</th></tr></thead><tbody>{rows}</tbody></table></div>
   <p class="links small"><a href="https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map=10/{lat}/{lon}" target="_blank" rel="noopener">OpenStreetMap</a> ·
   <a href="https://worldview.earthdata.nasa.gov/?v={lon - 0.5},{lat - 0.35},{lon + 0.5},{lat + 0.35}" target="_blank" rel="noopener">NASA Worldview</a></p>
 </section>""")
@@ -107,7 +123,7 @@ td.n, th.n {{ text-align:right; white-space:nowrap; }}
 <header>
   <p class="mono" style="color:var(--accent);margin:0 0 6px">NASA SPACE APPS 2026 · ANALOG FINDER</p>
   <h1>Site profiles</h1>
-  <p class="lede">A closer look at the best Earth analogs ({len(P)} sites): the top 3 of every target, the best site without China and the best three continent winners. Each profile shows a satellite image, the terrain at 90 m with the 5 km cell outlined, and the cell's slope distribution against its 20 km surroundings, so you can see whether the cell is uniform or whether its average mixes cliffs and plains. {g('robustheit', 'Robustness')} says how often the site stays in the top 20 when the weights change. <a href="./">Back to the web app</a> · <a href="{GL}#steckbrief">What is a site profile?</a></p>
+  <p class="lede">A closer look at the best Earth analogs ({len(P)} sites): the top 3 of every target, the best site without China and the best three continent winners. Each profile shows a satellite image, the terrain at 90 m with the 5 km cell outlined (yellow) and the best-matching box of the target's size nearby (cyan, from the {g('feinsuche', 'fine search')}), and the cell's slope distribution against its surroundings, so you can see whether the cell is uniform or whether its average mixes cliffs and plains. {g('robustheit', 'Robustness')} says how often the site stays in the top 20 when the weights change. <a href="./">Back to the web app</a> · <a href="{GL}#steckbrief">What is a site profile?</a></p>
   <nav>{nav}</nav>
 </header>
 {secs}

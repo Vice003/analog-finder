@@ -175,6 +175,7 @@ dialog#bmap-dlg::backdrop { background: rgba(0,0,0,.6); }
 .wrow .num { font:12px var(--f-mono); text-align:right; color:var(--muted); }
 .imp select { font:inherit; font-size:13px; border:1px solid var(--line); background:var(--raise); color:var(--fg); border-radius:7px; padding:3px 6px; margin-left:4px; }
 .note.custom { padding:6px 14px; margin:0 14px 8px; border-left:3px solid var(--rel-b); background:var(--raise); border-radius:0 6px 6px 0; }
+.fsline { margin: 8px 0 0; padding: 7px 9px; background: var(--raise); border-radius: 6px; }
 .rbtag { color: var(--rel-a); cursor: help; } .rbtag.low { color: var(--rel-b); }
 /* glossary */
 .qm { display:inline-grid; place-items:center; width:16px; height:16px; padding:0; margin-left:3px; border-radius:50%; border:1px solid var(--line);
@@ -276,6 +277,8 @@ footer { max-width: 1500px; margin: 16px auto 0; font-size: 12px; color: var(--m
       <p class="note" style="padding: 0 14px; margin-top: 0" id="view-note"></p>
       <div class="rankbar" id="rankbar" hidden>
         <details class="dd" id="dd-cls"><summary>Environment: <b id="cls-sum">all</b></summary><div class="ddbody" id="cls-list"></div></details>
+        <details class="dd" id="dd-flag" hidden><summary>Properties: <b id="flag-sum">any</b></summary><div class="ddbody" id="flag-list"></div></details>
+        <span class="small" id="robust-wrap" hidden><label><input type="checkbox" id="opt-robust"> Only robust sites (≥ 80 %)</label><button class="qm" type="button" data-g="robustheit">?</button></span>
         <label class="small imp">Most important <select id="imp"></select></label>
         <details class="dd" id="dd-w"><summary>Adjust weights</summary><div class="ddbody" id="w-list"></div></details>
         <button class="xbtn" id="rank-reset" type="button" hidden>Reset</button><button class="qm" type="button" data-g="eigene_gewichtung">?</button><button class="qm" type="button" data-g="klasse">?</button>
@@ -493,7 +496,7 @@ async function drawHeat(t) {
   const url = await heatUrl(t);
   if (t.id !== state.t) return;
   const coords = [[-180, MERC], [180, MERC], [180, -MERC], [-180, -MERC]];
-  if (map.getSource("heat")) map.getSource("heat").updateImage({ url, coordinates: coords });
+  if (map.getSource("heat")) { try { map.getSource("heat").updateImage({ url, coordinates: coords }); } catch (e) { /* superseded by a newer redraw */ } }
   else {
     map.addSource("heat", { type: "image", url, coordinates: coords });
     map.addLayer({ id: "heat", type: "raster", source: "heat", paint: { "raster-opacity": 0.9, "raster-resampling": "linear" } }, "borders");
@@ -523,7 +526,9 @@ const b64u8 = (str) => Uint8Array.from(atob(str), (c) => c.charCodeAt(0));
 function f16(h) { const sg = (h & 0x8000) ? -1 : 1, e = (h >> 10) & 0x1f, f = h & 0x3ff;
   if (e === 0) return sg * Math.pow(2, -14) * (f / 1024); if (e === 31) return f ? NaN : sg * Infinity; return sg * Math.pow(2, e - 15) * (1 + f / 1024); }
 const CN_ISO = new Set(["CHN", "HKG", "MAC"]);
-state.w = {}; state.exCls = new Set();
+state.w = {}; state.exCls = new Set(); state.flagReq = new Set(); state.onlyRobust = false;
+const ROBUST_MIN = 0.8;
+const isRobust = (rb) => rb != null && Math.round(rb * 100) >= ROBUST_MIN * 100;   // same rounding as the displayed "robust x %"
 const keyOf = (la, lo) => `${Number(la).toFixed(3)},${Number(lo).toFixed(3)}`;
 function poolOf(t) {
   if (!t.pool || !PM) return null; if (t._P) return t._P;
@@ -533,7 +538,13 @@ function poolOf(t) {
     rank: new Int32Array(b64u8(p.rank).buffer), cov: b64u8(p.cov), dims: b64u8(p.dims), conf: b64u8(p.conf), fs: b64u8(p.fs),
     fv: new Uint16Array(b64u8(p.fv).buffer), cls: b64u8(p.cls), cont: b64u8(p.cont), known: new Int16Array(b64u8(p.known).buffer),
     isoi: new Uint16Array(b64u8(p.isoi).buffer) };
+  P.flags = p.flags ? new Uint16Array(b64u8(p.flags).buffer) : null;
   P.map = new Map(t.sites.map((x, i) => [keyOf(x.lat, x.lon), i]));
+  // robustness per cell: the precomputed value of a list site (same computation, 3 decimals), else the pool value
+  P.rb = new Float64Array(P.n).fill(NaN);
+  if (p.rb) { const r8 = b64u8(p.rb); for (let j = 0; j < P.n; j++) {
+    const i = P.map.get(keyOf(P.lat[j], P.lon[j])), pre = i != null ? t.sites[i].rb : null;
+    P.rb[j] = pre != null ? pre : r8[j] === 255 ? NaN : Math.round(r8[j] / 254 * 1000) / 1000; } }
   P.site = new Int32Array(P.n).fill(-1);
   t._P = P; return P;
 }
@@ -545,9 +556,11 @@ function poolSite(t, P, j) {
     const fv = t.fm.map((m) => { const q = P.fkeys.indexOf(m.k); if (q < 0) return [null, null, null];
       const sc = P.fs[j * P.F + q], ev = f16(P.fv[j * P.F + q]); return [Number.isFinite(ev) ? ev : null, sc === 255 ? null : sc / 254, null]; });
     const kn = P.known[j];
+    const fk = P.flags ? PM.flags.filter((f, b) => (P.flags[j] >> b) & 1) : [];
     t.sites.push({ lat: +P.lat[j].toFixed(3), lon: +P.lon[j].toFixed(3), c: P.names[P.isoi[j]], iso: P.isos[P.isoi[j]],
-      ct: P.cont[j] < 255 ? PM.continents[P.cont[j]] : null, ec: PM.classIds[P.cls[j]], fk: [], s: P.total[j], p: null,
-      rk: P.rank[j], nr: P.nr, cov: P.cov[j] / 254, env: PM.classes[P.cls[j]], fl: [], b: null, w: null,
+      ct: P.cont[j] < 255 ? PM.continents[P.cont[j]] : null, ec: PM.classIds[P.cls[j]], fk, s: P.total[j], p: null,
+      rk: P.rank[j], nr: P.nr, cov: P.cov[j] / 254, env: PM.classes[P.cls[j]], fl: fk.map((f) => PM.flagLabels[PM.flags.indexOf(f)]), b: null, w: null,
+      rb: Number.isFinite(P.rb[j]) ? P.rb[j] : null,
       k: kn >= 0 ? PM.known[kn] : null, d, fv, er: { rules: [], no: [] }, pooled: true });
     i = t.sites.length - 1; P.map.set(k, i);
   }
@@ -555,7 +568,10 @@ function poolSite(t, P, j) {
 }
 const weightsOf = (t) => state.w[t.id] || t.w;
 const isCustomW = (t) => !!state.w[t.id] && PM && PM.dims.some((d) => (state.w[t.id][d] || 0) !== (t.w[d] || 0));
-const customMode = (t) => !!t.pool && !!PM && (isCustomW(t) || state.exCls.size > 0);
+const flagMask = () => (PM && PM.flags || []).reduce((m, f, b) => state.flagReq.has(f) ? m | (1 << b) : m, 0);
+const hasPoolFlags = (t) => !!(poolOf(t) && poolOf(t).flags);
+const filterActive = (t) => state.exCls.size > 0 || (hasPoolFlags(t) && state.flagReq.size > 0) || (!!t.pool && !!t.pool.rb && state.onlyRobust);
+const customMode = (t) => !!t.pool && !!PM && (isCustomW(t) || filterActive(t));
 function cellScore(P, j, W) {
   let num = 0, den = 0;
   PM.dims.forEach((d, q) => { const wd = W[d] || 0; if (!wd) return; const v = P.dims[j * 9 + q], c = P.conf[j * 9 + q];
@@ -572,11 +588,14 @@ function setBW(s, W) {
 let clCache = { key: null, list: null };
 function customList(t) {
   const P = poolOf(t), W = weightsOf(t);
-  const key = [t.id, JSON.stringify(W), [...state.exCls].sort().join(","), state.exChina, state.cont].join("|");
+  const fm = P.flags ? flagMask() : 0, rob = state.onlyRobust && !!t.pool.rb;
+  const key = [t.id, JSON.stringify(W), [...state.exCls].sort().join(","), fm, rob, state.exChina, state.cont].join("|");
   if (clCache.key === key) return clCache.list;
   const cand = [];
   for (let j = 0; j < P.n; j++) {
     if (state.exCls.has(PM.classIds[P.cls[j]])) continue;
+    if (fm && (P.flags[j] & fm) !== fm) continue;
+    if (rob && !isRobust(Number.isFinite(P.rb[j]) ? P.rb[j] : null)) continue;
     if (state.exChina && CN_ISO.has(P.isos[P.isoi[j]])) continue;
     const sc = cellScore(P, j, W); if (sc != null) cand.push([sc, j]);
   }
@@ -605,6 +624,22 @@ function renderRankbar(t) {
   L.appendChild(el("div", "small muted", "Number = candidate cells of this class for this target."));
   const nShown = PM.classIds.filter((c) => counts[c] && !state.exCls.has(c)).length, nAll = PM.classIds.filter((c) => counts[c]).length;
   $("#cls-sum").textContent = nShown === nAll ? "all" : `${nShown} of ${nAll}`;
+  // property filter (flags): show only cells with ALL ticked properties
+  const FL = $("#flag-list"); FL.textContent = "";
+  $("#dd-flag").hidden = !P.flags;
+  if (P.flags) {
+    const fc = PM.flags.map((f, b) => { let n = 0; for (let j = 0; j < P.n; j++) if ((P.flags[j] >> b) & 1) n++; return n; });
+    PM.flags.forEach((f, b) => {
+      const lab = el("label"); const cb = el("input"); cb.type = "checkbox"; cb.checked = state.flagReq.has(f); cb.disabled = !fc[b] && !cb.checked;
+      if (cb.disabled) lab.classList.add("muted");
+      cb.addEventListener("change", () => { if (cb.checked) state.flagReq.add(f); else state.flagReq.delete(f); rerank(); });
+      lab.appendChild(cb); lab.appendChild(gterm("flag_" + f, PM.flagLabels[b])); lab.appendChild(el("span", "cnt", String(fc[b]))); FL.appendChild(lab); });
+    const r3 = el("div", "row2"); const clr = el("button", "xbtn", "Clear"); clr.type = "button"; clr.addEventListener("click", () => { state.flagReq.clear(); rerank(); });
+    r3.appendChild(clr); FL.appendChild(r3);
+    FL.appendChild(el("div", "small muted", "Shows only sites with all ticked properties. Number = candidate cells with this property."));
+    $("#flag-sum").textContent = state.flagReq.size ? (state.flagReq.size === 1 ? PM.flagLabels[PM.flags.indexOf([...state.flagReq][0])] : `${state.flagReq.size} required`) : "any";
+  }
+  $("#robust-wrap").hidden = !t.pool.rb; $("#opt-robust").checked = state.onlyRobust;
   // weights
   const present = PM.dims.filter((d, q) => { for (let j = 0; j < P.n; j++) if (P.dims[j * 9 + q] !== 255) return true; return false; });
   const W = weightsOf(t), maxW = Math.max(...present.map((d) => t.w[d] || 0), 1);
@@ -627,20 +662,27 @@ function renderRankbar(t) {
   const cn = $("#custom-note");
   if (customMode(t)) {
     cn.hidden = false;
-    cn.textContent = (isCustomW(t) ? "Custom weights: " : "Filtered by environment class: ")
+    const fl = [];
+    if (state.exCls.size) fl.push("environment class");
+    if (hasPoolFlags(t) && state.flagReq.size) fl.push((state.flagReq.size > 1 ? "properties (" : "property (") + PM.flags.filter((f) => state.flagReq.has(f)).map((f) => PM.flagLabels[PM.flags.indexOf(f)]).join(" + ") + ")");
+    if (t.pool.rb && state.onlyRobust) fl.push(`robustness ≥ ${ROBUST_MIN * 100} %`);
+    const fls = fl.length > 1 ? fl.slice(0, -1).join(", ") + " and " + fl[fl.length - 1] : fl.join("");
+    cn.textContent = (isCustomW(t) ? (fl.length ? `Custom weights, filtered by ${fls}: ` : "Custom weights: ") : `Filtered by ${fls}: `)
       + `the list is recomputed in your browser from the ${fmt(P.n)} best candidate cells for this target (best overall, per dimension, per continent and per class).`
-      + (isCustomW(t) ? " Ranks on Earth exist only for the default weighting, so the list shows the custom score instead; the map keeps the default weighting." : " Ranks on Earth are unchanged.");
+      + (isCustomW(t) ? " Ranks on Earth exist only for the default weighting, so the list shows the custom score instead; the map keeps the default weighting." : " Ranks on Earth are unchanged.")
+      + (t.pool.rb && state.onlyRobust && isCustomW(t) ? " Robustness refers to the default weighting." : "");
   } else cn.hidden = true;
   $("#legend-note").hidden = !isCustomW(t);
 }
 function rerank(keepOpen) {
   const t = byId[state.t]; clCache.key = null; state.sel = null; state.cmp = [];
-  const openW = $("#dd-w").open, openC = $("#dd-cls").open;
+  const openW = $("#dd-w").open, openC = $("#dd-cls").open, openF = $("#dd-flag").open;
   render(true);
-  if (keepOpen || openW) $("#dd-w").open = openW; $("#dd-cls").open = openC;
+  if (keepOpen || openW) $("#dd-w").open = openW; $("#dd-cls").open = openC; $("#dd-flag").open = openF;
 }
-$("#rank-reset").addEventListener("click", () => { delete state.w[state.t]; state.exCls.clear(); rerank(); });
-document.addEventListener("click", (e) => { ["#dd-cls", "#dd-w"].forEach((id) => { const d = $(id); if (d && d.open && !d.contains(e.target)) d.open = false; }); });
+$("#rank-reset").addEventListener("click", () => { delete state.w[state.t]; state.exCls.clear(); state.flagReq.clear(); state.onlyRobust = false; rerank(); });
+$("#opt-robust").addEventListener("change", (e) => { state.onlyRobust = e.target.checked; rerank(); });
+document.addEventListener("click", (e) => { ["#dd-cls", "#dd-flag", "#dd-w"].forEach((id) => { const d = $(id); if (d && d.open && !d.contains(e.target)) d.open = false; }); });
 
 /* ---------- ranked list: rank = position in the active list (with or without China) */
 const activeList = (t) => customMode(t) ? customList(t) : state.cont ? ((state.exChina ? t.lists.cont_china : t.lists.cont) || []) : (state.exChina ? t.lists.china : t.lists.all);
@@ -696,7 +738,7 @@ function renderRows(t) {
     tr.addEventListener("click", go); tr.addEventListener("keydown", (e) => { if (e.target === tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); go(); } });
     tb.appendChild(tr);
   });
-  if (!tb.children.length) { const tr = el("tr"); const td = el("td", "muted", "All of the best matches for this target are known analog sites. Clear ‘Only new sites’ to see them."); td.colSpan = 8; tr.appendChild(td); tb.appendChild(tr); }
+  if (!tb.children.length) { const tr = el("tr"); const td = el("td", "muted", !activeList(t).length ? "No candidate cells match the selected filters. Untick a filter or press Reset." : "All of the best matches for this target are known analog sites. Clear ‘Only new sites’ to see them."); td.colSpan = 8; tr.appendChild(td); tb.appendChild(tr); }
 }
 function renderTarget(t) {
   const c = $("#target-card"); c.textContent = "";
@@ -827,6 +869,18 @@ function renderSite(t) {
   const osm = el("a", null, "OpenStreetMap"); osm.href = `https://www.openstreetmap.org/?mlat=${s.lat}&mlon=${s.lon}#map=9/${s.lat}/${s.lon}`; osm.target = "_blank"; osm.rel = "noopener";
   const wv = el("a", null, "NASA Worldview"); wv.href = `https://worldview.earthdata.nasa.gov/?v=${s.lon - 1},${s.lat - 0.7},${s.lon + 1},${s.lat + 0.7}`; wv.target = "_blank"; wv.rel = "noopener";
   ln.appendChild(osm); ln.appendChild(wv);
+  if (s.fsr) {
+    const [fl, fo, off, brg, mb, mc, bk] = s.fsr;
+    const fp = el("p", "small fsline");
+    fp.appendChild(gterm("feinsuche", "Fine search"));
+    if (mc != null && mb - mc < 0.02) fp.appendChild(document.createTextNode(`: the ${bk} km box around this cell is already the best nearby (terrain match ${fmt(mc, 2)}).`));
+    else {
+      fp.appendChild(document.createTextNode(`: the best ${bk} km box for this target lies ${fmt(off, 1)} km ${brg} at `));
+      const a = el("a", null, `${fmt(fl, 3)}, ${fmt(fo, 3)}`); a.href = `https://www.openstreetmap.org/?mlat=${fl}&mlon=${fo}#map=11/${fl}/${fo}`; a.target = "_blank"; a.rel = "noopener"; fp.appendChild(a);
+      fp.appendChild(document.createTextNode(`; terrain match ${fmt(mb, 2)} instead of ${mc != null ? fmt(mc, 2) : "–"} around the cell.`));
+    }
+    bd.appendChild(fp);
+  }
   if (s.pf && D.profiles) { const pfl = el("a", null, "Site profile: satellite image, 90 m terrain"); pfl.href = `${D.profiles}#${s.pf}`; pfl.target = "_blank"; pfl.rel = "noopener"; ln.insertBefore(pfl, osm); }
   bd.appendChild(ln);
   c.appendChild(bd);

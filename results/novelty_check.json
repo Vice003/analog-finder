@@ -1,0 +1,1743 @@
+{
+ "checked": "2026-11-15",
+ "method_note": "Regionen = 'neue' Treffer (known_analog null) aus top[:3], excl_china[:1], by_continent[:3] aller Ziele, raeumlich zu Regionen von ca. 150 km zusammengefasst (grosse Ketten auf dem Tibet-Plateau und in Nord-Ellesmere manuell geteilt). Websuche via WebSearch, Stand 2026-11-15. Quellen nur, wenn die URL in Suchergebnissen oder per Abruf gesehen wurde.",
+ "regions": [
+  {
+   "region": "Nordwest-Ellesmere: Otto Fiord / Borup Fiord Pass (Nunavut, Kanada)",
+   "body": "Moon",
+   "centre": [
+    81.56,
+    -83.54
+   ],
+   "sites": [
+    {
+     "target": "malapert_massif",
+     "lat": 81.025,
+     "lon": -84.375,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "mons_mouton",
+     "lat": 81.825,
+     "lon": -83.225,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "nobile_rim_1",
+     "lat": 81.825,
+     "lon": -83.025,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "nobile_rim_1",
+     "lat": 81.825,
+     "lon": -83.025,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "nobile_rim_1",
+     "lat": 81.825,
+     "lon": -83.025,
+     "list": "by_continent",
+     "rank": 1
+    }
+   ],
+   "status": "established",
+   "summary": "Borup Fiord Pass (ca. 81 N, 81 W; 50-110 km von den Treffern) ist ein mehrfach untersuchter Mars-/Europa-Analog (Schwefelquellen, Gossan-artige Fe-S-Strukturen im Permafrost; Grasby, Gleeson, Lau u. a.). Die Ice River Spring (ca. 81.2 N, 86.7 W) wird als Analog fuer marsartige Gullies beschrieben.",
+   "sources": [
+    {
+     "title": "Lau et al.: Sulfur- and Iron-Rich Mineralogical Features Preserved in Permafrost in the Canadian High Arctic: Analogs for the Astrobiological Exploration of Mars (Frontiers in Astronomy and Space Sciences)",
+     "url": "https://www.frontiersin.org/articles/10.3389/fspas.2022.825019/full",
+     "year": 2022
+    },
+    {
+     "title": "Planetary Society: Borup Fiord expedition (Europa/Mars analog)",
+     "url": "https://www.planetary.org/articles/borup_fiord",
+     "year": 2006
+    },
+    {
+     "title": "Grasby & Proemse: Mars-like gully formation by perenial discharge of high latitude (81 N) saline springs (Konferenzbeitrag)",
+     "url": "https://openpolar.no/Record/ftunivtasecite:oai:ecite.utas.edu.au:102581",
+     "year": 2012
+    }
+   ],
+   "searches": [
+    "Ellesmere Island Lake Hazen Ward Hunt Mars analog",
+    "northern Ellesmere Island Mars analogue permafrost astrobiology Quttinirpaaq",
+    "Sverdrup Pass Ellesmere Island planetary analogue",
+    "\"Mars-like gully formation\" saline springs 81 N Ellesmere"
+   ]
+  },
+  {
+   "region": "Nord-Ellesmere Ost: Grant Land / Lake Hazen / Quttinirpaaq-Nationalpark (Nunavut, Kanada)",
+   "body": "Moon",
+   "centre": [
+    81.65,
+    -74.91
+   ],
+   "sites": [
+    {
+     "target": "peak_near_cabeus_b",
+     "lat": 81.625,
+     "lon": -75.025,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "peak_near_cabeus_b",
+     "lat": 81.625,
+     "lon": -75.025,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "peak_near_cabeus_b",
+     "lat": 81.625,
+     "lon": -75.025,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "haworth",
+     "lat": 81.675,
+     "lon": -76.175,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "haworth",
+     "lat": 81.675,
+     "lon": -76.175,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "haworth",
+     "lat": 81.675,
+     "lon": -76.175,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "malapert_massif",
+     "lat": 82.625,
+     "lon": -76.325,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "malapert_massif",
+     "lat": 82.625,
+     "lon": -76.325,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "malapert_massif",
+     "lat": 82.625,
+     "lon": -76.325,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "mons_mouton_plateau",
+     "lat": 81.375,
+     "lon": -71.625,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "mons_mouton_plateau",
+     "lat": 81.375,
+     "lon": -71.625,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "mons_mouton_plateau",
+     "lat": 81.375,
+     "lon": -71.625,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "mons_mouton",
+     "lat": 81.375,
+     "lon": -70.325,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "mons_mouton",
+     "lat": 81.375,
+     "lon": -70.325,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "mons_mouton",
+     "lat": 81.375,
+     "lon": -70.325,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "nobile_rim_1",
+     "lat": 81.375,
+     "lon": -69.825,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "slater_plain",
+     "lat": 81.325,
+     "lon": -75.525,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "slater_plain",
+     "lat": 81.325,
+     "lon": -75.525,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "slater_plain",
+     "lat": 81.325,
+     "lon": -75.525,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "peak_near_shackleton",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "peak_near_shackleton",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "peak_near_shackleton",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "connecting_ridge",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "connecting_ridge",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "connecting_ridge",
+     "lat": 81.325,
+     "lon": -75.575,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "faustini_rim_a",
+     "lat": 81.825,
+     "lon": -79.025,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "faustini_rim_a",
+     "lat": 81.825,
+     "lon": -79.025,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "faustini_rim_a",
+     "lat": 81.825,
+     "lon": -79.025,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "shackleton_crater",
+     "lat": 81.975,
+     "lon": -79.625,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "cabeus",
+     "lat": 81.675,
+     "lon": -76.175,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "cabeus",
+     "lat": 81.675,
+     "lon": -76.175,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "cabeus",
+     "lat": 81.675,
+     "lon": -76.175,
+     "list": "by_continent",
+     "rank": 1
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie zu Lake Hazen / Grant Land gefunden. Auf Ward Hunt Island (ca. 60 km noerdlich des Punktes 82.62/-76.33) gibt es astrobiologisch relevante Limnologie (Vincent), in den gesehenen Quellen aber nur mit beilaeufigem Mars-Bezug; die etablierten Ellesmere-Analoga (Borup Fiord, Eureka) liegen 150-250 km westlich.",
+   "sources": [
+    {
+     "title": "Canadian Geographic: Ice-sealed lakes in Canada's highest Arctic are ancient living laboratories (Kontext, Ward Hunt Lake, nur beilaeufiger Mars-Bezug)",
+     "url": "https://canadiangeographic.ca/articles/ice-sealed-lakes-in-canadas-highest-arctic-are-ancient-living-laboratories/",
+     "year": null
+    },
+    {
+     "title": "Parks Canada: Northern Ellesmere Island in the global environment (W. Vincent; Kontext, keine Analogstudie)",
+     "url": "https://pc.gc.ca/pn-np/nu/quttinirpaaq/nature/conservation/recherche-research/vincent",
+     "year": null
+    }
+   ],
+   "searches": [
+    "Ellesmere Island Lake Hazen Ward Hunt Mars analog",
+    "northern Ellesmere Island Mars analogue permafrost astrobiology Quttinirpaaq",
+    "\"Lake Hazen\" Mars analog OR astrobiology"
+   ]
+  },
+  {
+   "region": "Zentral-Ost-Ellesmere: Sverdrup Pass / Bache-Halbinsel (Nunavut, Kanada)",
+   "body": "Moon",
+   "centre": [
+    79.08,
+    -78.41
+   ],
+   "sites": [
+    {
+     "target": "peak_near_cabeus_b",
+     "lat": 79.125,
+     "lon": -77.825,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "haworth",
+     "lat": 79.175,
+     "lon": -78.375,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "malapert_massif",
+     "lat": 79.025,
+     "lon": -78.175,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "mons_mouton_plateau",
+     "lat": 79.125,
+     "lon": -77.825,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "mons_mouton",
+     "lat": 79.025,
+     "lon": -78.375,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "nobile_rim_1",
+     "lat": 79.025,
+     "lon": -78.375,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "lat": 79.125,
+     "lon": -79.625,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "slater_plain",
+     "lat": 79.125,
+     "lon": -79.625,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "peak_near_shackleton",
+     "lat": 79.125,
+     "lon": -79.625,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "connecting_ridge",
+     "lat": 79.025,
+     "lon": -78.375,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "faustini_rim_a",
+     "lat": 79.225,
+     "lon": -78.275,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "shackleton_crater",
+     "lat": 78.875,
+     "lon": -78.225,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "shackleton_crater",
+     "lat": 78.875,
+     "lon": -78.225,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "shackleton_crater",
+     "lat": 78.875,
+     "lon": -78.225,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "cabeus",
+     "lat": 79.175,
+     "lon": -78.375,
+     "list": "top",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Fuer Sverdrup Pass selbst keine Analog-Nutzung gefunden. In ca. 170-200 km Entfernung liegt Eureka (79.98 N, 85.9 W), wo NASA Ames 2004-2006 einen Mars-Permafrostbohrer getestet hat; Axel Heiberg (bekannte Liste) liegt ca. 250 km westlich.",
+   "sources": [
+    {
+     "title": "NASA: Haughton-Mars Project (HMP), Canadian Arctic - u. a. Bohrtests bei Eureka, Ellesmere (Nachbarort, nicht der Treffer)",
+     "url": "https://www.nasa.gov/mission/haughton-mars-project-hmp-canadian-arctic",
+     "year": null
+    },
+    {
+     "title": "Wikipedia: Sverdrup Pass (Kontext, kein Analogbezug)",
+     "url": "https://en.wikipedia.org/wiki/Sverdrup_Pass",
+     "year": null
+    }
+   ],
+   "searches": [
+    "Sverdrup Pass Ellesmere Island planetary analogue",
+    "Eureka Ellesmere Island NASA Mars analog drill permafrost"
+   ]
+  },
+  {
+   "region": "Ostgroenland: inneres Scoresby Sund (Renland / Nordvestfjord)",
+   "body": "Moon",
+   "centre": [
+    71.47,
+    -27.66
+   ],
+   "sites": [
+    {
+     "target": "mons_mouton_plateau",
+     "lat": 71.675,
+     "lon": -27.675,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "faustini_rim_a",
+     "lat": 71.325,
+     "lon": -27.775,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "shackleton_crater",
+     "lat": 71.425,
+     "lon": -27.525,
+     "list": "top",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie fuer Scoresby Sund / Renland gefunden; Groenland-Analogarbeiten in den Suchergebnissen betreffen Kangerlussuaq (Westgroenland, Periglazial-Landformen), also einen anderen Ort.",
+   "sources": [
+    {
+     "title": "NASA Astrobiology: Life in the extreme cold deserts (Kontext: eisfreie Raender Groenlands als Polarwueste; nicht Scoresby Sund)",
+     "url": "https://astrobiology.nasa.gov/news/life-in-the-extreme-cold-deserts/",
+     "year": null
+    }
+   ],
+   "searches": [
+    "East Greenland Scoresby Sund Mars analog",
+    "Greenland Mars analog field site astrobiology ice-free polar desert",
+    "Scoresby Sund OR \"Jameson Land\" OR Renland planetary analogue OR \"Mars-like\" research"
+   ]
+  },
+  {
+   "region": "Aksai Chin / West-Kunlun (Grenzgebiet Ngari-Hotan)",
+   "body": "Mars",
+   "centre": [
+    35.09,
+    81.21
+   ],
+   "sites": [
+    {
+     "target": "meridiani_planum",
+     "lat": 35.025,
+     "lon": 80.725,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "phoenix_site",
+     "lat": 34.775,
+     "lon": 79.175,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "eberswalde_crater",
+     "lat": 35.525,
+     "lon": 82.675,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "holden_crater",
+     "lat": 35.175,
+     "lon": 81.825,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "holden_crater",
+     "lat": 35.175,
+     "lon": 81.825,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "deuteronilus_mensae",
+     "lat": 34.975,
+     "lon": 81.675,
+     "list": "top",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie gefunden; alle Treffer der Suchen betrafen das Qaidam-Becken (ca. 1000 km oestlich). Hinweis: Aksai Chin ist umstrittenes Gebiet (Indien/China).",
+   "sources": [],
+   "searches": [
+    "Aksai Chin OR \"West Kunlun\" Mars analog",
+    "Tibetan Plateau Mars analog salt lakes evaporites Zheng Mianping Kunlun"
+   ]
+  },
+  {
+   "region": "Noerdliches Chang Tang / Kunlun-Suedrand (Arka Tagh, Westrand Hoh Xil)",
+   "body": "Mars",
+   "centre": [
+    35.7,
+    85.77
+   ],
+   "sites": [
+    {
+     "target": "meridiani_planum",
+     "lat": 36.475,
+     "lon": 85.325,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "meridiani_planum",
+     "lat": 36.475,
+     "lon": 85.325,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "phoenix_site",
+     "lat": 35.475,
+     "lon": 83.675,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "phoenix_site",
+     "lat": 35.325,
+     "lon": 86.375,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "phoenix_site",
+     "lat": 35.475,
+     "lon": 83.675,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "mawrth_vallis",
+     "lat": 35.275,
+     "lon": 87.125,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "holden_crater",
+     "lat": 36.225,
+     "lon": 86.125,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "arcadia_planitia",
+     "lat": 35.525,
+     "lon": 85.175,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "arcadia_planitia",
+     "lat": 35.525,
+     "lon": 85.175,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "deuteronilus_mensae",
+     "lat": 35.325,
+     "lon": 84.925,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "deuteronilus_mensae",
+     "lat": 35.925,
+     "lon": 87.475,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "deuteronilus_mensae",
+     "lat": 35.325,
+     "lon": 84.925,
+     "list": "by_continent",
+     "rank": 1
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein ortsspezifischer Analog-Nachweis. Rodriguez et al. (2016) nennen 'Hochgebirgsseen auf dem Tibet-Plateau' als Analog fuer Marsbecken (Ort nicht genauer angegeben, Expedition geplant); Hoh Xil wird nirgends als Analog genannt. Das Qaidam-Becken (etabliert) liegt 400-700 km nordoestlich.",
+   "sources": [
+    {
+     "title": "Astronomy.com: Site of martian lakes might have been linked to ancient habitable environment (Rodriguez/PSI; Tibet-Seen als Analog, Ort unspezifisch)",
+     "url": "https://www.astronomy.com/science/site-of-martian-lakes-might-have-been-linked-to-ancient-habitable-environment/",
+     "year": 2016
+    }
+   ],
+   "searches": [
+    "Qaidam Basin Mars analog Kunlun Hoh Xil Tibetan Plateau Mars analogue",
+    "Hoh Xil OR Kekexili Mars analogue",
+    "Tibetan Plateau Chang Tang Mars analog lakes shorelines Rodriguez"
+   ]
+  },
+  {
+   "region": "Kumkol-Becken / Ayakkum Hu (Altun Shan-Kunlun, Xinjiang/Qinghai)",
+   "body": "Mars",
+   "centre": [
+    37.21,
+    88.65
+   ],
+   "sites": [
+    {
+     "target": "ne_syrtis",
+     "lat": 37.475,
+     "lon": 89.125,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "eberswalde_crater",
+     "lat": 36.975,
+     "lon": 88.425,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "eberswalde_crater",
+     "lat": 36.975,
+     "lon": 88.425,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "holden_crater",
+     "lat": 37.175,
+     "lon": 88.425,
+     "list": "top",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie gefunden. Naechstes etabliertes Analog ist das westliche Qaidam-Becken (Dalangtan/Lenghu, ca. 250-400 km oestlich), das ausserhalb des 300-km-Radius der eingebauten Liste um 37.5/94.0 liegt.",
+   "sources": [],
+   "searches": [
+    "Altun Shan Kumkol basin Mars analog",
+    "Qaidam Basin Mars analog Kunlun Hoh Xil Tibetan Plateau Mars analogue"
+   ]
+  },
+  {
+   "region": "Suedrand Tarim / Taklamakan bei Qiemo (Cherchen), Xinjiang",
+   "body": "Mars",
+   "centre": [
+    37.74,
+    86.53
+   ],
+   "sites": [
+    {
+     "target": "jezero_crater",
+     "lat": 38.175,
+     "lon": 86.525,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "ne_syrtis",
+     "lat": 37.125,
+     "lon": 86.825,
+     "list": "top",
+     "rank": 1
+    },
+    {
+     "target": "ne_syrtis",
+     "lat": 37.125,
+     "lon": 86.825,
+     "list": "by_continent",
+     "rank": 1
+    },
+    {
+     "target": "mawrth_vallis",
+     "lat": 38.175,
+     "lon": 86.525,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "oxia_planum",
+     "lat": 37.925,
+     "lon": 86.225,
+     "list": "top",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein Analog-Nachweis fuer Qiemo. Ein Presseartikel (2007) berichtet ueber eine Mikroben-Studie mit Mars-Bezug bei Ruoqiang am Suedrand der Taklamakan (ca. 170-200 km oestlich); Details nicht verifiziert (Artikeltext nicht abrufbar).",
+   "sources": [
+    {
+     "title": "NBC News / Space.com: Earth's extremes could hold clues to Mars life (Ruoqiang, Nachbarort; Inhalt nur ueber Suchzusammenfassung)",
+     "url": "https://www.nbcnews.com/id/wbna17934555",
+     "year": 2007
+    }
+   ],
+   "searches": [
+    "Taklimakan desert Mars analog Qiemo southern Tarim"
+   ]
+  },
+  {
+   "region": "Ostpamir: Tashkurgan / Muztagh Ata / Karakul (China/Tadschikistan)",
+   "body": "both",
+   "centre": [
+    38.17,
+    74.86
+   ],
+   "sites": [
+    {
+     "target": "peak_near_cabeus_b",
+     "lat": 37.575,
+     "lon": 75.625,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "haworth",
+     "lat": 38.525,
+     "lon": 75.125,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "mons_mouton",
+     "lat": 37.775,
+     "lon": 75.325,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "lat": 38.275,
+     "lon": 75.025,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "slater_plain",
+     "lat": 38.275,
+     "lon": 75.025,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "peak_near_shackleton",
+     "lat": 38.275,
+     "lon": 75.025,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "connecting_ridge",
+     "lat": 38.275,
+     "lon": 75.025,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "shackleton_crater",
+     "lat": 38.625,
+     "lon": 75.125,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "cabeus",
+     "lat": 38.525,
+     "lon": 75.125,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "jezero_crater",
+     "lat": 37.475,
+     "lon": 74.825,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "meridiani_planum",
+     "lat": 38.025,
+     "lon": 74.375,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "ne_syrtis",
+     "lat": 37.475,
+     "lon": 74.825,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "eberswalde_crater",
+     "lat": 39.125,
+     "lon": 73.475,
+     "list": "excl_china",
+     "rank": 1
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie fuer den Pamir gefunden (nur Geologie/Reise). Vergleichbare Hochgebirgs-Analoga in der Literatur: Ladakh (Indien), Qaidam. Hinweis: Der Punkt 39.12/73.47 liegt am Karakul-See (vermutete Impaktstruktur) - dazu keine Analogarbeit gefunden.",
+   "sources": [],
+   "searches": [
+    "Pamir Mars analog Karakul OR \"Muztagh Ata\" OR Tashkurgan planetary analogue",
+    "Wakhan OR \"Gorno-Badakhshan\" OR Pamir high plateau Mars analog"
+   ]
+  },
+  {
+   "region": "Westpamir / Wakhan (Gorno-Badachschan, Tadschikistan/Afghanistan)",
+   "body": "Moon",
+   "centre": [
+    37.35,
+    72.52
+   ],
+   "sites": [
+    {
+     "target": "nobile_rim_1",
+     "lat": 37.225,
+     "lon": 72.925,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "faustini_rim_a",
+     "lat": 37.475,
+     "lon": 72.125,
+     "list": "by_continent",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie gefunden; Suchtreffer nur Reise/Geographie.",
+   "sources": [],
+   "searches": [
+    "Wakhan OR \"Gorno-Badakhshan\" OR Pamir high plateau Mars analog",
+    "Pamir Mars analog Karakul OR \"Muztagh Ata\" OR Tashkurgan planetary analogue"
+   ]
+  },
+  {
+   "region": "Salar de Uyuni (Westteil) und Sur Lipez, Bolivien",
+   "body": "Mars",
+   "centre": [
+    -20.83,
+    -67.98
+   ],
+   "sites": [
+    {
+     "target": "jezero_crater",
+     "lat": -21.625,
+     "lon": -67.825,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "gale_crater",
+     "lat": -20.375,
+     "lon": -67.875,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "gusev",
+     "lat": -20.475,
+     "lon": -68.225,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "gusev",
+     "lat": -20.475,
+     "lon": -68.225,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "gusev",
+     "lat": -20.475,
+     "lon": -68.225,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "elysium_planitia",
+     "lat": -20.475,
+     "lon": -68.225,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "elysium_planitia",
+     "lat": -20.475,
+     "lon": -68.225,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "elysium_planitia",
+     "lat": -20.475,
+     "lon": -68.225,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "utopia_planitia",
+     "lat": -20.375,
+     "lon": -67.875,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "utopia_planitia",
+     "lat": -20.375,
+     "lon": -67.875,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "utopia_planitia",
+     "lat": -20.375,
+     "lon": -67.875,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "mawrth_vallis",
+     "lat": -21.625,
+     "lon": -67.825,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "mawrth_vallis",
+     "lat": -21.625,
+     "lon": -67.825,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "established",
+   "summary": "Salar de Uyuni gilt als 'natuerliches Labor' fuer Mars (Solen, Tone, Halophile; NASA Earth Observatory, EANA 2024, Mars-Society-Habitatvorschlag GLEX 2017). Der Punkt -21.62/-67.83 liegt in Sur Lipez im Gebiet des NASA High Lakes Project, nur ca. 130 km vom Licancabur (knapp ausserhalb des 120-km-Radius der eingebauten Liste).",
+   "sources": [
+    {
+     "title": "NASA Earth Observatory: Bolivian Salt Flats",
+     "url": "https://earthobservatory.nasa.gov/images/151813/bolivian-salt-flats",
+     "year": null
+    },
+    {
+     "title": "EANA 2024 Abstract: halophile Archaeen aus dem Salar de Uyuni (Mars-Bezug)",
+     "url": "https://eana-net.eu/conferences/EANA2024/abstract_show.php?id=74",
+     "year": 2024
+    },
+    {
+     "title": "GLEX 2017: Salar de Uyuni als Standort einer Mars-Analog-Station (Mars Society)",
+     "url": "https://iafastro.directory/iac/paper/id/36826/abstract-pdf/GLEX-2017,5,1,12,x36826.brief.pdf",
+     "year": 2017
+    }
+   ],
+   "searches": [
+    "Salar de Uyuni Mars analog astrobiology",
+    "Sur Lipez Bolivia Laguna Colorada OR Chiguana Mars analog"
+   ]
+  },
+  {
+   "region": "Salar de Surire / Isluga (Region Arica y Parinacota, Chile)",
+   "body": "Mars",
+   "centre": [
+    -18.82,
+    -69.08
+   ],
+   "sites": [
+    {
+     "target": "arcadia_planitia",
+     "lat": -18.825,
+     "lon": -69.075,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "arcadia_planitia",
+     "lat": -18.825,
+     "lon": -69.075,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "arcadia_planitia",
+     "lat": -18.825,
+     "lon": -69.075,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein Surire-spezifischer Analog-Nachweis; nur eine Reiseseite nennt es 'marsartig'. Chilenische Salare werden allgemein als Mars-Evaporit-Analoga untersucht (Flahaut et al., Icarus; Salar de Pajonales) - ob Surire dabei war, nicht geprueft.",
+   "sources": [
+    {
+     "title": "Flahaut et al.: Remote sensing and in situ mineralogic survey of the Chilean salars: An analog to Mars evaporate deposits? (Sammelstudie, Surire-Beteiligung unklar)",
+     "url": "https://cosmochemistry-papers.com/2016/10/17/remote-sensing-and-in-situ-mineralogic-survey-of-the-chilean-salars-an-analog-to-mars-evaporate-deposits/",
+     "year": 2016
+    }
+   ],
+   "searches": [
+    "Salar de Surire Mars analog"
+   ]
+  },
+  {
+   "region": "Salar de Maricunga / Puna de Atacama (Region Atacama, Chile)",
+   "body": "Mars",
+   "centre": [
+    -26.93,
+    -69.08
+   ],
+   "sites": [
+    {
+     "target": "arcadia_planitia",
+     "lat": -26.925,
+     "lon": -69.075,
+     "list": "top",
+     "rank": 3
+    }
+   ],
+   "status": "studied",
+   "summary": "Ein EPSC-2021-Beitrag charakterisiert die Puna de Atacama als planetares Analog mit ersten Ergebnissen genau fuer den Salar de Maricunga (Koordinatenangabe 26.92 S / 69.08 W, deckungsgleich mit dem Treffer) und erwaehnt ein geplantes Hoehenlabor in der Naehe.",
+   "sources": [
+    {
+     "title": "EPSC2021-452: Potential of the Puna de Atacama region in terms of Planetary Analogs (Maricunga, Tres Cruces, Laguna Verde, Ojos del Salado)",
+     "url": "https://meetingorganizer.copernicus.org/EPSC2021/EPSC2021-452.html",
+     "year": 2021
+    }
+   ],
+   "searches": [
+    "Salar de Maricunga Mars analog"
+   ]
+  },
+  {
+   "region": "Jakutien: Tas-Khayakhtakh / Tscherski-Gebirge (Russland)",
+   "body": "Moon",
+   "centre": [
+    66.06,
+    140.61
+   ],
+   "sites": [
+    {
+     "target": "malapert_massif",
+     "lat": 66.075,
+     "lon": 140.425,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "mons_mouton",
+     "lat": 66.025,
+     "lon": 140.925,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "nobile_rim_1",
+     "lat": 66.025,
+     "lon": 140.925,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "de_gerlache_rim_2",
+     "lat": 66.025,
+     "lon": 140.925,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "slater_plain",
+     "lat": 66.025,
+     "lon": 140.925,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "peak_near_shackleton",
+     "lat": 66.025,
+     "lon": 140.925,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "connecting_ridge",
+     "lat": 66.025,
+     "lon": 140.925,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "faustini_rim_a",
+     "lat": 66.075,
+     "lon": 140.475,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie gefunden; nur Permafrost-/Klimaforschung (Werchojansk-Tscherski-Region).",
+   "sources": [],
+   "searches": [
+    "Yakutia Oymyakon OR Verkhoyansk OR Chersky range Mars analog permafrost",
+    "Siberia Moon analog lunar regolith OR Mars analog Yakutia basalt field site"
+   ]
+  },
+  {
+   "region": "Jakutien: Indigirka-Bergland bei Ust-Nera / Oimjakon-Hochland (Russland)",
+   "body": "Moon",
+   "centre": [
+    64.28,
+    143.38
+   ],
+   "sites": [
+    {
+     "target": "shackleton_crater",
+     "lat": 64.275,
+     "lon": 143.375,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie gefunden; Oimjakon erscheint nur als Kaeltepol/Permafrost-Messstelle.",
+   "sources": [],
+   "searches": [
+    "Yakutia Oymyakon OR Verkhoyansk OR Chersky range Mars analog permafrost",
+    "Siberia Moon analog lunar regolith OR Mars analog Yakutia basalt field site"
+   ]
+  },
+  {
+   "region": "Putorana-Plateau (Sibirische Trapps, Region Krasnojarsk)",
+   "body": "Moon",
+   "centre": [
+    68.83,
+    94.6
+   ],
+   "sites": [
+    {
+     "target": "peak_near_cabeus_b",
+     "lat": 68.775,
+     "lon": 94.575,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "haworth",
+     "lat": 68.775,
+     "lon": 94.575,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "mons_mouton_plateau",
+     "lat": 68.875,
+     "lon": 94.625,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "cabeus",
+     "lat": 68.775,
+     "lon": 94.575,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Feld-Analog-Nutzung gefunden. Es gibt eine petrologische Arbeit zu sibirischen metallgesaettigten Kumulaten als Mondbasalt-Analoga (Gesteins-, nicht Gelaende-Analog; Fundort nicht geprueft).",
+   "sources": [],
+   "searches": [
+    "Putorana plateau Siberian Traps Mars analog",
+    "Siberia Moon analog lunar regolith OR Mars analog Yakutia basalt field site"
+   ]
+  },
+  {
+   "region": "Sued-Sinai: El-Qaa-Ebene / Kueste am Golf von Suez (Aegypten)",
+   "body": "Mars",
+   "centre": [
+    28.62,
+    33.56
+   ],
+   "sites": [
+    {
+     "target": "gale_crater",
+     "lat": 29.125,
+     "lon": 33.525,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "elysium_planitia",
+     "lat": 28.475,
+     "lon": 33.525,
+     "list": "top",
+     "rank": 3
+    },
+    {
+     "target": "elysium_planitia",
+     "lat": 28.475,
+     "lon": 33.525,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "mawrth_vallis",
+     "lat": 28.425,
+     "lon": 33.625,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "oxia_planum",
+     "lat": 28.425,
+     "lon": 33.575,
+     "list": "by_continent",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein Sinai-spezifischer Analog-Nachweis. Aegyptische Mars-Analogarbeit betrifft die Westliche Wueste (El-Baz 1979, LPI-Geophysik 2005); eine 2022 angekuendigte EgSA/OeWF-Marssimulation nennt keine Region.",
+   "sources": [
+    {
+     "title": "Space in Africa: EgSA collaborates with Austrian mission to simulate Mars surface (Region nicht genannt)",
+     "url": "https://spaceinafrica.com/2022/02/28/egsa-collaborates-with-austrian-mission-to-simulate-mars-surface/",
+     "year": 2022
+    }
+   ],
+   "searches": [
+    "Sinai Peninsula Mars analog field study",
+    "Egypt Sinai desert Mars analogue astrobiology OR planetary geology study"
+   ]
+  },
+  {
+   "region": "Aegyptische Ostwueste / Red Sea Hills (Hinterland von Marsa Alam)",
+   "body": "Mars",
+   "centre": [
+    25.23,
+    34.58
+   ],
+   "sites": [
+    {
+     "target": "eberswalde_crater",
+     "lat": 25.225,
+     "lon": 34.575,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein Analog-Nachweis fuer die Ostwueste; die klassischen aegyptischen Mars-Analoga liegen in der Westlichen Wueste (anderer Ort).",
+   "sources": [
+    {
+     "title": "El-Baz et al.: Eolian features in the Western Desert of Egypt and some applications to Mars (anderer Ort, Kontext)",
+     "url": "https://pubs.usgs.gov/publication/70012315",
+     "year": 1979
+    }
+   ],
+   "searches": [
+    "Egypt Eastern Desert Mars analog Red Sea hills",
+    "Egypt Sinai desert Mars analogue astrobiology OR planetary geology study"
+   ]
+  },
+  {
+   "region": "Emi Koussi / Borkou (Suedtibesti, Tschad)",
+   "body": "Mars",
+   "centre": [
+    19.1,
+    18.5
+   ],
+   "sites": [
+    {
+     "target": "jezero_crater",
+     "lat": 19.275,
+     "lon": 18.675,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "utopia_planitia",
+     "lat": 18.925,
+     "lon": 18.325,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "ne_syrtis",
+     "lat": 19.275,
+     "lon": 18.675,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "studied",
+   "summary": "Der Schildvulkan Emi Koussi (Gipfel ca. 60-100 km noerdlich der Treffer) wird laut NASA als Analog fuer den Marsvulkan Elysium Mons genutzt; Malin (1977) verglich Tibesti-Vulkanismus mit Elysium (zitiert bei Permenter & Oppenheimer 2007). Die Borkou-Megayardangs sind bekannt, ein direkter Mars-Vergleich wurde aber nicht gefunden.",
+   "sources": [
+    {
+     "title": "NASA Earth Observatory: Emi Koussi Volcano, Chad",
+     "url": "https://earthobservatory.nasa.gov/IOTD/view.php?id=3023",
+     "year": null
+    },
+    {
+     "title": "NASA JSC Earth Observatory: Emi Koussi Volcano, Chad, North Africa",
+     "url": "https://eol.jsc.nasa.gov/Collections/EarthObservatory/articles/Emi_Koussi_Volcano.htm",
+     "year": null
+    },
+    {
+     "title": "Permenter & Oppenheimer: Volcanoes of the Tibesti massif (Bulletin of Volcanology), zitiert Malin 1977 (Elysium-Tibesti-Vergleich)",
+     "url": "https://doi.org/10.1007/s00445-006-0098-x",
+     "year": 2007
+    }
+   ],
+   "searches": [
+    "Emi Koussi Tibesti Mars analog volcano",
+    "Borkou yardangs Chad Mars analog"
+   ]
+  },
+  {
+   "region": "Osttibesti (Hochflaechen noerdlich/nordoestlich des Emi Koussi, Tschad)",
+   "body": "Mars",
+   "centre": [
+    21.23,
+    18.75
+   ],
+   "sites": [
+    {
+     "target": "meridiani_planum",
+     "lat": 20.925,
+     "lon": 18.475,
+     "list": "by_continent",
+     "rank": 2
+    },
+    {
+     "target": "holden_crater",
+     "lat": 21.525,
+     "lon": 19.025,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "studied",
+   "summary": "Nur auf Massiv-Ebene belegt: Malin (1977) verglich den Tibesti-Vulkanismus insgesamt mit Elysium (Mars). Fuer genau diese Zellen keine eigene Studie gefunden.",
+   "sources": [
+    {
+     "title": "Permenter & Oppenheimer: Volcanoes of the Tibesti massif (Bulletin of Volcanology), zitiert Malin 1977",
+     "url": "https://doi.org/10.1007/s00445-006-0098-x",
+     "year": 2007
+    }
+   ],
+   "searches": [
+    "Tarso Toussidé OR \"Tibesti\" Mars analog study",
+    "Emi Koussi Tibesti Mars analog volcano"
+   ]
+  },
+  {
+   "region": "NW-Tschad: Vorland westlich des Tibesti (nahe Dreilaendereck Tschad-Niger-Libyen)",
+   "body": "Mars",
+   "centre": [
+    22.48,
+    15.47
+   ],
+   "sites": [
+    {
+     "target": "gale_crater",
+     "lat": 22.475,
+     "lon": 15.475,
+     "list": "top",
+     "rank": 2
+    },
+    {
+     "target": "gale_crater",
+     "lat": 22.475,
+     "lon": 15.475,
+     "list": "excl_china",
+     "rank": 1
+    },
+    {
+     "target": "gale_crater",
+     "lat": 22.475,
+     "lon": 15.475,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie fuer Tummo/Djado-Vorland gefunden; der Tibesti-Vulkanismus (Malin 1977) liegt ca. 150-200 km suedoestlich.",
+   "sources": [],
+   "searches": [
+    "Chad Niger Libya border Tummo OR Djado plateau Mars analog",
+    "Tarso Toussidé OR \"Tibesti\" Mars analog study"
+   ]
+  },
+  {
+   "region": "Suedlibyen: Fezzan, Suedostrand des Murzuq-Sandmeers",
+   "body": "Mars",
+   "centre": [
+    24.02,
+    15.87
+   ],
+   "sites": [
+    {
+     "target": "gusev",
+     "lat": 24.025,
+     "lon": 15.725,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "arcadia_planitia",
+     "lat": 24.225,
+     "lon": 16.075,
+     "list": "by_continent",
+     "rank": 3
+    },
+    {
+     "target": "deuteronilus_mensae",
+     "lat": 23.825,
+     "lon": 15.825,
+     "list": "by_continent",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein ortsspezifischer Nachweis; NASA-Bilder nennen den Fezzan nur 'marsaehnlich'. Laut Suchergebnissen ist der Vulkan Waw an Namus (ca. 200 km oestlich) als Analog fuer dunkle Megaripples/TARs auf dem Mars beschrieben (Primaerquelle nicht geoeffnet).",
+   "sources": [
+    {
+     "title": "NASA Earth Observatory: Otherworldly Earth (Fezzan, Kontext)",
+     "url": "https://science.nasa.gov/earth/earth-observatory/otherworldly-earth-149253",
+     "year": null
+    }
+   ],
+   "searches": [
+    "Libya Fezzan Murzuq Mars analog Sahara"
+   ]
+  },
+  {
+   "region": "Tian Shan: Tomur-Massiv (Xinjiang, Grenze Kirgisistan)",
+   "body": "Moon",
+   "centre": [
+    41.98,
+    80.03
+   ],
+   "sites": [
+    {
+     "target": "malapert_massif",
+     "lat": 41.975,
+     "lon": 80.025,
+     "list": "by_continent",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie zum Tomur/Tian Shan gefunden.",
+   "sources": [],
+   "searches": [
+    "Tian Shan Tomur glacier Moon OR Mars analog"
+   ]
+  },
+  {
+   "region": "Westmongolei: Grosse-Seen-Senke bei Chowd (Khar-Us-Nuur)",
+   "body": "Moon",
+   "centre": [
+    47.38,
+    92.38
+   ],
+   "sites": [
+    {
+     "target": "mons_mouton_plateau",
+     "lat": 47.375,
+     "lon": 92.375,
+     "list": "by_continent",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie gefunden; Treffer nur zu Tektonik und Seenentwicklung.",
+   "sources": [],
+   "searches": [
+    "western Mongolia Great Lakes Depression Khovd Mars analog",
+    "Mongolia Gobi Mars analog field site"
+   ]
+  },
+  {
+   "region": "Transaltai-Gobi (Gobi-Altai-Aimag, Mongolei)",
+   "body": "Mars",
+   "centre": [
+    43.42,
+    96.62
+   ],
+   "sites": [
+    {
+     "target": "holden_crater",
+     "lat": 43.425,
+     "lon": 96.625,
+     "list": "excl_china",
+     "rank": 1
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Analog-Studie fuer die Transaltai-Gobi gefunden. Die geplante Analogstation MARS-V liegt in Dundgovi/Oemnoegovi, mehrere hundert km oestlich (noch nicht gebaut).",
+   "sources": [
+    {
+     "title": "Universe Magazine: MARS-V: rehearsal for life on the Red Planet (anderer Teil der Gobi)",
+     "url": "https://universemagazine.com/en/mars-v-rehearsal-for-life-on-the-red-planet/",
+     "year": null
+    }
+   ],
+   "searches": [
+    "Gobi Altai Trans-Altai Gobi Mars analogue astrobiology study",
+    "Mongolia Gobi Mars analog field site"
+   ]
+  },
+  {
+   "region": "Dunhuang / Kumtag-Wueste (Gansu)",
+   "body": "Mars",
+   "centre": [
+    40.23,
+    94.38
+   ],
+   "sites": [
+    {
+     "target": "meridiani_planum",
+     "lat": 40.225,
+     "lon": 94.375,
+     "list": "top",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Keine Primaerquelle gefunden. Reiseseiten behaupten, die Dunhuang-Yardangs (Yadan-Geopark, ca. 120 km westlich) seien als Mars-Analog genutzt worden - unbelegt. Eine Geomorphology-Review 'Yardangs on Earth and implications to Mars' (2020) existiert, wurde aber nicht geoeffnet. Nachpruefen empfohlen.",
+   "sources": [
+    {
+     "title": "Review: Yardangs on Earth and implications to Mars (Geomorphology 364, 107230; Inhalt nicht geprueft)",
+     "url": "https://scinapse.io/papers/3025386910",
+     "year": 2020
+    }
+   ],
+   "searches": [
+    "Dunhuang yardang Kumtag desert Mars analog",
+    "Kumtagh desert dunes Mars analogue study",
+    "Dunhuang yardangs Mars comparison paper Geomorphology Icarus"
+   ]
+  },
+  {
+   "region": "Lop Nur (Xinjiang)",
+   "body": "Mars",
+   "centre": [
+    40.17,
+    90.47
+   ],
+   "sites": [
+    {
+     "target": "gusev",
+     "lat": 40.175,
+     "lon": 90.475,
+     "list": "top",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "In den Suchen (englisch und chinesisch) keine Arbeit gefunden, die Lop Nur ausdruecklich als Mars-Analog nutzt; Lop Nur ist militaerisches Sperrgebiet. Wegen Salzkruste/Yardangs ist eine Nutzung plausibel - Nachpruefen in Fachdatenbanken empfohlen.",
+   "sources": [],
+   "searches": [
+    "Lop Nur Mars analog yardangs salt crust",
+    "\"Lop Nur\" Mars analogue",
+    "罗布泊 火星 类比 研究"
+   ]
+  },
+  {
+   "region": "Suednamib: Sperrgebiet zwischen Aus und Rosh Pinah (Namibia)",
+   "body": "Mars",
+   "centre": [
+    -27.27,
+    16.32
+   ],
+   "sites": [
+    {
+     "target": "phoenix_site",
+     "lat": -27.275,
+     "lon": 16.325,
+     "list": "by_continent",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein Nachweis fuer diesen Teil der Suednamib (Sperrgebiet, Zugang beschraenkt). Die Namib insgesamt ist ein etabliertes Mars-Analog (bereits in der eingebauten Liste, Zentrum ca. 360 km noerdlich) - die Novitaet ist daher nur lokal.",
+   "sources": [],
+   "searches": [
+    "southern Namib Sperrgebiet Luderitz Mars analog"
+   ]
+  },
+  {
+   "region": "Zentral-Saudi-Arabien: suedlicher Najd (suedwestlich von Riad)",
+   "body": "Mars",
+   "centre": [
+    22.62,
+    44.67
+   ],
+   "sites": [
+    {
+     "target": "utopia_planitia",
+     "lat": 22.625,
+     "lon": 44.675,
+     "list": "top",
+     "rank": 3
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein ortsspezifischer Nachweis. Eine Review (Extremophiles, 2026) nennt saudische Wuesten und Salzpfannen nur allgemein als potenzielle Mars-Analoga, ohne diesen Ort.",
+   "sources": [
+    {
+     "title": "Astrobiology.com zu: Extreme Arabian environments and their microbiomes: new frontiers for astrobiology and biosignature discovery (Extremophiles)",
+     "url": "https://astrobiology.com/2026/04/13/extreme-arabian-environments-and-their-microbiomes-new-frontiers-for-astrobiology-and-biosignature-discovery/",
+     "year": 2026
+    }
+   ],
+   "searches": [
+    "Saudi Arabia Mars analog site Najd desert"
+   ]
+  },
+  {
+   "region": "Westtibet: Ngari, Gebiet Gerze/Gegyai",
+   "body": "Mars",
+   "centre": [
+    32.58,
+    82.33
+   ],
+   "sites": [
+    {
+     "target": "oxia_planum",
+     "lat": 32.575,
+     "lon": 82.325,
+     "list": "top",
+     "rank": 2
+    }
+   ],
+   "status": "no evidence found",
+   "summary": "Kein ortsspezifischer Nachweis. Tibetische Salzseen werden allgemein als Analog fuer Mars-Salze diskutiert (Konferenzabstract Wang & Zheng 2009, nur als Referenz gesehen); konkrete Arbeiten betreffen das Qaidam-Becken.",
+   "sources": [],
+   "searches": [
+    "Ngari western Tibet salt lake Mars analog Zabuye OR Bangong OR Dangxiong",
+    "Tibetan Plateau Mars analog salt lakes evaporites Zheng Mianping Kunlun"
+   ]
+  }
+ ]
+}

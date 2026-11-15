@@ -162,6 +162,14 @@ def map_xy(body, lat, lon_e):
     return round((((lon_e + 180) % 360)) / 360, 4), round((90 - lat) / 180, 4)
 
 
+def fine(f):
+    """Fine-search result for one site and target, compact: [best lat, lon, offset km, bearing, best match, centre match, box km]."""
+    if not f:
+        return None
+    b, c = f["best"], f.get("centre") or {}
+    return [b["lat"], b["lon"], b["offset_km"], b["bearing"], b["match"], c.get("match"), f["box_km"]]
+
+
 def b64(a):
     return base64.b64encode(np.ascontiguousarray(a).tobytes()).decode()
 
@@ -179,12 +187,20 @@ def iso_names():
     return out
 
 
-def pack_pool(z, tid, names):
-    """Candidate pool of one target, compact for the browser (little-endian typed arrays as base64)."""
+def pack_pool(z, tid, names, pfz=None, rbz=None):
+    """Candidate pool of one target, compact for the browser (little-endian typed arrays as base64).
+    flags: uint16 bitmask per cell (bit order = poolMeta.flags, results/pool_flags.npz);
+    rb: robustness share per cell, uint8 round(share * 254), 255 = missing (results/robustness_pool.npz)."""
     g = lambda k: z[f"{tid}/{k}"]
     iso = g("iso")
     iso_list = sorted(set(iso.tolist()))
-    return dict(n=int(len(g("lat"))), nr=int(g("nranked")), fkeys=g("fkeys").tolist(),
+    n = len(g("lat"))
+    extra = {}
+    if pfz is not None and tid in pfz.files and len(pfz[tid]) == n:
+        extra["flags"] = b64(pfz[tid].astype("<u2"))
+    if rbz is not None and tid in rbz.files and len(rbz[tid]) == n:
+        extra["rb"] = b64(rbz[tid].astype(np.uint8))
+    return dict(**extra, n=int(len(g("lat"))), nr=int(g("nranked")), fkeys=g("fkeys").tolist(),
                 lat=b64(g("lat").astype("<f4")), lon=b64(g("lon").astype("<f4")), total=b64(g("total").astype("<f4")),
                 rank=b64(g("rank").astype("<i4")), cov=b64(g("cov")), dims=b64(g("dims")), conf=b64(g("conf")),
                 fs=b64(g("fs")), fv=b64(g("fv").astype("<f2")), cls=b64(g("cls")), cont=b64(g("cont")),
@@ -228,9 +244,16 @@ def main():
     pf_path = HERE / "profiles" / "profiles.json"
     PF = {s["id"] for s in json.load(open(pf_path, encoding="utf-8"))["sites"]} if pf_path.exists() else set()
     from make_site_profiles import site_id
+    fs_path = Path(args.results).with_name("fine_search.json")
+    FSR = json.load(open(fs_path, encoding="utf-8"))["sites"] if fs_path.exists() else {}
     pool_path = Path(args.results).with_name("pool.npz")
     Z = np.load(pool_path) if pool_path.exists() else None
     names = iso_names() if Z is not None else {}
+    # flags and robustness of every pool cell (scoring/pool_flags.py, scoring/robustness.py)
+    pf_npz, rb_npz = Path(args.results).with_name("pool_flags.npz"), Path(args.results).with_name("robustness_pool.npz")
+    PFZ = np.load(pf_npz) if Z is not None and pf_npz.exists() else None
+    RBZ = np.load(rb_npz) if Z is not None and rb_npz.exists() else None
+    FLAG_IDS = PFZ["_flags"].tolist() if PFZ is not None else []
     targets = []
     for tid, t in T.items():
         if tid not in R["targets"]:
@@ -239,11 +262,18 @@ def main():
         heat = heat_png(df, s["total"], s.get("in_ranking", pd.Series(True, index=df.index)))
         RT = R["targets"][tid]
         sites, key2i = [], {}
+        # flags of the list sites from the pool bitmask (computed on the full table), so the default lists and the
+        # in-browser ranking agree; top_sites.json flags are only the fallback
+        pool_fk = {}
+        if PFZ is not None and tid in PFZ.files and f"{tid}/lat" in Z.files:
+            for a, b_, m in zip(Z[f"{tid}/lat"], Z[f"{tid}/lon"], PFZ[tid]):
+                pool_fk[f"{float(a):.3f},{float(b_):.3f}"] = [f for q, f in enumerate(FLAG_IDS) if int(m) >> q & 1]
 
         def add(x):
             k = (x["lat"], x["lon"])
             if k in key2i:
                 return key2i[k]
+            x = dict(x, flags=pool_fk.get(f"{x['lat']:.3f},{x['lon']:.3f}", x["flags"]))
             name, iso = cl.label(x["lat"], x["lon"])
             er = x.get("env_reason") or {}
             er = {"rules": er} if isinstance(er, list) else er
@@ -255,6 +285,7 @@ def main():
                               d={DIM_EN.get(k, k): v for k, v in x["dims"].items()},
                               fv=[[f["earth"], f["score"], f["earth_pct"]] for f in x.get("features", [])],
                               rb=RB.get(tid, {}).get(f"{x['lat']:.3f},{x['lon']:.3f}"),
+                              fsr=fine(FSR.get(site_id(x["lat"], x["lon"]), {}).get(tid)),
                               pf=site_id(x["lat"], x["lon"]) if site_id(x["lat"], x["lon"]) in PF else None,
                               er=dict(rules=[rule(r) for r in er.get("rules", [])],
                                       no=[dict(c=ENV_EN.get(n["cls"], n["cls"]), f=[rule(r) for r in n["failed"]])
@@ -280,7 +311,7 @@ def main():
         targets.append(dict(id=tid, name=t.get("name"), body=t.get("body"), cat=t.get("category"),
                             cq=t.get("coord_quality"), lat=t.get("center_lat"), lon=t.get("center_lon"),
                             note=t.get("region_notes"), prof=profile_for(t), feats=feats, sites=sites, lists=lists,
-                            fm=fm, heat=heat, pool=pack_pool(Z, tid, names) if Z is not None and f"{tid}/lat" in Z.files else None,
+                            fm=fm, heat=heat, pool=pack_pool(Z, tid, names, PFZ, RBZ) if Z is not None and f"{tid}/lat" in Z.files else None,
                             w={DIM_EN[d]: PROFILES[profile_for(t)]["weights"].get(d, 0) for d in POOL_DIMS}, mxy=map_xy(t.get("body"), t.get("center_lat"), t.get("center_lon"))))
         print(f"  {tid:26s} {len(heat) // 1024} KB", flush=True)
 
@@ -296,7 +327,7 @@ def main():
     if Z is not None:
         pool_meta = dict(dims=[DIM_EN[d] for d in Z["_dims"].tolist()], classIds=Z["_classes"].tolist(),
                          classes=[ENV_EN.get(c, c) for c in Z["_classes"].tolist()], continents=Z["_continents"].tolist(),
-                         known=Z["_known"].tolist())
+                         known=Z["_known"].tolist(), flags=FLAG_IDS, flagLabels=[FLAG_EN.get(f, f) for f in FLAG_IDS])
     data = dict(targets=targets, masks=masks, bodymaps=bodymaps, glossary=glossary, poolMeta=pool_meta,
                 profiles="https://vice003.github.io/analog-finder/profiles.html", countries=countries_geojson(ROOT / "data" / "ref" / "ne_110m_admin_0_countries"),
                 meta=dict(earth_cells=R["meta"]["earth_cells"], table=R["meta"]["earth_table"]))

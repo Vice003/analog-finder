@@ -6,7 +6,9 @@ factor drawn uniformly from [1 - SPREAD, 1 + SPREAD]. For each draw the top 20 (
 from the candidate pool (results/pool.npz), exactly as the web app does. A site counts as "kept" in a draw if the
 top 20 of that draw contains it or a site within KEEP_KM of it (neighbouring cells of one area swap places easily).
 
-  python scoring/robustness.py   -> results/robustness.json  {target: {"lat,lon": share 0..1}}
+  python scoring/robustness.py   -> results/robustness.json      {target: {"lat,lon": share 0..1}} (list sites)
+                                 -> results/robustness_pool.npz  {target: uint8[n_pool]} share of every pool cell,
+                                    aligned with the pool order: round(share * 254), 255 = missing
 """
 import json
 from pathlib import Path
@@ -45,7 +47,7 @@ def main():
         tpath = ROOT / "planetary" / "targets.json"
     T = load_targets(tpath)
     rng = np.random.default_rng(SEED)
-    out = {}
+    out, pool_out = {}, {}
     for tid in R["targets"]:
         if f"{tid}/lat" not in Z.files:
             continue
@@ -66,6 +68,7 @@ def main():
             picked = top_sites(np.argsort(-score), dist)
             kept += near[:, picked].any(axis=1)
         share = kept / N_DRAWS
+        pool_out[tid] = np.clip(np.round(share * 254), 0, 254).astype(np.uint8)
         key = lambda a, b: f"{a:.3f},{b:.3f}"
         idx = {key(a, b): i for i, (a, b) in enumerate(zip(lat, lon))}
         res = {}
@@ -80,6 +83,9 @@ def main():
     p = ROOT / "results" / "robustness.json"
     json.dump(dict(meta=dict(draws=N_DRAWS, spread=SPREAD, n_top=N_TOP, min_km=MIN_KM, keep_km=KEEP_KM, seed=SEED),
                    targets=out), open(p, "w", encoding="utf-8"), indent=1)
+    print("->", p)
+    p = ROOT / "results" / "robustness_pool.npz"
+    np.savez_compressed(p, **pool_out)
     print("->", p)
 
 

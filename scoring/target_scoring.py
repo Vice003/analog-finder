@@ -320,6 +320,9 @@ if __name__ == "__main__":
     T = load_targets(tpath)
     print(f"Zielsignaturen: {tpath}\nErdtabelle:     {table.name} ({len(df):,} Zellen)")
     from categories import flags as _flags
+    # Zusatzeigenschaften einmal ueber die ganze Tabelle: die Regel "Staubquelle" nutzt ein Quantil ueber alle
+    # Landzellen; auf einer Teilmenge (z. B. den 20 Listen-Orten) berechnet waere der Schwellenwert falsch
+    FL_ALL = _flags(df)
     try:  # Land nur zur Beschriftung (Natural Earth, data/ref/); fehlt die Datei, bleibt das Feld leer
         from countries import CountryLookup
         _cl = CountryLookup()
@@ -351,7 +354,7 @@ if __name__ == "__main__":
             top = df.loc[idx].join(s.loc[idx, ["total", "coverage", "coverage_target", "best_dim", "worst_dim"] + dimcols],
                                    rsuffix="_s")
             known = mark_known(top[["lat", "lon"]])
-            fl = _flags(df.loc[idx])
+            fl = FL_ALL.loc[idx]
             out_sites = []
             for rank, (i, r) in enumerate(top.iterrows(), 1):
                 kn = known[i] if isinstance(known[i], str) else None

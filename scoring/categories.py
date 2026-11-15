@@ -512,6 +512,9 @@ KNOWN_ANALOGS = [
     # Name, Breite, Laenge, Radius km, wofuer bekannt
     ("Atacama-Wueste (Yungay, Kern)", -24.1, -70.0, 250, "Mars: Hyperariditaet, Lebensgrenze"),
     ("Altiplano / Licancabur", -22.8, -67.9, 120, "Mars: Hochgebirgsseen, UV"),
+    # ergaenzt nach Literaturpruefung 15.11. (results/novelty_check.json)
+    ("Salar de Uyuni / Sur Lipez", -20.2, -67.6, 120, "Mars: Salzkrusten, Evaporite im Hochland"),
+    ("Borup Fiord Pass (Ellesmere)", 80.8, -81.6, 120, "Mars/Europa: Schwefelquellen, kalte Polarwueste"),
     ("McMurdo Dry Valleys", -77.5, 161.8, 120, "Mars: kalte Polarwueste"),
     ("Dome C / Concordia", -75.1, 123.3, 100, "Isolation, Kaelte"),
     ("Haughton-Krater / Devon Island", 75.4, -89.7, 150, "Mars/Mond: Impaktkrater, polare Wueste"),

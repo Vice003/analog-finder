@@ -59,6 +59,42 @@ def cont_summary(body):
     return ", ".join(parts[:-1]) + " und " + parts[-1]
 
 
+from pathlib import Path as _P
+_fsp = _P(src).with_name("fine_search.json")
+FSR = json.load(open(_fsp, encoding="utf-8"))["sites"] if _fsp.exists() else {}
+
+
+def fs_summary():
+    pairs = [v for d in FSR.values() for v in d.values() if v.get("centre")]
+    if not pairs:
+        return None
+    c = sorted(v["centre"]["match"] for v in pairs)
+    b = sorted(v["best"]["match"] for v in pairs)
+    imp = sum(v["best"]["match"] - v["centre"]["match"] >= 0.05 for v in pairs)
+    edge = sum(v["best"]["offset_km"] >= 7 for v in pairs)
+    return dict(n=len(pairs), sites=len(FSR), c=c[len(c) // 2], b=b[len(b) // 2], imp=imp, edge=edge)
+
+
+FSS = fs_summary()
+_ncp = _P(src).with_name("novelty_check.json")
+NC = json.load(open(_ncp, encoding="utf-8"))["regions"] if _ncp.exists() else []
+NC_URL = "https://github.com/Vice003/analog-finder/blob/main/docs/novelty_check.md"
+
+
+def nc_summary():
+    if not NC:
+        return ""
+    cnt = collections.Counter(r["status"] for r in NC)
+    known = [r["region"] for r in NC if r["status"] in ("established", "studied")]
+    return (f"<li><b>Literaturprüfung der „neuen“ Orte:</b> {len(NC)} Regionen per Websuche geprüft. "
+            f"{cnt.get('established', 0)} sind etablierte Analog-Orte, {cnt.get('studied', 0)} schon untersucht "
+            f"({esc(', '.join(known))}); die beiden etablierten (Salar de Uyuni, Borup Fiord Pass) sind jetzt als bekannt markiert. "
+            f"Für {cnt.get('no evidence found', 0)} Regionen fand sich kein Nachweis. Viele davon liegen aber in einer Großregion mit "
+            f"bekanntem Analog, darum besser „neuer Ort in bekannter Analog-Landschaft“ statt „unerforscht“. "
+            f"Die Suche war englischsprachig und ohne Fachdatenbanken; chinesische und russische Literatur ist kaum abgedeckt. "
+            f"<a href='{NC_URL}'>Bericht mit Quellen</a>.</li>")
+
+
 def rb_summary(body):
     vals = [RB.get(k, {}).get(f"{t['top'][0]['lat']:.3f},{t['top'][0]['lon']:.3f}") for k, t in T.items() if t["body"] == body]
     vals = [v for v in vals if v is not None]
@@ -227,6 +263,8 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
     <li><b>Mond → arktische Polarwüsten.</b> Für die 13 Südpol-Ziele führen die Treffer in die kanadische Arktis und nach Nordgrönland: {lst(SN['c'], 4)} von {SN['top']} Treffern.</li>
     <li><b>Die Region bestimmen die Umweltbedingungen, den Ort das Gelände.</b> Niedriger Druck, Kälte und Trockenheit, die die Erde nie ganz erreicht, zeigen auf die extremsten Gegenden der Erde. Gelände und Untergrund entscheiden dann, welcher Ort darin am besten passt.</li>
     <li><b>{g('robustheit', 'Robustheit')}:</b> Wie oft bleibt der beste Ort unter den Top 20, wenn man die Gewichte zufällig um ±50 % verändert (1.000 Durchläufe)? Mindestens 80 % der Durchläufe schaffen bei den Mars-Zielen {rb_summary("Mars")}, bei den Mond-Zielen {rb_summary("Moon")}. Die Mond-Treffer hängen also kaum an der Gewichtung, bei einigen Mars-Zielen schon. Für die besten Orte gibt es <a href="{PROFILES_URL}">Steckbriefe</a> mit Satellitenbild und 90-m-Gelände.</li>
+    {f"<li><b>{g('feinsuche', 'Feinsuche')}:</b> Für die {FSS['sites']} Steckbrief-Orte wurde je Ziel ein Quadrat in Zielgröße bis zu 8 km um die Zelle verschoben und das Gelände mit 90-m-Daten neu bewertet. Geländenote im Median {FSS['c']:.2f} um die Zelle, {FSS['b']:.2f} im besten Quadrat; bei {FSS['imp']} von {FSS['n']} Ort-Ziel-Paaren bringt die Verschiebung mindestens 0,05. Die verfeinerten Koordinaten stehen in den <a href='{PROFILES_URL}'>Steckbriefen</a> und in der Web-App.</li>" if FSS else ""}
+    {nc_summary()}
     <li><b>{g('positivkontrolle', 'Positivkontrolle')}:</b> Etablierte Analoga tauchen in den Listen auf, ohne dass das Verfahren sie kennt: {lst(KNOWN, 5)} (Anzahl Treffer im jeweiligen Radius).</li>
   </ul>
 </section>
@@ -263,6 +301,7 @@ footer {{ margin-top:36px; padding-top:16px; border-top:1px solid var(--line); f
   <h2>Was noch nicht stimmt</h2>
   <div class="note"><b>Mars-Werte teils geschätzt.</b> Temperatur, Tagesgang, Druck und Bodeneis auf dem Mars sind grobe Schätzwerte (Note C, geringes Gewicht). Staub (TES) und Bodeneis (Odyssey GRS) sind noch nicht ausgewertet. Die Mars-Albedo kommt seit dem 15.11. aus TES.</div>
   <div class="note"><b>Ballung in Hochasien.</b> Die Top-20-Listen der Mars-Ziele zeigen vor allem eine Region. Die Liste „bester Ort je Kontinent“ zeigt die Alternativen und wie weit sie zurückliegen.</div>
+  {f"<div class='note'><b>Feinsuche am Rand.</b> Bei {FSS['edge']} von {FSS['n']} Paaren liegt das beste Quadrat 7–8 km von der Zelle entfernt, also am Rand des Suchbereichs. Dort könnte ein größerer Suchradius noch besser passendes Gelände finden.</div>" if FSS else ""}
   <div class="note"><b>Zielkoordinaten.</b> Gale liegt jetzt auf der Landestelle von Curiosity (Bradbury Landing). Artemis-Regionen, für die die Ortsliste einen Kratermittelpunkt nennt (Haworth, Nobile, de Gerlache, Faustini, Slater), liegen auf dem hellsten 15-km-Ausschnitt innerhalb Kraterradius + 10 km; Haworth hat damit 121 K statt 44 K. Nobile liegt dadurch außerhalb des Diviner-Rasters und hat keinen Temperaturwert. Die übrigen Koordinaten der Ortsliste sind Näherungen.</div>
 
   <div class="note"><b>Noch nicht ausgewertet:</b> Staub (TES) und Bodeneis (Odyssey GRS) auf dem Mars, Diviner-Werte für Mondziele nördlich von 85° S (Peak near Cabeus B, Mons Mouton, Nobile), Permafrost und UV auf der Erde.</div>

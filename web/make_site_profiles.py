@@ -23,7 +23,7 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 OUT = HERE / "profiles"
-HALF_KM = 10.0
+HALF_KM = 18.0
 GIBS = ("https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1"
         "&LAYERS={layer}&STYLES=&SRS=EPSG:4326&BBOX={w},{s},{e},{n}&WIDTH=600&HEIGHT=600&FORMAT=image/jpeg{time}")
 DEM = "/vsicurl/https://copernicus-dem-90m.s3.amazonaws.com/{n}/{n}.tif"
@@ -109,7 +109,7 @@ def cell_mask(shape, extent, lat, lon):
     return ((yy >= la0) & (yy < la0 + 0.05))[:, None] & ((xx >= lo0) & (xx < lo0 + 0.05))[None, :], (lo0, la0)
 
 
-def figure(img, label, hs, slope, inside, cell0, extent, title, path):
+def figure(img, label, hs, slope, inside, cell0, extent, title, path, box=None):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -126,12 +126,15 @@ def figure(img, label, hs, slope, inside, cell0, extent, title, path):
     ax[1].set_title("Terrain, Copernicus DEM 90 m (ESA)", color="#cfd6de", fontsize=9)
     for a in ax[:2]:
         a.add_patch(Rectangle(cell0, 0.05, 0.05, fill=False, ec="#e7b04f", lw=1.8))
+        if box:  # best box of the fine search (target size), cyan
+            bl, bb, bw, bh = box
+            a.add_patch(Rectangle((bl, bb), bw, bh, fill=False, ec="#5fd0e0", lw=1.6, ls="--"))
         a.set_xlim(w, e); a.set_ylim(s, n)
     bins = np.arange(0, 46, 1.5)
     out = slope[~inside & np.isfinite(slope)]
     cin = slope[inside & np.isfinite(slope)]
     if out.size:
-        ax[2].hist(np.clip(out, 0, 45), bins=bins, density=True, color="#5f6b78", alpha=.8, label="surroundings (20 km)")
+        ax[2].hist(np.clip(out, 0, 45), bins=bins, density=True, color="#5f6b78", alpha=.8, label="surroundings (36 km)")
     if cin.size:
         ax[2].hist(np.clip(cin, 0, 45), bins=bins, density=True, color="#e7b04f", alpha=.85, label="the 5 km cell")
     ax[2].set_facecolor("#1c2530"); ax[2].tick_params(colors="#cfd6de", labelsize=8)
@@ -165,6 +168,9 @@ def select_sites(R):
 def main():
     sys.path.insert(0, str(ROOT / "scoring"))
     R = json.load(open(ROOT / "results" / "top_sites.json", encoding="utf-8"))
+    global FS
+    fsp = ROOT / "results" / "fine_search.json"
+    FS = json.load(open(fsp, encoding="utf-8"))["sites"] if fsp.exists() else {}
     OUT.mkdir(exist_ok=True)
     sites = select_sites(R)
     print(len(sites), "Orte")
@@ -187,7 +193,17 @@ def main():
         # uniform: the cell looks like its surroundings and has no large steep share
         m["uniform"] = bool(m["steep_share"] < 0.1 and (m["sur_flat_share"] is None or abs(m["flat_share"] - m["sur_flat_share"]) < 0.25))
         title = f"{abs(lat):.3f}° {'N' if lat >= 0 else 'S'}, {abs(lon):.3f}° {'E' if lon >= 0 else 'W'}"
-        figure(img, label, hs, slope, inside, cell0, ext, title, OUT / f"{st['id']}.jpg")
+        fb = FS.get(st["id"], {})
+        box = None
+        if fb:  # box of the best-ranked target match
+            prim = min(st["matches"], key=lambda m: m.get("cell_rank") or 10 ** 9)["target"]
+            f = fb.get(prim) or next(iter(fb.values()))
+            hk = f["box_km"] / 2
+            b = f["best"]
+            dla = hk / 111.0
+            dlo = hk / (111.0 * max(math.cos(math.radians(b["lat"])), 0.05))
+            box = (b["lon"] - dlo, b["lat"] - dla, 2 * dlo, 2 * dla)
+        figure(img, label, hs, slope, inside, cell0, ext, title, OUT / f"{st['id']}.jpg", box=box)
         st.update(metrics={k: (round(v, 3) if isinstance(v, float) else v) for k, v in m.items()}, image=f"{st['id']}.jpg",
                   image_source=label)
         done.append(st)
