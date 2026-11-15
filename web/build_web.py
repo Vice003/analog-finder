@@ -227,14 +227,15 @@ def main():
         lists["cont"] = [add(x) for x in RT.get("by_continent", [])]
         for name in EXCLUDE:
             lists[f"cont_{name}"] = [add(x) for x in RT.get(f"by_continent_excl_{name}", [])]
-        fm = [dict(k=m["key"], n=FEAT_EN.get(m["key"], m["key"]), dim=DIM_EN.get(m["dim"], m["dim"]), m=m["method"], tv=m["target"],
+        fm = [dict(k=m["key"], ph=(t["features"].get(m["key"], {}).get("source") or "").startswith("physikalisch"),
+                   n=FEAT_EN.get(m["key"], m["key"]), dim=DIM_EN.get(m["dim"], m["dim"]), m=m["method"], tv=m["target"],
                    u=m.get("unit"), tp=m.get("body_percentile"), dir=m.get("direction"), w=round(m["weight"], 2),
                    rt=m["rel_target"], re=m["rel_earth"], eu=EARTH_UNIT.get(m["key"], m.get("unit"))) for m in RT.get("features_used", [])]
         feats = []
         for k, f in t["features"].items():
             if f.get("value") is None:
                 continue
-            feats.append(dict(k=k, n=FEAT_EN.get(k, k), v=f["value"], u=f.get("unit"), rel=f.get("reliability"),
+            feats.append(dict(k=k, ph=(f.get("source") or "").startswith("physikalisch"), n=FEAT_EN.get(k, k), v=f["value"], u=f.get("unit"), rel=f.get("reliability"),
                               src=f.get("source", ""), bp=f.get("body_percentile")))
         targets.append(dict(id=tid, name=t.get("name"), body=t.get("body"), cat=t.get("category"),
                             cq=t.get("coord_quality"), lat=t.get("center_lat"), lon=t.get("center_lon"),

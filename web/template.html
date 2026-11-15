@@ -177,6 +177,8 @@ dialog#gl-dlg::backdrop { background:rgba(0,0,0,.55); }
 .glall { padding:0 16px 16px; columns: 2 380px; column-gap: 28px; }
 .glall h3 { break-after: avoid; margin-top: 16px; } .glall .ge { break-inside: avoid; margin: 0 0 10px; font-size: 13.5px; }
 .glall .ge b { display:block; }
+.physline { font-size: 13px; color: var(--muted); margin: 8px 0 0; padding: 7px 9px; background: var(--raise); border-radius: 6px; }
+.xt td.v.phys { font-family: var(--f-body); font-style: italic; color: var(--muted); }
 /* explanation tables (site card, compare) */
 .xt { font-size: 12.5px; }
 .xt th, .xt td { padding: 5px 6px; }
@@ -371,6 +373,15 @@ const hashOf = (id) => id.replace(/_/g, "-") + (state.exChina ? "&exclude=china"
 const idOfHash = (h) => h.replace(/^#/, "").split("&")[0].replace(/-/g, "_");
 const DIM_ORDER = ["Terrain", "Surface material", "Temperature", "Dryness", "Atmosphere", "Dust & wind", "Ice & water", "Vegetation", "Sunlight"];
 const UNIT = (u) => (u == null || u === "1" || u === "") ? "" : " " + u.replace("J m-2 K-1 s-1/2", "TIU").replace("deg", "°");
+/* values fixed by physics (no atmosphere, no water cycle): shown as words, not as "0.000" */
+const PHYS_WORD = { pressure: "vacuum", wind_mean: "no wind", precip: "no rain or snow", humidity: "no humidity", ndvi: "no vegetation" };
+const physVal = (m) => m.k === "pressure" ? "vacuum" : "none";
+function tgtCell(m) {
+  const td = el("td", "v");
+  if (m.ph) { td.textContent = physVal(m); td.title = "Fixed by physics: the same everywhere on this body"; td.classList.add("phys"); }
+  else td.textContent = fmtVal(m.tv, m.u);
+  return td;
+}
 function fmtVal(v, u) {
   if (v == null || Number.isNaN(v)) return "–";
   const a = Math.abs(v);
@@ -546,13 +557,21 @@ function renderTarget(t) {
   bd.appendChild(kv);
   const h3k = el("h3", null, "What we know about the site "); h3k.appendChild(qm("merkmale")); bd.appendChild(h3k);
   const f = el("div", "feat");
-  t.feats.forEach((x) => {
+  t.feats.filter((x) => !x.ph).forEach((x) => {
     const fn = el("span"); fn.appendChild(gterm("feat_" + x.k, x.n)); f.appendChild(fn);
     f.appendChild(el("span", "v", fmtVal(x.v, x.u)));
     const r = el("span", "rel " + (x.rel || "")); r.textContent = x.rel || "–"; r.title = (x.src || "") + " · click: what the grade means"; r.dataset.g = "verlaesslichkeit"; f.appendChild(r);
   });
   bd.appendChild(f);
-  bd.appendChild(el("p", "small muted", "Grade: A direct measurement, B coarse or proxy, C rough estimate. Hover a grade for its source."));
+  const fixed = t.feats.filter((x) => x.ph);
+  if (fixed.length) {
+    const p = el("p", "physline", `Fixed by physics, the same everywhere on ${t.body === "Moon" ? "the Moon" : "Mars"}: `);
+    fixed.forEach((x, k) => { if (k) p.appendChild(document.createTextNode(", ")); p.appendChild(gterm("feat_" + x.k, PHYS_WORD[x.k] || x.n)); });
+    p.appendChild(document.createTextNode(". Earth can only come close; these count as "));
+    p.appendChild(gterm("methode_richtung", "beyond Earth's range")); p.appendChild(document.createTextNode("."));
+    bd.appendChild(p);
+  }
+  bd.appendChild(el("p", "small muted", "Grade: A direct measurement, B coarse or proxy, C rough estimate. Click a grade for what it means; hover for its source."));
   bd.appendChild(el("h3", null, "Where Earth can never match"));
   const ul = el("ul", "limits"); LIMITS[t.body].forEach((x) => ul.appendChild(el("li", null, x))); bd.appendChild(ul);
   c.appendChild(bd);
@@ -584,7 +603,7 @@ function whyMatch(t, s) {
     if (m.dim !== dim) { dim = m.dim; const r = el("tr", "dimrow"); const td = el("td", null, `${dim}${s.d[dim] != null ? " · " + fmt(s.d[dim], 2) : ""} `); td.appendChild(qm("dimension")); td.colSpan = 4; r.appendChild(td); tb.appendChild(r); }
     const tr = el("tr");
     const n = el("td"); n.appendChild(gterm("feat_" + m.k, m.n)); const sm = el("small", "gltxt", methodNote(m, fv)); sm.dataset.g = METHOD_G[m.m]; n.appendChild(sm); tr.appendChild(n);
-    tr.appendChild(el("td", "v", fmtVal(m.tv, m.u)));
+    tr.appendChild(tgtCell(m));
     tr.appendChild(el("td", "v", fmtVal(fv[0], m.eu)));
     const mc = el("td", "mc"); mc.appendChild(mbar(fv[1])); mc.title = `Weight ${fmt(m.w, 2)} (target grade ${m.rt}, Earth grade ${m.re})`; tr.appendChild(mc);
     tb.appendChild(tr);
@@ -691,7 +710,7 @@ function renderCompare(t) {
     if (m.dim !== dim) { dim = m.dim; sec(`${dim}: measured values`); }
     const cells = S.map((s) => { const fv = s.fv[k] || []; const w = el("div"); w.appendChild(el("div", null, fmtVal(fv[0], m.eu))); w.appendChild(mbar(fv[1])); return w; });
     const lab = el("div"); lab.appendChild(gterm("feat_" + m.k, m.n)); lab.appendChild(el("small", null, m.m === "direct" ? "value vs value" : m.m === "quantile" ? "rank vs rank" : "beyond Earth: closer is better"));
-    const tr = el("tr"); const td0 = el("td"); td0.appendChild(lab); tr.appendChild(td0); tr.appendChild(el("td", "v", fmtVal(m.tv, m.u)));
+    const tr = el("tr"); const td0 = el("td"); td0.appendChild(lab); tr.appendChild(td0); tr.appendChild(tgtCell(m));
     const best = argmax(S.map((s) => (s.fv[k] || [])[1]));
     cells.forEach((c, j) => { const td = el("td", "v" + (best === j ? " top" : "")); td.appendChild(c); tr.appendChild(td); });
     tb.appendChild(tr);
